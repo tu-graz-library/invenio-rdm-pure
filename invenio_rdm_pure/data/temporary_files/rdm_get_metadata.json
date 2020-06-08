@@ -16,6 +16,6 @@
     "total": 0
   }, 
   "links": {
-    "self": "https://127.0.0.1:5000/api/records/?sort=mostrecent&q=%2250cc689b-95d9-4d2d-b848-25f52eb01a84%22&size=250&page=1"
+    "self": "https://127.0.0.1:5000/api/records/?sort=mostrecent&q=06f9e00f-ca16-4db5-bdf8-d13bb3235788&size=100&page=1"
   }
 }

@@ -1,7 +1,8 @@
 # Invenio_rdm_pure
-invenio_rdm_pure/data/
 invenio_rdm_pure/data_setup/
 invenio_rdm_pure/tests/
+invenio_rdm_pure/data/
+invenio_rdm_pure/data/temporary_files/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
