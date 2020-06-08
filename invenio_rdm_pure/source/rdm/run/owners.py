@@ -295,6 +295,7 @@ class RdmOwners:
 
         count = 0
         count_records_per_owner = {}
+        count_records_per_owner['no_uuid'] = 0
         all_records_list = ''
         next_page = True
 
@@ -315,6 +316,10 @@ class RdmOwners:
 
             for item in resp_json['hits']['hits']:
                 count += 1
+
+                if not 'uuid' in item['metadata']:
+                    count_records_per_owner['no_uuid'] += 1
+                    continue
 
                 uuid   = item['metadata']['uuid']
                 recid  = item['metadata']['recid']
