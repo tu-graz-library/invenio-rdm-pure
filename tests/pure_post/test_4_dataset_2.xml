@@ -1,0 +1,36 @@
+<datasets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://pure01.tugraz.at/ws/api/514/xsd/schema1.xsd">
+	<!-- Minimal example -->
+	<dataset id="dataset1" type="dataset">
+		<!-- Title of the dataset -->
+		<title>
+			DataSet Title test
+		</title>
+		<managingOrganisation lookupId="organisation1" />
+		<persons>
+			<person id="person1" contactPerson="true">
+				<person lookupId="person1" />
+				<role>
+					datacollector
+				</role>
+				<associationStartDate>
+					2002-02-02
+				</associationStartDate>
+			</person>
+		</persons>
+		<!-- The data that the dataset has been made available -->
+		<availableDate>
+			<year>
+				2013
+			</year>
+		</availableDate>
+		<!-- A publisher is required to create a dataset, however, if a default publisher has been configured for datasets you need not state one here as we will use that if none are provided. -->
+		<publisher lookupId="publisher1">
+			<name>
+				New Publisher
+			</name>
+			<type>
+				publisher
+			</type>
+		</publisher>
+	</dataset>
+</datasets>

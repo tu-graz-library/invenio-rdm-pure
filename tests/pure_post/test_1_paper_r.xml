@@ -1,0 +1,115 @@
+<contributionToConference xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://pure01.tugraz.at/ws/api/514/xsd/schema1.xsd">
+	<title>
+		basic fields
+	</title>
+	<types>
+		<type>
+			Paper
+		</type>
+	</types>
+	<categories>
+		<category>
+			Research
+		</category>
+	</categories>
+	<peerReview>
+		true
+	</peerReview>
+	<publicationStatuses>
+		<publicationStatus>
+			<publicationStatuses>
+				<publicationStatus>
+					Published
+				</publicationStatus>
+			</publicationStatuses>
+			<publicationDate>
+				<year>
+					2019
+				</year>
+			</publicationDate>
+		</publicationStatus>
+	</publicationStatuses>
+	<languages>
+		<language>
+			English
+		</language>
+	</languages>
+	<personAssociations>
+		<personAssociation>
+			<externalPerson>
+				<link>
+				<names>
+					<name>
+						test_cont
+					</name>
+				</names>
+				<types>
+					<type>
+						External person
+					</type>
+				</types>
+			</externalPerson>
+			<name>
+				<firstName />
+				<lastName>
+					test_cont
+				</lastName>
+			</name>
+			<personRoles>
+				<personRole>
+					Author
+				</personRole>
+			</personRoles>
+		</personAssociation>
+	</personAssociations>
+	<totalNumberOfAuthors>
+		1
+	</totalNumberOfAuthors>
+	<managingOrganisationalUnit>
+		<names>
+			<name>
+				A-sit - Secure Information Technology Centre Austria
+			</name>
+		</names>
+		<types>
+			<type>
+				Association
+			</type>
+		</types>
+	</managingOrganisationalUnit>
+	<openAccessPermissions>
+		<openAccessPermission>
+			None
+		</openAccessPermission>
+	</openAccessPermissions>
+	<keywordGroups>
+		<keywordGroup>
+			<types>
+				<type>
+					Austrian Fields of Study 2012 (6-stellig)
+				</type>
+			</types>
+			<keywordContainers>
+				<keywordContainer>
+					<structuredKeyword>
+						<terms>
+							<term>
+								204001 Inorganic chemical technology
+							</term>
+						</terms>
+						<descriptions>
+							<description>
+								204001 Inorganic chemical technology
+							</description>
+						</descriptions>
+					</structuredKeyword>
+				</keywordContainer>
+			</keywordContainers>
+		</keywordGroup>
+	</keywordGroups>
+	<visibilities>
+		<visibility>
+			Public - No restriction
+		</visibility>
+	</visibilities>
+</contributionToConference>

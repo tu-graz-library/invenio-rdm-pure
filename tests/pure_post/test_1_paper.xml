@@ -1,0 +1,186 @@
+<contributionToConference xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" uuid="ffab2714-db16-4378-9835-6c1cd139fd28" pureId="19731411" xsi:schemaLocation="https://pure01.tugraz.at/ws/api/514/xsd/schema1.xsd">
+	<title>
+		basic fields
+	</title>
+	<types>
+		<type pureId="4546" uri="/dk/atira/pure/researchoutput/researchoutputtypes/contributiontoconference/paper" locale="en_GB">
+			Paper
+		</type>
+		<type pureId="4546" uri="/dk/atira/pure/researchoutput/researchoutputtypes/contributiontoconference/paper" locale="de_DE">
+			Paper
+		</type>
+	</types>
+	<categories>
+		<category pureId="4454" uri="/dk/atira/pure/researchoutput/category/research" locale="en_GB">
+			Research
+		</category>
+		<category pureId="4454" uri="/dk/atira/pure/researchoutput/category/research" locale="de_DE">
+			Forschung
+		</category>
+	</categories>
+	<peerReview>
+		true
+	</peerReview>
+	<publicationStatuses>
+		<publicationStatus current="true" pureId="19731411">
+			<publicationStatuses>
+				<publicationStatus pureId="869" uri="/dk/atira/pure/researchoutput/status/published" locale="en_GB">
+					Published
+				</publicationStatus>
+				<publicationStatus pureId="869" uri="/dk/atira/pure/researchoutput/status/published" locale="de_DE">
+					Veröffentlicht
+				</publicationStatus>
+			</publicationStatuses>
+			<publicationDate>
+				<year>
+					2019
+				</year>
+			</publicationDate>
+		</publicationStatus>
+	</publicationStatuses>
+	<languages>
+		<language pureId="4900" uri="/dk/atira/pure/core/languages/en_GB" locale="en_GB">
+			English
+		</language>
+		<language pureId="4900" uri="/dk/atira/pure/core/languages/en_GB" locale="de_DE">
+			englisch
+		</language>
+	</languages>
+	<personAssociations>
+		<personAssociation pureId="19731414">
+			<externalPerson uuid="e940868c-1b9e-465e-928b-cc398bd28716">
+				<link ref="content" href="https://pure01.tugraz.at/ws/api/514/external-persons/e940868c-1b9e-465e-928b-cc398bd28716" />
+				<names>
+					<name locale="en_GB">
+						test_cont
+					</name>
+					<name locale="de_DE">
+						test_cont
+					</name>
+				</names>
+				<types>
+					<type pureId="5089" uri="/dk/atira/pure/externalperson/externalpersontypes/externalperson/externalperson" locale="en_GB">
+						External person
+					</type>
+					<type pureId="5089" uri="/dk/atira/pure/externalperson/externalpersontypes/externalperson/externalperson" locale="de_DE">
+						Externe Person
+					</type>
+				</types>
+			</externalPerson>
+			<name>
+				<firstName />
+				<lastName>
+					test_cont
+				</lastName>
+			</name>
+			<personRoles>
+				<personRole pureId="5190" uri="/dk/atira/pure/researchoutput/roles/contributiontoconference/author" locale="en_GB">
+					Author
+				</personRole>
+				<personRole pureId="5190" uri="/dk/atira/pure/researchoutput/roles/contributiontoconference/author" locale="de_DE">
+					Autor
+				</personRole>
+			</personRoles>
+		</personAssociation>
+	</personAssociations>
+	<totalNumberOfAuthors>
+		1
+	</totalNumberOfAuthors>
+	<managingOrganisationalUnit uuid="f94561d4-a6c9-4274-931f-e6f86bbf02c7" externalId="20353" externalIdSource="synchronisedUnifiedOrganisation" externallyManaged="true">
+		<link ref="content" href="https://pure01.tugraz.at/ws/api/514/organisational-units/f94561d4-a6c9-4274-931f-e6f86bbf02c7" />
+		<names>
+			<name locale="en_GB">
+				A-sit - Secure Information Technology Centre Austria
+			</name>
+			<name locale="de_DE">
+				A-SIT
+			</name>
+		</names>
+		<types>
+			<type pureId="5578" uri="/dk/atira/pure/organisation/organisationtypes/organisation/orgtype_29701" locale="en_GB">
+				Association
+			</type>
+			<type pureId="5578" uri="/dk/atira/pure/organisation/organisationtypes/organisation/orgtype_29701" locale="de_DE">
+				Verein
+			</type>
+		</types>
+	</managingOrganisationalUnit>
+	<openAccessPermissions>
+		<openAccessPermission pureId="2928" uri="/dk/atira/pure/researchoutput/openaccesspermission/none" locale="en_GB">
+			None
+		</openAccessPermission>
+		<openAccessPermission pureId="2928" uri="/dk/atira/pure/researchoutput/openaccesspermission/none" locale="de_DE">
+			Keine Angabe
+		</openAccessPermission>
+	</openAccessPermissions>
+	<keywordGroups>
+		<keywordGroup logicalName="/dk/atira/pure/core/oefos2012" pureId="19731412">
+			<types>
+				<type uri="/dk/atira/pure/core/oefos2012" locale="en_GB">
+					Austrian Fields of Study 2012 (6-stellig)
+				</type>
+				<type uri="/dk/atira/pure/core/oefos2012" locale="de_DE">
+					ÖFOS 2012 (6-stellig)
+				</type>
+			</types>
+			<keywordContainers>
+				<keywordContainer pureId="19731413">
+					<structuredKeyword uri="/dk/atira/pure/core/oefos2012/204/204001" disabled="false" pureId="13564">
+						<terms>
+							<term locale="en_GB">
+								204001 Inorganic chemical technology
+							</term>
+							<term locale="de_DE">
+								204001 Anorganisch-chemische Technologie
+							</term>
+						</terms>
+						<descriptions>
+							<description locale="en_GB">
+								204001 Inorganic chemical technology
+							</description>
+							<description locale="de_DE">
+								204001 Anorganisch-chemische Technologie
+							</description>
+						</descriptions>
+					</structuredKeyword>
+				</keywordContainer>
+			</keywordContainers>
+		</keywordGroup>
+	</keywordGroups>
+	<confidential>
+		false
+	</confidential>
+	<visibilities>
+		<visibility key="FREE" locale="en_GB">
+			Public - No restriction
+		</visibility>
+		<visibility key="FREE" locale="de_DE">
+			Öffentlich - Keine Einschränkungen
+		</visibility>
+	</visibilities>
+	<workflows>
+		<workflow workflowStep="forApproval" locale="en_GB">
+			For validation
+		</workflow>
+		<workflow workflowStep="forApproval" locale="de_DE">
+			Zur Validierung
+		</workflow>
+	</workflows>
+	<info>
+		<createdBy>
+			ws_grosso
+		</createdBy>
+		<createdDate>
+			2020-05-22T11:17:56.612+02:00
+		</createdDate>
+		<modifiedBy>
+			ws_grosso
+		</modifiedBy>
+		<modifiedDate>
+			2020-05-22T11:17:56.612+02:00
+		</modifiedDate>
+		<portalUrl>
+			https://pure01.tugraz.at/portal/en/publications/basic-fields(ffab2714-db16-4378-9835-6c1cd139fd28).html
+		</portalUrl>
+	</info>
+</contributionToConference>

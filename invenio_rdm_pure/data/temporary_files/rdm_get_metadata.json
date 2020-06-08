@@ -1,0 +1,21 @@
+{
+  "aggregations": {
+    "access_right": {
+      "buckets": [], 
+      "doc_count_error_upper_bound": 0, 
+      "sum_other_doc_count": 0
+    }, 
+    "resource_type": {
+      "buckets": [], 
+      "doc_count_error_upper_bound": 0, 
+      "sum_other_doc_count": 0
+    }
+  }, 
+  "hits": {
+    "hits": [], 
+    "total": 0
+  }, 
+  "links": {
+    "self": "https://127.0.0.1:5000/api/records/?sort=mostrecent&q=%2250cc689b-95d9-4d2d-b848-25f52eb01a84%22&size=250&page=1"
+  }
+}

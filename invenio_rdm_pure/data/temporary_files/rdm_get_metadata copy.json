@@ -1,0 +1,766 @@
+{
+  "aggregations": {
+    "access_right": {
+      "buckets": [
+        {
+          "doc_count": 9, 
+          "key": "closed"
+        }, 
+        {
+          "doc_count": 1, 
+          "key": "open"
+        }
+      ], 
+      "doc_count_error_upper_bound": 0, 
+      "sum_other_doc_count": 0
+    }, 
+    "resource_type": {
+      "buckets": [], 
+      "doc_count_error_upper_bound": 0, 
+      "sum_other_doc_count": 0
+    }
+  }, 
+  "hits": {
+    "hits": [
+      {
+        "created": "2020-05-29T09:36:16.289313+00:00", 
+        "id": "g4vhj-j9t13", 
+        "links": {
+          "files": "https://127.0.0.1:5000/api/records/g4vhj-j9t13/files", 
+          "self": "https://127.0.0.1:5000/api/records/g4vhj-j9t13"
+        }, 
+        "metadata": {
+          "_access": {
+            "files_restricted": false, 
+            "metadata_restricted": false
+          }, 
+          "access_right": "closed", 
+          "appliedRestrictions": [
+            "owners", 
+            "groups", 
+            "ip_single", 
+            "ip_range"
+          ], 
+          "category": "Research", 
+          "confidential": false, 
+          "contributors": [
+            {
+              "externalId": "-31472", 
+              "name": "Eckhard, Petra", 
+              "organisationalUnit": "Institute of Architectural Theory, Art History and Cultural Studies (1430)", 
+              "personRole": "Author", 
+              "uuid": "c45bbf16-bb6b-47a5-91e4-3dcf120501b5"
+            }
+          ], 
+          "createdDate": "2016-02-25T21:48:26.367+0000", 
+          "groupRestrictions": [
+            "569"
+          ], 
+          "language": "eng", 
+          "managingOrganisationalUnit_externalId": "569", 
+          "managingOrganisationalUnit_name": "Institute of Architectural Theory, Art History and Cultural Studies (1430)", 
+          "managingOrganisationalUnit_uuid": "27dada06-a086-4da6-a4ad-96b650d5c9b8", 
+          "metadataModifBy": "root", 
+          "metadataModifDate": "2018-09-06T07:28:38.180+0000", 
+          "numberOfAuthors": 1, 
+          "organisationalUnits": [
+            {
+              "externalId": "569", 
+              "name": "Institute of Architectural Theory, Art History and Cultural Studies (1430)", 
+              "uuid": "27dada06-a086-4da6-a4ad-96b650d5c9b8"
+            }
+          ], 
+          "owners": [
+            1
+          ], 
+          "peerReview": false, 
+          "publicationDate": "2009", 
+          "publicationStatus": "Published", 
+          "publication_date": "2020-05-29", 
+          "pureId": "1065171", 
+          "recid": "g4vhj-j9t13", 
+          "recordType": "Article", 
+          "title": "Rezension von Gerhard Stilz (ed.) Territorial Terrors: Contested Spaces in Colonial and Postcolonial Writing", 
+          "uuid": "45b3da48-4bf4-47ba-8f39-72ff08176d56", 
+          "versionFiles": [], 
+          "workflow": "For validation"
+        }, 
+        "revision": 0, 
+        "updated": "2020-05-29T09:36:16.289320+00:00"
+      }, 
+      {
+        "created": "2020-05-29T09:36:04.911938+00:00", 
+        "id": "h2ngg-3fh59", 
+        "links": {
+          "files": "https://127.0.0.1:5000/api/records/h2ngg-3fh59/files", 
+          "self": "https://127.0.0.1:5000/api/records/h2ngg-3fh59"
+        }, 
+        "metadata": {
+          "_access": {
+            "files_restricted": false, 
+            "metadata_restricted": false
+          }, 
+          "access_right": "closed", 
+          "appliedRestrictions": [
+            "owners", 
+            "groups", 
+            "ip_single", 
+            "ip_range"
+          ], 
+          "category": "Research", 
+          "confidential": false, 
+          "contributors": [
+            {
+              "externalId": "1239", 
+              "name": "Heuberger, Clemens", 
+              "organisationalUnit": "Institute of Discrete Mathematics (5050)", 
+              "personRole": "Author", 
+              "uuid": "bcc040bd-c417-4f56-a514-23f0c50c7a2c"
+            }
+          ], 
+          "createdDate": "2016-02-25T21:48:26.083+0000", 
+          "groupRestrictions": [
+            "34265"
+          ], 
+          "language": "deu", 
+          "managingOrganisationalUnit_externalId": "7307", 
+          "managingOrganisationalUnit_name": "Institute of Optimization and Discrete Mathematics (Math B) (5020)", 
+          "managingOrganisationalUnit_uuid": "f5c55594-df76-4221-bf9e-3eafbf4b8950", 
+          "metadataModifBy": "root", 
+          "metadataModifDate": "2018-09-06T07:28:38.154+0000", 
+          "numberOfAuthors": 1, 
+          "organisationalUnits": [
+            {
+              "externalId": "34265", 
+              "name": "Institute of Discrete Mathematics (5050)", 
+              "uuid": "15d662f6-ed41-4498-bed0-8351c5267cc7"
+            }
+          ], 
+          "owners": [
+            1
+          ], 
+          "peerReview": false, 
+          "publicationDate": "2009", 
+          "publicationStatus": "Published", 
+          "publication_date": "2020-05-29", 
+          "pureId": "1065152", 
+          "recid": "h2ngg-3fh59", 
+          "recordType": "Article", 
+          "title": "Graphen, Ziffern und Kryptographie", 
+          "uuid": "d628ec50-0bfa-48f9-81ec-5f4adaac90d1", 
+          "versionFiles": [], 
+          "workflow": "For validation"
+        }, 
+        "revision": 0, 
+        "updated": "2020-05-29T09:36:04.911946+00:00"
+      }, 
+      {
+        "created": "2020-05-29T09:35:59.066116+00:00", 
+        "id": "8msrh-s5w30", 
+        "links": {
+          "files": "https://127.0.0.1:5000/api/records/8msrh-s5w30/files", 
+          "self": "https://127.0.0.1:5000/api/records/8msrh-s5w30"
+        }, 
+        "metadata": {
+          "_access": {
+            "files_restricted": false, 
+            "metadata_restricted": false
+          }, 
+          "access_right": "closed", 
+          "appliedRestrictions": [
+            "owners", 
+            "groups", 
+            "ip_single", 
+            "ip_range"
+          ], 
+          "category": "Research", 
+          "confidential": false, 
+          "contributors": [
+            {
+              "name": "Hou, Bo", 
+              "personRole": "Author", 
+              "type_p": "External person", 
+              "uuid": "6a057c33-8817-470b-941e-16d6626dcde1"
+            }, 
+            {
+              "name": "Perdahcioglu, E. S.", 
+              "personRole": "Author", 
+              "type_p": "External person", 
+              "uuid": "5c0faa72-1f3a-42db-a0ee-71fe35804d8d"
+            }, 
+            {
+              "name": "van den Boogaard, A.H.", 
+              "personRole": "Author", 
+              "type_p": "External person", 
+              "uuid": "1a9592f7-034b-41c2-9038-b3f168418c07"
+            }, 
+            {
+              "externalId": "51991", 
+              "name": "Kitting, Daniela", 
+              "organisationalUnit": "Virtual Vehicle Research Center (ViF) (98830)", 
+              "personRole": "Author", 
+              "uuid": "9c651aa6-59ab-43aa-82e2-32fb3d77a99f"
+            }
+          ], 
+          "createdDate": "2016-02-25T21:48:25.900+0000", 
+          "groupRestrictions": [
+            "13272"
+          ], 
+          "language": "eng", 
+          "managingOrganisationalUnit_externalId": "13272", 
+          "managingOrganisationalUnit_name": "Virtual Vehicle Research Center (ViF) (98830)", 
+          "managingOrganisationalUnit_uuid": "f1d52104-18a3-483c-ba3a-2754e36b50bb", 
+          "metadataModifBy": "sync_user", 
+          "metadataModifDate": "2020-01-05T00:00:29.725+0000", 
+          "numberOfAuthors": 4, 
+          "organisationalUnits": [
+            {
+              "externalId": "13272", 
+              "name": "Virtual Vehicle Research Center (ViF) (98830)", 
+              "uuid": "f1d52104-18a3-483c-ba3a-2754e36b50bb"
+            }
+          ], 
+          "owners": [
+            1
+          ], 
+          "peerReview": true, 
+          "publicationDate": "2014", 
+          "publicationStatus": "Published", 
+          "publication_date": "2020-05-29", 
+          "pureId": "1065128", 
+          "recid": "8msrh-s5w30", 
+          "recordType": "Article", 
+          "title": "Study on instability and forming limit of sheet metal under stretch-bending", 
+          "uuid": "56d5a20d-85b5-473c-986a-d004d6263a60", 
+          "versionFiles": [], 
+          "workflow": "For validation"
+        }, 
+        "revision": 0, 
+        "updated": "2020-05-29T09:35:59.066124+00:00"
+      }, 
+      {
+        "created": "2020-05-29T09:35:53.380459+00:00", 
+        "id": "48ksq-thv45", 
+        "links": {
+          "files": "https://127.0.0.1:5000/api/records/48ksq-thv45/files", 
+          "self": "https://127.0.0.1:5000/api/records/48ksq-thv45"
+        }, 
+        "metadata": {
+          "_access": {
+            "files_restricted": false, 
+            "metadata_restricted": false
+          }, 
+          "access_right": "closed", 
+          "appliedRestrictions": [
+            "owners", 
+            "groups", 
+            "ip_single", 
+            "ip_range"
+          ], 
+          "category": "Research", 
+          "confidential": false, 
+          "contributors": [
+            {
+              "name": "Hetenyi, Balazs", 
+              "organisationalUnit": "Institute of Theoretical and Computational Physics (5150)", 
+              "personRole": "Author"
+            }
+          ], 
+          "createdDate": "2016-02-25T21:48:25.787+0000", 
+          "groupRestrictions": [
+            "2382"
+          ], 
+          "language": "eng", 
+          "managingOrganisationalUnit_externalId": "2382", 
+          "managingOrganisationalUnit_name": "Institute of Theoretical and Computational Physics (5150)", 
+          "managingOrganisationalUnit_uuid": "4217669c-bb07-49af-b330-12b7d4b6c89f", 
+          "metadataModifBy": "sync_user", 
+          "metadataModifDate": "2020-01-05T00:00:27.475+0000", 
+          "numberOfAuthors": 1, 
+          "organisationalUnits": [
+            {
+              "externalId": "2382", 
+              "name": "Institute of Theoretical and Computational Physics (5150)", 
+              "uuid": "4217669c-bb07-49af-b330-12b7d4b6c89f"
+            }
+          ], 
+          "owners": [
+            1
+          ], 
+          "peerReview": true, 
+          "publicationDate": "2009", 
+          "publicationStatus": "Published", 
+          "publication_date": "2020-05-29", 
+          "pureId": "1065109", 
+          "recid": "48ksq-thv45", 
+          "recordType": "Article", 
+          "title": "Many-body position operator in lattice fermionic systems with periodic boundary conditions", 
+          "uuid": "cd247b66-7318-4bf5-8035-e59471221f10", 
+          "versionFiles": [], 
+          "workflow": "For validation"
+        }, 
+        "revision": 0, 
+        "updated": "2020-05-29T09:35:53.380470+00:00"
+      }, 
+      {
+        "created": "2020-05-29T09:35:41.019423+00:00", 
+        "id": "6a7rz-ar837", 
+        "links": {
+          "files": "https://127.0.0.1:5000/api/records/6a7rz-ar837/files", 
+          "self": "https://127.0.0.1:5000/api/records/6a7rz-ar837"
+        }, 
+        "metadata": {
+          "_access": {
+            "files_restricted": false, 
+            "metadata_restricted": false
+          }, 
+          "access_right": "closed", 
+          "appliedRestrictions": [
+            "owners", 
+            "groups", 
+            "ip_single", 
+            "ip_range"
+          ], 
+          "category": "Research", 
+          "confidential": false, 
+          "contributors": [
+            {
+              "externalId": "-69609", 
+              "name": "Geier, Roman", 
+              "organisationalUnit": "Institute of Physical and Theoretical Chemistry (6350)", 
+              "personRole": "Author", 
+              "uuid": "c598c897-6f89-4a01-9b80-d0ff353aaf53"
+            }
+          ], 
+          "createdDate": "2016-02-25T21:48:25.503+0000", 
+          "groupRestrictions": [
+            "2391"
+          ], 
+          "language": "eng", 
+          "managingOrganisationalUnit_externalId": "2391", 
+          "managingOrganisationalUnit_name": "Institute of Physical and Theoretical Chemistry (6350)", 
+          "managingOrganisationalUnit_uuid": "7f6fe494-0817-4e10-8ee3-614db5b0872b", 
+          "metadataModifBy": "root", 
+          "metadataModifDate": "2018-09-06T07:28:38.059+0000", 
+          "numberOfAuthors": 1, 
+          "organisationalUnits": [
+            {
+              "externalId": "2391", 
+              "name": "Institute of Physical and Theoretical Chemistry (6350)", 
+              "uuid": "7f6fe494-0817-4e10-8ee3-614db5b0872b"
+            }
+          ], 
+          "owners": [
+            1
+          ], 
+          "peerReview": false, 
+          "publicationDate": "2015", 
+          "publicationStatus": "Published", 
+          "publication_date": "2020-05-29", 
+          "publisherName": "Av Akademikerverlag", 
+          "pureId": "1065079", 
+          "recid": "6a7rz-ar837", 
+          "recordType": "Book", 
+          "title": "pH Sensitive Responsive Gels: Investigations on the structural change of liquid crystal phases, with SAXS", 
+          "uuid": "3827c9a0-c47b-4a41-90e8-53d334dffe62", 
+          "versionFiles": [], 
+          "workflow": "For validation"
+        }, 
+        "revision": 0, 
+        "updated": "2020-05-29T09:35:41.019430+00:00"
+      }, 
+      {
+        "created": "2020-05-29T09:35:24.082101+00:00", 
+        "id": "gkrtr-70814", 
+        "links": {
+          "files": "https://127.0.0.1:5000/api/records/gkrtr-70814/files", 
+          "self": "https://127.0.0.1:5000/api/records/gkrtr-70814"
+        }, 
+        "metadata": {
+          "_access": {
+            "files_restricted": false, 
+            "metadata_restricted": false
+          }, 
+          "access_right": "closed", 
+          "appliedRestrictions": [
+            "owners", 
+            "groups", 
+            "ip_single", 
+            "ip_range"
+          ], 
+          "category": "Research", 
+          "confidential": false, 
+          "contributors": [
+            {
+              "externalId": "25469", 
+              "name": "Landsch\u00fctzer, Christian", 
+              "organisationalUnit": "Institute of Logistics Engineering (3090)", 
+              "personRole": "Author", 
+              "uuid": "d48d0f39-b2db-4605-bfc8-9e69aba6ed4d"
+            }
+          ], 
+          "createdDate": "2016-02-25T21:48:36.720+0000", 
+          "groupRestrictions": [
+            "9189"
+          ], 
+          "language": "deu", 
+          "managingOrganisationalUnit_externalId": "9189", 
+          "managingOrganisationalUnit_name": "Institute of Logistics Engineering (3090)", 
+          "managingOrganisationalUnit_uuid": "b21f8c78-37bd-444b-a677-56a0e6dd0400", 
+          "metadataModifBy": "root", 
+          "metadataModifDate": "2018-09-06T07:28:40.040+0000", 
+          "numberOfAuthors": 1, 
+          "organisationalUnits": [
+            {
+              "externalId": "9189", 
+              "name": "Institute of Logistics Engineering (3090)", 
+              "uuid": "b21f8c78-37bd-444b-a677-56a0e6dd0400"
+            }
+          ], 
+          "owners": [
+            1
+          ], 
+          "peerReview": false, 
+          "publicationDate": "2005", 
+          "publicationStatus": "Published", 
+          "publication_date": "2020-05-29", 
+          "publisherName": "Eigenverlag", 
+          "pureId": "1065833", 
+          "recid": "gkrtr-70814", 
+          "recordType": "Chapter", 
+          "title": "Die Orgel in der Leobner Redemptoristenkirche", 
+          "versionFiles": [], 
+          "workflow": "For validation"
+        }, 
+        "revision": 0, 
+        "updated": "2020-05-29T09:35:24.082115+00:00"
+      }, 
+      {
+        "created": "2020-05-29T09:35:11.240419+00:00", 
+        "id": "eydxr-rs302", 
+        "links": {
+          "files": "https://127.0.0.1:5000/api/records/eydxr-rs302/files", 
+          "self": "https://127.0.0.1:5000/api/records/eydxr-rs302"
+        }, 
+        "metadata": {
+          "_access": {
+            "files_restricted": false, 
+            "metadata_restricted": false
+          }, 
+          "access_right": "closed", 
+          "appliedRestrictions": [
+            "owners", 
+            "groups", 
+            "ip_single", 
+            "ip_range"
+          ], 
+          "category": "Research", 
+          "confidential": false, 
+          "contributors": [
+            {
+              "name": "Nguyen, T.H.", 
+              "personRole": "Author", 
+              "type_p": "External person", 
+              "uuid": "bd7fc3ba-4b80-444e-9542-2c7f8dbef105"
+            }, 
+            {
+              "name": "Vayer, M.", 
+              "personRole": "Author", 
+              "type_p": "External person", 
+              "uuid": "ebfd089c-0d9a-4059-8dc1-faba2783944e"
+            }, 
+            {
+              "name": "Grosso, D.", 
+              "personRole": "Author", 
+              "type_p": "External person", 
+              "uuid": "21e1b05a-ad14-4a33-b32a-e2b96fe33449"
+            }, 
+            {
+              "externalId": "91359", 
+              "name": "Amenitsch, Heinz", 
+              "organisationalUnit": "Institute of Inorganic Chemistry (6330)", 
+              "personRole": "Author", 
+              "uuid": "493da446-82fc-4318-b070-8f33a54dc4bd"
+            }, 
+            {
+              "name": "Sinturel, C.", 
+              "personRole": "Author", 
+              "type_p": "External person", 
+              "uuid": "3f5ac6b3-fdcb-4766-9350-66cebec76ad3"
+            }
+          ], 
+          "createdDate": "2016-02-25T21:48:36.537+0000", 
+          "groupRestrictions": [
+            "2807"
+          ], 
+          "language": "deu", 
+          "managingOrganisationalUnit_externalId": "2807", 
+          "managingOrganisationalUnit_name": "Institute of Inorganic Chemistry (6330)", 
+          "managingOrganisationalUnit_uuid": "b40fb8ca-1608-4e0e-9caa-cf0e95d28e13", 
+          "metadataModifBy": "sync_user", 
+          "metadataModifDate": "2020-01-05T00:00:29.869+0000", 
+          "numberOfAuthors": 5, 
+          "organisationalUnits": [
+            {
+              "externalId": "2807", 
+              "name": "Institute of Inorganic Chemistry (6330)", 
+              "uuid": "b40fb8ca-1608-4e0e-9caa-cf0e95d28e13"
+            }
+          ], 
+          "owners": [
+            1
+          ], 
+          "peerReview": true, 
+          "publicationDate": "2012", 
+          "publicationStatus": "Published", 
+          "publication_date": "2020-05-29", 
+          "pureId": "1065801", 
+          "recid": "eydxr-rs302", 
+          "recordType": "Article", 
+          "title": "Using sol-gel replications to assess the porosity of block-copolymer derived thin films", 
+          "versionFiles": [], 
+          "workflow": "For validation"
+        }, 
+        "revision": 0, 
+        "updated": "2020-05-29T09:35:11.240426+00:00"
+      }, 
+      {
+        "created": "2020-05-28T12:43:31.871351+00:00", 
+        "id": "t0s1d-2x040", 
+        "links": {
+          "files": "https://127.0.0.1:5000/api/records/t0s1d-2x040/files", 
+          "self": "https://127.0.0.1:5000/api/records/t0s1d-2x040"
+        }, 
+        "metadata": {
+          "_access": {
+            "files_restricted": false, 
+            "metadata_restricted": false
+          }, 
+          "access_right": "open", 
+          "appliedRestrictions": [
+            "owners", 
+            "groups", 
+            "ip_single", 
+            "ip_range"
+          ], 
+          "category": "Research", 
+          "confidential": false, 
+          "contributors": [
+            {
+              "externalId": "3261", 
+              "name": "Leberl, Franz", 
+              "organisationalUnit": "Institute of Computer Graphics and Vision (7100)", 
+              "personRole": "Author", 
+              "uuid": "1198b8c9-eea7-41dd-8861-30c8d066fb27"
+            }
+          ], 
+          "createdDate": "2016-02-25T21:48:16.870+0000", 
+          "groupRestrictions": [
+            "2376"
+          ], 
+          "language": "eng", 
+          "managingOrganisationalUnit_externalId": "2376", 
+          "managingOrganisationalUnit_name": "Institute of Computer Graphics and Vision (7100)", 
+          "managingOrganisationalUnit_uuid": "b9faa490-bc9e-4c6e-b1de-fedcac9bca87", 
+          "metadataModifBy": "root", 
+          "metadataModifDate": "2018-09-06T07:28:36.251+0000", 
+          "numberOfAuthors": 1, 
+          "organisationalUnits": [
+            {
+              "externalId": "2376", 
+              "name": "Institute of Computer Graphics and Vision (7100)", 
+              "uuid": "b9faa490-bc9e-4c6e-b1de-fedcac9bca87"
+            }
+          ], 
+          "owners": [
+            1
+          ], 
+          "peerReview": true, 
+          "publicationDate": "1975", 
+          "publicationStatus": "Published", 
+          "publication_date": "2020-05-28", 
+          "pureId": "1064589", 
+          "recid": "t0s1d-2x040", 
+          "recordType": "Article", 
+          "title": "Photogrammetric Interpolation", 
+          "uuid": "06f9e00f-ca16-4db5-bdf8-d13bb3235788", 
+          "versionFiles": [
+            {
+              "accessType": "open", 
+              "createdBy": "root", 
+              "createdDate": "2016-02-25T21:48:16.867+0000", 
+              "digest": "FF74800705D836C05E448FF046E3C83B1DEA56BF", 
+              "digestAlgorithm": "SHA1", 
+              "internalReview": false, 
+              "mimeType": "20 - Photogrammetric Interpolation, ITC-Journal 1975.pdf", 
+              "name": "20%20-%20Photogrammetric%20Interpolation,%20ITC-Journal%201975.pdf", 
+              "size": 885061, 
+              "versionType": "Final published version"
+            }
+          ], 
+          "workflow": "For validation"
+        }, 
+        "revision": 0, 
+        "updated": "2020-05-28T12:43:31.871362+00:00"
+      }, 
+      {
+        "created": "2020-05-28T12:43:17.183206+00:00", 
+        "id": "mt222-nvh80", 
+        "links": {
+          "files": "https://127.0.0.1:5000/api/records/mt222-nvh80/files", 
+          "self": "https://127.0.0.1:5000/api/records/mt222-nvh80"
+        }, 
+        "metadata": {
+          "_access": {
+            "files_restricted": false, 
+            "metadata_restricted": false
+          }, 
+          "access_right": "closed", 
+          "appliedRestrictions": [
+            "owners", 
+            "groups", 
+            "ip_single", 
+            "ip_range"
+          ], 
+          "category": "Research", 
+          "confidential": false, 
+          "contributors": [
+            {
+              "name": "Karl, J\u00fcrgen", 
+              "organisationalUnit": "Institute of Thermal Engineering (3070)", 
+              "personRole": "Author"
+            }, 
+            {
+              "name": "Kienberger, Thomas", 
+              "organisationalUnit": "Institute of Thermal Engineering (3070)", 
+              "personRole": "Author"
+            }
+          ], 
+          "createdDate": "2016-02-25T21:48:16.553+0000", 
+          "groupRestrictions": [
+            "2267"
+          ], 
+          "language": "deu", 
+          "managingOrganisationalUnit_externalId": "2267", 
+          "managingOrganisationalUnit_name": "Institute of Thermal Engineering (3070)", 
+          "managingOrganisationalUnit_uuid": "3423acc4-ff55-4f0f-88bd-978d80bdeccf", 
+          "metadataModifBy": "sync_user", 
+          "metadataModifDate": "2020-01-05T00:00:28.690+0000", 
+          "numberOfAuthors": 2, 
+          "organisationalUnits": [
+            {
+              "externalId": "2267", 
+              "name": "Institute of Thermal Engineering (3070)", 
+              "uuid": "3423acc4-ff55-4f0f-88bd-978d80bdeccf"
+            }
+          ], 
+          "owners": [
+            1
+          ], 
+          "peerReview": false, 
+          "publicationDate": "2010", 
+          "publicationStatus": "Published", 
+          "publication_date": "2020-05-28", 
+          "pureId": "1064572", 
+          "recid": "mt222-nvh80", 
+          "recordType": "Article", 
+          "title": "Auf dem Holzweg", 
+          "uuid": "1c74c1ef-9b61-4c4f-94ea-bbf2ea466b1a", 
+          "versionFiles": [], 
+          "workflow": "For validation"
+        }, 
+        "revision": 0, 
+        "updated": "2020-05-28T12:43:17.183214+00:00"
+      }, 
+      {
+        "created": "2020-05-27T09:52:28.811612+00:00", 
+        "id": "crecp-k1v90", 
+        "links": {
+          "files": "https://127.0.0.1:5000/api/records/crecp-k1v90/files", 
+          "self": "https://127.0.0.1:5000/api/records/crecp-k1v90"
+        }, 
+        "metadata": {
+          "_access": {
+            "files_restricted": false, 
+            "metadata_restricted": false
+          }, 
+          "access_right": "closed", 
+          "appliedRestrictions": [
+            "owners", 
+            "groups", 
+            "ip_single", 
+            "ip_range"
+          ], 
+          "category": "Research", 
+          "confidential": false, 
+          "contributors": [
+            {
+              "externalId": "948", 
+              "name": "Obernberger, Ingwald", 
+              "organisationalUnit": "Institute of Process and Particle Engineering (6690)", 
+              "personRole": "Author", 
+              "uuid": "5295ba8b-5bc3-48b7-b704-dfabceea4eab"
+            }, 
+            {
+              "name": "Widmann, Walter", 
+              "personRole": "Author", 
+              "type_p": "External person", 
+              "uuid": "221f7374-bfd1-4634-a6f3-17887c66cc99"
+            }, 
+            {
+              "name": "Wurst, Friedrich", 
+              "personRole": "Author", 
+              "type_p": "External person", 
+              "uuid": "842de480-f122-4d8b-aabf-677d5ea1b50b"
+            }, 
+            {
+              "name": "W\u00f6rgetter, Manfred", 
+              "personRole": "Author", 
+              "type_p": "External person", 
+              "uuid": "ecef45ac-084a-48e8-85ad-d71aa2312030"
+            }
+          ], 
+          "createdDate": "2016-02-25T21:47:56.410+0000", 
+          "groupRestrictions": [
+            "13866"
+          ], 
+          "language": "deu", 
+          "managingOrganisationalUnit_externalId": "13866", 
+          "managingOrganisationalUnit_name": "Institute of Process and Particle Engineering (6690)", 
+          "managingOrganisationalUnit_uuid": "44dff43c-2d42-4974-98d8-b249db092dbc", 
+          "metadataModifBy": "root", 
+          "metadataModifDate": "2018-09-06T07:28:34.742+0000", 
+          "numberOfAuthors": 4, 
+          "organisationalUnits": [
+            {
+              "externalId": "13866", 
+              "name": "Institute of Process and Particle Engineering (6690)", 
+              "uuid": "44dff43c-2d42-4974-98d8-b249db092dbc"
+            }
+          ], 
+          "owners": [
+            1
+          ], 
+          "peerReview": false, 
+          "publicationDate": "1997", 
+          "publicationStatus": "Published", 
+          "publication_date": "2020-05-27", 
+          "publisherName": ".", 
+          "pureId": "1064125", 
+          "recid": "crecp-k1v90", 
+          "recordType": "Other report", 
+          "title": "Beurteilung der Umweltvertr\u00e4glichkeit des Einsatzes von Einjahresganzpflanzen und Stroh zur Fernw\u00e4rmeerzeugung, Endbericht", 
+          "uuid": "4dabd5dc-2610-4b5a-b72c-83b480341998", 
+          "versionFiles": [], 
+          "workflow": "For validation"
+        }, 
+        "revision": 0, 
+        "updated": "2020-05-27T09:52:28.811619+00:00"
+      }
+    ], 
+    "total": 10
+  }, 
+  "links": {
+    "self": "https://127.0.0.1:5000/api/records/?sort=mostrecent&size=20&page=1"
+  }
+}

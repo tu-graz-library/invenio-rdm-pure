@@ -1,0 +1,505 @@
+{
+  "pureId" : 58017,
+  "externalId" : "30",
+  "externalIdSource" : "synchronisedUnifiedPerson",
+  "externallyManaged" : true,
+  "uuid" : "cdc5cd7e-a6d4-4e2a-b258-d0cad657a1d1",
+  "name" : {
+    "firstName" : "Christine",
+    "lastName" : "Stöckler-Penz"
+  },
+  "scopusHIndex" : 1,
+  "fte" : 0.0,
+  "info" : {
+    "createdBy" : "sync_user",
+    "createdDate" : "2016-02-23T13:33:13.157+0000",
+    "modifiedBy" : "sync_user",
+    "modifiedDate" : "2020-04-20T11:46:26.617+0000",
+    "portalUrl" : "https://pure01.tugraz.at/portal/en/persons/christine-stoecklerpenz(cdc5cd7e-a6d4-4e2a-b258-d0cad657a1d1).html"
+  },
+  "nationalities" : [ {
+    "locale" : "en_GB",
+    "value" : "Austria",
+    "pureId" : 177,
+    "uri" : "/dk/atira/pure/core/countries/at"
+  }, {
+    "locale" : "de_DE",
+    "value" : "Österreich",
+    "pureId" : 177,
+    "uri" : "/dk/atira/pure/core/countries/at"
+  } ],
+  "nameVariants" : [ {
+    "pureId" : 58024,
+    "externalId" : "f-30",
+    "externalIdSource" : "synchronisedUnifiedPerson",
+    "name" : {
+      "firstName" : "Christine",
+      "lastName" : "Penz"
+    },
+    "classifications" : [ {
+      "locale" : "en_GB",
+      "value" : "Former name",
+      "pureId" : 17150,
+      "uri" : "/dk/atira/pure/person/names/former"
+    }, {
+      "locale" : "de_DE",
+      "value" : "Früherer Nachname",
+      "pureId" : 17150,
+      "uri" : "/dk/atira/pure/person/names/former"
+    } ]
+  } ],
+  "titles" : [ {
+    "locale" : "en_GB",
+    "value" : "Mag.phil.",
+    "pureId" : 58039,
+    "externalId" : "1",
+    "externalIdSource" : "synchronisedUnifiedPerson",
+    "externallyManaged" : true,
+    "typeUri" : "/dk/atira/pure/person/titles/generic",
+    "type" : "Title"
+  }, {
+    "locale" : "de_DE",
+    "value" : "Mag.phil.",
+    "pureId" : 58039,
+    "externalId" : "1",
+    "externalIdSource" : "synchronisedUnifiedPerson",
+    "externallyManaged" : true,
+    "typeUri" : "/dk/atira/pure/person/titles/generic",
+    "type" : "Allgemeine Bezeichnung"
+  } ],
+  "profilePhotos" : [ {
+    "pureId" : 7036253,
+    "typeUri" : "/dk/atira/pure/person/personfiles/portrait",
+    "typeLocale" : "en_GB",
+    "type" : "Portrait",
+    "url" : "https://pure01.tugraz.at/ws/files/7036253/1526_LM_20150601_TU_Portraits.jpg",
+    "filename" : "1526_LM_20150601_TU_Portraits.jpg",
+    "mimetype" : "image/jpeg",
+    "size" : 0
+  } ],
+  "links" : [ {
+    "pureId" : 58022,
+    "externalId" : "30-vk",
+    "externalIdSource" : "synchronisedUnifiedPerson",
+    "externallyManaged" : true,
+    "url" : "https://qline.tugraz.at/QSYSTEM_TUG/visitenkarte.show_vcard?pPersonenId=E3A263023765C403&pPersonenGruppe=3",
+    "descriptions" : [ {
+      "locale" : "en_GB",
+      "value" : "More information on person"
+    }, {
+      "locale" : "de_DE",
+      "value" : "Mehr Informationen zur Person"
+    } ],
+    "linkTypes" : [ {
+      "locale" : "en_GB",
+      "value" : "Unspecified",
+      "pureId" : 821,
+      "uri" : "/dk/atira/pure/links/person/unspecified"
+    }, {
+      "locale" : "de_DE",
+      "value" : "Nicht angegeben",
+      "pureId" : 821,
+      "uri" : "/dk/atira/pure/links/person/unspecified"
+    } ]
+  } ],
+  "staffOrganisationAssociations" : [ {
+    "pureId" : 58035,
+    "externalId" : "266796",
+    "externalIdSource" : "synchronisedUnifiedPerson",
+    "externallyManaged" : true,
+    "person" : {
+      "uuid" : "cdc5cd7e-a6d4-4e2a-b258-d0cad657a1d1",
+      "link" : {
+        "ref" : "content",
+        "href" : "https://pure01.tugraz.at/ws/api/514/persons/cdc5cd7e-a6d4-4e2a-b258-d0cad657a1d1"
+      },
+      "externalId" : "30",
+      "externalIdSource" : "synchronisedUnifiedPerson",
+      "externallyManaged" : true,
+      "names" : [ {
+        "locale" : "en_GB",
+        "value" : "Christine Stöckler-Penz"
+      }, {
+        "locale" : "de_DE",
+        "value" : "Christine Stöckler-Penz"
+      } ]
+    },
+    "period" : {
+      "startDate" : "2013-09-01T10:00:00.000+0000",
+      "endDate" : "2020-01-31T11:00:00.000+0000"
+    },
+    "isPrimaryAssociation" : false,
+    "fte" : 1.0,
+    "organisationalUnit" : {
+      "uuid" : "4527e872-2687-407e-a88b-8ea3292d98ee",
+      "link" : {
+        "ref" : "content",
+        "href" : "https://pure01.tugraz.at/ws/api/514/organisational-units/4527e872-2687-407e-a88b-8ea3292d98ee"
+      },
+      "externalId" : "19190",
+      "externalIdSource" : "synchronisedUnifiedOrganisation",
+      "externallyManaged" : true,
+      "names" : [ {
+        "locale" : "en_GB",
+        "value" : "Life Long Learning (94070)"
+      }, {
+        "locale" : "de_DE",
+        "value" : "Life Long Learning (94070)"
+      } ],
+      "types" : [ {
+        "locale" : "en_GB",
+        "value" : "Department",
+        "pureId" : 5440,
+        "uri" : "/dk/atira/pure/organisation/organisationtypes/organisation/orgtype_714"
+      }, {
+        "locale" : "de_DE",
+        "value" : "Einrichtung",
+        "pureId" : 5440,
+        "uri" : "/dk/atira/pure/organisation/organisationtypes/organisation/orgtype_714"
+      } ]
+    },
+    "staffTypes" : [ {
+      "locale" : "en_GB",
+      "value" : "Academic",
+      "pureId" : 17242,
+      "uri" : "/dk/atira/pure/person/personstafftype/academic"
+    }, {
+      "locale" : "de_DE",
+      "value" : "Akademisch",
+      "pureId" : 17242,
+      "uri" : "/dk/atira/pure/person/personstafftype/academic"
+    } ],
+    "jobTitles" : [ {
+      "locale" : "en_GB",
+      "value" : "Angestellte/r (Wissenschaftlicher Dienst)",
+      "pureId" : 4736,
+      "uri" : "/dk/atira/pure/person/jobtitles/an_67364"
+    }, {
+      "locale" : "de_DE",
+      "value" : "Angestellte/r (Wissenschaftlicher Dienst)",
+      "pureId" : 4736,
+      "uri" : "/dk/atira/pure/person/jobtitles/an_67364"
+    } ]
+  }, {
+    "pureId" : 58032,
+    "externalId" : "2012",
+    "externalIdSource" : "synchronisedUnifiedPerson",
+    "externallyManaged" : true,
+    "person" : {
+      "uuid" : "cdc5cd7e-a6d4-4e2a-b258-d0cad657a1d1",
+      "link" : {
+        "ref" : "content",
+        "href" : "https://pure01.tugraz.at/ws/api/514/persons/cdc5cd7e-a6d4-4e2a-b258-d0cad657a1d1"
+      },
+      "externalId" : "30",
+      "externalIdSource" : "synchronisedUnifiedPerson",
+      "externallyManaged" : true,
+      "names" : [ {
+        "locale" : "en_GB",
+        "value" : "Christine Stöckler-Penz"
+      }, {
+        "locale" : "de_DE",
+        "value" : "Christine Stöckler-Penz"
+      } ]
+    },
+    "period" : {
+      "startDate" : "1995-06-19T10:00:00.000+0000",
+      "endDate" : "2003-12-31T11:00:00.000+0000"
+    },
+    "isPrimaryAssociation" : false,
+    "fte" : 1.0,
+    "organisationalUnit" : {
+      "uuid" : "c87190ca-ef50-4ccb-9c12-4bf7ccd9faf9",
+      "link" : {
+        "ref" : "content",
+        "href" : "https://pure01.tugraz.at/ws/api/514/organisational-units/c87190ca-ef50-4ccb-9c12-4bf7ccd9faf9"
+      },
+      "externalId" : "3405",
+      "externalIdSource" : "synchronisedUnifiedOrganisation",
+      "externallyManaged" : true,
+      "names" : [ {
+        "locale" : "en_GB",
+        "value" : "Technology Transfer (93030)"
+      }, {
+        "locale" : "de_DE",
+        "value" : "Technologietransfer (93030)"
+      } ],
+      "types" : [ {
+        "locale" : "en_GB",
+        "value" : "Department",
+        "pureId" : 5440,
+        "uri" : "/dk/atira/pure/organisation/organisationtypes/organisation/orgtype_714"
+      }, {
+        "locale" : "de_DE",
+        "value" : "Einrichtung",
+        "pureId" : 5440,
+        "uri" : "/dk/atira/pure/organisation/organisationtypes/organisation/orgtype_714"
+      } ]
+    },
+    "staffTypes" : [ {
+      "locale" : "en_GB",
+      "value" : "Academic",
+      "pureId" : 17242,
+      "uri" : "/dk/atira/pure/person/personstafftype/academic"
+    }, {
+      "locale" : "de_DE",
+      "value" : "Akademisch",
+      "pureId" : 17242,
+      "uri" : "/dk/atira/pure/person/personstafftype/academic"
+    } ],
+    "jobTitles" : [ {
+      "locale" : "en_GB",
+      "value" : "Drittmittelbeschäftigtes Personal",
+      "pureId" : 4746,
+      "uri" : "/dk/atira/pure/person/jobtitles/dp_4735"
+    }, {
+      "locale" : "de_DE",
+      "value" : "Drittmittelbeschäftigtes Personal",
+      "pureId" : 4746,
+      "uri" : "/dk/atira/pure/person/jobtitles/dp_4735"
+    } ]
+  }, {
+    "pureId" : 58033,
+    "externalId" : "186748",
+    "externalIdSource" : "synchronisedUnifiedPerson",
+    "externallyManaged" : true,
+    "person" : {
+      "uuid" : "cdc5cd7e-a6d4-4e2a-b258-d0cad657a1d1",
+      "link" : {
+        "ref" : "content",
+        "href" : "https://pure01.tugraz.at/ws/api/514/persons/cdc5cd7e-a6d4-4e2a-b258-d0cad657a1d1"
+      },
+      "externalId" : "30",
+      "externalIdSource" : "synchronisedUnifiedPerson",
+      "externallyManaged" : true,
+      "names" : [ {
+        "locale" : "en_GB",
+        "value" : "Christine Stöckler-Penz"
+      }, {
+        "locale" : "de_DE",
+        "value" : "Christine Stöckler-Penz"
+      } ]
+    },
+    "period" : {
+      "startDate" : "2005-11-02T11:00:00.000+0000",
+      "endDate" : "2008-08-31T10:00:00.000+0000"
+    },
+    "isPrimaryAssociation" : false,
+    "fte" : 1.0,
+    "organisationalUnit" : {
+      "uuid" : "4527e872-2687-407e-a88b-8ea3292d98ee",
+      "link" : {
+        "ref" : "content",
+        "href" : "https://pure01.tugraz.at/ws/api/514/organisational-units/4527e872-2687-407e-a88b-8ea3292d98ee"
+      },
+      "externalId" : "19190",
+      "externalIdSource" : "synchronisedUnifiedOrganisation",
+      "externallyManaged" : true,
+      "names" : [ {
+        "locale" : "en_GB",
+        "value" : "Life Long Learning (94070)"
+      }, {
+        "locale" : "de_DE",
+        "value" : "Life Long Learning (94070)"
+      } ],
+      "types" : [ {
+        "locale" : "en_GB",
+        "value" : "Department",
+        "pureId" : 5440,
+        "uri" : "/dk/atira/pure/organisation/organisationtypes/organisation/orgtype_714"
+      }, {
+        "locale" : "de_DE",
+        "value" : "Einrichtung",
+        "pureId" : 5440,
+        "uri" : "/dk/atira/pure/organisation/organisationtypes/organisation/orgtype_714"
+      } ]
+    },
+    "staffTypes" : [ {
+      "locale" : "en_GB",
+      "value" : "Academic",
+      "pureId" : 17242,
+      "uri" : "/dk/atira/pure/person/personstafftype/academic"
+    }, {
+      "locale" : "de_DE",
+      "value" : "Akademisch",
+      "pureId" : 17242,
+      "uri" : "/dk/atira/pure/person/personstafftype/academic"
+    } ],
+    "jobTitles" : [ {
+      "locale" : "en_GB",
+      "value" : "Angestellte/r (Wissenschaftlicher Dienst)",
+      "pureId" : 4736,
+      "uri" : "/dk/atira/pure/person/jobtitles/an_67364"
+    }, {
+      "locale" : "de_DE",
+      "value" : "Angestellte/r (Wissenschaftlicher Dienst)",
+      "pureId" : 4736,
+      "uri" : "/dk/atira/pure/person/jobtitles/an_67364"
+    } ]
+  }, {
+    "pureId" : 58034,
+    "externalId" : "276989",
+    "externalIdSource" : "synchronisedUnifiedPerson",
+    "externallyManaged" : true,
+    "person" : {
+      "uuid" : "cdc5cd7e-a6d4-4e2a-b258-d0cad657a1d1",
+      "link" : {
+        "ref" : "content",
+        "href" : "https://pure01.tugraz.at/ws/api/514/persons/cdc5cd7e-a6d4-4e2a-b258-d0cad657a1d1"
+      },
+      "externalId" : "30",
+      "externalIdSource" : "synchronisedUnifiedPerson",
+      "externallyManaged" : true,
+      "names" : [ {
+        "locale" : "en_GB",
+        "value" : "Christine Stöckler-Penz"
+      }, {
+        "locale" : "de_DE",
+        "value" : "Christine Stöckler-Penz"
+      } ]
+    },
+    "period" : {
+      "startDate" : "2012-10-01T10:00:00.000+0000",
+      "endDate" : "2013-08-31T10:00:00.000+0000"
+    },
+    "isPrimaryAssociation" : false,
+    "fte" : 0.875,
+    "organisationalUnit" : {
+      "uuid" : "4527e872-2687-407e-a88b-8ea3292d98ee",
+      "link" : {
+        "ref" : "content",
+        "href" : "https://pure01.tugraz.at/ws/api/514/organisational-units/4527e872-2687-407e-a88b-8ea3292d98ee"
+      },
+      "externalId" : "19190",
+      "externalIdSource" : "synchronisedUnifiedOrganisation",
+      "externallyManaged" : true,
+      "names" : [ {
+        "locale" : "en_GB",
+        "value" : "Life Long Learning (94070)"
+      }, {
+        "locale" : "de_DE",
+        "value" : "Life Long Learning (94070)"
+      } ],
+      "types" : [ {
+        "locale" : "en_GB",
+        "value" : "Department",
+        "pureId" : 5440,
+        "uri" : "/dk/atira/pure/organisation/organisationtypes/organisation/orgtype_714"
+      }, {
+        "locale" : "de_DE",
+        "value" : "Einrichtung",
+        "pureId" : 5440,
+        "uri" : "/dk/atira/pure/organisation/organisationtypes/organisation/orgtype_714"
+      } ]
+    },
+    "staffTypes" : [ {
+      "locale" : "en_GB",
+      "value" : "Academic",
+      "pureId" : 17242,
+      "uri" : "/dk/atira/pure/person/personstafftype/academic"
+    }, {
+      "locale" : "de_DE",
+      "value" : "Akademisch",
+      "pureId" : 17242,
+      "uri" : "/dk/atira/pure/person/personstafftype/academic"
+    } ],
+    "jobTitles" : [ {
+      "locale" : "en_GB",
+      "value" : "Angestellte/r (Wissenschaftlicher Dienst)",
+      "pureId" : 4736,
+      "uri" : "/dk/atira/pure/person/jobtitles/an_67364"
+    }, {
+      "locale" : "de_DE",
+      "value" : "Angestellte/r (Wissenschaftlicher Dienst)",
+      "pureId" : 4736,
+      "uri" : "/dk/atira/pure/person/jobtitles/an_67364"
+    } ]
+  }, {
+    "pureId" : 58037,
+    "externalId" : "211346",
+    "externalIdSource" : "synchronisedUnifiedPerson",
+    "externallyManaged" : true,
+    "person" : {
+      "uuid" : "cdc5cd7e-a6d4-4e2a-b258-d0cad657a1d1",
+      "link" : {
+        "ref" : "content",
+        "href" : "https://pure01.tugraz.at/ws/api/514/persons/cdc5cd7e-a6d4-4e2a-b258-d0cad657a1d1"
+      },
+      "externalId" : "30",
+      "externalIdSource" : "synchronisedUnifiedPerson",
+      "externallyManaged" : true,
+      "names" : [ {
+        "locale" : "en_GB",
+        "value" : "Christine Stöckler-Penz"
+      }, {
+        "locale" : "de_DE",
+        "value" : "Christine Stöckler-Penz"
+      } ]
+    },
+    "period" : {
+      "startDate" : "2008-09-01T10:00:00.000+0000",
+      "endDate" : "2012-09-30T10:00:00.000+0000"
+    },
+    "isPrimaryAssociation" : false,
+    "fte" : 0.8,
+    "organisationalUnit" : {
+      "uuid" : "4527e872-2687-407e-a88b-8ea3292d98ee",
+      "link" : {
+        "ref" : "content",
+        "href" : "https://pure01.tugraz.at/ws/api/514/organisational-units/4527e872-2687-407e-a88b-8ea3292d98ee"
+      },
+      "externalId" : "19190",
+      "externalIdSource" : "synchronisedUnifiedOrganisation",
+      "externallyManaged" : true,
+      "names" : [ {
+        "locale" : "en_GB",
+        "value" : "Life Long Learning (94070)"
+      }, {
+        "locale" : "de_DE",
+        "value" : "Life Long Learning (94070)"
+      } ],
+      "types" : [ {
+        "locale" : "en_GB",
+        "value" : "Department",
+        "pureId" : 5440,
+        "uri" : "/dk/atira/pure/organisation/organisationtypes/organisation/orgtype_714"
+      }, {
+        "locale" : "de_DE",
+        "value" : "Einrichtung",
+        "pureId" : 5440,
+        "uri" : "/dk/atira/pure/organisation/organisationtypes/organisation/orgtype_714"
+      } ]
+    },
+    "staffTypes" : [ {
+      "locale" : "en_GB",
+      "value" : "Academic",
+      "pureId" : 17242,
+      "uri" : "/dk/atira/pure/person/personstafftype/academic"
+    }, {
+      "locale" : "de_DE",
+      "value" : "Akademisch",
+      "pureId" : 17242,
+      "uri" : "/dk/atira/pure/person/personstafftype/academic"
+    } ],
+    "jobTitles" : [ {
+      "locale" : "en_GB",
+      "value" : "Angestellte/r (Wissenschaftlicher Dienst)",
+      "pureId" : 4736,
+      "uri" : "/dk/atira/pure/person/jobtitles/an_67364"
+    }, {
+      "locale" : "de_DE",
+      "value" : "Angestellte/r (Wissenschaftlicher Dienst)",
+      "pureId" : 4736,
+      "uri" : "/dk/atira/pure/person/jobtitles/an_67364"
+    } ]
+  } ],
+  "visibilities" : [ {
+    "locale" : "en_GB",
+    "value" : "Public - No restriction",
+    "key" : "FREE"
+  }, {
+    "locale" : "de_DE",
+    "value" : "Öffentlich - Keine Einschränkungen",
+    "key" : "FREE"
+  } ]
+}

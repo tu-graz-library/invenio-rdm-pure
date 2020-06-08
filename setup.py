@@ -42,6 +42,7 @@ setup_requires = [
 
 install_requires = [
     'Flask-BabelEx>=0.9.4',
+    'docopt>=0.6.2',
 ]
 
 packages = find_packages()
