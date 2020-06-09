@@ -205,13 +205,16 @@ class RdmAddRecord:
             self.sub_data = {}
             self._get_contributor_name(item)
 
-            self._add_subdata(item, 'uuid',                   ['person', 'uuid'])
-            self._add_subdata(item, 'externalId',             ['person', 'externalId'])
-            self._add_subdata(item, 'authorCollaboratorName', ['authorCollaboration', 'names', 0, 'value'])   
-            self._add_subdata(item, 'personRole',             ['personRoles', 0, 'value'])    
-            self._add_subdata(item, 'organisationalUnit',     ['organisationalUnits', 0, 'names', 0, 'value'])
-            self._add_subdata(item, 'type_p',                 ['externalPerson', 'types', 0, 'value'])
-            self._add_subdata(item, 'uuid',                   ['externalPerson', 'uuid'])
+            self.sub_data['role'] = 'RightsHolder'
+            self.sub_data['type'] = 'Personal'
+
+            # self._add_subdata(item, 'uuid',                   ['person', 'uuid'])
+            # self._add_subdata(item, 'externalId',             ['person', 'externalId'])
+            # self._add_subdata(item, 'authorCollaboratorName', ['authorCollaboration', 'names', 0, 'value'])   
+            # self._add_subdata(item, 'personRole',             ['personRoles', 0, 'value'])    
+            # self._add_subdata(item, 'organisationalUnit',     ['organisationalUnits', 0, 'names', 0, 'value'])
+            # self._add_subdata(item, 'type_p',                 ['externalPerson', 'types', 0, 'value'])
+            # self._add_subdata(item, 'uuid',                   ['externalPerson', 'uuid'])
             
             # Checks if the record owner is available in user_ids_match.txt
             person_external_id = get_value(item, ['person', 'externalId'])
@@ -234,9 +237,9 @@ class RdmAddRecord:
         if not first_name:
             first_name = '(first name not specified)'
         if not last_name:
-            first_name = '(last name not specified)'
+            last_name = '(last name not specified)'
 
-        self.sub_data['name'] = f'{last_name}, {first_name}'
+        self.sub_data['name'] = f'{first_name} {last_name}'
 
 
     def _process_contributor_orcid(self):
