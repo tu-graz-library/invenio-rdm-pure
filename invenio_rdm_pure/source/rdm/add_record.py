@@ -70,39 +70,76 @@ class RdmAddRecord:
         self.data['community'] = {
             "primary": "Maincom"
         }
+        self.data['creators'] = {
+            "name": "Emily Lucas",
+            "type": "Personal"
+        }
+        self.data['descriptions'] = [
+            {
+                "description": "Nature top office piece effort similar spring. Unit responsibility community form ever out. Within reality size claim still.\nAuthor life mother. Team light threat brother unit set. Which adult speak serious business something miss.\nNumber to class third. Still evening yard price store performance. Three protect rather statement similar.\nHistory magazine finish health. Ball although rise western early director father. Executive culture give card. Lawyer practice billion simply.\nYoung his someone father offer discover agreement. Some fire trial stop American deep reason. Environment keep road stock.\nOutside every practice number.\nNext thank year sound discussion. Always lot service over business focus significant. Throughout far quality various short chance physical way. Least build size ability miss adult marriage public.\nSection beat suggest audience not adult tonight bar. Cause kind defense authority others.\nForward summer effort create reveal. Myself view after. Begin professional help. Nothing child of manager walk increase.\nMiss yourself beautiful cold girl move serious. Difficult although today decision hotel knowledge night. Thought be young project color.\nUs our central democratic. Part already loss side same organization.\nSurface until guy size. Soldier seven join hit again company.\nFrom that pressure then market practice. Gas six happen simple.\nMovement forward win his wide girl never. Heavy sort then whole professional. Him task role try war stand.\nFigure indeed especially memory. Increase decision important performance professional. Similar the improve onto.\nHundred conference offer hospital woman public. Chance focus something sound. Employee catch including chair need want full trade.\nGoal none so whole do with into right. Everyone although past left gas.\nRight message painting matter listen television this service. Art old pressure quickly.\nFactor cultural give success. Land set support reality. Security wall civil significant. Purpose talk check open should.\nMaybe treatment wall. How west strategy structure.\nSuccess difficult art involve himself. World trip key not gas. Those beat outside. Any house work college step.\nMinute prepare allow example them partner see. Middle particular employee lead but. Office everyone store house. Table available help human treatment fast.\nAlso benefit prove agree owner film discuss. Trip hour cut continue medical check. Cost difference out hard.\nFigure unit wide life customer. Unit character industry soldier.\nCurrent as keep degree. Market movement friend raise. Win still west direction your town.\nThere right music behavior message plant. Voice tough through office.\nLast simple source bring who part. Evening war brother establish. Now rock able dream artist. Weight quality ever yourself financial explain contain.\nTough person task health. Dark from election.\nNear generation society agent machine reveal. Mouth trade recognize tell practice machine. Take edge hard.\nEat operation low sit.", 
+                "lang": "eng", 
+                "type": "Abstract"
+            }
+        ]
+        self.data['identifiers'] = {
+            "DOI": "10.9999/rdm.9999999", 
+            "arXiv": "9999.99999"
+        }, 
+        self.data['related_identifiers'] = [
+            {
+                "identifier": "10.9999/rdm.9999988", 
+                "relation_type": "Requires", 
+                "resource_type": {
+                "subtype": "publication-other", 
+                "type": "publication"
+                }, 
+                "scheme": "DOI"
+            }
+        ]
+        self.data['resource_type'] = {
+            "subtype": "publication-preprint", 
+            "type": "publication"
+        }
+        self.data['titles'] = [
+            {
+                "lang": "eng", 
+                "title": "Ross, Flores and Thomas's gallery 8", 
+                "type": "Other"
+            }
+        ]
         #     TEMPORARY     #     TEMPORARY     #     TEMPORARY     
 
         # Restrictions
         # self.data['appliedRestrictions'] = ['owners', 'groups', 'ip_single', 'ip_range']    # TO REVIEW - TO REVIEW
         self.data['_access'] = {'metadata_restricted': False, 'files_restricted': False}    # TO REVIEW - TO REVIEW
 
-        # Process various single fields
-        self._process_single_fields(item)
+        # # Process various single fields
+        # self._process_single_fields(item)
     
-        # Electronic Versions (files)
-        self._process_electronic_versions()
+        # # Electronic Versions (files)
+        # self._process_electronic_versions()
 
-        # Additional Files
-        if 'additionalFiles' in item:
-            for i in item['additionalFiles']:
-                self.get_files_data(i)
+        # # Additional Files
+        # if 'additionalFiles' in item:
+        #     for i in item['additionalFiles']:
+        #         self.get_files_data(i)
 
         # Person Associations
         self._process_person_associations()
 
-        # Organisational Units
-        self._process_organisational_units()
+        # # Organisational Units
+        # self._process_organisational_units()
 
-        # Checks if the restrictions applied to the record are valid
-        self._applied_restrictions_check()
+        # # Checks if the restrictions applied to the record are valid
+        # self._applied_restrictions_check()
 
         self.data = json.dumps(self.data)
 
         # Post request to RDM
         self._post_metadata()
 
-        # Updates the versioning data of all records with the same uuid
-        self._update_all_uuid_versions()
+        # # Updates the versioning data of all records with the same uuid
+        # self._update_all_uuid_versions()
 
 
     def _versioning_required(func):
