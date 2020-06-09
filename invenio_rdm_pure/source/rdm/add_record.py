@@ -63,11 +63,17 @@ class RdmAddRecord:
         # Record owners
         self._check_record_owners()
 
+        #     TEMPORARY     #     TEMPORARY     #     TEMPORARY     
         # self.data['metadataOtherVersions'] = [['1', ''], ['2', '']]
-        # self.data['owners'].append(3)     # TEMPORARY
+        self.data['owners'].append(3)     
+        self.data['_created_by'] = 1
+        self.data['community'] = {
+            "primary": "Maincom"
+        }
+        #     TEMPORARY     #     TEMPORARY     #     TEMPORARY     
 
         # Restrictions
-        self.data['appliedRestrictions'] = ['owners', 'groups', 'ip_single', 'ip_range']    # TO REVIEW - TO REVIEW
+        # self.data['appliedRestrictions'] = ['owners', 'groups', 'ip_single', 'ip_range']    # TO REVIEW - TO REVIEW
         self.data['_access'] = {'metadata_restricted': False, 'files_restricted': False}    # TO REVIEW - TO REVIEW
 
         # Process various single fields
