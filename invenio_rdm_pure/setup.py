@@ -85,7 +85,8 @@ base_path = f'{dirpath}/data/temporary_files'
 temporary_files_name = {
     'base_path':            f'{base_path}',
     'get_pure_metadata':    f'{base_path}/get_pure_metadata.json',
-    'get_rdm_metadata':     f'{base_path}/rdm_get_metadata.json',
-    'post_rdm_metadata':    f'{base_path}/rdm_post_metadata.json',
+    'get_rdm_metadata':     f'{base_path}/get_rdm_metadata.json',
+    'post_rdm_response':    f'{base_path}/post_rdm_response.json',
+    'post_rdm_metadata':    f'{base_path}/post_rdm_metadata.json',
 }
 

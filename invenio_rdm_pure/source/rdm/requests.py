@@ -58,6 +58,8 @@ class Requests:
         
         response = requests.post(rdm_records_url, headers=headers, params=params, data=data_utf8, verify=False)
 
+        open(temporary_files_name['post_rdm_response'], "wb").write(response.content)
+        
         self._check_response(response)
         return response
 
