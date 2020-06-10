@@ -64,14 +64,18 @@ class RdmAddRecord:
         self._check_record_owners()
 
         self.data['_created_by'] = 1
-        self.data['access_right'] = self._accessright_conversion(get_value(item, ['openAccessPermissions', 0, 'value']))
-        self.data['community'] = {
+
+        self.data['community'] = {    # TO REVIEW
             "primary": "Maincom"
         }
+        
+        # Access right
+        access_right = self._accessright_conversion(get_value(item, ['openAccessPermissions', 0, 'value']))
+        self.data['access_right'] = access_right
 
-        # Access
+        # Metadata and files access
         access = get_value(item, ['confidential'])
-        self.data['_access'] = {'metadata_restricted': access, 'files_restricted': access}    # TO REVIEW - TO REVIEW
+        self.data['_access'] = {'metadata_restricted': access, 'files_restricted': access}
 
         # Language
         value = get_value(item, ['languages', 0, 'value'])
@@ -128,16 +132,23 @@ class RdmAddRecord:
         # Process various single fields
         self._process_single_fields(item)
     
-        # # Electronic Versions (files)
+        # Electronic Versions (files)
         # self._process_electronic_versions()
+
+        # self.data['_files'] = [
+        #     {
+        #         "size": 6546
+        #     }
+        # ]
+
 
         # # Additional Files
         # if 'additionalFiles' in item:
         #     for i in item['additionalFiles']:
         #         self.get_files_data(i)
 
-        # # Organisational Units
-        # self._process_organisational_units()
+        # Organisational Units
+        self._process_organisational_units()
 
         # # Checks if the restrictions applied to the record are valid
         # self._applied_restrictions_check()
@@ -206,7 +217,6 @@ class RdmAddRecord:
         # Access right
         value = get_value(item, ['openAccessPermissions', 0, 'value'])
         self.data['access_right'] = self._accessright_conversion(value)
-
 
 
     def _process_electronic_versions(self):
@@ -328,6 +338,9 @@ class RdmAddRecord:
                 organisational_unit_uuid       = get_value(i, ['uuid'])
                 organisational_unit_externalId = get_value(i, ['externalId'])
 
+                if not organisational_unit_externalId:
+                    continue
+
                 sub_data['name']        = organisational_unit_name
                 sub_data['uuid']        = organisational_unit_uuid
                 sub_data['externalId']  = organisational_unit_externalId
@@ -337,9 +350,12 @@ class RdmAddRecord:
                 # Adding organisational unit as group owner
                 self.data['groupRestrictions'].append(organisational_unit_externalId)
 
-                # Create group
-                self.groups.rdm_create_group(organisational_unit_externalId, organisational_unit_name)
-
+                # # Create group
+                # self.groups.rdm_create_group(organisational_unit_externalId, organisational_unit_name)
+                # # NOTE NOTE - issue
+                # # command = f'pipenv run invenio roles create {externalId} -d {group_name}'
+                # # response = os.system(command)
+                # # NOTE NOTE
 
     def _applied_restrictions_check(self):
         """ Checks if the restrictions applied to the record are valid.
