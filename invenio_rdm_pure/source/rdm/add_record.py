@@ -63,13 +63,15 @@ class RdmAddRecord:
         # Record owners
         self._check_record_owners()
 
-        self.data['_access'] = {'metadata_restricted': False, 'files_restricted': False}    # TO REVIEW - TO REVIEW
         self.data['_created_by'] = 1
-        # self.data['_owners'] = [1]
         self.data['access_right'] = self._accessright_conversion(get_value(item, ['openAccessPermissions', 0, 'value']))
         self.data['community'] = {
             "primary": "Maincom"
         }
+
+        # Access
+        access = get_value(item, ['confidential'])
+        self.data['_access'] = {'metadata_restricted': access, 'files_restricted': access}    # TO REVIEW - TO REVIEW
 
         # Language
         value = get_value(item, ['languages', 0, 'value'])
@@ -88,14 +90,6 @@ class RdmAddRecord:
 
         # Person Associations
         self._process_person_associations()
-
-        # creator = get_value(item, ['info', 'createdBy'])    # REVIEW
-        # self.data['creators'] = [
-        #     {
-        #         "name": creator,
-        #         "type": "Personal"      # Organizational, Personal
-        #     }
-        # ]
 
         # Description
         abstract = get_value(item, ['abstracts', 0, 'value'])
@@ -124,8 +118,8 @@ class RdmAddRecord:
             }
         ]
         self.data['resource_type'] = {                 # REVIEW
-            "subtype": "publication-preprint", 
-            "type": "publication"
+            "subtype": "publication-preprint",
+            "type": "publication"   # publication, poster, presentation, dataset, image, video, software, lesson, other
         }
 
         # Restrictions
@@ -191,24 +185,23 @@ class RdmAddRecord:
                             # RDM field name                # PURE json path
         self._add_field(item, 'uuid',                        ['uuid'])
         self._add_field(item, 'publication_date',            ['publicationStatuses', 0, 'publicationDate', 'year'])
-        # self._add_field(item, 'createdDate',                 ['info', 'createdDate'])
         self._add_field(item, 'pages',                       ['info','pages'])   
         self._add_field(item, 'volume',                      ['info','volume'])
         self._add_field(item, 'journalTitle',                ['info', 'journalAssociation', 'title', 'value'])
         self._add_field(item, 'journalNumber',               ['info', 'journalNumber'])
-        # self._add_field(item, 'metadataModifBy',             ['info', 'modifiedBy'])
-        # self._add_field(item, 'metadataModifDate',           ['info', 'modifiedDate'])
-        # self._add_field(item, 'pure_link',                   ['info', 'portalUrl'])
-        # self._add_field(item, 'recordType',                  ['types', 0, 'value'])    
-        # self._add_field(item, 'category',                    ['categories', 0, 'value'])  
+        self._add_field(item, 'pure_link',                   ['info', 'portalUrl'])
+        self._add_field(item, 'pure_type',                   ['types', 0, 'value'])    
+        self._add_field(item, 'pure_category',               ['categories', 0, 'value'])  
         self._add_field(item, 'peerReview',                  ['peerReview'])    
         self._add_field(item, 'publicationStatus',           ['publicationStatuses', 0, 'publicationStatuses', 0, 'value'])
-        # self._add_field(item, 'workflow',                    ['workflows', 0, 'value'])
-        # self._add_field(item, 'confidential',                ['confidential'])
+        self._add_field(item, 'workflow',                    ['workflows', 0, 'value'])
         self._add_field(item, 'publisherName',               ['publisher', 'names', 0, 'value'])
         self._add_field(item, 'managingOrganisationalUnit_name',       ['managingOrganisationalUnit', 'names', 0, 'value'])
         self._add_field(item, 'managingOrganisationalUnit_uuid',       ['managingOrganisationalUnit', 'uuid'])
         self._add_field(item, 'managingOrganisationalUnit_externalId', ['managingOrganisationalUnit', 'externalId'])
+        # self._add_field(item, 'createdDate',                 ['info', 'createdDate'])
+        # self._add_field(item, 'metadataModifBy',             ['info', 'modifiedBy'])
+        # self._add_field(item, 'metadataModifDate',           ['info', 'modifiedDate'])
 
         # Access right
         value = get_value(item, ['openAccessPermissions', 0, 'value'])
@@ -248,9 +241,6 @@ class RdmAddRecord:
             
             # Name
             self._get_contributor_name(item)
-
-            # ContactPerson, DataCollector, DataCurator, DataManager, Distributor, Editor, HostingInstitution, Producer, ProjectLeader, ProjectManager, ProjectMember, RegistrationAgency, RegistrationAuthority, RelatedPerson, Researcher, ResearchGroup, RightsHolder, Sponsor, Supervisor, WorkPackageLeader, Other
-            # self.sub_data['role'] = 'Other'
 
             # Organizational, Personal
             self.sub_data['type'] = 'Personal'      # Organizational / Personal
