@@ -60,39 +60,59 @@ class RdmAddRecord:
         # # Versioning
         # self._check_record_version()
 
-        # # Record owners
-        # self._check_record_owners()
+        # Record owners
+        self._check_record_owners()
 
-        #     TEMPORARY     #     TEMPORARY     #     TEMPORARY     
         self.data['_access'] = {'metadata_restricted': False, 'files_restricted': False}    # TO REVIEW - TO REVIEW
         self.data['_created_by'] = 1
-        self.data['_owners'] = [1]
+        # self.data['_owners'] = [1]
         self.data['access_right'] = self._accessright_conversion(get_value(item, ['openAccessPermissions', 0, 'value']))
         self.data['community'] = {
             "primary": "Maincom"
         }
+
+        # Language
+        value = get_value(item, ['languages', 0, 'value'])
+        language = self._language_conversion(value)
+        self.data['language'] = language
+
+        # Title
+        title = get_value(item, ['title'])
+        self.data['titles'] = [
+            {
+                "lang": language, 
+                "title": title, 
+                "type": "MainTitle"
+            }
+        ]
+
         # Person Associations
         self._process_person_associations()
 
-        self.data['creators'] = [
-            {
-                "name": "Emily Lucas",
-                "type": "Personal"
-            }
-        ]
+        # creator = get_value(item, ['info', 'createdBy'])    # REVIEW
+        # self.data['creators'] = [
+        #     {
+        #         "name": creator,
+        #         "type": "Personal"      # Organizational, Personal
+        #     }
+        # ]
+
+        # Description
+        abstract = get_value(item, ['abstracts', 0, 'value'])
+        if not abstract:
+            abstract = 'No description available for this record.'
         self.data['descriptions'] = [
             {
-                "description": "Nature top office piece effort similar spring. Unit responsibility community form ever out.", 
-                "lang": "eng", 
+                "description": abstract, 
+                "lang": language, 
                 "type": "Abstract"
             }
         ]
-        self.data['identifiers'] = {
+        self.data['identifiers'] = {                    # REVIEW
             "DOI": "10.9999/rdm.9999999", 
             "arXiv": "9999.99999"
         }
-        self.data['language'] = 'eng'
-        self.data['related_identifiers'] = [
+        self.data['related_identifiers'] = [            # REVIEW
             {
                 "identifier": "10.9999/rdm.9999988", 
                 "relation_type": "Requires", 
@@ -103,21 +123,13 @@ class RdmAddRecord:
                 "scheme": "DOI"
             }
         ]
-        self.data['resource_type'] = {
+        self.data['resource_type'] = {                 # REVIEW
             "subtype": "publication-preprint", 
             "type": "publication"
         }
-        self.data['titles'] = [
-            {
-                "lang": "eng", 
-                "title": "Ross, Flores and Thomas's gallery 3", 
-                "type": "Other"
-            }
-        ]
-        #     TEMPORARY     #     TEMPORARY     #     TEMPORARY     
 
         # Restrictions
-        # self.data['appliedRestrictions'] = ['owners', 'groups', 'ip_single', 'ip_range']    # TO REVIEW - TO REVIEW
+        self.data['appliedRestrictions'] = ['owners', 'groups', 'ip_single', 'ip_range']    # TO REVIEW - TO REVIEW
 
         # Process various single fields
         self._process_single_fields(item)
@@ -170,33 +182,30 @@ class RdmAddRecord:
     def _check_record_owners(self):
         """ Removes duplicate owners """
         if 'owners' in self.item:
-            self.data['owners'] = list(set(self.item['owners']))        
+            self.data['_owners'] = list(set(self.item['owners']))        
         else:
-            self.data['owners'] = list(set([1]))
+            self.data['_owners'] = list(set([1]))
 
 
     def _process_single_fields(self, item: dict):
                             # RDM field name                # PURE json path
-        # self._add_field(item, 'title',                       ['title'])
         self._add_field(item, 'uuid',                        ['uuid'])
         self._add_field(item, 'publication_date',            ['publicationStatuses', 0, 'publicationDate', 'year'])
-        self._add_field(item, 'createdDate',                 ['info', 'createdDate'])
+        # self._add_field(item, 'createdDate',                 ['info', 'createdDate'])
         self._add_field(item, 'pages',                       ['info','pages'])   
         self._add_field(item, 'volume',                      ['info','volume'])
         self._add_field(item, 'journalTitle',                ['info', 'journalAssociation', 'title', 'value'])
         self._add_field(item, 'journalNumber',               ['info', 'journalNumber'])
-        self._add_field(item, 'metadataModifBy',             ['info', 'modifiedBy'])
-        self._add_field(item, 'metadataModifDate',           ['info', 'modifiedDate'])
-        self._add_field(item, 'pure_link',                   ['info', 'portalUrl'])
-        self._add_field(item, 'recordType',                  ['types', 0, 'value'])    
-        self._add_field(item, 'category',                    ['categories', 0, 'value'])  
+        # self._add_field(item, 'metadataModifBy',             ['info', 'modifiedBy'])
+        # self._add_field(item, 'metadataModifDate',           ['info', 'modifiedDate'])
+        # self._add_field(item, 'pure_link',                   ['info', 'portalUrl'])
+        # self._add_field(item, 'recordType',                  ['types', 0, 'value'])    
+        # self._add_field(item, 'category',                    ['categories', 0, 'value'])  
         self._add_field(item, 'peerReview',                  ['peerReview'])    
         self._add_field(item, 'publicationStatus',           ['publicationStatuses', 0, 'publicationStatuses', 0, 'value'])
-        self._add_field(item, 'numberOfAuthors',             ['totalNumberOfAuthors'])
-        self._add_field(item, 'workflow',                    ['workflows', 0, 'value'])
-        self._add_field(item, 'confidential',                ['confidential'])
+        # self._add_field(item, 'workflow',                    ['workflows', 0, 'value'])
+        # self._add_field(item, 'confidential',                ['confidential'])
         self._add_field(item, 'publisherName',               ['publisher', 'names', 0, 'value'])
-        self._add_field(item, 'abstract',                    ['abstracts', 0, 'value'])
         self._add_field(item, 'managingOrganisationalUnit_name',       ['managingOrganisationalUnit', 'names', 0, 'value'])
         self._add_field(item, 'managingOrganisationalUnit_uuid',       ['managingOrganisationalUnit', 'uuid'])
         self._add_field(item, 'managingOrganisationalUnit_externalId', ['managingOrganisationalUnit', 'externalId'])
@@ -204,10 +213,6 @@ class RdmAddRecord:
         # Access right
         value = get_value(item, ['openAccessPermissions', 0, 'value'])
         self.data['access_right'] = self._accessright_conversion(value)
-
-        # Language
-        value = get_value(item, ['languages', 0, 'value'])
-        self.data['language'] = self._language_conversion(value)
 
 
 
@@ -228,42 +233,68 @@ class RdmAddRecord:
 
 
     def _process_person_associations(self):
-        """ Process data ralative to the record contributors """
+        """ Process data ralative to the record creators """
 
         if 'personAssociations' not in self.item:
             return
             
-        self.data['contributors'] = []
+        self.data['creators'] = []
 
         file_data = file_read_lines('user_ids_match')
 
         for item in self.item['personAssociations']:
 
             self.sub_data = {}
+            
+            # Name
             self._get_contributor_name(item)
 
-            self.sub_data['role'] = 'RightsHolder'
-            self.sub_data['type'] = 'Personal'
+            # ContactPerson, DataCollector, DataCurator, DataManager, Distributor, Editor, HostingInstitution, Producer, ProjectLeader, ProjectManager, ProjectMember, RegistrationAgency, RegistrationAuthority, RelatedPerson, Researcher, ResearchGroup, RightsHolder, Sponsor, Supervisor, WorkPackageLeader, Other
+            # self.sub_data['role'] = 'Other'
 
-            # self._add_subdata(item, 'uuid',                   ['person', 'uuid'])
-            # self._add_subdata(item, 'externalId',             ['person', 'externalId'])
-            # self._add_subdata(item, 'authorCollaboratorName', ['authorCollaboration', 'names', 0, 'value'])   
-            # self._add_subdata(item, 'personRole',             ['personRoles', 0, 'value'])    
-            # self._add_subdata(item, 'organisationalUnit',     ['organisationalUnits', 0, 'names', 0, 'value'])
-            # self._add_subdata(item, 'type_p',                 ['externalPerson', 'types', 0, 'value'])
-            # self._add_subdata(item, 'uuid',                   ['externalPerson', 'uuid'])
-            
+            # Organizational, Personal
+            self.sub_data['type'] = 'Personal'      # Organizational / Personal
+            self._add_subdata(item, 'pure_personRole',             ['personRoles', 0, 'value'])    
+
+            # - Identifiers -
+            self.sub_data['identifiers'] = {}         
+            self._add_field_sub(item, 'identifiers', 'uuid',                   ['person', 'uuid'])
+            self._add_field_sub(item, 'identifiers', 'externalId',             ['person', 'externalId'])
+            self._add_field_sub(item, 'identifiers', 'uuid',                   ['externalPerson', 'uuid'])
+            # Orcid
+            self._process_contributor_orcid()  
+
+            # Affiliations
+            self.sub_data['affiliations'] = []
+            if 'organisationalUnits' in item:
+                for i in item['organisationalUnits']:
+                    name        = get_value(i, ['names', 0, 'value'])
+                    identifier  = get_value(i, ['externalId'])
+                    scheme  = get_value(i, ['uuid'])
+                    if name and identifier:
+                        # scheme = get_value(item, ['authorCollaboration', ''])
+                        self.sub_data['affiliations'].append({
+                                "name": name,
+                                "identifier": identifier,
+                                "scheme": scheme,
+                            })
+                        
             # Checks if the record owner is available in user_ids_match.txt
             person_external_id = get_value(item, ['person', 'externalId'])
             owner = self.general_functions.get_userid_from_list_by_externalid(person_external_id, file_data)
-                
             if owner and int(owner) not in self.data['owners']:
                 self.data['owners'].append(int(owner))
 
-            # ORCID
-            self._process_contributor_orcid()
+            # Append person to creators
+            self.data['creators'].append(self.sub_data)
+        
 
-            self.data['contributors'].append(self.sub_data)
+
+    def _add_field_sub(self, item: list, rdm_field_1: str, rdm_field_2: str, path: list):
+        """ Adds the field to sub_data """
+        value = get_value(item, path)
+        if value:
+            self.sub_data[rdm_field_1][rdm_field_2] = value
 
         
 
@@ -291,7 +322,7 @@ class RdmAddRecord:
             else:
                 orcid = self._get_orcid(person_uuid, person_name)
                 if orcid:
-                    self.sub_data['orcid'] = orcid
+                    self.sub_data['identifiers']['orcid'] = orcid
 
 
     def _process_organisational_units(self):
