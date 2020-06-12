@@ -323,7 +323,7 @@ class RdmOwners:
 
                 uuid   = item['metadata']['uuid']
                 recid  = item['metadata']['recid']
-                owners = item['metadata']['owners']
+                owners = item['metadata']['_owners']
 
                 line = f'{uuid} - {recid} - {owners}'
                 self.report.add(line)
