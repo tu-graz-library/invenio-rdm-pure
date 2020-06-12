@@ -106,33 +106,26 @@ class RdmAddRecord:
         self._process_single_fields(item)
     
         # Electronic Versions (files)
-        # self._process_electronic_versions()
+        self._process_electronic_versions()
 
-        # self.data['_files'] = [
-            # {
-            #     "size": 6546
-            # }
-        # ]
-
-
-        # # Additional Files
-        # if 'additionalFiles' in item:
-        #     for i in item['additionalFiles']:
-        #         self.get_files_data(i)
+        # Additional Files
+        if 'additionalFiles' in item:
+            for i in item['additionalFiles']:
+                self.get_files_data(i)
 
         # Organisational Units
         self._process_organisational_units()
 
-        # # Checks if the restrictions applied to the record are valid
-        # self._applied_restrictions_check()
+        # Checks if the restrictions applied to the record are valid
+        self._applied_restrictions_check()
 
         self.data = json.dumps(self.data)
 
         # Post request to RDM
         self._post_metadata()
 
-        # # Updates the versioning data of all records with the same uuid
-        # self._update_all_uuid_versions()
+        # Updates the versioning data of all records with the same uuid
+        self._update_all_uuid_versions()
 
 
     def _add_title(self):
