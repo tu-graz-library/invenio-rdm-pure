@@ -63,9 +63,9 @@ class RdmAddRecord:
         # Record owners
         self._check_record_owners()
 
-        self.data['_created_by'] = 1
+        self.data['_created_by'] = 1    # TO REVIEW
 
-        self.data['community'] = {    # TO REVIEW
+        self.data['community'] = {      # TO REVIEW
             "primary": "Maincom"
         }
         
@@ -91,21 +91,9 @@ class RdmAddRecord:
         # Description
         self._add_description()
 
-        self.data['identifiers'] = {                    # REVIEW
-            "DOI": "10.9999/rdm.9999999", 
-            "arXiv": "9999.99999"
-        }
-        self.data['related_identifiers'] = [            # REVIEW
-            {
-                "identifier": "10.9999/rdm.9999988", 
-                "relation_type": "Requires", 
-                "resource_type": {
-                "subtype": "publication-other", 
-                "type": "publication"
-                }, 
-                "scheme": "DOI"
-            }
-        ]
+        # Identifiers
+        self._add_identifiers()
+
         self.data['resource_type'] = {                 # REVIEW
             "subtype": "publication-preprint",
             "type": "publication"   # publication, poster, presentation, dataset, image, video, software, lesson, other
@@ -121,9 +109,9 @@ class RdmAddRecord:
         # self._process_electronic_versions()
 
         # self.data['_files'] = [
-        #     {
-        #         "size": 6546
-        #     }
+            # {
+            #     "size": 6546
+            # }
         # ]
 
 
@@ -166,6 +154,24 @@ class RdmAddRecord:
                 "description": abstract, 
                 "lang": self.language, 
                 "type": "Abstract"
+            }
+        ]
+
+    def _add_identifiers(self):
+    
+        self.data['identifiers'] = {                    # REVIEW
+            "DOI": "10.9999/rdm.9999999", 
+            "arXiv": "9999.99999"
+        }
+        self.data['related_identifiers'] = [            # REVIEW
+            {
+                "identifier": "10.9999/rdm.9999988", 
+                "relation_type": "Requires", 
+                "resource_type": {
+                "subtype": "publication-other", 
+                "type": "publication"
+                }, 
+                "scheme": "DOI"
             }
         ]
 
