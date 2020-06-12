@@ -79,33 +79,18 @@ class RdmAddRecord:
 
         # Language
         value = get_value(item, ['languages', 0, 'value'])
-        language = self._language_conversion(value)
-        self.data['language'] = language
+        self.language = self._language_conversion(value)
+        self.data['language'] = self.language
 
         # Title
-        title = get_value(item, ['title'])
-        self.data['titles'] = [
-            {
-                "lang": language, 
-                "title": title, 
-                "type": "MainTitle"
-            }
-        ]
+        self._add_title()
 
         # Person Associations
         self._process_person_associations()
 
         # Description
-        abstract = get_value(item, ['abstracts', 0, 'value'])
-        if not abstract:
-            abstract = 'No description available for this record.'
-        self.data['descriptions'] = [
-            {
-                "description": abstract, 
-                "lang": language, 
-                "type": "Abstract"
-            }
-        ]
+        self._add_description()
+
         self.data['identifiers'] = {                    # REVIEW
             "DOI": "10.9999/rdm.9999999", 
             "arXiv": "9999.99999"
@@ -160,6 +145,29 @@ class RdmAddRecord:
 
         # # Updates the versioning data of all records with the same uuid
         # self._update_all_uuid_versions()
+
+
+    def _add_title(self):
+        title = get_value(self.item, ['title'])
+        self.data['titles'] = [
+            {
+                "lang": self.language, 
+                "title": title, 
+                "type": "MainTitle"
+            }
+        ]
+
+    def _add_description(self):
+        abstract = get_value(self.item, ['abstracts', 0, 'value'])
+        if not abstract:
+            abstract = 'No description available for this record.'
+        self.data['descriptions'] = [
+            {
+                "description": abstract, 
+                "lang": self.language, 
+                "type": "Abstract"
+            }
+        ]
 
 
     def _versioning_required(func):
