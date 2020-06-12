@@ -5,6 +5,7 @@ Usage:
     shell_interface.py pages        [--pageStart=<page>, --pageEnd=<page>, --pageSize=<page>]
     shell_interface.py logs
     shell_interface.py delete
+    shell_interface.py delete_all
     shell_interface.py uuid
     shell_interface.py duplicates
     shell_interface.py owner        [--identifier=<value>]

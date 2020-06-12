@@ -36,6 +36,11 @@ class ShellInterface:
         delete = Delete()
         delete.from_list()
 
+    def delete_all(self):
+        """ Delete all RDM records """
+        delete = Delete()
+        delete.all_records()
+
     def uuid(self):
         """ Push to RDM all uuids that are in to_transfer.log """
         add_uuids = AddFromUuidList()
@@ -89,6 +94,9 @@ def method_call(docopt_instance: object, arguments: dict):
 
     elif arguments['delete']:
         docopt_instance.delete()
+
+    elif arguments['delete_all']:
+        docopt_instance.delete_all()
 
     elif arguments['uuid']:
         docopt_instance.uuid()
