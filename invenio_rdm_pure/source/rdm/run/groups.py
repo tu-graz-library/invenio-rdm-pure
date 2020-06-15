@@ -53,6 +53,8 @@ class RdmGroups:
 
         # Get old group id
         old_group_id = self._get_rdm_group_id(old_group_externalId)
+        if not old_group_id:
+            return False
 
         # Removes users from old group and adds to new groups
         self._rdm_split_users_from_old_to_new_group(old_group_id, old_group_externalId, new_groups_externalIds)
@@ -104,6 +106,9 @@ class RdmGroups:
 
     def _get_rdm_group_id(self, externalId: str):
         response = self.rdm_db.select_query('id, description', 'accounts_role', {'name': f"'{externalId}'"})
+
+        if not response:
+            return False
 
         group_id    = response[0][0]
         group_name  = response[0][1]
