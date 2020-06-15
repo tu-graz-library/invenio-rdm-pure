@@ -61,10 +61,10 @@ class RdmAddRecord:
         # Record owners
         self._check_record_owners()
 
-        self.data['_created_by'] = 1    # TO REVIEW
+        self.data['_created_by'] = 1    # 1 is the default admin user - TO REVIEW
 
         self.data['community'] = {      # TO REVIEW
-            "primary": "Maincom"
+            "primary": ""
         }
         
         # Access right
@@ -93,7 +93,7 @@ class RdmAddRecord:
         self._add_identifiers()
 
         # Resource type
-        self.data['resource_type'] = {                 # REVIEW
+        self.data['resource_type'] = {                 # REVIEW - is it needed a match?
             "subtype": "publication-preprint",
             "type": "publication"   # publication, poster, presentation, dataset, image, video, software, lesson, other
         }
