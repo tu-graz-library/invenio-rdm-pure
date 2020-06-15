@@ -196,8 +196,8 @@ class RdmAddRecord:
 
     def _check_record_owners(self):
         """ Removes duplicate owners """
-        if 'owners' in self.item:
-            self.data['_owners'] = list(set(self.item['owners']))        
+        if '_owners' in self.item:
+            self.data['_owners'] = list(set(self.item['_owners']))        
         else:
             self.data['_owners'] = list(set([1]))
 
@@ -292,8 +292,8 @@ class RdmAddRecord:
             # Checks if the record owner is available in user_ids_match.txt
             person_external_id = get_value(item, ['person', 'externalId'])
             owner = self.general_functions.get_userid_from_list_by_externalid(person_external_id, file_data)
-            if owner and int(owner) not in self.data['owners']:
-                self.data['owners'].append(int(owner))
+            if owner and int(owner) not in self.data['_owners']:
+                self.data['_owners'].append(int(owner))
 
             # Append person to creators
             self.data['creators'].append(self.sub_data)
