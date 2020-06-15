@@ -57,8 +57,8 @@ class RdmAddRecord:
     def create_invenio_data(self, global_counters: dict, item: dict):
         """ Process the data received from Pure and submits it to RDM """
 
-        # # Versioning
-        # self._check_record_version()
+        # Versioning
+        self._check_record_version()
 
         # Record owners
         self._check_record_owners()
@@ -94,6 +94,7 @@ class RdmAddRecord:
         # Identifiers
         self._add_identifiers()
 
+        # Resource type
         self.data['resource_type'] = {                 # REVIEW
             "subtype": "publication-preprint",
             "type": "publication"   # publication, poster, presentation, dataset, image, video, software, lesson, other
@@ -102,8 +103,8 @@ class RdmAddRecord:
         # Restrictions
         self.data['appliedRestrictions'] = ['owners', 'groups', 'ip_single', 'ip_range']    # TO REVIEW - TO REVIEW
 
-        # Process various single fields
-        self._process_single_fields(item)
+        # Process various general fields
+        self._process_general_fields(item)
     
         # Electronic Versions (files)
         self._process_electronic_versions()
@@ -119,6 +120,7 @@ class RdmAddRecord:
         # Checks if the restrictions applied to the record are valid
         self._applied_restrictions_check()
 
+        # Convert to json string
         self.data = json.dumps(self.data)
 
         # Post request to RDM
@@ -151,14 +153,15 @@ class RdmAddRecord:
         ]
 
     def _add_identifiers(self):
+
+        self.data['version'] = 'v0.0.2'
     
-        self.data['identifiers'] = {                    # REVIEW
-            "DOI": "10.9999/rdm.9999999", 
-            "arXiv": "9999.99999"
+        self.data['identifiers'] = {                    # TO REVIEW
+            "DOI": "10.5281/rdm.9999992",               # Digital Object Identifiers
         }
-        self.data['related_identifiers'] = [            # REVIEW
+        self.data['related_identifiers'] = [            # TO REVIEW
             {
-                "identifier": "10.9999/rdm.9999988", 
+                "identifier": "10.5281/rdm.9999991", 
                 "relation_type": "Requires", 
                 "resource_type": {
                 "subtype": "publication-other", 
@@ -199,7 +202,7 @@ class RdmAddRecord:
             self.data['_owners'] = list(set([1]))
 
 
-    def _process_single_fields(self, item: dict):
+    def _process_general_fields(self, item: dict):
                             # RDM field name                # PURE json path
         self._add_field(item, 'uuid',                        ['uuid'])
         self._add_field(item, 'publication_date',            ['publicationStatuses', 0, 'publicationDate', 'year'])
@@ -260,7 +263,7 @@ class RdmAddRecord:
             self._get_contributor_name(item)
 
             # Organizational, Personal
-            self.sub_data['type'] = 'Personal'      # Organizational / Personal
+            self.sub_data['type'] = 'Personal'        # Organizational / Personal
             self._add_subdata(item, 'pure_personRole',             ['personRoles', 0, 'value'])    
 
             # - Identifiers -
