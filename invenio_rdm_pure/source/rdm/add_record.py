@@ -360,12 +360,9 @@ class RdmAddRecord:
                 # Adding organisational unit as group owner
                 self.data['groupRestrictions'].append(organisational_unit_externalId)
 
-                # # Create group
-                # self.groups.rdm_create_group(organisational_unit_externalId, organisational_unit_name)
-                # # NOTE NOTE - issue
-                # # command = f'pipenv run invenio roles create {externalId} -d {group_name}'
-                # # response = os.system(command)
-                # # NOTE NOTE
+                # Create group
+                self.groups.rdm_create_group(organisational_unit_externalId, organisational_unit_name)
+                
 
     def _applied_restrictions_check(self):
         """ Checks if the restrictions applied to the record are valid.
