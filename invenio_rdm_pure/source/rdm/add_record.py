@@ -105,7 +105,7 @@ class RdmAddRecord:
         self._process_general_fields(item)
     
         # # Electronic Versions (files)
-        # self._process_electronic_versions()
+        self._process_electronic_versions()
 
         # Additional Files
         if 'additionalFiles' in item:
@@ -545,8 +545,6 @@ class RdmAddRecord:
         self.sub_data['internalReview'] = internal_review
 
         self._add_subdata(item, 'name',            ['file', 'fileName'])
-        self._add_subdata(item, 'size',            ['file', 'size'])
-        self._add_subdata(item, 'mimeType',        ['file', 'mimeType'])
         self._add_subdata(item, 'digest',          ['file', 'digest'])
         self._add_subdata(item, 'digestAlgorithm', ['file', 'digestAlgorithm'])
         self._add_subdata(item, 'createdBy',       ['creator'])
