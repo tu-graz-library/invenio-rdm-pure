@@ -37,6 +37,8 @@ class ImportRecords:
             
             page += 1
 
+            next_page = False # TEMP
+
     def _check_uuid(self, item):
         """ If a uuid is specified in the RDM record means that it was imported
             from Pure. In this case, the record will be ignored """
@@ -108,12 +110,12 @@ class ImportRecords:
             return False
         self._sub_element(body, name_space['dataset'], 'title').text = value
 
-        # # Managing organisation     (mandatory field)
-        # organisational_unit = self._sub_element(body, name_space['dataset'], 'managingOrganisation')
-        # self._add_attribute(item, organisational_unit, 'lookupId', ['managingOrganisationalUnit_externalId'])
+        # Managing organisation     (mandatory field)
+        organisational_unit = self._sub_element(body, name_space['dataset'], 'managingOrganisation')
+        self._add_attribute(item, organisational_unit, 'lookupId', ['managingOrganisationalUnit_externalId'])
 
-        # # Persons                   (mandatory field)
-        # self._add_persons(body, name_space, item)
+        # Persons                   (mandatory field)
+        self._add_persons(body, name_space, item)
 
         # # Available date            (mandatory field)
         # date = self._sub_element(body, name_space['dataset'], 'availableDate')
@@ -208,16 +210,16 @@ class ImportRecords:
     def _add_persons(self, body, name_space, item):
         persons = self._sub_element(body, name_space['dataset'], 'persons')
 
-        for person_data in item['contributors']:
+        for person_data in item['creators']:
             person = self._sub_element(persons, name_space['dataset'], 'person')
             person.set('contactPerson', 'true')
-            self._add_attribute(person_data, person, 'id', ['uuid'])
+            self._add_attribute(person_data, person, 'id', ['identifiers', 'uuid'])
             # External id
             person_id = self._sub_element(person, name_space['dataset'], 'person')
-            self._add_attribute(person_data, person_id, 'lookupId', ['externalId'])
+            self._add_attribute(person_data, person_id, 'lookupId', ['identifiers', 'externalId'])
             # Role
             role = self._sub_element(person, name_space['dataset'], 'role')
-            role.text = get_value(person_data, ['personRole'])
+            role.text = get_value(person_data, ['pure_personRole'])
             # Name
             name = self._sub_element(person, name_space['dataset'], 'name')
             name.text = get_value(person_data, ['name'])
