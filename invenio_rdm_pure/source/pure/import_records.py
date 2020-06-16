@@ -117,31 +117,31 @@ class ImportRecords:
         # Persons                   (mandatory field)
         self._add_persons(body, name_space, item)
 
-        # # Available date            (mandatory field)
-        # date = self._sub_element(body, name_space['dataset'], 'availableDate')
-        # sub_date = self._sub_element(date, name_space['commons'], 'year')
-        # sub_date.text = get_value(item, ['publication_date'])
+        # Available date            (mandatory field)
+        date = self._sub_element(body, name_space['dataset'], 'availableDate')
+        sub_date = self._sub_element(date, name_space['commons'], 'year')
+        sub_date.text = get_value(item, ['publication_date'])
 
-        # # Publisher                 (mandatory field)
-        # publisher = self._sub_element(body, name_space['dataset'], 'publisher')               # REVIEW!!!!
-        # publisher.set('lookupId', '45d22915-6545-4428-896a-8b8046191d5d')                     # Data not in rdm
-        # self._sub_element(publisher, name_space['dataset'], 'name').text = 'Test publisher'   # Data not in rdm
-        # self._sub_element(publisher, name_space['dataset'], 'type').text = 'publisher'        # Data not in rdm
+        # Publisher                 (mandatory field)
+        publisher = self._sub_element(body, name_space['dataset'], 'publisher')               # REVIEW!!!!
+        publisher.set('lookupId', '45d22915-6545-4428-896a-8b8046191d5d')                     # Data not in rdm
+        self._sub_element(publisher, name_space['dataset'], 'name').text = 'Test publisher'   # Data not in rdm
+        self._sub_element(publisher, name_space['dataset'], 'type').text = 'publisher'        # Data not in rdm
 
-        # # Description
-        # value = get_value(item, ['abstract'])
-        # value = 'test description'
-        # if value:
-        #     descriptions = self._sub_element(body, name_space['dataset'], 'descriptions')
-        #     description = self._sub_element(descriptions, name_space['dataset'], 'description')
-        #     description.set('type', 'datasetdescription')
-        #     description.text = value
+        # Description
+        value = get_value(item, ['abstract'])
+        value = 'test description'
+        if value:
+            descriptions = self._sub_element(body, name_space['dataset'], 'descriptions')
+            description = self._sub_element(descriptions, name_space['dataset'], 'description')
+            description.set('type', 'datasetdescription')
+            description.text = value
 
-        # # Links
-        # self._add_links(body, name_space)
+        # Links
+        self._add_links(body, name_space)
 
-        # # Organisations
-        # self._add_organisations(body, name_space, item)
+        # Organisations
+        self._add_organisations(body, name_space, item)
 
         # FIELDS THAT ARE NOT IN DATASET XSD - NEEDS REVIEW:
         # language                  ['languages', 0, 'value']
