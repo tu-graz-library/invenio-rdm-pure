@@ -7,13 +7,11 @@ from source.pure.general_functions  import get_pure_record_metadata_by_uuid
 from source.reports                 import Reports
 from setup                          import dirpath
 
-
 class ImportRecords:
 
     def __init__(self):
         self.rdm_requests = Requests()
         self.report = Reports()
-        self.file_name = f"{dirpath}/data/temporary_files/test.xml"
 
     def run_import(self):
 
@@ -97,7 +95,6 @@ class ImportRecords:
         self._parse_xml()
 
 
-
     def _populate_xml(self, item, name_space):
 
         # Dataset element
@@ -143,51 +140,6 @@ class ImportRecords:
         # Organisations
         self._add_organisations(body, name_space, item)
 
-        # FIELDS THAT ARE NOT IN DATASET XSD - NEEDS REVIEW:
-        # language                  ['languages', 0, 'value']
-        # organisationalUnits       ['personAssociations' ...]
-        # peerReview                ['peerReview']
-        # createdDate               ['info', 'createdDate']
-        # publicationDate           ['publicationStatuses', 0, 'publicationDate', 'year']
-        # publicationStatus         ['publicationStatuses', 0, 'publicationStatuses', 0, 'value']
-        # recordType                ['types', 0, 'value']
-        # workflow                  ['workflows', 0, 'value']
-        # pages                     ['info','pages']
-        # volume                    ['info','volume']
-        # journalTitle              ['info', 'journalAssociation', 'title', 'value']
-        # journalNumber             ['info', 'journalNumber']
-
-        # PURE RESPONSE
-        # cvc-complex-type.2.4.b: The content of element 'v1:dataset' is not complete.
-        # One of '{
-        # "v1.dataset.pure.atira.dk":translatedTitles, 
-        # "v1.dataset.pure.atira.dk":description, 
-        # "v1.dataset.pure.atira.dk":ids, 
-        # "v1.dataset.pure.atira.dk":additionalDescriptions, 
-        # "v1.dataset.pure.atira.dk":temporalCoverage, 
-        # "v1.dataset.pure.atira.dk":productionDate, 
-        # "v1.dataset.pure.atira.dk":geoLocation, 
-        # "v1.dataset.pure.atira.dk":organisations, 
-        # "v1.dataset.pure.atira.dk":DOI, 
-        # "v1.dataset.pure.atira.dk":physicalDatas, 
-        # "v1.dataset.pure.atira.dk":publisher, 
-        # "v1.dataset.pure.atira.dk":openAccess, 
-        # "v1.dataset.pure.atira.dk":embargoPeriod, 
-        # "v1.dataset.pure.atira.dk":constraints, 
-        # "v1.dataset.pure.atira.dk":keywords, 
-        # "v1.dataset.pure.atira.dk":links, 
-        # "v1.dataset.pure.atira.dk":documents, 
-        # "v1.dataset.pure.atira.dk":relatedProjects, 
-        # "v1.dataset.pure.atira.dk":relatedEquipments, 
-        # "v1.dataset.pure.atira.dk":relatedStudentThesis,
-        # "v1.dataset.pure.atira.dk":relatedPublications, 
-        # "v1.dataset.pure.atira.dk":relatedActivities, 
-        # "v1.dataset.pure.atira.dk":relatedDatasets, 
-        # "v1.dataset.pure.atira.dk":visibility, 
-        # "v1.dataset.pure.atira.dk":workflow
-        # }' is expected.
-
-
 
     def _add_organisations(self, body, name_space, item):
         organisations = self._sub_element(body, name_space['dataset'], 'organisations')
@@ -197,10 +149,9 @@ class ImportRecords:
             # Pure dataset documentation:
             # Can be both an internal and external organisation, use origin to enforce either internal or external.
             # If the organisation is an internal organisation in Pure, then the lookupId attribute must be used. 
-            # If the organisation is an external organisation and id is given matching will be done on the id, 
+            # If the organisation is an external organisation and id is given, the matching will be done on the id, 
             # if not found mathching will be done on name, if still not found then an external 
             # organisation with the specified id and organisation will be created.
-
             organisation = self._sub_element(organisations, name_space['dataset'], 'organisation')
             self._add_attribute(unit_data, organisation, 'lookupId', ['externalId'])
             name = self._sub_element(organisation, name_space['dataset'], 'name')
@@ -235,13 +186,13 @@ class ImportRecords:
             # Files
             if link_files:
                 link = self._sub_element(links, name_space['dataset'], 'link')
-                link.set('id', recid)        # REVIEW - which id?
+                link.set('id', 'link_files')
                 self._sub_element(link, name_space['dataset'], 'url').text = link_files
                 self._sub_element(link, name_space['dataset'], 'description').text = 'Link to record files'
             # Self
             if link_self:
                 link = self._sub_element(links, name_space['dataset'], 'link')
-                link.set('id', recid)        # REVIEW - which id?
+                link.set('id', 'link_self')
                 url = self._sub_element(link, name_space['dataset'], 'url').text = link_self
                 self._sub_element(link, name_space['dataset'], 'description').text = 'Link to record API'
 
@@ -249,7 +200,7 @@ class ImportRecords:
     def _parse_xml(self):
         # Wrap it in an ElementTree instance and save as XML
         xml_str = minidom.parseString(ET.tostring(self.root)).toprettyxml(indent="   ")
-        open(self.file_name, "w").write(xml_str)
+        open(f"{dirpath}/data/temporary_files/test.xml", "w").write(xml_str)
 
 
     def _sub_element(self, element, namespace: str, sub_element_name: str):
