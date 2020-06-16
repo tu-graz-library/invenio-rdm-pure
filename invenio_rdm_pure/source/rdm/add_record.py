@@ -42,6 +42,7 @@ class RdmAddRecord:
 
             self.uuid = item['uuid']
             self.item = item
+            # Stores the data that will be then converted to json
             self.data = {}
             # Stores the name of the record files
             # Necessary because we need first to create the record and then to put the files
@@ -93,10 +94,7 @@ class RdmAddRecord:
         self._add_identifiers()
 
         # Resource type
-        self.data['resource_type'] = {                 # REVIEW - is it needed a match?
-            "subtype": "publication-preprint",
-            "type": "publication"   # publication, poster, presentation, dataset, image, video, software, lesson, other
-        }
+        self._add_resource_type()
 
         # Restrictions
         self.data['appliedRestrictions'] = ['owners', 'groups', 'ip_single', 'ip_range']    # TO REVIEW - TO REVIEW
@@ -126,6 +124,27 @@ class RdmAddRecord:
 
         # Updates the versioning data of all records with the same uuid
         self._update_all_uuid_versions()
+
+
+    def _add_resource_type(self):
+        # To REVIEW
+        # Pure: Conference contribution, Article, Lecture or Presentation, Poster, Chapter, Other report, Book, Doctoral Thesis, Master's Thesis, Diploma Thesis, Commissioned report, ...
+        # RDM:  publication, poster, presentation, dataset, image, video, software, lesson, other
+
+        # - RDM -         - PURE -
+        # publication       Conference contribution, Article, Chapter, (...) Thesis
+        # poster            Poster
+        # presentation      Lecture or Presentation, 
+        # dataset           
+        # image             
+        # video             
+        # software          
+        # lesson            
+        # other             Other report
+        self.data['resource_type'] = {
+            "type": "publication",
+            "subtype": "publication-other"
+        }
 
 
     def _add_title(self):
