@@ -5,6 +5,7 @@ from source.rdm.requests            import Requests
 from source.general_functions       import get_value, current_date, add_spaces
 from source.pure.general_functions  import get_pure_record_metadata_by_uuid
 from source.reports                 import Reports
+from setup                          import dirpath
 
 
 class ImportRecords:
@@ -12,7 +13,7 @@ class ImportRecords:
     def __init__(self):
         self.rdm_requests = Requests()
         self.report = Reports()
-        self.file_name = "/home/bootcamp/src/pure_sync_rdm/synchronizer/data/temporary_files/test.xml"
+        self.file_name = f"{dirpath}/data/temporary_files/test.xml"
 
     def run_import(self):
 
@@ -20,7 +21,7 @@ class ImportRecords:
         self.report.add_template(['console'], ['general', 'title'], ['PURE IMPORT'])
 
         page = 1
-        page_size = 20
+        page_size = 2
         next_page = True
 
         # Get RDM records by page
@@ -33,7 +34,7 @@ class ImportRecords:
                 return
 
             self._create_xml(data)
-
+            
             page += 1
 
     def _check_uuid(self, item):
@@ -82,7 +83,7 @@ class ImportRecords:
             #     next_page = False
             #     break
 
-            # # If the rdm record has a uuid means that it was imported from pure
+            # # If the rdm record has a uuid means that it was imported from pure - REVIEW
             # if not self._check_uuid(item_metadata):
             #     continue
 
@@ -102,43 +103,43 @@ class ImportRecords:
         body.set('type', 'dataset')
 
         # Title                     (mandatory field)
-        value = get_value(item, ['title'])
+        value = get_value(item, ['titles', 0, 'title'])
         if not value:
             return False
         self._sub_element(body, name_space['dataset'], 'title').text = value
 
-        # Managing organisation     (mandatory field)
-        organisational_unit = self._sub_element(body, name_space['dataset'], 'managingOrganisation')
-        self._add_attribute(item, organisational_unit, 'lookupId', ['managingOrganisationalUnit_externalId'])
+        # # Managing organisation     (mandatory field)
+        # organisational_unit = self._sub_element(body, name_space['dataset'], 'managingOrganisation')
+        # self._add_attribute(item, organisational_unit, 'lookupId', ['managingOrganisationalUnit_externalId'])
 
-        # Persons                   (mandatory field)
-        self._add_persons(body, name_space, item)
+        # # Persons                   (mandatory field)
+        # self._add_persons(body, name_space, item)
 
-        # Available date            (mandatory field)
-        date = self._sub_element(body, name_space['dataset'], 'availableDate')
-        sub_date = self._sub_element(date, name_space['commons'], 'year')
-        sub_date.text = get_value(item, ['publication_date'])
+        # # Available date            (mandatory field)
+        # date = self._sub_element(body, name_space['dataset'], 'availableDate')
+        # sub_date = self._sub_element(date, name_space['commons'], 'year')
+        # sub_date.text = get_value(item, ['publication_date'])
 
-        # Publisher                 (mandatory field)
-        publisher = self._sub_element(body, name_space['dataset'], 'publisher')               # REVIEW!!!!
-        publisher.set('lookupId', '45d22915-6545-4428-896a-8b8046191d5d')                     # Data not in rdm
-        self._sub_element(publisher, name_space['dataset'], 'name').text = 'Test publisher'   # Data not in rdm
-        self._sub_element(publisher, name_space['dataset'], 'type').text = 'publisher'        # Data not in rdm
+        # # Publisher                 (mandatory field)
+        # publisher = self._sub_element(body, name_space['dataset'], 'publisher')               # REVIEW!!!!
+        # publisher.set('lookupId', '45d22915-6545-4428-896a-8b8046191d5d')                     # Data not in rdm
+        # self._sub_element(publisher, name_space['dataset'], 'name').text = 'Test publisher'   # Data not in rdm
+        # self._sub_element(publisher, name_space['dataset'], 'type').text = 'publisher'        # Data not in rdm
 
-        # Description
-        value = get_value(item, ['abstract'])
-        value = 'test description'
-        if value:
-            descriptions = self._sub_element(body, name_space['dataset'], 'descriptions')
-            description = self._sub_element(descriptions, name_space['dataset'], 'description')
-            description.set('type', 'datasetdescription')
-            description.text = value
+        # # Description
+        # value = get_value(item, ['abstract'])
+        # value = 'test description'
+        # if value:
+        #     descriptions = self._sub_element(body, name_space['dataset'], 'descriptions')
+        #     description = self._sub_element(descriptions, name_space['dataset'], 'description')
+        #     description.set('type', 'datasetdescription')
+        #     description.text = value
 
-        # Links
-        self._add_links(body, name_space)
+        # # Links
+        # self._add_links(body, name_space)
 
-        # Organisations
-        self._add_organisations(body, name_space, item)
+        # # Organisations
+        # self._add_organisations(body, name_space, item)
 
         # FIELDS THAT ARE NOT IN DATASET XSD - NEEDS REVIEW:
         # language                  ['languages', 0, 'value']
