@@ -8,6 +8,9 @@ pure_api_key        = open(f'{dirpath}/data_setup/pure_api_key.txt', 'r').readli
 pure_password       = open(f'{dirpath}/data_setup/pure_password.txt', 'r').readline()
 pure_username       = open(f'{dirpath}/data_setup/pure_username.txt', 'r').readline()
 
+# Pure import
+pure_import_file    = f'{dirpath}/templates/invenio_rdm_pure/temporary_files/pure_import.xml'
+
 # RDM
 rdm_host_url        = open(f'{dirpath}/data_setup/rdm_host_url.txt', 'r').readline()
 token_rdm           = open(f'{dirpath}/data_setup/rdm_token.txt', 'r').readline()

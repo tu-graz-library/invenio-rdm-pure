@@ -20,10 +20,9 @@ blueprint = Blueprint(
     static_folder='static',
 )
 
-
-@blueprint.route("/")
+@blueprint.route("/pure_import")
 def index():
     """Render a basic view."""
     return render_template(
-        "invenio_rdm_pure/index.html",
+        "invenio_rdm_pure/temporary_files/pure_import.xml",
         module_name=_('invenio-rdm-pure'))
