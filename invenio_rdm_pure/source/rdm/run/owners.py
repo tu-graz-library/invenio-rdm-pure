@@ -109,9 +109,9 @@ class RdmOwners:
         response = self.rdm_requests.get_metadata_by_recid(recid)
         rdm_json = json.loads(response.content)['metadata']
 
-        self.report.add(f"\tRDM get metadata @ {response} @ Current owners: @ {rdm_json['owners']}")
+        self.report.add(f"\tRDM get metadata @ {response} @ Current owners: @ {rdm_json['_owners']}")
 
-        if self.user_id not in rdm_json['owners']:
+        if self.user_id not in rdm_json['_owners']:
             # The record is in RDM but the logged in user is not among the recod owners
             self._add_user_as_owner(rdm_json, recid)
         else:
@@ -123,9 +123,9 @@ class RdmOwners:
     def _add_user_as_owner(self, data, recid):
         """ Adds the current logged in user as record owner """
 
-        data['owners'].append(self.user_id)
+        data['_owners'].append(self.user_id)
 
-        self.report.add(f"\tRDM record status @ ADDING owner @ New owners: @ {data['owners']}")
+        self.report.add(f"\tRDM record status @ ADDING owner @ New owners: @ {data['_owners']}")
 
         # Add owner to an existing RDM record
         self.general_functions.update_rdm_record(recid, data)
@@ -135,7 +135,7 @@ class RdmOwners:
 
     def _create_rdm_record(self, item: dict):
         """ If a record of the processed user is not in RDM creates it """
-        item['owners'] = [self.user_id]
+        item['_owners'] = [self.user_id]
 
         self.report.add('\tRDM record status @@ CREATE record')
         self.local_counters['create'] += 1
