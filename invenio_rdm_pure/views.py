@@ -7,9 +7,6 @@
 
 """Invenio module that adds pure"""
 
-# TODO: This is an example file. Remove it if you do not need it, including
-# the templates and static folders as well as the test case.
-
 from flask import Blueprint, render_template
 from flask_babelex import gettext as _
 
@@ -24,7 +21,6 @@ blueprint = Blueprint(
     template_folder='templates',
     static_folder='static',
 )
-
 
 # Pure import
 @blueprint.route("/pure_import")
@@ -45,8 +41,8 @@ def index2():
     print('\n')
     _get_session_field('_permanent')
     _get_session_field('_fresh')
-    _get_session_field('SSO::SAML::NameId')
-    _get_session_field('SSO::SAML::SessionIndex')
+    _get_session_field('SSO::SAML::NameId')             # test@test.com
+    _get_session_field('SSO::SAML::SessionIndex')       # _fdefff2f-7cbd-44a3-9250-80b10a4a4eed
     _get_session_field('user_id')
     _get_session_field('_id')
     _get_session_field('csrf_token')
