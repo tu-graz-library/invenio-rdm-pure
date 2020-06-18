@@ -16,6 +16,7 @@ from flask_babelex import gettext as _
 from flask.globals import session
 import os
 from flask import current_app
+from .setup import pure_import_file
 
 blueprint = Blueprint(
     'invenio_rdm_pure',
@@ -30,8 +31,7 @@ blueprint = Blueprint(
 def index1():
     """Render a basic view."""
     return render_template(
-        # "invenio_rdm_pure/temporary_files/pure_import.xml",
-        "invenio_rdm_pure/temporary_files/test.xml",
+        pure_import_file,
         module_name=_('invenio-rdm-pure'))
 
 

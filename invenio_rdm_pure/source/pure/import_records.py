@@ -5,7 +5,7 @@ from source.rdm.requests            import Requests
 from source.general_functions       import get_value, current_date, add_spaces
 from source.pure.general_functions  import get_pure_record_metadata_by_uuid
 from source.reports                 import Reports
-from setup                          import pure_import_file
+from setup                          import pure_import_full_path
 
 class ImportRecords:
 
@@ -200,7 +200,7 @@ class ImportRecords:
     def _parse_xml(self):
         # Wrap it in an ElementTree instance and save as XML
         xml_str = minidom.parseString(ET.tostring(self.root)).toprettyxml(indent="   ")
-        open(pure_import_file, "w").write(xml_str)
+        open(pure_import_full_path, "w").write(xml_str)
 
 
     def _sub_element(self, element, namespace: str, sub_element_name: str):
