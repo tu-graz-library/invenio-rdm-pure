@@ -52,3 +52,13 @@ def index2():
     _get_session_field('csrf_token')
     print('\n')
     return 'flask session'
+
+
+# Run owner task
+@blueprint.route("/run_owner")
+def index3():
+    command = '/home/bootcamp/src/cli12/virtual-env/bin/python3.6 /home/bootcamp/src/cli12/invenio-rdm-pure/invenio_rdm_pure/cli.py '
+    os.system(command + "owner --identifier='externalId'")
+    return 'Run task'
+
+
