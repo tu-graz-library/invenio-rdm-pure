@@ -62,3 +62,23 @@ def index3():
     return 'Run task'
 
 
+# Get database information
+@blueprint.route("/db_info")
+def index4():
+    # Get database info
+    db_info = current_app.config.get('SQLALCHEMY_DATABASE_URI')
+    # Split response
+    db_info = db_info.split('//')[1].split('/')
+    db      = db_info[1]                # db
+    db_info = db_info[0].split('@')
+    server  = db_info[1]                # server
+    db_info = db_info[0].split(':')
+    psw     = db_info[1]                # psw
+    user    = db_info[0]                # user
+    print(f"""
+db:     {db}
+user:   {user}
+psw:    {psw}
+host:   {server}
+""")
+    return 'db_info'
