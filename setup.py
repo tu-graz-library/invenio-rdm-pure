@@ -78,6 +78,9 @@ setup(
         'invenio_i18n.translations': [
             'messages = invenio_rdm_pure',
         ],
+        'invenio_celery.tasks': [
+            'invenio_rdm_pure = invenio_rdm_pure.tasks'
+        ]
         # TODO: Edit these entry points to fit your needs.
         # 'invenio_access.actions': [],
         # 'invenio_admin.actions': [],
@@ -85,9 +88,6 @@ setup(
         # 'invenio_base.api_apps': [],
         # 'invenio_base.api_blueprints': [],
         # 'invenio_base.blueprints': [],
-        'invenio_celery.tasks': [
-
-        ],
         # 'invenio_db.models': [],
         # 'invenio_pidstore.minters': [],
         # 'invenio_records.jsonresolver': [],

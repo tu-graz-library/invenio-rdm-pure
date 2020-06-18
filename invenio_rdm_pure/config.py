@@ -10,8 +10,17 @@
 # TODO: This is an example file. Remove it if your package does not use any
 # extra configuration variables.
 
+from datetime import timedelta
+
 INVENIO_RDM_PURE_DEFAULT_VALUE = 'foobar'
 """Default value for the application."""
 
 INVENIO_RDM_PURE_BASE_TEMPLATE = 'invenio_rdm_pure/base.html'
 """Default base template for the demo page."""
+
+CELERYBEAT_SCHEDULE  = {
+    'indexer': {
+        'task': 'invenio_indexer.tasks.process_bulk_queue',
+        'schedule': timedelta(minutes=0.1),
+    }
+}
