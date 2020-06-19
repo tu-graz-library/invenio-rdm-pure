@@ -27,7 +27,7 @@ lines_successful_changes = 90     # Reduce the number of lines in successful_cha
 upload_percent_accept = 90
 
 # OTHER
-iso6393_file_name = f'{dirpath}/data_setup/iso6393.json'
+iso6393_file_name = f'{dirpath}/source/iso6393.json'
 pure_uuid_length  = 36
 
 # EMAIL
