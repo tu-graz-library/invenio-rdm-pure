@@ -9,10 +9,6 @@
 
 from flask import Blueprint, render_template
 from flask_babelex import gettext as _
-
-from flask.globals import session
-import os
-from flask import current_app
 from .setup import pure_import_file
 
 blueprint = Blueprint(
