@@ -140,6 +140,10 @@ class ImportRecords:
 
 
     def _add_organisations(self, body, name_space, item):
+
+        if not 'organisationalUnits' in item:
+            return False
+
         organisations = self._sub_element(body, name_space['dataset'], 'organisations')
 
         for unit_data in item['organisationalUnits']:
