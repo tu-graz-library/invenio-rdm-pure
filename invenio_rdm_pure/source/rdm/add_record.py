@@ -62,10 +62,10 @@ class RdmAddRecord:
         # Record owners
         self._check_record_owners()
 
-        self.data['_created_by'] = 1    # 1 is the default admin user - TO REVIEW
+        self.data['_created_by'] = 1    # id of pure_integration@tugraz.at user - TO REVIEW
 
         self.data['community'] = {      # TO REVIEW
-            "primary": ""
+            "primary": ""               # Mandatory field
         }
         
         # Access right
