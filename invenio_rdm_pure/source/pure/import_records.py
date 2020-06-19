@@ -19,13 +19,12 @@ class ImportRecords:
         self.report.add_template(['console'], ['general', 'title'], ['PURE IMPORT'])
 
         page = 1
-        page_size = 2
         next_page = True
 
         # Get RDM records by page
         while next_page:
 
-            data = self._get_rdm_records_metadata(page, page_size)
+            data = self._get_rdm_records_metadata(page)
 
             if not data:
                 self.report.add("\n\tEnd task\n")
@@ -35,7 +34,6 @@ class ImportRecords:
             
             page += 1
 
-            next_page = False # TEMP
 
     def _check_uuid(self, item):
         """ If a uuid is specified in the RDM record means that it was imported
@@ -220,8 +218,11 @@ class ImportRecords:
         sub_element.text = get_value(item, path)
 
 
-    def _get_rdm_records_metadata(self, page: int, page_size: int):
+    def _get_rdm_records_metadata(self, page: int):
         """ Requests to rdm records metadata by page """
+
+        # Size of the pages received from RDM
+        page_size = 50
 
         params = {'sort': 'mostrecent', 'size': page_size, 'page': page}
         response = self.rdm_requests.get_metadata(params)
