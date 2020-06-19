@@ -55,6 +55,9 @@ accessright_pure_to_rdm = {
     'None':             'closed'
 }
 
+# DATABASE
+db_host     = open(f'{dirpath}/data_setup/db_host.txt', 'r').readline()
+
 # REPORT LOGS
 reports_full_path = f'{dirpath}/reports/'
 base_path = f'{reports_full_path}{date.today()}'
