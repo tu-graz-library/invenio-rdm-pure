@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright (C) 2020 Fair Data Austria.
+# Copyright (C) 2020 Technische Universität Graz
 #
 # invenio-rdm-pure is free software; you can redistribute it and/or modify it
 # under the terms of the MIT License; see LICENSE file for more details.
@@ -61,7 +61,7 @@ setup(
     long_description=readme + '\n\n' + history,
     keywords='invenio TODO',
     license='MIT',
-    author='Fair Data Austria',
+    author='Technische Universität Graz',
     author_email='info@fair-data-austria.com',
     url='https://github.com/fair-data-austria/invenio-rdm-pure',
     packages=packages,

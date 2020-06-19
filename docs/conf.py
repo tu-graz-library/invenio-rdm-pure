@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright (C) 2020 Fair Data Austria.
+# Copyright (C) 2020 Technische Universität Graz.
 #
 # invenio-rdm-pure is free software; you can redistribute it and/or modify it
 # under the terms of the MIT License; see LICENSE file for more details.
@@ -46,8 +46,8 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'invenio-rdm-pure'
-copyright = u'2020, Fair Data Austria'
-author = u'Fair Data Austria'
+copyright = u'2020, Technische Universität Graz'
+author = u'Technische Universität Graz'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -251,7 +251,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
     (master_doc, 'invenio-rdm-pure.tex', u'invenio-rdm-pure Documentation',
-     u'Fair Data Austria', 'manual'),
+     u'Technische Universität Graz', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
