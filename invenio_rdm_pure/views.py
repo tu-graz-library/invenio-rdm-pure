@@ -21,6 +21,5 @@ blueprint = Blueprint(
 # Pure import
 @blueprint.route("/pure_import")
 def index():
-    data = open(pure_import_file, 'r').read()
-    print(data)
-    return data
+    # TODO: check if file exists
+    return open(pure_import_file, 'r').read()
