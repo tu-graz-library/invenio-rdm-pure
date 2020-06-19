@@ -118,10 +118,7 @@ class ImportRecords:
         sub_date.text = get_value(item, ['publication_date'])
 
         # Publisher                 (mandatory field)
-        publisher = self._sub_element(body, name_space['dataset'], 'publisher')               # REVIEW!!!!
-        publisher.set('lookupId', '45d22915-6545-4428-896a-8b8046191d5d')                     # Data not in rdm
-        self._sub_element(publisher, name_space['dataset'], 'name').text = 'Test publisher'   # Data not in rdm
-        self._sub_element(publisher, name_space['dataset'], 'type').text = 'publisher'        # Data not in rdm
+        self._add_publisher(body, name_space, item)
 
         # Description
         value = get_value(item, ['abstract'])
@@ -139,11 +136,27 @@ class ImportRecords:
         self._add_organisations(body, name_space, item)
 
 
-    def _add_organisations(self, body, name_space, item):
+    def _add_publisher(self, body, name_space, item):
+        publisher_name = get_value(item, ['publisherName'])
+        publisher_uuid = get_value(item, ['publisherUuid'])
+        publisher_type = get_value(item, ['publisherType'])
 
+        if not publisher_uuid:
+            return
+        if not publisher_name:     # REVIEW
+            publisher_name = ''
+        if not publisher_type:     # REVIEW
+            publisher_type = ''
+
+        publisher = self._sub_element(body, name_space['dataset'], 'publisher')          
+        publisher.set('lookupId', publisher_uuid)
+        self._sub_element(publisher, name_space['dataset'], 'name').text = publisher_name
+        self._sub_element(publisher, name_space['dataset'], 'type').text = publisher_type
+    
+
+    def _add_organisations(self, body, name_space, item):
         if not 'organisationalUnits' in item:
             return False
-
         organisations = self._sub_element(body, name_space['dataset'], 'organisations')
 
         for unit_data in item['organisationalUnits']:
