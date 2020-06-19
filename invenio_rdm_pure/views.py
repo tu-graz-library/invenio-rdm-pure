@@ -7,7 +7,7 @@
 
 """Invenio module that adds pure"""
 
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, current_app
 from flask_babelex import gettext as _
 from .setup import pure_import_file
 
@@ -21,4 +21,6 @@ blueprint = Blueprint(
 # Pure import
 @blueprint.route("/pure_import")
 def index():
-    return open(pure_import_file, 'r').read()
+    data = open(pure_import_file, 'r').read()
+    print(data)
+    return data
