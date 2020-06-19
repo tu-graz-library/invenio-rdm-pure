@@ -9,7 +9,8 @@ pure_password       = open(f'{dirpath}/data_setup/pure_password.txt', 'r').readl
 pure_username       = open(f'{dirpath}/data_setup/pure_username.txt', 'r').readline()
 
 # Pure import
-pure_import_file = f'{dirpath}/templates/invenio_rdm_pure/temporary_files/pure_import.xml'
+pure_import_path = 'templates/invenio_rdm_pure/temporary_files'
+pure_import_file = f'{dirpath}/{pure_import_path}/pure_import.xml'
 
 # RDM
 rdm_host_url        = open(f'{dirpath}/data_setup/rdm_host_url.txt', 'r').readline()
