@@ -55,12 +55,6 @@ accessright_pure_to_rdm = {
     'None':             'closed'
 }
 
-# DATABASE
-db_host     = open(f'{dirpath}/data_setup/db_host.txt', 'r').readline()
-db_name     = open(f'{dirpath}/data_setup/db_name.txt', 'r').readline()
-db_user     = open(f'{dirpath}/data_setup/db_user.txt', 'r').readline()
-db_password = open(f'{dirpath}/data_setup/db_password.txt', 'r').readline()
-
 # REPORT LOGS
 reports_full_path = f'{dirpath}/reports/'
 base_path = f'{reports_full_path}{date.today()}'
