@@ -20,8 +20,5 @@ blueprint = Blueprint(
 
 # Pure import
 @blueprint.route("/pure_import")
-def index1():
-    """Render a basic view."""
-    return render_template(
-        pure_import_file,
-        module_name=_('invenio-rdm-pure'))
+def index():
+    return open(pure_import_file, 'r').read()
