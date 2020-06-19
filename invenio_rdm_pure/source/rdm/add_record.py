@@ -233,6 +233,8 @@ class RdmAddRecord:
         self._add_field(item, 'publicationStatus',           ['publicationStatuses', 0, 'publicationStatuses', 0, 'value'])
         self._add_field(item, 'workflow',                    ['workflows', 0, 'value'])
         self._add_field(item, 'publisherName',               ['publisher', 'names', 0, 'value'])
+        self._add_field(item, 'publisherUuid',               ['publisher', 'uuid'])
+        self._add_field(item, 'publisherType',               ['publisher', 'types', 0, 'value'])
         self._add_field(item, 'managingOrganisationalUnit_name',       ['managingOrganisationalUnit', 'names', 0, 'value'])
         self._add_field(item, 'managingOrganisationalUnit_uuid',       ['managingOrganisationalUnit', 'uuid'])
         self._add_field(item, 'managingOrganisationalUnit_externalId', ['managingOrganisationalUnit', 'externalId'])
