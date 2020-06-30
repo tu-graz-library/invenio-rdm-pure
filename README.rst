@@ -26,7 +26,21 @@
 
 Invenio module that adds pure
 
-TODO: Please provide feature overview of module
+
+
+After installing the module, run the file initial_setup.py to configure the setup file.
+The following values will be asked:
+
+- Pure API key 
+- Pure API password
+- Pure API URL
+- Pure username
+- RDM host URL
+- RDM token
+- Pure file deletion - Sender e-mail
+- Pure file deletion - Sender password
+- Pure file deletion - E-mail of Pure responsible
+
 
 Further documentation is available on
 https://invenio-rdm-pure.readthedocs.io/
