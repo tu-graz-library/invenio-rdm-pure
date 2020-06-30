@@ -30,3 +30,9 @@ for file in import_setup:
     value = input(f"{import_setup[file]}: ")
     # Create file
     open(f"{dirpath}/{folder_name}/{file}.txt", "w+").write(value)
+
+# Create Pure user and assign admin rights
+email = input("RDM user creation - Insert desired Pure user e-mail: ")
+password = input("RDM user creation - Password: ")
+os.system(f"pipenv run invenio users create {email} --password {password} --active")
+os.system("pipenv run invenio roles add {email} admin")
