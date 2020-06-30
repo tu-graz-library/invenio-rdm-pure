@@ -20,23 +20,22 @@ class inveniordmpure(object):
         # TODO: This is an example of translation string with comment. Please
         # remove it.
         # NOTE: This is a note to a translator.
-        _('A translation string')
+        _("A translation string")
         if app:
             self.init_app(app)
 
     def init_app(self, app):
         """Flask application initialization."""
         self.init_config(app)
-        app.extensions['invenio-rdm-pure'] = self
+        app.extensions["invenio-rdm-pure"] = self
 
     def init_config(self, app):
         """Initialize configuration."""
         # Use theme's base template if theme is installed
-        if 'BASE_TEMPLATE' in app.config:
+        if "BASE_TEMPLATE" in app.config:
             app.config.setdefault(
-                'INVENIO_RDM_PURE_BASE_TEMPLATE',
-                app.config['BASE_TEMPLATE'],
+                "INVENIO_RDM_PURE_BASE_TEMPLATE", app.config["BASE_TEMPLATE"],
             )
         for k in dir(config):
-            if k.startswith('INVENIO_RDM_PURE_'):
+            if k.startswith("INVENIO_RDM_PURE_"):
                 app.config.setdefault(k, getattr(config, k))

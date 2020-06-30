@@ -12,14 +12,11 @@ from flask_babelex import gettext as _
 from .setup import pure_import_file
 
 blueprint = Blueprint(
-    'invenio_rdm_pure',
-    __name__,
-    template_folder='templates',
-    static_folder='static',
+    "invenio_rdm_pure", __name__, template_folder="templates", static_folder="static",
 )
 
 # Pure import
 @blueprint.route("/pure_import")
 def index():
     # TODO: check if file exists
-    return open(pure_import_file, 'r').read()
+    return open(pure_import_file, "r").read()

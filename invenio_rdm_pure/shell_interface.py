@@ -1,16 +1,15 @@
+from source.log_manager import delete_old_log_files
+from source.rdm.run.changes import PureChangesByDate
+from source.rdm.run.pages import RunPages
+from source.rdm.run.duplicate_records import rdm_duplicate_records
+from source.rdm.run.uuid import AddFromUuidList
+from source.rdm.run.owners import RdmOwners
+from source.rdm.run.groups import RdmGroups
+from source.rdm.delete_record import Delete
+from source.pure.import_records import ImportRecords
 
-from source.log_manager                 import delete_old_log_files
-from source.rdm.run.changes             import PureChangesByDate
-from source.rdm.run.pages               import RunPages
-from source.rdm.run.duplicate_records   import rdm_duplicate_records
-from source.rdm.run.uuid                import AddFromUuidList
-from source.rdm.run.owners              import RdmOwners
-from source.rdm.run.groups              import RdmGroups
-from source.rdm.delete_record           import Delete
-from source.pure.import_records         import ImportRecords
 
 class ShellInterface:
-    
     def pure_import(self):
         """  """
         pure_import_records = ImportRecords()
@@ -73,51 +72,49 @@ class ShellInterface:
         rdm_groups = RdmGroups()
         rdm_groups.rdm_group_merge(old_ids, new_id)
 
-        
 
 def method_call(docopt_instance: object, arguments: dict):
-    
-    if arguments['pure_import']:
+
+    if arguments["pure_import"]:
         docopt_instance.pure_import()
 
-    if arguments['changes']:
+    if arguments["changes"]:
         docopt_instance.changes()
 
-    elif arguments['pages']:
-        page_start = int(arguments['--pageStart'])
-        page_end   = int(arguments['--pageEnd'])
-        page_size  = int(arguments['--pageSize'])
+    elif arguments["pages"]:
+        page_start = int(arguments["--pageStart"])
+        page_end = int(arguments["--pageEnd"])
+        page_size = int(arguments["--pageSize"])
         docopt_instance.pages(page_start, page_end, page_size)
 
-    elif arguments['logs']:
+    elif arguments["logs"]:
         docopt_instance.logs()
 
-    elif arguments['delete']:
+    elif arguments["delete"]:
         docopt_instance.delete()
 
-    elif arguments['delete_all']:
+    elif arguments["delete_all"]:
         docopt_instance.delete_all()
 
-    elif arguments['uuid']:
+    elif arguments["uuid"]:
         docopt_instance.uuid()
 
-    elif arguments['duplicates']:
+    elif arguments["duplicates"]:
         docopt_instance.duplicates()
 
-    elif arguments['owner']:
-        identifier = arguments['--identifier']
+    elif arguments["owner"]:
+        identifier = arguments["--identifier"]
         docopt_instance.owner(identifier)
 
-    elif arguments['owners_list']:
+    elif arguments["owners_list"]:
         docopt_instance.owners_list()
 
-    elif arguments['group_split']:
-        old_id  = arguments['--oldGroup']
-        new_ids = arguments['--newGroups'].split(' ')
+    elif arguments["group_split"]:
+        old_id = arguments["--oldGroup"]
+        new_ids = arguments["--newGroups"].split(" ")
         docopt_instance.rdm_group_split(old_id, new_ids)
 
-    elif arguments['group_merge']:
-        old_ids = arguments['--oldGroups'].split(' ')
-        new_id  = arguments['--newGroup']
+    elif arguments["group_merge"]:
+        old_ids = arguments["--oldGroups"].split(" ")
+        new_id = arguments["--newGroup"]
         docopt_instance.rdm_group_merge(old_ids, new_id)
-

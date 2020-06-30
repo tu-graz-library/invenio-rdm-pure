@@ -10,4 +10,4 @@
 from .ext import inveniordmpure
 from .version import __version__
 
-__all__ = ('__version__', 'inveniordmpure')
+__all__ = ("__version__", "inveniordmpure")

@@ -1,40 +1,43 @@
 import os
-from pathlib            import Path
-from datetime           import date, datetime
-from setup              import pure_uuid_length, data_files_name
+from pathlib import Path
+from datetime import date, datetime
+from setup import pure_uuid_length, data_files_name
 
-def add_spaces(value: str, max_length = 5):
+
+def add_spaces(value: str, max_length=5):
     # 5 is the standard maximum length of the given value
     spaces = max_length - len(str(value))
     if max_length > 5:
-        return str(value) + ''.ljust(spaces)
-    return ''.ljust(spaces) + str(value)        # ljust -> adds spaces after a string
+        return str(value) + "".ljust(spaces)
+    return "".ljust(spaces) + str(value)  # ljust -> adds spaces after a string
 
 
 def initialize_counters():
     """ Initialize variables that will count through the whole task the success of each process """
-    
+
     global_counters = {
-        'metadata': { 'success':  0, 'error':    0, },
-        'file':     { 'success':  0, 'error':    0, },
-        'delete':   { 'success':  0, 'error':    0, },
-        'total': 0,
-        'http_responses': {}
+        "metadata": {"success": 0, "error": 0,},
+        "file": {"success": 0, "error": 0,},
+        "delete": {"success": 0, "error": 0,},
+        "total": 0,
+        "http_responses": {},
     }
     return global_counters
+
 
 def current_time():
     return datetime.now().strftime("%H:%M:%S")
 
+
 def current_date():
-    return datetime.today().strftime('%Y-%m-%d')
+    return datetime.today().strftime("%Y-%m-%d")
 
 
 def check_if_directory_exists(directory_name: str):
-    
+
     # Gets synchronizer direcotry path
-    dirpath = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..'))
-    full_path = f'{dirpath}/{directory_name}'
+    dirpath = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+    full_path = f"{dirpath}/{directory_name}"
 
     # If full_path does not exist creates the folder
     Path(full_path).mkdir(parents=True, exist_ok=True)
@@ -46,7 +49,7 @@ def check_if_file_exists(file_name: str):
 
 
 def file_read_lines(file_name: str):
-    
+
     file_full_name = data_files_name[file_name]
     # It creates the directory if it does not exist
     check_if_directory_exists(file_full_name)
@@ -58,19 +61,18 @@ def file_read_lines(file_name: str):
     return open(file_full_name).readlines()
 
 
-
 def check_uuid_authenticity(uuid: str):
     """ Checks if lenght of the uuid is correct """
-    if (len(uuid) != pure_uuid_length):
+    if len(uuid) != pure_uuid_length:
         return False
     return True
 
 
 def shorten_file_name(name: str):
-    
+
     max_length = 60
     if len(name) > max_length:
-        return name[0:max_length] + '...'
+        return name[0:max_length] + "..."
 
     return name
 
@@ -96,8 +98,8 @@ def get_value(item, path: list):
     value = str(child)
 
     # REPLACEMENTS
-    value = value.replace('\t', ' ')        # replace \t with ' '
-    value = value.replace('\\', '\\\\')     # adds \ before \
-    value = value.replace('"', '\\"')       # adds \ before "
-    value = value.replace('\n', '')         # removes new lines
+    value = value.replace("\t", " ")  # replace \t with ' '
+    value = value.replace("\\", "\\\\")  # adds \ before \
+    value = value.replace('"', '\\"')  # adds \ before "
+    value = value.replace("\n", "")  # removes new lines
     return value
