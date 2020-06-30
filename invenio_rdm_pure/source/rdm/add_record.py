@@ -113,13 +113,8 @@ class RdmAddRecord:
         # Resource type
         self._add_resource_type()
 
-        # Restrictions
-        self.data["appliedRestrictions"] = [
-            "owners",
-            "groups",
-            "ip_single",
-            "ip_range",
-        ]  # TO REVIEW - TO REVIEW
+        # Access right and restrictions
+        self._access_right_and_restrictions(item)
 
         # Process various general fields
         self._process_general_fields(item)
@@ -146,6 +141,20 @@ class RdmAddRecord:
 
         # Updates the versioning data of all records with the same uuid
         self._update_all_uuid_versions()
+
+    def _access_right_and_restrictions(self, item):
+        # Access right
+        permission = get_value(item, ["openAccessPermissions", 0, "value"])
+        self.data["access_right"] = self._accessright_conversion(permission)
+
+        # Restrictions
+        if permission != "Open":
+            self.data["appliedRestrictions"] = [
+                "owners",
+                "groups",
+                "ip_single",
+                "ip_range",
+            ]
 
     def _add_resource_type(self):
         # To REVIEW
@@ -273,10 +282,6 @@ class RdmAddRecord:
         # self._add_field(item, 'createdDate',                 ['info', 'createdDate'])
         # self._add_field(item, 'metadataModifBy',             ['info', 'modifiedBy'])
         # self._add_field(item, 'metadataModifDate',           ['info', 'modifiedDate'])
-
-        # Access right
-        value = get_value(item, ["openAccessPermissions", 0, "value"])
-        self.data["access_right"] = self._accessright_conversion(value)
 
     def _process_electronic_versions(self):
         """ Data relative to files """
