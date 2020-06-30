@@ -1,5 +1,6 @@
-from setup import dirpath
-from source.general_functions import check_if_directory_exists
+import os
+from pathlib import Path
+dirpath = os.path.dirname(os.path.abspath(__file__))
 
 import_setup = {
     "pure_api_key": "Pure API key",
@@ -14,8 +15,13 @@ import_setup = {
 }
 
 folder_name = "data_setup"
-check_if_directory_exists(folder_name)
+full_path = f"{dirpath}/{folder_name}"
+
+# If full_path does not exist creates the folder
+Path(full_path).mkdir(parents=True, exist_ok=True)
+
+print('\nSpecifying the basic setup for this module.\nPlease fill the following fields:\n')
 
 for file in import_setup:
-    value = input(f"\nPlease insert '{import_setup[file]}': ")
+    value = input(f"Please insert '{import_setup[file]}': ")
     open(f"{dirpath}/{folder_name}/{file}.txt", "w+").write(value)
