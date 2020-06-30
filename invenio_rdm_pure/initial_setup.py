@@ -1,7 +1,12 @@
 import os
 from pathlib import Path
+
 dirpath = os.path.dirname(os.path.abspath(__file__))
 
+folder_name = "data_setup"
+full_path = f"{dirpath}/{folder_name}"
+
+# data_setup parameters
 import_setup = {
     "pure_api_key": "Pure API key",
     "pure_password": "Pure API password",
@@ -14,14 +19,14 @@ import_setup = {
     "email_receiver": "E-mail of responsible for Pure deletion",
 }
 
-folder_name = "data_setup"
-full_path = f"{dirpath}/{folder_name}"
-
-# If full_path does not exist creates the folder
+# If the folder does not exist then creates it
 Path(full_path).mkdir(parents=True, exist_ok=True)
 
-print('\nSpecifying the basic setup for this module.\nPlease fill the following fields:\n')
+print("\nSpecifying the basic setup for this module.")
+print("Please fill the following fields:\n")
 
 for file in import_setup:
-    value = input(f"Please insert '{import_setup[file]}': ")
+    # Ask for input value
+    value = input(f"{import_setup[file]}: ")
+    # Create file
     open(f"{dirpath}/{folder_name}/{file}.txt", "w+").write(value)
