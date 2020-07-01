@@ -11,7 +11,7 @@ import_setup = {
     "pure_api_key": "Pure API key",
     "pure_rest_api_url": "Pure API URL",
     "pure_username": "Pure username",
-    "pure_password": "Pure API password",
+    "pure_password": "Pure password",
     "rdm_host_url": "RDM host URL",
     "rdm_token": "RDM token",
     "email_sender": "Pure file deletion - Sender e-mail",
