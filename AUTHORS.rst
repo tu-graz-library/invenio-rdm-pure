@@ -10,4 +10,4 @@ Authors
 
 Invenio module that adds pure
 
-- Fair Data Austria <info@fair-data-austria.com>
+- Technische Universität Graz <info@tugraz.at>
