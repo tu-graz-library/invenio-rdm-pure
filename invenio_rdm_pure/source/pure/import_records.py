@@ -1,3 +1,4 @@
+import os
 import json
 from xml.etree import ElementTree as ET
 from xml.dom import minidom
@@ -26,18 +27,35 @@ class ImportRecords:
         page = 1
         next_page = True
 
+        self._delete_old_xml()
+
         # Get RDM records by page
         while next_page:
 
             data = self._get_rdm_records_metadata(page)
 
             if not data:
-                self.report.add("\n\tEnd task\n")
+                if self._check_if_file_exists(pure_import_file):
+                    self.report.add("\nTask correctly finished\n")
+                else:
+                    self.report.add("\nTask ended - No xml file created\n")
                 return
 
             self._create_xml(data)
 
+            self._parse_xml()
+
             page += 1
+
+    def _delete_old_xml(self):
+        # Check if file exists
+        if self._check_if_file_exists(pure_import_file):
+            self.report.add("\nDelete old xml file")
+            # Delete old file
+            os.remove(pure_import_file)
+
+    def _check_if_file_exists(self, file_name):
+        return os.path.isfile(file_name)
 
     def _check_uuid(self, item):
         """ If a uuid is specified in the RDM record means that it was imported
@@ -93,8 +111,6 @@ class ImportRecords:
 
             # Adds fields to the created xml element
             self._populate_xml(item_metadata, name_space)
-
-        self._parse_xml()
 
     def _populate_xml(self, item, name_space):
 
