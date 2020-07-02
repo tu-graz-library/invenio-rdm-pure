@@ -74,11 +74,11 @@ class RdmAddRecord:
         # Record owners
         self._check_record_owners()
 
-        self.data[
-            "_created_by"
-        ] = 1  # id of pure_integration@tugraz.at user - TO REVIEW
+        # id of pure_integration@tugraz.at user - TO REVIEW
+        self.data["_created_by"] = 1
 
-        self.data["community"] = {"primary": ""}  # TO REVIEW  # Mandatory field
+        # Mandatory field
+        self.data["community"] = {"primary": ""}  # TO REVIEW
 
         # Access right
         access_right = self._accessright_conversion(
@@ -238,7 +238,10 @@ class RdmAddRecord:
             self.data["_owners"] = list(set([1]))
 
     def _process_general_fields(self, item: dict):
-        # RDM field name                # PURE json path
+        # Parameters:
+        # 1- Pure records data
+        # 2- RDM field
+        # 3- Path to field value in Pure json
         self._add_field(item, "uuid", ["uuid"])
         self._add_field(
             item,
@@ -540,9 +543,13 @@ class RdmAddRecord:
         return False
 
     def _get_rdm_file_review(self):
-        """ When a record is updated in Pure, there will be a check if the new file from Pure is the same as the old file in RDM.
+        """ 
+        When a record is updated in Pure, there will be a check 
+        if the new file from Pure is the same as the old file in RDM.
         To do so it makes a comparison on the file size.
-        If the size is not the same, then it will be uploaded to RDM and a new internal review will be required. """
+        If the size is not the same, then it will be uploaded to RDM 
+        and a new internal review will be required. 
+        """
 
         # Get from RDM file size and internalReview
         params = {"sort": "mostrecent", "size": "100", "page": "1", "q": self.uuid}
@@ -694,8 +701,8 @@ class RdmAddRecord:
         return True
 
     def _http_response_counter(self, status_code: int):
-        """ According to the given http status code 
-            creates a new object element or increaes an existing one  """
+        """ According to the given http status code creates 
+            a new object element or increaes an existing one  """
         if status_code not in self.global_counters["http_responses"]:
             self.global_counters["http_responses"][status_code] = 0
         self.global_counters["http_responses"][status_code] += 1
