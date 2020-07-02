@@ -24,6 +24,10 @@
 .. image:: https://img.shields.io/github/license/fair-data-austria/invenio-rdm-pure.svg
         :target: https://github.com/fair-data-austria/invenio-rdm-pure/blob/master/LICENSE
 
+.. image:: https://readthedocs.org/projects/invenio-rdm-pure/badge/?version=latest
+        :target: https://invenio-rdm-pure.readthedocs.io/en/latest/?badge=latest
+
+
 Invenio module that adds pure
 
 
