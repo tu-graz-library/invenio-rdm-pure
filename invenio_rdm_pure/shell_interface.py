@@ -78,7 +78,7 @@ def method_call(docopt_instance: object, arguments: dict):
     if arguments["pure_import"]:
         docopt_instance.pure_import()
 
-    if arguments["changes"]:
+    elif arguments["changes"]:
         docopt_instance.changes()
 
     elif arguments["pages"]:
