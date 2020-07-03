@@ -28,23 +28,7 @@
         :target: https://invenio-rdm-pure.readthedocs.io/en/latest/?badge=latest
 
 
-Invenio module that adds pure
-
-
-
-After installing the module, run the file initial_setup.py to configure the setup file.
-The following values will be asked:
-
-- Pure API key 
-- Pure API password
-- Pure API URL
-- Pure username
-- RDM host URL
-- RDM token
-- Pure file deletion - Sender e-mail
-- Pure file deletion - Sender password
-- Pure file deletion - E-mail of Pure responsible
-
+Invenio module that adds TUGraz Pure integration.
 
 Further documentation is available on
 https://invenio-rdm-pure.readthedocs.io/
