@@ -7,11 +7,11 @@
 
 """Invenio module that adds pure"""
 
+import os
 from flask import Blueprint, render_template, current_app
 from flask_babelex import gettext as _
-from .setup import pure_import_file
-from flask_login import current_user
-from invenio_oauthclient.models import UserIdentity
+from .setup import pure_import_file, dirpath
+
 
 blueprint = Blueprint(
     "invenio_rdm_pure", __name__, template_folder="templates", static_folder="static",
@@ -20,10 +20,10 @@ blueprint = Blueprint(
 # Pure import
 @blueprint.route("/pure_import")
 def index():
-    if current_user.is_authenticated:
-        id = current_user.get_id()
-        user_external = UserIdentity.query.filter_by(id_user=id).first()
-        print(user_external.id)
-        # TODO check if user is oauth
+    # Check if the XML file does not exist
+    if not os.path.isfile(pure_import_file):
+        # Create the file
+        # ISSUE: sh: 1: .../invenio_rdm_pure/cli.py: Permission denied
+        os.system(f"{dirpath}/cli.py pure_import")
+    return open(pure_import_file, "r").read()
 
-    return user_external.id
