@@ -80,9 +80,6 @@ class RdmAddRecord:
         # id of pure_integration@tugraz.at user - TO REVIEW
         self.data["_created_by"] = 1
 
-        # Mandatory field
-        self.data["community"] = {"primary": ""}  # TO REVIEW
-
         # Access right
         access_right = self._accessright_conversion(
             get_value(item, ["openAccessPermissions", 0, "value"])
@@ -130,11 +127,11 @@ class RdmAddRecord:
             for i in item["additionalFiles"]:
                 self.get_files_data(i)
 
-        # Organisational Units
-        self._process_organisational_units()
+        # # Organisational Units
+        # self._process_organisational_units()
 
-        # Checks if the restrictions applied to the record are valid
-        self._applied_restrictions_check()
+        # # Checks if the restrictions applied to the record are valid
+        # self._applied_restrictions_check()
 
         # Add pure_extensions to the data to be submitted
         self.data["extensions"] = self.pure_extensions
@@ -153,14 +150,14 @@ class RdmAddRecord:
         permission = get_value(item, ["openAccessPermissions", 0, "value"])
         self.data["access_right"] = self._accessright_conversion(permission)
 
-        # Restrictions
-        if permission != "Open":
-            self.data["appliedRestrictions"] = [
-                "owners",
-                "groups",
-                "ip_single",
-                "ip_range",
-            ]
+        # # Restrictions
+        # if permission != "Open":
+        #     self.data["appliedRestrictions"] = [
+        #         "owners",
+        #         "groups",
+        #         "ip_single",
+        #         "ip_range",
+        #     ]
 
     def _add_resource_type(self):
         # To REVIEW
@@ -290,12 +287,12 @@ class RdmAddRecord:
 
     def _process_electronic_versions(self):
         """ Data relative to files """
-        self.data["versionFiles"] = []
+        # self.data["versionFiles"] = []
         self.rdm_file_review = []
 
-        if "electronicVersions" in self.item or "additionalFiles" in self.item:
-            # Checks if the file has been already uploaded to RDM and if it has been internally reviewed
-            self._get_rdm_file_review()
+        # if "electronicVersions" in self.item or "additionalFiles" in self.item:
+        # # Checks if the file has been already uploaded to RDM and if it has been internally reviewed
+        # self._get_rdm_file_review()
 
         if "electronicVersions" in self.item:
             for i in self.item["electronicVersions"]:
@@ -313,21 +310,21 @@ class RdmAddRecord:
         for item in self.item["personAssociations"]:
 
             self.sub_data = {}
-
+            self.sub_data["identifiers"] = {"Orcid": "0000-0002-1825-0097"}
             # Name
             self._get_contributor_name(item)
 
             # Organizational, Personal
             self.sub_data["type"] = "Personal"  # Organizational / Personal
-            self._add_subdata(item, "pure_personRole", ["personRoles", 0, "value"])
+            # self._add_subdata(item, "pure_personRole", ["personRoles", 0, "value"])
 
             # - Identifiers -
-            self.sub_data["identifiers"] = {}
-            self._add_field_sub(item, "identifiers", "uuid", ["person", "uuid"])
-            self._add_field_sub(
-                item, "identifiers", "externalId", ["person", "externalId"]
-            )
-            self._add_field_sub(item, "identifiers", "uuid", ["externalPerson", "uuid"])
+            # self.sub_data["identifiers"] = {}
+            # self._add_field_sub(item, "identifiers", "uuid", ["person", "uuid"])
+            # self._add_field_sub(
+            #     item, "identifiers", "externalId", ["person", "externalId"]
+            # )
+            # self._add_field_sub(item, "identifiers", "uuid", ["externalPerson", "uuid"])
             # Orcid
             self._process_contributor_orcid()
 
@@ -628,8 +625,8 @@ class RdmAddRecord:
         value = get_value(item, ["accessTypes", 0, "value"])
         self.sub_data["accessType"] = self._accessright_conversion(value)
 
-        # Append to sub_data to .data
-        self.data["versionFiles"].append(self.sub_data)
+        # # Append to sub_data to .data
+        # self.data["versionFiles"].append(self.sub_data)
 
         # Download file from Pure
         response = get_pure_file(self, file_url, file_name)
