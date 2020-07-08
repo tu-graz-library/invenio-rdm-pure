@@ -59,6 +59,9 @@ class RdmAddRecord:
             # Necessary because we need first to create the record and then to put the files
             self.record_files = []
 
+            # Stores all extra fields that are not in the standard RDM datamodel
+            self.pure_extensions = {}
+
             # Decorated function
             func(self, global_counters, item)
 
@@ -132,6 +135,9 @@ class RdmAddRecord:
 
         # Checks if the restrictions applied to the record are valid
         self._applied_restrictions_check()
+
+        # Add pure_extensions to the data to be submitted
+        self.data["extensions"] = self.pure_extensions
 
         # Convert to json string
         self.data = json.dumps(self.data)
@@ -242,7 +248,11 @@ class RdmAddRecord:
         # 1- Pure records data
         # 2- RDM field
         # 3- Path to field value in Pure json
-        self._add_field(item, "uuid", ["uuid"])
+
+        # self._add_field(item, "uuid", ["uuid"])
+        # self.data["extensions"] = {"pure:uuid": self.uuid}
+        self._add_extension(item, "pure:uuid", ["uuid"])
+
         self._add_field(
             item,
             "publication_date",
@@ -285,6 +295,12 @@ class RdmAddRecord:
         # self._add_field(item, 'createdDate',                 ['info', 'createdDate'])
         # self._add_field(item, 'metadataModifBy',             ['info', 'modifiedBy'])
         # self._add_field(item, 'metadataModifDate',           ['info', 'modifiedDate'])
+
+    def _add_extension(self, item: dict, rdm_field: str, path: list):
+        """ Adds the field to Pure extension """
+        value = get_value(item, path)
+        if value:
+            self.pure_extensions[rdm_field] = value
 
     def _process_electronic_versions(self):
         """ Data relative to files """
@@ -339,7 +355,8 @@ class RdmAddRecord:
                     if name and identifier:
                         # scheme = get_value(item, ['authorCollaboration', ''])
                         self.sub_data["affiliations"].append(
-                            {"name": name, "identifier": identifier, "scheme": scheme,}
+                            # {"name": name, "identifier": identifier, "scheme": scheme,}
+                            {"name": name}
                         )
 
             # Checks if the record owner is available in user_ids_match.txt
