@@ -248,50 +248,36 @@ class RdmAddRecord:
         # 1- Pure records data
         # 2- RDM field
         # 3- Path to field value in Pure json
-
-        # self._add_field(item, "uuid", ["uuid"])
-        # self.data["extensions"] = {"pure:uuid": self.uuid}
         self._add_extension(item, "pure:uuid", ["uuid"])
+        self._add_extension(item, "pure:publisherUuid", ["publisher", "uuid"])
+        self._add_extension(item, "pure:pages", ["info", "pages"])
+        self._add_extension(item, "pure:volume", ["info", "volume"])
+        path = ["publicationStatuses", 0, "publicationDate", "year"]
+        self._add_extension(item, "pure:publication_date", path)
+        self._add_extension(
+            item, "pure:journalTitle", ["info", "journalAssociation", "title", "value"]
+        )
+        self._add_extension(item, "pure:journalNumber", ["info", "journalNumber"])
+        self._add_extension(item, "pure:pure_link", ["info", "portalUrl"])
+        self._add_extension(item, "pure:pure_type", ["types", 0, "value"])
+        self._add_extension(item, "pure:pure_category", ["categories", 0, "value"])
+        self._add_extension(item, "pure:peerReview", ["peerReview"])
+        path = ["publicationStatuses", 0, "publicationStatuses", 0, "value"]
+        self._add_extension(item, "pure:publicationStatus", path)
+        self._add_extension(item, "pure:workflow", ["workflows", 0, "value"])
+        self._add_extension(
+            item, "pure:publisherName", ["publisher", "names", 0, "value"]
+        )
+        self._add_extension(
+            item, "pure:publisherType", ["publisher", "types", 0, "value"]
+        )
+        path = ["managingOrganisationalUnit", "names", 0, "value"]
+        self._add_extension(item, "pure:managingOrganisationalUnit_name", path)
+        path = ["managingOrganisationalUnit", "uuid"]
+        self._add_extension(item, "pure:managingOrganisationalUnit_uuid", path)
+        path = ["managingOrganisationalUnit", "externalId"]
+        self._add_extension(item, "pure:managingOrganisationalUnit_externalId", path)
 
-        self._add_field(
-            item,
-            "publication_date",
-            ["publicationStatuses", 0, "publicationDate", "year"],
-        )
-        self._add_field(item, "pages", ["info", "pages"])
-        self._add_field(item, "volume", ["info", "volume"])
-        self._add_field(
-            item, "journalTitle", ["info", "journalAssociation", "title", "value"]
-        )
-        self._add_field(item, "journalNumber", ["info", "journalNumber"])
-        self._add_field(item, "pure_link", ["info", "portalUrl"])
-        self._add_field(item, "pure_type", ["types", 0, "value"])
-        self._add_field(item, "pure_category", ["categories", 0, "value"])
-        self._add_field(item, "peerReview", ["peerReview"])
-        self._add_field(
-            item,
-            "publicationStatus",
-            ["publicationStatuses", 0, "publicationStatuses", 0, "value"],
-        )
-        self._add_field(item, "workflow", ["workflows", 0, "value"])
-        self._add_field(item, "publisherName", ["publisher", "names", 0, "value"])
-        self._add_field(item, "publisherUuid", ["publisher", "uuid"])
-        self._add_field(item, "publisherType", ["publisher", "types", 0, "value"])
-        self._add_field(
-            item,
-            "managingOrganisationalUnit_name",
-            ["managingOrganisationalUnit", "names", 0, "value"],
-        )
-        self._add_field(
-            item,
-            "managingOrganisationalUnit_uuid",
-            ["managingOrganisationalUnit", "uuid"],
-        )
-        self._add_field(
-            item,
-            "managingOrganisationalUnit_externalId",
-            ["managingOrganisationalUnit", "externalId"],
-        )
         # self._add_field(item, 'createdDate',                 ['info', 'createdDate'])
         # self._add_field(item, 'metadataModifBy',             ['info', 'modifiedBy'])
         # self._add_field(item, 'metadataModifDate',           ['info', 'modifiedDate'])
