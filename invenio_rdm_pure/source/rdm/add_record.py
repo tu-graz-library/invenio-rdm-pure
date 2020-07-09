@@ -321,13 +321,18 @@ class RdmAddRecord:
             if "organisationalUnits" in item:
                 for i in item["organisationalUnits"]:
                     name = get_value(i, ["names", 0, "value"])
-                    identifier = get_value(i, ["externalId"])
-                    scheme = get_value(i, ["uuid"])
-                    if name and identifier:
+                    externalId = get_value(i, ["externalId"])
+                    uuid = get_value(i, ["uuid"])
+                    if name and externalId:
                         # scheme = get_value(item, ['authorCollaboration', ''])
                         self.sub_data["affiliations"].append(
-                            # {"name": name, "identifier": identifier, "scheme": scheme,}
-                            {"name": name}
+                            {
+                                "name": name,
+                                "identifiers": {
+                                    "externalId": externalId,
+                                    "uuid": uuid,
+                                },
+                            }
                         )
 
             # Checks if the record owner is available in user_ids_match.txt
