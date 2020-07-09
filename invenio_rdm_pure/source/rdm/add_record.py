@@ -279,9 +279,9 @@ class RdmAddRecord:
         # self.data["versionFiles"] = []
         self.rdm_file_review = []
 
-        # if "electronicVersions" in self.item or "additionalFiles" in self.item:
-        # # Checks if the file has been already uploaded to RDM and if it has been internally reviewed
-        # self._get_rdm_file_review()
+        if "electronicVersions" in self.item or "additionalFiles" in self.item:
+            # Checks if the file has been already uploaded to RDM and if it has been internally reviewed
+            self._get_rdm_file_review()
 
         if "electronicVersions" in self.item:
             for i in self.item["electronicVersions"]:
@@ -599,7 +599,7 @@ class RdmAddRecord:
                 break
 
         self.sub_data = {}
-        self.sub_data["internalReview"] = internal_review
+        self.pure_extensions["pure:file_internalReview"] = internal_review
 
         self._add_extension(item, "pure:file_name", ["file", "fileName"])
         self._add_extension(item, "pure:file_createdBy", ["creator"])
