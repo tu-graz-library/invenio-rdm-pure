@@ -199,17 +199,6 @@ class RdmAddRecord:
         self.data["identifiers"] = {  # TO REVIEW
             "DOI": "10.5281/rdm.9999992",  # Digital Object Identifiers
         }
-        self.data["related_identifiers"] = [  # TO REVIEW
-            {
-                "identifier": "10.5281/rdm.9999991",
-                "relation_type": "Requires",
-                "resource_type": {
-                    "subtype": "publication-other",
-                    "type": "publication",
-                },
-                "scheme": "DOI",
-            }
-        ]
 
     def _versioning_required(func):
         def _wrapper(self):
