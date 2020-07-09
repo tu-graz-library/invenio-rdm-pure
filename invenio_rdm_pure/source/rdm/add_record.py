@@ -299,7 +299,6 @@ class RdmAddRecord:
         for item in self.item["personAssociations"]:
 
             self.sub_data = {}
-            self.sub_data["identifiers"] = {"Orcid": "0000-0002-1825-0097"}
             # Name
             self._get_contributor_name(item)
 
@@ -308,12 +307,12 @@ class RdmAddRecord:
             # self._add_subdata(item, "pure_personRole", ["personRoles", 0, "value"])
 
             # - Identifiers -
-            # self.sub_data["identifiers"] = {}
-            # self._add_field_sub(item, "identifiers", "uuid", ["person", "uuid"])
-            # self._add_field_sub(
-            #     item, "identifiers", "externalId", ["person", "externalId"]
-            # )
-            # self._add_field_sub(item, "identifiers", "uuid", ["externalPerson", "uuid"])
+            self.sub_data["identifiers"] = {}
+            self._add_field_sub(item, "identifiers", "uuid", ["person", "uuid"])
+            self._add_field_sub(
+                item, "identifiers", "externalId", ["person", "externalId"]
+            )
+            self._add_field_sub(item, "identifiers", "uuid", ["externalPerson", "uuid"])
             # Orcid
             self._process_contributor_orcid()
 
