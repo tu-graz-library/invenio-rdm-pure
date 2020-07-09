@@ -150,14 +150,14 @@ class RdmAddRecord:
         permission = get_value(item, ["openAccessPermissions", 0, "value"])
         self.data["access_right"] = self._accessright_conversion(permission)
 
-        # # Restrictions
-        # if permission != "Open":
-        #     self.data["appliedRestrictions"] = [
-        #         "owners",
-        #         "groups",
-        #         "ip_single",
-        #         "ip_range",
-        #     ]
+        # Restrictions
+        if permission != "Open":
+            self.pure_extensions["pure:appliedRestrictions"] = [
+                "owners",
+                "groups",
+                "ip_single",
+                "ip_range",
+            ]
 
     def _add_resource_type(self):
         # To REVIEW
