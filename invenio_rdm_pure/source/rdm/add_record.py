@@ -601,13 +601,15 @@ class RdmAddRecord:
         self.sub_data = {}
         self.sub_data["internalReview"] = internal_review
 
-        self._add_subdata(item, "name", ["file", "fileName"])
-        self._add_subdata(item, "digest", ["file", "digest"])
-        self._add_subdata(item, "digestAlgorithm", ["file", "digestAlgorithm"])
-        self._add_subdata(item, "createdBy", ["creator"])
-        self._add_subdata(item, "createdDate", ["created"])
-        self._add_subdata(item, "versionType", ["versionTypes", 0, "value"])
-        self._add_subdata(item, "licenseType", ["licenseTypes", 0, "value"])
+        self._add_extension(item, "pure:file_name", ["file", "fileName"])
+        self._add_extension(item, "pure:file_createdBy", ["creator"])
+        self._add_extension(item, "pure:file_createdDate", ["created"])
+        self._add_extension(item, "pure:file_versionType", ["versionTypes", 0, "value"])
+        self._add_extension(item, "pure:file_licenseType", ["licenseTypes", 0, "value"])
+        self._add_extension(item, "pure:file_digest", ["file", "digest"])
+        self._add_extension(
+            item, "pure:file_digestAlgorithm", ["file", "digestAlgorithm"]
+        )
 
         # Access type
         value = get_value(item, ["accessTypes", 0, "value"])
