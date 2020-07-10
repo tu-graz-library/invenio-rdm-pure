@@ -127,8 +127,8 @@ class RdmAddRecord:
             for i in item["additionalFiles"]:
                 self.get_files_data(i)
 
-        # # Organisational Units
-        # self._process_organisational_units()
+        # Organisational Units
+        self._process_organisational_units()
 
         # # Checks if the restrictions applied to the record are valid
         # self._applied_restrictions_check()
@@ -385,11 +385,11 @@ class RdmAddRecord:
     def _process_organisational_units(self):
         """ Process the metadata relative to the organisational units """
         if "organisationalUnits" in self.item:
-            self.data["organisationalUnits"] = []
-            self.data["groupRestrictions"] = []
+            # self.data["organisationalUnits"] = []
+            self.data["pure:groupRestrictions"] = []
 
             for i in self.item["organisationalUnits"]:
-                sub_data = {}
+                # sub_data = {}
 
                 organisational_unit_name = get_value(i, ["names", 0, "value"])
                 organisational_unit_uuid = get_value(i, ["uuid"])
@@ -398,14 +398,16 @@ class RdmAddRecord:
                 if not organisational_unit_externalId:
                     continue
 
-                sub_data["name"] = organisational_unit_name
-                sub_data["uuid"] = organisational_unit_uuid
-                sub_data["externalId"] = organisational_unit_externalId
+                # sub_data["name"] = organisational_unit_name
+                # sub_data["uuid"] = organisational_unit_uuid
+                # sub_data["externalId"] = organisational_unit_externalId
 
-                self.data["organisationalUnits"].append(sub_data)
+                # self.data["organisationalUnits"].append(sub_data)
 
                 # Adding organisational unit as group owner
-                self.data["groupRestrictions"].append(organisational_unit_externalId)
+                self.data["pure:groupRestrictions"].append(
+                    organisational_unit_externalId
+                )
 
                 # Create group
                 self.groups.rdm_create_group(
