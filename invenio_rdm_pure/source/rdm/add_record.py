@@ -386,7 +386,7 @@ class RdmAddRecord:
         """ Process the metadata relative to the organisational units """
         if "organisationalUnits" in self.item:
             # self.data["organisationalUnits"] = []
-            self.data["pure:groupRestrictions"] = []
+            self.pure_extensions["pure:groupRestrictions"] = []
 
             for i in self.item["organisationalUnits"]:
                 # sub_data = {}
@@ -405,7 +405,7 @@ class RdmAddRecord:
                 # self.data["organisationalUnits"].append(sub_data)
 
                 # Adding organisational unit as group owner
-                self.data["pure:groupRestrictions"].append(
+                self.pure_extensions["pure:groupRestrictions"].append(
                     organisational_unit_externalId
                 )
 
@@ -423,7 +423,7 @@ class RdmAddRecord:
         for i in self.data["appliedRestrictions"]:
             if i not in possible_record_restrictions:
                 report = (
-                    f"Warning: the value '{i}' is not amont the accepted restrictions\n"
+                    f"Warning: the value '{i}' is not among the accepted restrictions\n"
                 )
                 self.report.add(report)
         return True
