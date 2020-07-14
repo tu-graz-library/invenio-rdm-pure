@@ -8,7 +8,7 @@
 """Invenio module that adds pure"""
 
 import os
-from flask import Blueprint, render_template, current_app
+from flask import Blueprint
 from flask_babelex import gettext as _
 from .setup import pure_import_file, dirpath
 
@@ -22,7 +22,7 @@ blueprint = Blueprint(
 def index():
     # Check if the XML file does not exist
     if not os.path.isfile(pure_import_file):
-        # Create the file
-        os.system(f"python3.6 {dirpath}/cli.py pure_import")
+        # Run pure_import task to create the XML file
+        os.system(f"python {dirpath}/cli.py pure_import")
     return open(pure_import_file, "r").read()
 
