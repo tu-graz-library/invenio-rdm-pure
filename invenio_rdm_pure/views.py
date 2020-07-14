@@ -23,7 +23,6 @@ def index():
     # Check if the XML file does not exist
     if not os.path.isfile(pure_import_file):
         # Create the file
-        # ISSUE: sh: 1: .../invenio_rdm_pure/cli.py: Permission denied
-        os.system(f"{dirpath}/cli.py pure_import")
+        os.system(f"python3.6 {dirpath}/cli.py pure_import")
     return open(pure_import_file, "r").read()
 
