@@ -38,6 +38,7 @@ class RdmAddRecord:
         self.groups = RdmGroups()
         self.general_functions = GeneralFunctions()
         self.versioning = Versioning()
+        self.rdm_db = RdmDatabase()
 
     def push_record_by_uuid(self, global_counters: dict, uuid: str):
         """ Gets from Pure the metadata of a given uuid """
@@ -77,8 +78,9 @@ class RdmAddRecord:
         # Record owners
         self._check_record_owners()
 
-        # id of pure_integration@tugraz.at user - TO REVIEW
-        self.data["_created_by"] = 1
+        # Sets as '_created_by' the RDM userid of the
+        userid = self.rdm_db._get_pure_admin_userid()
+        self.data["_created_by"] = userid
 
         # Access right
         access_right = self._accessright_conversion(

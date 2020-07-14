@@ -1,7 +1,7 @@
 import psycopg2
 import yaml
 import os
-from setup import db_host, dirpath
+from setup import db_host, dirpath, pure_rdm_user_file
 
 
 class RdmDatabase:
@@ -61,3 +61,12 @@ class RdmDatabase:
                 credentials["db"] = value
 
         return credentials
+
+    def _get_pure_admin_userid(self):
+        """ Gets the userId of the Pure admin user """
+        email = open(pure_rdm_user_file, "r").read()
+        email = f"'{email}'"
+        response = self.select_query("id", "accounts_user", {"email": email})
+        if not response:
+            return False
+        return response[0][0]
