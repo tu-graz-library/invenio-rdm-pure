@@ -62,7 +62,7 @@ class RdmDatabase:
 
         return credentials
 
-    def _get_pure_admin_userid(self):
+    def get_pure_admin_userid(self):
         """ Gets the userId of the Pure admin user """
         email = open(pure_rdm_user_file, "r").read()
         email = f"'{email}'"

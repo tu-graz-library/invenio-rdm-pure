@@ -79,7 +79,7 @@ class RdmAddRecord:
         self._check_record_owners()
 
         # Sets as '_created_by' the RDM userid of the
-        userid = self.rdm_db._get_pure_admin_userid()
+        userid = self.rdm_db.get_pure_admin_userid()
         self.data["_created_by"] = userid
 
         # Access right
