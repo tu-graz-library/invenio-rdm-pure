@@ -258,7 +258,8 @@ class RdmGroups:
 
                 # Managing Organisational Unit
                 if (
-                    item["managingOrganisationalUnit_externalId"]
+                    "managingOrganisationalUnit_externalId" in item
+                    and item["managingOrganisationalUnit_externalId"]
                     == old_group_externalId
                 ):
                     item["managingOrganisationalUnit_name"] = new_group_data["name"]
@@ -277,7 +278,7 @@ class RdmGroups:
         new_organisationalUnits_data = [new_group_data]
 
         if "organisationalUnits" not in item:
-            return False
+            return item
 
         for i in item["organisationalUnits"]:
             if (
@@ -294,6 +295,9 @@ class RdmGroups:
     def _process_group_restrictions(
         self, item, old_group_externalId, new_group_externalId
     ):
+        if "groupRestrictions" not in item:
+            return item
+
         # Remove old group
         if old_group_externalId in item["groupRestrictions"]:
             item["groupRestrictions"].remove(old_group_externalId)
