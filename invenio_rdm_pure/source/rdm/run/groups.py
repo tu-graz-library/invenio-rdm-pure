@@ -276,6 +276,9 @@ class RdmGroups:
     ):
         new_organisationalUnits_data = [new_group_data]
 
+        if "organisationalUnits" not in item:
+            return False
+
         for i in item["organisationalUnits"]:
             if (
                 i["externalId"] in old_groups_externalId
