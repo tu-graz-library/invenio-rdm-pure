@@ -3,23 +3,25 @@ import os
 
 dirpath = os.path.dirname(os.path.abspath(__file__))
 
+data_setup_path = f"{dirpath}/data_setup"
+
 # Pure REST API references
-pure_rest_api_url = open(f"{dirpath}/data_setup/pure_rest_api_url.txt", "r").readline()
-pure_api_key = open(f"{dirpath}/data_setup/pure_api_key.txt", "r").readline()
-pure_password = open(f"{dirpath}/data_setup/pure_password.txt", "r").readline()
-pure_username = open(f"{dirpath}/data_setup/pure_username.txt", "r").readline()
+pure_rest_api_url = open(f"{data_setup_path}/pure_rest_api_url.txt", "r").readline()
+pure_api_key = open(f"{data_setup_path}/pure_api_key.txt", "r").readline()
+pure_password = open(f"{data_setup_path}/pure_password.txt", "r").readline()
+pure_username = open(f"{data_setup_path}/pure_username.txt", "r").readline()
 
 # Pure import
 pure_import_path = "templates/invenio_rdm_pure/temporary_files"
 pure_import_file = f"{dirpath}/{pure_import_path}/pure_import.xml"
 
 # RDM user pure_admin
-pure_rdm_user_file = f"{dirpath}/data_setup/rdmUser_pureEmail.txt"
-pure_rdm_password_file = f"{dirpath}/data_setup/rdmUser_purePassword.txt"
+pure_rdm_user_file = f"{data_setup_path}/rdmUser_pureEmail.txt"
+pure_rdm_password_file = f"{data_setup_path}/rdmUser_purePassword.txt"
 
 # RDM
-rdm_host_url = open(f"{dirpath}/data_setup/rdm_host_url.txt", "r").readline()
-token_rdm = open(f"{dirpath}/data_setup/rdm_token.txt", "r").readline()
+rdm_host_url = open(f"{data_setup_path}/rdm_host_url.txt", "r").readline()
+token_rdm = open(f"{data_setup_path}/rdm_token.txt", "r").readline()
 rdm_records_url = f"{rdm_host_url}api/records/"
 push_dist_sec = 0.8  # Time gap between RDM push requests
 wait_429 = 900  # Too many requests sent to the server (waits 15 minutes)
@@ -36,10 +38,10 @@ iso6393_file_name = f"{dirpath}/source/iso6393.json"
 pure_uuid_length = 36
 
 # EMAIL
-email_receiver = open(f"{dirpath}/data_setup/email_receiver.txt", "r").readline()
-email_sender = open(f"{dirpath}/data_setup/email_sender.txt", "r").readline()
+email_receiver = open(f"{data_setup_path}/email_receiver.txt", "r").readline()
+email_sender = open(f"{data_setup_path}/email_sender.txt", "r").readline()
 email_sender_password = open(
-    f"{dirpath}/data_setup/email_sender_password.txt", "r"
+    f"{data_setup_path}/email_sender_password.txt", "r"
 ).readline()
 email_smtp_server = "smtp.gmail.com"
 email_smtp_port = 587
@@ -66,14 +68,11 @@ accessright_pure_to_rdm = {
 }
 
 # DATABASE
-# db_host = open(f"{dirpath}/data_setup/db_host.txt", "r").readline()
-
-base_path = f"{dirpath}/data_setup"
 database_uri = {
-    "db_host": f"{base_path}/db_host.txt",
-    "db_name": f"{base_path}/db_name.txt",
-    "db_user": f"{base_path}/db_user.txt",
-    "db_password": f"{base_path}/db_password.txt",
+    "db_host": f"{data_setup_path}/db_host.txt",
+    "db_name": f"{data_setup_path}/db_name.txt",
+    "db_user": f"{data_setup_path}/db_user.txt",
+    "db_password": f"{data_setup_path}/db_password.txt",
 }
 
 
