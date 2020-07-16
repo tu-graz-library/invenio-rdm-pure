@@ -1,11 +1,13 @@
 import psycopg2
 import yaml
 import os
+from source.reports import Reports
 from setup import dirpath, pure_rdm_user_file, database_uri
 
 
 class RdmDatabase:
     def __init__(self):
+        self.report = Reports()
         self._db_connect()
 
     def _db_connect(self):
