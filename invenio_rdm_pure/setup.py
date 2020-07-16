@@ -66,7 +66,16 @@ accessright_pure_to_rdm = {
 }
 
 # DATABASE
-db_host = open(f"{dirpath}/data_setup/db_host.txt", "r").readline()
+# db_host = open(f"{dirpath}/data_setup/db_host.txt", "r").readline()
+
+base_path = f"{dirpath}/data_setup"
+database_uri = {
+    "db_host": f"{base_path}/db_host.txt",
+    "db_name": f"{base_path}/db_name.txt",
+    "db_user": f"{base_path}/db_user.txt",
+    "db_password": f"{base_path}/db_password.txt",
+}
+
 
 # REPORT LOGS
 reports_full_path = f"{dirpath}/reports/"
