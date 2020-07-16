@@ -1,7 +1,7 @@
 import psycopg2
 import yaml
 import os
-from setup import db_host, dirpath, pure_rdm_user_file
+from setup import dirpath, pure_rdm_user_file, database_uri
 
 
 class RdmDatabase:
@@ -10,14 +10,18 @@ class RdmDatabase:
 
     def _db_connect(self):
         """ Establis a connection to RDM database """
-        credentials = self._get_db_credentials()
+
+        host = open(database_uri["db_host"], "r").readline()
+        name = open(database_uri["db_name"], "r").readline()
+        user = open(database_uri["db_user"], "r").readline()
+        password = open(database_uri["db_password"], "r").readline()
 
         connection = psycopg2.connect(
             f"""\
-            host={db_host} \
-            dbname={credentials['db']} \
-            user={credentials['user']} \
-            password={credentials['psw']} \
+            host={host} \
+            dbname={name} \
+            user={user} \
+            password={password} \
             """
         )
         self.cursor = connection.cursor()
@@ -38,29 +42,6 @@ class RdmDatabase:
         if self.cursor.rowcount == 0:
             return False
         return self.cursor.fetchall()
-
-    def _get_db_credentials(self):
-        """ Get credentials from yaml file """
-        # Get base instance directory
-        upper_dirpath = os.path.abspath(os.path.join(dirpath, os.pardir))
-        # Read yaml file
-        data = yaml.safe_load(open(f"{upper_dirpath}/docker-services.yml", "r"))
-
-        db_data = data["services"]["db"]["environment"]
-        credentials = {}
-
-        for i in db_data:
-            key = i.split("=")[0]
-            value = i.split("=")[1]
-
-            if key == "POSTGRES_USER":
-                credentials["user"] = value
-            elif key == "POSTGRES_PASSWORD":
-                credentials["psw"] = value
-            elif key == "POSTGRES_DB":
-                credentials["db"] = value
-
-        return credentials
 
     def get_pure_admin_userid(self):
         """ Gets the userId of the Pure admin user """
