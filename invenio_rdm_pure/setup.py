@@ -5,6 +5,8 @@ dirpath = os.path.dirname(os.path.abspath(__file__))
 
 data_setup_path = f"{dirpath}/data_setup"
 
+pure_uuid_length = 36
+
 # Pure REST API references
 pure_rest_api_url = open(f"{data_setup_path}/pure_rest_api_url.txt", "r").readline()
 pure_api_key = open(f"{data_setup_path}/pure_api_key.txt", "r").readline()

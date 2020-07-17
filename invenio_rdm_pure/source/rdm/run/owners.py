@@ -1,6 +1,12 @@
 import json
 from datetime import date, datetime
-from setup import pure_rest_api_url, rdm_host_url, token_rdm, data_files_name
+from setup import (
+    pure_rest_api_url,
+    rdm_host_url,
+    token_rdm,
+    data_files_name,
+    pure_uuid_length,
+)
 from source.general_functions import (
     initialize_counters,
     add_spaces,
@@ -213,7 +219,7 @@ class RdmOwners:
                         self.report_files,
                     )
 
-                    if len(uuid) != 36:
+                    if len(uuid) != pure_uuid_length:
                         self.report.add(
                             "\n- Warning! Incorrect user_uuid length -\n",
                             self.report_files,
