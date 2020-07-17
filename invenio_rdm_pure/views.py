@@ -13,6 +13,8 @@ from flask_babelex import gettext as _
 from .setup import pure_import_file, dirpath, database_uri
 from .source.rdm.database_uri import get_db_uri
 
+from .source.rdm.user_externalid import user_externalid
+
 
 blueprint = Blueprint(
     "invenio_rdm_pure", __name__, template_folder="templates", static_folder="static",
@@ -20,7 +22,7 @@ blueprint = Blueprint(
 
 
 @blueprint.route("/pure_import")
-def index():
+def index1():
     # Check if the XML file does not exist
     if not os.path.isfile(pure_import_file):
         # Run pure_import task to create the XML file
@@ -32,3 +34,15 @@ def index():
 def index2():
     get_db_uri()
     return "Files correctly created/updated"
+
+
+@blueprint.route("/user_ei")
+def index3():
+    external_id = user_externalid()
+    if not external_id:
+        return "No user is logged in"
+
+    command = "python /home/bootcamp/src/cli2/invenio-rdm-pure/invenio_rdm_pure/cli.py "
+    command += "owner --identifier='externalId'"
+    os.system(command)
+    return "Task successfully completed"
