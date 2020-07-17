@@ -38,11 +38,11 @@ def index2():
 
 @blueprint.route("/user_ei")
 def index3():
-    external_id = user_externalid()
-    if not external_id:
+    externalId = user_externalid()
+    if not externalId:
         return "No user is logged in"
 
     command = "python /home/bootcamp/src/cli2/invenio-rdm-pure/invenio_rdm_pure/cli.py "
-    command += "owner --identifier='externalId'"
+    command += f"owner --identifier='externalId' --identifierValue='{externalId}'"
     os.system(command)
     return "Task successfully completed"
