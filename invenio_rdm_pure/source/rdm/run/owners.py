@@ -32,7 +32,7 @@ class RdmOwners:
         self.report_files = ["console", "owners"]
 
     def _set_counters_and_title(func):
-        def _wrapper(self, identifier):
+        def _wrapper(self, identifier, identifier_value):
 
             self.report.add_template(
                 ["console"], ["general", "title"], ["OWNERS CHECK"]
@@ -40,19 +40,14 @@ class RdmOwners:
             self.global_counters = initialize_counters()
 
             # Decorated function
-            func(self, identifier)
+            func(self, identifier, identifier_value)
 
         return _wrapper
 
     @_set_counters_and_title
-    def run_owners(self, identifier: str):
+    def run_owners(self, identifier: str, identifier_value: str):
         """ Gets from pure all the records related to a certain user (based on orcid or externalId),
             afterwards it modifies/create RDM records accordingly. """
-
-        identifier_value = "0000-0002-4154-6945"  # TEMPORARY
-        if identifier == "externalId":  # TEMPORARY
-            # identifier_value = '3261'                 # TEMPORARY
-            identifier_value = "30"  # TEMPORARY
 
         self.report.add(f"\n{identifier}: {identifier_value}\n")
 

@@ -49,11 +49,11 @@ class ShellInterface:
         """ Find and delete RDM duplicate records """
         rdm_duplicate_records()
 
-    def owner(self, identifier):
+    def owner(self, identifier, identifier_value):
         """ Gets from pure all the records related to a certain user,
             afterwards it create/modify/delete RDM records accordingly."""
         rdm_owners = RdmOwners()
-        rdm_owners.run_owners(identifier)
+        rdm_owners.run_owners(identifier, identifier_value)
 
     def owners_list(self):
         """ Gets from RDM all record uuids, recids and owners """
@@ -104,7 +104,8 @@ def method_call(docopt_instance: object, arguments: dict):
 
     elif arguments["owner"]:
         identifier = arguments["--identifier"]
-        docopt_instance.owner(identifier)
+        identifier_value = arguments["--identifierValue"]
+        docopt_instance.owner(identifier, identifier_value)
 
     elif arguments["owners_list"]:
         docopt_instance.owners_list()

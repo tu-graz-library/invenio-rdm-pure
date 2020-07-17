@@ -8,7 +8,7 @@ Usage:
     shell_interface.py delete_all
     shell_interface.py uuid
     shell_interface.py duplicates
-    shell_interface.py owner        [--identifier=<value>]
+    shell_interface.py owner        [--identifier=<value>, --identifierValue=<value>]
     shell_interface.py owners_list
     shell_interface.py group_split [--oldGroup=<recid>, --newGroups=<recid>]
     shell_interface.py group_merge [--oldGroups=<recid>, --newGroup=<recid>]
@@ -23,6 +23,7 @@ Options:
     --oldGroups=<recid>     List of old groups externalIds separated by a space.
     --newGroup=<recid>      New group externalId.
     --identifier=<value>    Run process identifying the user with externalId or orcid
+    --identifierValue=<value>    User externalId or orcid
     -h --help               Show this screen.
     --version               Show version.
 """
