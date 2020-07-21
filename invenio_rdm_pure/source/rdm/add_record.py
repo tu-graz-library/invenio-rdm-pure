@@ -132,8 +132,8 @@ class RdmAddRecord:
         # Organisational Units
         self._process_organisational_units()
 
-        # # Checks if the restrictions applied to the record are valid
-        # self._applied_restrictions_check()
+        # Checks if the restrictions applied to the record are valid
+        self._applied_restrictions_check()
 
         # Add pure_extensions to the data to be submitted
         self.data["extensions"] = self.pure_extensions
@@ -154,7 +154,7 @@ class RdmAddRecord:
 
         # Restrictions
         if permission != "Open":
-            self.pure_extensions["pure:appliedRestrictions"] = [
+            self.data["applied_restrictions"] = [
                 "owners",
                 "groups",
                 "ip_single",
@@ -419,10 +419,10 @@ class RdmAddRecord:
     def _applied_restrictions_check(self):
         """ Checks if the restrictions applied to the record are valid.
             e.g. ['groups', 'owners', 'ip_range', 'ip_single'] """
-        if not "appliedRestrictions" in self.data:
+        if not "applied_restrictions" in self.data:
             return False
 
-        for i in self.data["appliedRestrictions"]:
+        for i in self.data["applied_restrictions"]:
             if i not in possible_record_restrictions:
                 report = (
                     f"Warning: the value '{i}' is not among the accepted restrictions\n"
