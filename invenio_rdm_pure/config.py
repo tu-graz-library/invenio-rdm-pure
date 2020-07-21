@@ -21,6 +21,6 @@ INVENIO_RDM_PURE_BASE_TEMPLATE = "invenio_rdm_pure/base.html"
 CELERYBEAT_SCHEDULE = {
     "indexer": {
         "task": "invenio_indexer.tasks.process_bulk_queue",
-        "schedule": timedelta(minutes=0.1),
+        "schedule": timedelta(minutes=1),
     }
 }
