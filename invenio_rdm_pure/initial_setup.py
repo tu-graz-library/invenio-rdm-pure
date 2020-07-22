@@ -2,6 +2,7 @@ import os
 import getpass
 from pathlib import Path
 from setup import pure_rdm_user_file, pure_rdm_password_file
+from source.general_functions import check_if_file_exists
 
 dirpath = os.path.dirname(os.path.abspath(__file__))
 
@@ -29,10 +30,14 @@ print("\nSpecifying the basic setup for this module.")
 print("Please fill the following fields:\n")
 
 for file in import_setup:
+
+    file_full_name = f"{full_path}/{file}.txt"
+    check_if_file_exists(file_full_name)
+
     # Ask for input value
     value = input(f"{import_setup[file]}: ")
     # Create file
-    open(f"{dirpath}/{folder_name}/{file_name}.txt", "w+").write(value)
+    open(file_full_name, "w+").write(value)
 
 # Create Pure user in RDM
 # User email
