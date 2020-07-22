@@ -24,4 +24,3 @@ def get_db_uri():
     open(database_uri["db_name"], "w+").write(name)
     open(database_uri["db_user"], "w+").write(user)
     open(database_uri["db_password"], "w+").write(password)
-
