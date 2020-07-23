@@ -20,7 +20,6 @@ import_setup = {
     "pure_password": "Pure password",
     "rdm_host_url": "RDM host URL",
     "rdm_token": "RDM token",
-    "db_host": "Database host",
     "email_sender": "Pure file deletion - Sender e-mail",
     "email_sender_password": "Pure file deletion - Sender password",
     "email_receiver": "Pure file deletion - E-mail of Pure responsible",
