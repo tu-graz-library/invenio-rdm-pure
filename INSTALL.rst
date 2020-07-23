@@ -9,6 +9,10 @@ Run invenio_rdm_pure/initial_setup.py to configure the setup file.
 
    $ pip install invenio-rdm-pure
 
+If docopt is not installed yet, run the following command:
+
+.. code-block:: console
+
    $ pip install docopt==0.6.2
 
 
