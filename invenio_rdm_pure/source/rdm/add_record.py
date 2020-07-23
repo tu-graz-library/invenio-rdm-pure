@@ -154,7 +154,7 @@ class RdmAddRecord:
 
         # Restrictions
         if permission != "Open":
-            self.pure_extensions["pure:appliedRestrictions"] = [
+            self.data["applied_restrictions"] = [
                 "owners",
                 "groups",
                 "ip_single",
@@ -236,35 +236,35 @@ class RdmAddRecord:
         # 1- Pure records data
         # 2- RDM field
         # 3- Path to field value in Pure json
-        self._add_extension(item, "pure:uuid", ["uuid"])
-        self._add_extension(item, "pure:publisherUuid", ["publisher", "uuid"])
-        self._add_extension(item, "pure:pages", ["info", "pages"])
-        self._add_extension(item, "pure:volume", ["info", "volume"])
+        self._add_extension(item, "tug:uuid", ["uuid"])
+        self._add_extension(item, "tug:publisherUuid", ["publisher", "uuid"])
+        self._add_extension(item, "tug:pages", ["info", "pages"])
+        self._add_extension(item, "tug:volume", ["info", "volume"])
         path = ["publicationStatuses", 0, "publicationDate", "year"]
-        self._add_extension(item, "pure:publication_date", path)
+        self._add_extension(item, "tug:publication_date", path)
         self._add_extension(
-            item, "pure:journalTitle", ["info", "journalAssociation", "title", "value"]
+            item, "tug:journalTitle", ["info", "journalAssociation", "title", "value"]
         )
-        self._add_extension(item, "pure:journalNumber", ["info", "journalNumber"])
-        self._add_extension(item, "pure:pure_link", ["info", "portalUrl"])
-        self._add_extension(item, "pure:pure_type", ["types", 0, "value"])
-        self._add_extension(item, "pure:pure_category", ["categories", 0, "value"])
-        self._add_extension(item, "pure:peerReview", ["peerReview"])
+        self._add_extension(item, "tug:journalNumber", ["info", "journalNumber"])
+        self._add_extension(item, "tug:pure_link", ["info", "portalUrl"])
+        self._add_extension(item, "tug:pure_type", ["types", 0, "value"])
+        self._add_extension(item, "tug:pure_category", ["categories", 0, "value"])
+        self._add_extension(item, "tug:peerReview", ["peerReview"])
         path = ["publicationStatuses", 0, "publicationStatuses", 0, "value"]
-        self._add_extension(item, "pure:publicationStatus", path)
-        self._add_extension(item, "pure:workflow", ["workflows", 0, "value"])
+        self._add_extension(item, "tug:publicationStatus", path)
+        self._add_extension(item, "tug:workflow", ["workflows", 0, "value"])
         self._add_extension(
-            item, "pure:publisherName", ["publisher", "names", 0, "value"]
+            item, "tug:publisherName", ["publisher", "names", 0, "value"]
         )
         self._add_extension(
-            item, "pure:publisherType", ["publisher", "types", 0, "value"]
+            item, "tug:publisherType", ["publisher", "types", 0, "value"]
         )
         path = ["managingOrganisationalUnit", "names", 0, "value"]
-        self._add_extension(item, "pure:managingOrganisationalUnit_name", path)
+        self._add_extension(item, "tug:managingOrganisationalUnit_name", path)
         path = ["managingOrganisationalUnit", "uuid"]
-        self._add_extension(item, "pure:managingOrganisationalUnit_uuid", path)
+        self._add_extension(item, "tug:managingOrganisationalUnit_uuid", path)
         path = ["managingOrganisationalUnit", "externalId"]
-        self._add_extension(item, "pure:managingOrganisationalUnit_externalId", path)
+        self._add_extension(item, "tug:managingOrganisationalUnit_externalId", path)
 
         # self._add_field(item, 'createdDate',                 ['info', 'createdDate'])
         # self._add_field(item, 'metadataModifBy',             ['info', 'modifiedBy'])
@@ -388,7 +388,7 @@ class RdmAddRecord:
         """ Process the metadata relative to the organisational units """
         if "organisationalUnits" in self.item:
             # self.data["organisationalUnits"] = []
-            self.pure_extensions["pure:groupRestrictions"] = []
+            self.pure_extensions["tug:groupRestrictions"] = []
 
             for i in self.item["organisationalUnits"]:
                 # sub_data = {}
@@ -407,7 +407,7 @@ class RdmAddRecord:
                 # self.data["organisationalUnits"].append(sub_data)
 
                 # Adding organisational unit as group owner
-                self.pure_extensions["pure:groupRestrictions"].append(
+                self.pure_extensions["tug:groupRestrictions"].append(
                     organisational_unit_externalId
                 )
 
@@ -419,10 +419,10 @@ class RdmAddRecord:
     def _applied_restrictions_check(self):
         """ Checks if the restrictions applied to the record are valid.
             e.g. ['groups', 'owners', 'ip_range', 'ip_single'] """
-        if not "appliedRestrictions" in self.data:
+        if not "applied_restrictions" in self.data:
             return False
 
-        for i in self.data["appliedRestrictions"]:
+        for i in self.data["applied_restrictions"]:
             if i not in possible_record_restrictions:
                 report = (
                     f"Warning: the value '{i}' is not among the accepted restrictions\n"
@@ -608,16 +608,16 @@ class RdmAddRecord:
                 break
 
         self.sub_data = {}
-        self.pure_extensions["pure:file_internalReview"] = internal_review
+        self.pure_extensions["tug:file_internalReview"] = internal_review
 
-        self._add_extension(item, "pure:file_name", ["file", "fileName"])
-        self._add_extension(item, "pure:file_createdBy", ["creator"])
-        self._add_extension(item, "pure:file_createdDate", ["created"])
-        self._add_extension(item, "pure:file_versionType", ["versionTypes", 0, "value"])
-        self._add_extension(item, "pure:file_licenseType", ["licenseTypes", 0, "value"])
-        self._add_extension(item, "pure:file_digest", ["file", "digest"])
+        self._add_extension(item, "tug:file_name", ["file", "fileName"])
+        self._add_extension(item, "tug:file_createdBy", ["creator"])
+        self._add_extension(item, "tug:file_createdDate", ["created"])
+        self._add_extension(item, "tug:file_versionType", ["versionTypes", 0, "value"])
+        self._add_extension(item, "tug:file_licenseType", ["licenseTypes", 0, "value"])
+        self._add_extension(item, "tug:file_digest", ["file", "digest"])
         self._add_extension(
-            item, "pure:file_digestAlgorithm", ["file", "digestAlgorithm"]
+            item, "tug:file_digestAlgorithm", ["file", "digestAlgorithm"]
         )
 
         # Access type
