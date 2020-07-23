@@ -19,9 +19,9 @@ After installing the module, run the file /invenio-rdm-pure/invenio_rdm_pure/ini
 The following values will be asked:
 
    - Pure API key
-   - Pure API password
    - Pure API URL
    - Pure username
+   - Pure password
    - RDM host URL
    - RDM token
    - Pure file deletion - Sender e-mail
@@ -29,4 +29,5 @@ The following values will be asked:
    - Pure file deletion - E-mail of Pure responsible
    - RDM user creation for Pure admin - E-mail
    - RDM user creation for Pure admin - Password
+
 

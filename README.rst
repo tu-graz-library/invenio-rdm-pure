@@ -30,5 +30,5 @@
 
 Invenio module that adds TUGraz Pure integration.
 
-Further documentation is available on
+Further documentation is available onn
 https://invenio-rdm-pure.readthedocs.io/
