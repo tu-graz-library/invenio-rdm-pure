@@ -21,6 +21,8 @@ class ImportRecords:
 
     def run_import(self):
 
+        print(pure_import_file)
+
         # Report title
         self.report.add_template(["console"], ["general", "title"], ["PURE IMPORT"])
 
