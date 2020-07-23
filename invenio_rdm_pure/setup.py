@@ -17,10 +17,6 @@ pure_username = open(f"{data_setup_path}/pure_username.txt", "r").readline()
 pure_import_path = "templates/invenio_rdm_pure/temporary_files"
 pure_import_file = f"{dirpath}/{pure_import_path}/pure_import.xml"
 
-# RDM user pure_admin
-pure_rdm_user_file = f"{data_setup_path}/rdmUser_pureEmail.txt"
-pure_rdm_password_file = f"{data_setup_path}/rdmUser_purePassword.txt"
-
 # RDM
 rdm_host_url = open(f"{data_setup_path}/rdm_host_url.txt", "r").readline()
 token_rdm = open(f"{data_setup_path}/rdm_token.txt", "r").readline()

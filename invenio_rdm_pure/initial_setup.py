@@ -1,13 +1,16 @@
 import os
 import getpass
 from pathlib import Path
-from setup import pure_rdm_user_file, pure_rdm_password_file
-from source.general_functions import check_if_file_exists
+
+
+def _check_if_file_exists(file_name):
+    if not os.path.isfile(file_name):
+        open(file_name, "a")
+
 
 dirpath = os.path.dirname(os.path.abspath(__file__))
 
-folder_name = "data_setup"
-full_path = f"{dirpath}/{folder_name}"
+full_path = f"{dirpath}/data_setup"
 
 # data_setup parameters
 import_setup = {
@@ -32,21 +35,29 @@ print("Please fill the following fields:\n")
 for file in import_setup:
 
     file_full_name = f"{full_path}/{file}.txt"
-    check_if_file_exists(file_full_name)
+
+    # Check if file exists
+    _check_if_file_exists(file_full_name)
 
     # Ask for input value
     value = input(f"{import_setup[file]}: ")
     # Create file
     open(file_full_name, "w+").write(value)
 
-# Create Pure user in RDM
 # User email
+file_name = f"{dirpath}/data_setup/rdmUser_pureEmail.txt"
+_check_if_file_exists(file_name)
 email = input("RDM user creation - Insert desired Pure user e-mail: ")
-open(pure_rdm_user_file, "w+").write(email)
+open(file_name, "w+").write(email)
+
 # User password
+file_name = f"{dirpath}/data_setup/rdmUser_purePassword.txt"
+_check_if_file_exists(file_name)
 password = getpass.getpass("RDM user creation - Password: ")
-open(pure_rdm_password_file, "w+").write(password)
+open(file_name, "w+").write(password)
+
 # Create user
 os.system(f"pipenv run invenio users create {email} --password {password} --active")
+
 # Assign admin rights
-os.system("pipenv run invenio roles add {email} admin")
+os.system(f"pipenv run invenio roles add {email} admin")
