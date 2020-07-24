@@ -387,7 +387,7 @@ class RdmAddRecord:
     def _process_organisational_units(self):
         """ Process the metadata relative to the organisational units """
         if "organisationalUnits" in self.item:
-            self.pure_extensions["tug:groupRestrictions"] = []
+            self.data["group_restrictions"] = []
 
             for i in self.item["organisationalUnits"]:
 
@@ -399,9 +399,7 @@ class RdmAddRecord:
                     continue
 
                 # Adding organisational unit as group owner
-                self.pure_extensions["tug:groupRestrictions"].append(
-                    organisational_unit_externalId
-                )
+                self.data["group_restrictions"].append(organisational_unit_externalId)
 
                 # Create group
                 self.groups.rdm_create_group(
