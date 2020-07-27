@@ -5,11 +5,8 @@ Usage:
     shell_interface.py pages        [--pageStart=<page>, --pageEnd=<page>, --pageSize=<page>]
     shell_interface.py logs
     shell_interface.py delete
-    shell_interface.py delete_all
     shell_interface.py uuid
-    shell_interface.py duplicates
     shell_interface.py owner        [--identifier=<value>, --identifierValue=<value>]
-    shell_interface.py owners_list
     shell_interface.py group_split [--oldGroup=<recid>, --newGroups=<recid>]
     shell_interface.py group_merge [--oldGroups=<recid>, --newGroup=<recid>]
     shell_interface.py pure_import

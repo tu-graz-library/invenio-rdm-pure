@@ -1,7 +1,6 @@
 from source.log_manager import delete_old_log_files
 from source.rdm.run.changes import PureChangesByDate
 from source.rdm.run.pages import RunPages
-from source.rdm.run.duplicate_records import rdm_duplicate_records
 from source.rdm.run.uuid import AddFromUuidList
 from source.rdm.run.owners import RdmOwners
 from source.rdm.run.groups import RdmGroups
@@ -35,30 +34,16 @@ class ShellInterface:
         delete = Delete()
         delete.from_list()
 
-    def delete_all(self):
-        """ Delete all RDM records """
-        delete = Delete()
-        delete.all_records()
-
     def uuid(self):
         """ Push to RDM all uuids that are in to_transfer.log """
         add_uuids = AddFromUuidList()
         add_uuids.add_from_uuid_list()
-
-    def duplicates(self):
-        """ Find and delete RDM duplicate records """
-        rdm_duplicate_records()
 
     def owner(self, identifier, identifier_value):
         """ Gets from pure all the records related to a certain user,
             afterwards it create/modify/delete RDM records accordingly."""
         rdm_owners = RdmOwners()
         rdm_owners.run_owners(identifier, identifier_value)
-
-    def owners_list(self):
-        """ Gets from RDM all record uuids, recids and owners """
-        rdm_owners = RdmOwners()
-        rdm_owners.get_rdm_record_owners()
 
     def rdm_group_split(self, old_id, new_ids):
         """ Split a single group into moltiple ones """
@@ -93,22 +78,13 @@ def method_call(docopt_instance: object, arguments: dict):
     elif arguments["delete"]:
         docopt_instance.delete()
 
-    elif arguments["delete_all"]:
-        docopt_instance.delete_all()
-
     elif arguments["uuid"]:
         docopt_instance.uuid()
-
-    elif arguments["duplicates"]:
-        docopt_instance.duplicates()
 
     elif arguments["owner"]:
         identifier = arguments["--identifier"]
         identifier_value = arguments["--identifierValue"]
         docopt_instance.owner(identifier, identifier_value)
-
-    elif arguments["owners_list"]:
-        docopt_instance.owners_list()
 
     elif arguments["group_split"]:
         old_id = arguments["--oldGroup"]
