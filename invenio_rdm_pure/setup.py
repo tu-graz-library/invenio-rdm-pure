@@ -29,7 +29,7 @@ push_dist_sec = 0.8  # Time gap between RDM push requests
 wait_429 = 900  # Too many requests sent to the server (waits 15 minutes)
 
 # LOG FILES
-days_to_keep_log_files = 2  # Deletes log files after x days (shorten_logfiles.py)
+days_keep_log = 30  # Deletes log files after x days
 lines_successful_changes = 90  # Reduce the number of lines in successful_changes.txt
 
 # Percentage of updated items to considere the upload task successful

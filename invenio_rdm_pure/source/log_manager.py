@@ -2,7 +2,7 @@ import os
 from datetime import date, datetime, timedelta
 from setup import (
     dirpath,
-    days_to_keep_log_files,
+    days_keep_log,
     lines_successful_changes,
     data_files_name,
     reports_full_path,
@@ -20,7 +20,7 @@ def delete_old_log_files():
     )
 
     # DELETE OLD LOG FILES
-    date_limit = str(date.today() - timedelta(days=days_to_keep_log_files))
+    date_limit = str(date.today() - timedelta(days=days_keep_log))
 
     # Get file names from directory
     isfile = os.path.isfile
