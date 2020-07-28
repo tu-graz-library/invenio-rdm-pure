@@ -10,6 +10,7 @@ Usage:
     shell_interface.py group_split [--oldGroup=<recid>, --newGroups=<recid>]
     shell_interface.py group_merge [--oldGroups=<recid>, --newGroup=<recid>]
     shell_interface.py pure_import
+    shell_interface.py testing
 
 Options:
     --pageStart=<page>      Initial page [default:  1].

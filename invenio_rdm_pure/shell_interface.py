@@ -4,11 +4,16 @@ from source.rdm.run.pages import RunPages
 from source.rdm.run.uuid import AddFromUuidList
 from source.rdm.run.owners import RdmOwners
 from source.rdm.run.groups import RdmGroups
+from source.rdm.run.testing import Testing
 from source.rdm.delete_record import Delete
 from source.pure.import_records import ImportRecords
 
 
 class ShellInterface:
+    def testing(self):
+        testing = Testing()
+        testing.run()
+
     def pure_import(self):
         """  """
         pure_import_records = ImportRecords()
@@ -65,6 +70,9 @@ def method_call(docopt_instance: object, arguments: dict):
 
     elif arguments["changes"]:
         docopt_instance.changes()
+
+    elif arguments["testing"]:
+        docopt_instance.testing()
 
     elif arguments["pages"]:
         page_start = int(arguments["--pageStart"])
