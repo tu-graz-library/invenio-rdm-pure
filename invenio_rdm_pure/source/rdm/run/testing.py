@@ -13,7 +13,6 @@ class Testing:
     def run(self):
         # Title
         self.report.add_template(["console"], ["general", "title"], ["TESTING"])
-
         # Records
         self._post_get_rdm_record()
         # Users
@@ -45,7 +44,7 @@ class Testing:
 
     def _rdm_user_test(self):
 
-        test_user = "testing6@tugraz.at"
+        test_user = "testing@tugraz.at"
 
         # Create user
         command = f"pipenv run invenio users create {test_user} --password 123456"
@@ -79,3 +78,4 @@ class Testing:
             self.report.add(f"{message} - Error code: {response}")
             return False
         self.report.add(f"{message} - Successful")
+        return True
