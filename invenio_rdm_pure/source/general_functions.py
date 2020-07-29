@@ -33,11 +33,11 @@ def current_date():
     return datetime.today().strftime("%Y-%m-%d")
 
 
-def check_if_directory_exists(directory_name: str):
+def check_if_directory_exists(full_path: str):
 
-    # Gets synchronizer direcotry path
-    dirpath = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-    full_path = f"{dirpath}/{directory_name}"
+    # # Gets synchronizer direcotry path
+    # dirpath = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+    # full_path = f"{dirpath}/{directory_name}"
 
     # If full_path does not exist creates the folder
     Path(full_path).mkdir(parents=True, exist_ok=True)
@@ -51,8 +51,13 @@ def check_if_file_exists(file_name: str):
 def file_read_lines(file_name: str):
 
     file_full_name = data_files_name[file_name]
+
+    # Get file path
+    index = file_full_name.rfind("/")
+    full_path = file_full_name[:index]
+
     # It creates the directory if it does not exist
-    check_if_directory_exists(file_full_name)
+    check_if_directory_exists(full_path)
 
     # Checks if file exists
     check_if_file_exists(file_full_name)

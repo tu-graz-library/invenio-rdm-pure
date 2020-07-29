@@ -22,7 +22,7 @@ class Testing:
         # RDM post metadata
         data = open(f"{dirpath}/data/testing.json", "r").read()
         response = self.rdm_requests.post_metadata(data)
-        response = self._response_check_post(response, "RDM post metadata")
+        response = self._response_check_post(response, "\nRDM post metadata")
         if not response:
             return False
 
@@ -31,7 +31,6 @@ class Testing:
         response = self.rdm_requests.get_metadata(params)
         resp_json = json.loads(response.content)
         recid = resp_json["hits"]["hits"][0]["metadata"]["recid"]
-        print(f"\nRecid: {recid}")
         response = self.rdm_requests.delete_metadata(recid)
         self._response_check_post(response, "RDM record delete")
 
