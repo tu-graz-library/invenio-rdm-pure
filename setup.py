@@ -73,7 +73,8 @@ setup(
             "invenio_rdm_pure = invenio_rdm_pure.views:blueprint",
         ],
         "invenio_i18n.translations": ["messages = invenio_rdm_pure",],
-        "invenio_celery.tasks": ["invenio_rdm_pure = invenio_rdm_pure.tasks"]
+        "invenio_celery.tasks": ["invenio_rdm_pure = invenio_rdm_pure.tasks"],
+        "invenio_config.module": ["invenio_rdm_pure = invenio_rdm_pure.config",],
         # TODO: Edit these entry points to fit your needs.
         # 'invenio_access.actions': [],
         # 'invenio_admin.actions': [],
