@@ -21,8 +21,6 @@ class ImportRecords:
 
     def run_import(self):
 
-        print(pure_import_file)
-
         # Report title
         self.report.add_template(["console"], ["general", "title"], ["PURE IMPORT"])
 
@@ -99,15 +97,15 @@ class ImportRecords:
             self.report_base = f"{add_spaces(count)} - {item['id']} -"
             item_metadata = item["metadata"]
 
-            # # Checks if the record was created today
-            # if not self._check_date(item):
-            #     self.report.add("\n\tEnd task\n")
-            #     next_page = False
-            #     break
+            # Checks if the record was created today
+            if not self._check_date(item):
+                self.report.add("\n\tEnd task\n")
+                next_page = False
+                break
 
-            # # If the rdm record has a uuid means that it was imported from pure - REVIEW
-            # if not self._check_uuid(item_metadata):
-            #     continue
+            # If the rdm record has a uuid means that it was imported from pure - REVIEW
+            if not self._check_uuid(item_metadata):
+                continue
 
             self.report.add(f"{self.report_base} Adding")
 
@@ -174,9 +172,9 @@ class ImportRecords:
 
         if not publisher_uuid:
             return
-        if not publisher_name:  # REVIEW
+        if not publisher_name:
             publisher_name = ""
-        if not publisher_type:  # REVIEW
+        if not publisher_type:
             publisher_type = ""
 
         publisher = self._sub_element(body, name_space["dataset"], "publisher")
