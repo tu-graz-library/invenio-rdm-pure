@@ -34,11 +34,6 @@ def current_date():
 
 
 def check_if_directory_exists(full_path: str):
-
-    # # Gets synchronizer direcotry path
-    # dirpath = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-    # full_path = f"{dirpath}/{directory_name}"
-
     # If full_path does not exist creates the folder
     Path(full_path).mkdir(parents=True, exist_ok=True)
 

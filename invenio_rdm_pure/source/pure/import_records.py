@@ -11,7 +11,7 @@ from source.general_functions import (
 )
 from source.pure.general_functions import get_pure_record_metadata_by_uuid
 from source.reports import Reports
-from setup import pure_import_file, pure_import_path
+from setup import pure_import_file, pure_import_path, dirpath
 
 
 class ImportRecords:
@@ -254,7 +254,7 @@ class ImportRecords:
                 ).text = "Link to record API"
 
     def _parse_xml(self):
-        check_if_directory_exists(pure_import_path)
+        check_if_directory_exists(f"{dirpath}/{pure_import_path}")
 
         # Wrap it in an ElementTree instance and save as XML
         xml_str = minidom.parseString(ET.tostring(self.root)).toprettyxml(indent="   ")
