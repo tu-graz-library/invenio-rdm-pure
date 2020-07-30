@@ -36,7 +36,7 @@ def index2():
     return "Files correctly created/updated"
 
 
-@blueprint.route("/user_ei")
+@blueprint.route("/user_import_records")
 def index3():
     externalId = user_externalid()
     if not externalId:
