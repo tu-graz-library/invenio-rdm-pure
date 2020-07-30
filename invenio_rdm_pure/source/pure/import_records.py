@@ -20,13 +20,11 @@ class ImportRecords:
         self.report = Reports()
 
     def run_import(self):
-
         # Report title
         self.report.add_template(["console"], ["general", "title"], ["PURE IMPORT"])
 
         page = 1
         next_page = True
-
         self._delete_old_xml()
 
         # Get RDM records by page

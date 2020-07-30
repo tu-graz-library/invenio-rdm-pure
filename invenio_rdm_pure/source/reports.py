@@ -1,5 +1,5 @@
 from datetime import date, datetime
-from setup import log_files_name
+from setup import log_files_name, dirpath
 from source.general_functions import add_spaces, check_if_directory_exists, current_time
 
 
@@ -49,7 +49,7 @@ class Reports:
 
         report = self._report_columns_spaces(report)
 
-        check_if_directory_exists("reports")
+        check_if_directory_exists(f"{dirpath}/reports")
 
         # For each log file
         for file in files:
