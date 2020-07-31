@@ -269,9 +269,11 @@ class RdmGroups:
                         "externalId"
                     ]
 
+                # When updating a record it is not possible to specify _communities field
+                del item["_communities"]
+
                 # Update record
-                recid = item["recid"]
-                response = self.general_functions.update_rdm_record(recid, item)
+                response = self.general_functions.update_rdm_record(item["recid"], item)
 
     def _process_organisational_units(
         self, item, new_group_data, old_groups_externalId
