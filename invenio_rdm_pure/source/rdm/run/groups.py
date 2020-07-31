@@ -42,7 +42,7 @@ class RdmGroups:
         3 - Remove users from old group
         4 - Delete old group
         5 - Modify RDM record: 
-            . groupRestrictions
+            . group_restrictions
             . managingOrganisationUnit (if necessary)
             . organisationUnits
         """
@@ -88,11 +88,11 @@ class RdmGroups:
     def rdm_group_merge(self, old_groups_externalId: list, new_group_externalId: str):
         """ 
         1 - Create new group
-        2 - Remove users from old groups
-        3 - Add users to new group
+        2 - Add users to new group
+        3 - Remove users from old groups
         4 - Delete old groups
         5 - Modify RDM records: 
-            . groupRestrictions
+            . group_restrictions
             . managingOrganisationUnit (if necessary)
             . organisationUnits
         """
@@ -149,25 +149,19 @@ class RdmGroups:
         for item in resp_json["hits"]["hits"]:
             item = item["metadata"]
 
-            # Removes old organisationalUnit from organisationalUnits
-            for i in item["organisationalUnits"]:
-                if i["externalId"] == old_group_externalId:
-                    item["organisationalUnits"].remove(i)
-
-            # Adds new organisationalUnits
-            for i in self.new_groups_data:
-                item["organisationalUnits"].append(i)
-
             # Change group restrictions
-            if old_group_externalId in item["groupRestrictions"]:
-                item["groupRestrictions"].remove(old_group_externalId)
+            if old_group_externalId in item["group_restrictions"]:
+                item["group_restrictions"].remove(old_group_externalId)
             for i in new_groups_externalIds:
-                item["groupRestrictions"].append(i)
+                item["group_restrictions"].append(i)
 
             # Change managingOrganisationalUnit
             item = self._process_managing_organisational_unit(
                 item, old_group_externalId
             )
+
+            # When updating a record it is not possible to specify _communities field
+            del item["_communities"]
 
             # Update record
             recid = item["recid"]
@@ -178,12 +172,19 @@ class RdmGroups:
     def _process_managing_organisational_unit(
         self, item: object, old_group_externalId: str
     ):
-        if item["managingOrganisationalUnit_externalId"] == old_group_externalId:
-            item["managingOrganisationalUnit_name"] = self.new_groups_data[0]["name"]
-            item["managingOrganisationalUnit_uuid"] = self.new_groups_data[0]["uuid"]
-            item["managingOrganisationalUnit_externalId"] = self.new_groups_data[0][
-                "externalId"
-            ]
+        managing_org_unit_externalid_value = item["extensions"][
+            "tug:managingOrganisationalUnit_externalId"
+        ]
+        if managing_org_unit_externalid_value == old_group_externalId:
+            item["extensions"][
+                "tug:managingOrganisationalUnit_name"
+            ] = self.new_groups_data[0]["name"]
+            item["extensions"][
+                "tug:managingOrganisationalUnit_uuid"
+            ] = self.new_groups_data[0]["uuid"]
+            item["extensions"][
+                "tug:managingOrganisationalUnit_externalId"
+            ] = self.new_groups_data[0]["externalId"]
         return item
 
     def _rdm_split_users_from_old_to_new_group(
@@ -295,15 +296,15 @@ class RdmGroups:
     def _process_group_restrictions(
         self, item, old_group_externalId, new_group_externalId
     ):
-        if "groupRestrictions" not in item:
+        if "group_restrictions" not in item:
             return item
 
         # Remove old group
-        if old_group_externalId in item["groupRestrictions"]:
-            item["groupRestrictions"].remove(old_group_externalId)
+        if old_group_externalId in item["group_restrictions"]:
+            item["group_restrictions"].remove(old_group_externalId)
         # Add new group
-        if new_group_externalId not in item["groupRestrictions"]:
-            item["groupRestrictions"].append(new_group_externalId)
+        if new_group_externalId not in item["group_restrictions"]:
+            item["group_restrictions"].append(new_group_externalId)
         return item
 
     def _merge_users_from_old_to_new_group(
