@@ -11,7 +11,7 @@ Make sure you have already installed invenio-config-tugraz module (https://githu
 
    $ python ../invenio-rdm-pure/invenio_rdm_pure/initial_setup.py
 
-The following information will be asked:
+Running initial_setup.py, the following information will be asked:
 •	Pure API key (36 digits)
 •	Pure API URL (e.g. https://pure01.tugraz.at/ws/api/514)
 •	Pure username
