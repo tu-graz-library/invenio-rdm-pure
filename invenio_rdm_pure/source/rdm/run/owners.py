@@ -133,6 +133,9 @@ class RdmOwners:
     def _add_user_as_owner(self, data, recid):
         """ Adds the current logged in user as record owner """
 
+        # When updating a record it is not possible to specify _communities field
+        del data["_communities"]
+
         data["_owners"].append(self.user_id)
 
         self.report.add(
