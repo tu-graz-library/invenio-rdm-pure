@@ -24,11 +24,12 @@ class ImportRecords:
         self.report.add_template(["console"], ["general", "title"], ["PURE IMPORT"])
 
         page = 1
-        next_page = True
+        self.next_page = True
         self._delete_old_xml()
+        name_space = self._create_xml()
 
         # Get RDM records by page
-        while next_page:
+        while self.next_page:
 
             data = self._get_rdm_records_metadata(page)
 
@@ -39,11 +40,11 @@ class ImportRecords:
                     self.report.add("\nTask ended - No xml file created\n")
                 return
 
-            self._create_xml(data)
-
-            self._parse_xml()
+            self._process_data(data, name_space)
 
             page += 1
+
+        self._parse_xml()
 
     def _delete_old_xml(self):
         # Check if file exists
@@ -72,7 +73,7 @@ class ImportRecords:
             self.report.add(f"{self.report_base} Too old: {date}")
             return False
 
-    def _create_xml(self, data):
+    def _create_xml(self):
         """ Creates the xml file that will be imported in pure """
 
         name_space = {
@@ -85,6 +86,10 @@ class ImportRecords:
 
         # Build a tree structure
         self.root = ET.Element("{%s}datasets" % name_space["dataset"])
+        return name_space
+
+    def _process_data(self, data, name_space):
+        """ Creates the xml file that will be imported in pure """
 
         count = 0
 
@@ -97,9 +102,8 @@ class ImportRecords:
 
             # Checks if the record was created today
             if not self._check_date(item):
-                self.report.add("\n\tEnd task\n")
-                next_page = False
-                break
+                self.next_page = False
+                return
 
             # If the rdm record has a uuid means that it was imported from pure - REVIEW
             if not self._check_uuid(item_metadata):
