@@ -20,7 +20,7 @@ class Testing:
 
     def _post_get_rdm_record(self):
         # RDM post metadata
-        data = open(f"{dirpath}/data/testing.json", "r").read()
+        data = open(f"{dirpath}/source/rdm/testing.json", "r").read()
         response = self.rdm_requests.post_metadata(data)
         response = self._response_check_post(response, "\nRDM post metadata")
         if not response:
@@ -65,7 +65,7 @@ class Testing:
         # Remove role
         command = f"pipenv run invenio roles remove {test_user} admin"
         response = os.system(command)
-        self._response_check_user(response, "RDM user assign role")
+        self._response_check_user(response, "RDM user remove role")
 
         # Deactivate user
         command = f"pipenv run invenio users deactivate {test_user}"
