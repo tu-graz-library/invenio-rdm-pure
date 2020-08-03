@@ -1,0 +1,92 @@
+{
+    "_owners": [
+        1
+    ],
+    "_created_by": 2,
+    "access_right": "closed",
+    "_access": {
+        "metadata_restricted": "False",
+        "files_restricted": "False"
+    },
+    "language": "eng",
+    "titles": [
+        {
+            "lang": "eng",
+            "title": "TESTING TITLE",
+            "type": "MainTitle"
+        }
+    ],
+    "creators": [
+        {
+            "name": "Robert",
+            "type": "Personal",
+            "identifiers": {
+                "uuid": "11111111-1111-1111-1111-111111111111",
+                "externalId": "1111"
+            },
+            "affiliations": [
+                {
+                    "name": "Institute Computer Science",
+                    "identifiers": {
+                        "externalId": "1111",
+                        "uuid": "11111111-1111-1111-1111-111111111111"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Wolfgang",
+            "type": "Personal",
+            "identifiers": {
+                "uuid": "11111111-1111-1111-1111-111111111111",
+                "externalId": "1111"
+            },
+            "affiliations": [
+                {
+                    "name": "Institute Computer Science",
+                    "identifiers": {
+                        "externalId": "1111",
+                        "uuid": "11111111-1111-1111-1111-111111111111"
+                    }
+                }
+            ]
+        }
+    ],
+    "descriptions": [
+        {
+            "description": "No description available for this record.",
+            "lang": "eng",
+            "type": "Abstract"
+        }
+    ],
+    "version": "v0.0.2",
+    "identifiers": {
+        "DOI": "10.5281/rdm.9999992"
+    },
+    "resource_type": {
+        "type": "publication",
+        "subtype": "publication-other"
+    },
+    "applied_restrictions": [
+        "owners",
+        "groups",
+        "ip_single",
+        "ip_range"
+    ],
+    "group_restrictions": [
+        "1111"
+    ],
+    "extensions": {
+        "tug:uuid": "11111111-1111-1111-1111-111111111111",
+        "tug:publication_date": "2007",
+        "tug:pure_link": "https://pure01.tugraz.at",
+        "tug:pure_type": "Article",
+        "tug:pure_category": "Research",
+        "tug:peerReview": "True",
+        "tug:publicationStatus": "Published",
+        "tug:workflow": "For validation",
+        "tug:managingOrganisationalUnit_name": "Institute of Theoretical Computer Science (7080)",
+        "tug:managingOrganisationalUnit_uuid": "11111111-1111-1111-1111-111111111111",
+        "tug:managingOrganisationalUnit_externalId": "1111"
+    }
+}
