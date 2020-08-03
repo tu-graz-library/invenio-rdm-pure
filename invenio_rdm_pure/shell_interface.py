@@ -4,7 +4,7 @@ from source.rdm.run.pages import RunPages
 from source.rdm.run.uuid import AddFromUuidList
 from source.rdm.run.owners import RdmOwners
 from source.rdm.run.groups import RdmGroups
-from source.rdm.run.testing import Testing
+from source.rdm.testing.run_test import Testing
 from source.rdm.delete_record import Delete
 from source.pure.import_records import ImportRecords
 
