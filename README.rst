@@ -37,7 +37,7 @@ https://invenio-rdm-pure.readthedocs.io/
 ---             ---             ---             ---
 
 CLI - SCHEDULED TASKS
-
+---------------------
 Changes:
 Gets from Pure 'changes' endpoint all records that have been created / updated / deleted on a certain date and modifies accordingly the relative RDM records.
 
@@ -81,7 +81,7 @@ Gets records from Pure 'research-outputs' endpoint by page and submit them to RD
 ---             ---             ---             ---
 
 CLI - NOT SCHEDULED TASKS
-
+-------------------------
 Testing:
 Performs testing related to: 
 -	RDM records creation and deletion;
@@ -96,7 +96,7 @@ Adds to RDM all records listed (by uuid) in invenio_rdm_pure/data/to_transmit.tx
 ---             ---             ---             ---
 
 DATA DIRECTORY
-
+--------------
 Invenio_rdm_pure/data/
 
 all_rdm_records.txt:
@@ -112,7 +112,7 @@ RDM user id – Pure uuid – External id
 ---             ---             ---             ---
 
 VIEWS
-
+-----
 https://127.0.0.1:5000/pure_import
 Returns an XML file containing RDM records formatted for Pure import
 
