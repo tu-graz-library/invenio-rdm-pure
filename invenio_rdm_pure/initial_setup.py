@@ -46,7 +46,7 @@ for file in import_setup:
 # User email
 file_name = f"{dirpath}/data_setup/rdmUser_pureEmail.txt"
 _check_if_file_exists(file_name)
-email = input("RDM user creation - Insert desired Pure user e-mail: ")
+email = input("RDM user creation - Insert Pure admin user e-mail: ")
 open(file_name, "w+").write(email)
 
 # User password
