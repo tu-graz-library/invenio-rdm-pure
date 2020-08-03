@@ -8,6 +8,6 @@
 Authors
 =======
 
-Invenio module that adds pure
+Invenio module for Pure integration
 
 - Technische Universität Graz <info@tugraz.at>
