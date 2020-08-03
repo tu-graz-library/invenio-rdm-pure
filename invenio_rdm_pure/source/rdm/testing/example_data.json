@@ -12,41 +12,41 @@
     "titles": [
         {
             "lang": "eng",
-            "title": "Edge of Chaos and Prediction of Computational Performance for Neural Circuit Models",
+            "title": "TESTING TITLE",
             "type": "MainTitle"
         }
     ],
     "creators": [
         {
-            "name": "Robert Albin Legenstein",
+            "name": "Robert",
             "type": "Personal",
             "identifiers": {
-                "uuid": "dde53627-a18d-4d63-a163-1f2489e032db",
-                "externalId": "506"
+                "uuid": "11111111-1111-1111-1111-111111111111",
+                "externalId": "1111"
             },
             "affiliations": [
                 {
-                    "name": "Institute of Theoretical Computer Science (7080)",
+                    "name": "Institute Computer Science",
                     "identifiers": {
-                        "externalId": "2369",
-                        "uuid": "a24edb09-038c-440d-b8d9-d919f598d9f8"
+                        "externalId": "1111",
+                        "uuid": "11111111-1111-1111-1111-111111111111"
                     }
                 }
             ]
         },
         {
-            "name": "Wolfgang Maass",
+            "name": "Wolfgang",
             "type": "Personal",
             "identifiers": {
-                "uuid": "13b568f9-b48b-4329-9675-25433fd75075",
-                "externalId": "2328"
+                "uuid": "11111111-1111-1111-1111-111111111111",
+                "externalId": "1111"
             },
             "affiliations": [
                 {
-                    "name": "Institute of Theoretical Computer Science (7080)",
+                    "name": "Institute Computer Science",
                     "identifiers": {
-                        "externalId": "2369",
-                        "uuid": "a24edb09-038c-440d-b8d9-d919f598d9f8"
+                        "externalId": "1111",
+                        "uuid": "11111111-1111-1111-1111-111111111111"
                     }
                 }
             ]
@@ -74,19 +74,19 @@
         "ip_range"
     ],
     "group_restrictions": [
-        "2369"
+        "1111"
     ],
     "extensions": {
-        "tug:uuid": "40687d21-c24e-49a3-a033-e882380a875e",
+        "tug:uuid": "11111111-1111-1111-1111-111111111111",
         "tug:publication_date": "2007",
-        "tug:pure_link": "https://pure01.tugraz.at/portal/en/publications/edge-of-chaos-and-prediction-of-computational-performance-for-neural-circuit-models(40687d21-c24e-49a3-a033-e882380a875e).html",
+        "tug:pure_link": "https://pure01.tugraz.at",
         "tug:pure_type": "Article",
         "tug:pure_category": "Research",
         "tug:peerReview": "True",
         "tug:publicationStatus": "Published",
         "tug:workflow": "For validation",
         "tug:managingOrganisationalUnit_name": "Institute of Theoretical Computer Science (7080)",
-        "tug:managingOrganisationalUnit_uuid": "a24edb09-038c-440d-b8d9-d919f598d9f8",
-        "tug:managingOrganisationalUnit_externalId": "2369"
+        "tug:managingOrganisationalUnit_uuid": "11111111-1111-1111-1111-111111111111",
+        "tug:managingOrganisationalUnit_externalId": "1111"
     }
 }
