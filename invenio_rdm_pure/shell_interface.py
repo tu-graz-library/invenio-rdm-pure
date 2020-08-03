@@ -52,13 +52,11 @@ class ShellInterface:
 
     def rdm_group_split(self, old_id, new_ids):
         """ Split a single group into moltiple ones """
-        # rdm_group_split(self, old_id, new_ids)
         rdm_groups = RdmGroups()
         rdm_groups.rdm_group_split(old_id, new_ids)
 
     def rdm_group_merge(self, old_ids, new_id):
         """ Merges multiple groups into a single one """
-        # rdm_group_merge(self, old_ids, new_id)
         rdm_groups = RdmGroups()
         rdm_groups.rdm_group_merge(old_ids, new_id)
 
