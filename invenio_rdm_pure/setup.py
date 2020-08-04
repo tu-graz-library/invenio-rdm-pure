@@ -4,7 +4,7 @@ import os
 dirpath = os.path.dirname(os.path.abspath(__file__))
 
 # data_setup_path = f"{dirpath}/data_setup"
-data_setup_path = f"{dirpath}/data_setup"
+data_setup_path = "../june/data_setup"
 
 pure_uuid_length = 36
 
