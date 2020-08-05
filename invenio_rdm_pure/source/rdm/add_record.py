@@ -9,6 +9,7 @@ from setup import (
     iso6393_file_name,
     push_dist_sec,
     accessright_pure_to_rdm,
+    resourcetype_pure_to_rdm,
 )
 from source.general_functions import (
     shorten_file_name,
@@ -164,24 +165,33 @@ class RdmAddRecord:
             ]
 
     def _add_resource_type(self):
-        # To REVIEW
-        # Pure: Conference contribution, Article, Lecture or Presentation, Poster, Chapter, Other report, Book, Doctoral Thesis, Master's Thesis, Diploma Thesis, Commissioned report, ...
-        # RDM:  publication, poster, presentation, dataset, image, video, software, lesson, other
 
-        # - RDM -         - PURE -
-        # publication       Conference contribution, Article, Chapter, (...) Thesis
+        # RDM   <-  <-  <-  PURE
+        # publication       Article, Chapter, Book, Paper, (...) Thesis
         # poster            Poster
-        # presentation      Lecture or Presentation,
-        # dataset
+        # presentation      Lecture or Presentation, Conference contribution
+        # dataset           Data set/Database
         # image
         # video
-        # software
+        # software          Software
         # lesson
         # other             Other report
+
+        # Get resource type from pure
+        pure_type = get_value(self.item, ["types", 0, "value"])
+
+        if pure_type not in resourcetype_pure_to_rdm:
+            pure_type = "Other report"
+
+        # Convert to RDM resource type
+        rdm_type = resourcetype_pure_to_rdm[pure_type]
+
         self.data["resource_type"] = {
-            "type": "publication",
-            "subtype": "publication-other",
+            "type": rdm_type,
         }
+        # Only 'publication' type requires a subtype
+        if rdm_type == "publication":
+            self.data["resource_type"]["subtype"] = "publication-other"
 
     def _add_title(self):
         title = get_value(self.item, ["title"])

@@ -71,6 +71,23 @@ accessright_pure_to_rdm = {
     "None": "closed",
 }
 
+# RESOURCE TYPE
+resourcetype_pure_to_rdm = {
+    "Article": "publication",
+    "Chapter": "publication",
+    "Diploma Thesis": "publication",
+    "Master's Thesis": "publication",
+    "Doctoral Thesis": "publication",
+    "Book": "publication",
+    "Paper": "publication",
+    "Lecture or Presentation": "presentation",
+    "Conference contribution": "presentation",
+    "Poster": "poster",
+    "Software": "software",
+    "Data set/Database": "dataset",
+    "Other report": "other",
+}
+
 # DATABASE
 database_uri = {
     "db_host": f"{data_setup_path}/db_host.txt",
