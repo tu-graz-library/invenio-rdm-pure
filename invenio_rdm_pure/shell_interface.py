@@ -63,31 +63,31 @@ class ShellInterface:
 
 def method_call(docopt_instance: object, arguments: dict):
 
-    if arguments["pure_import"]:
+    if arguments["pure_import_xml"]:
         docopt_instance.pure_import()
 
-    elif arguments["changes"]:
+    elif arguments["get_pure_changes"]:
         docopt_instance.changes()
 
-    elif arguments["testing"]:
+    elif arguments["rdm_testing"]:
         docopt_instance.testing()
 
-    elif arguments["pages"]:
+    elif arguments["get_pure_pages"]:
         page_start = int(arguments["--pageStart"])
         page_end = int(arguments["--pageEnd"])
         page_size = int(arguments["--pageSize"])
         docopt_instance.pages(page_start, page_end, page_size)
 
-    elif arguments["logs"]:
+    elif arguments["delete_old_logs"]:
         docopt_instance.logs()
 
-    elif arguments["delete"]:
+    elif arguments["delete_by_recid"]:
         docopt_instance.delete()
 
-    elif arguments["uuid"]:
+    elif arguments["add_by_uuid"]:
         docopt_instance.uuid()
 
-    elif arguments["owner"]:
+    elif arguments["get_owner_records"]:
         identifier = arguments["--identifier"]
         identifier_value = arguments["--identifierValue"]
         docopt_instance.owner(identifier, identifier_value)
