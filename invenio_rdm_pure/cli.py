@@ -2,13 +2,13 @@
 
 Usage:
     shell_interface.py get_pure_changes
-    shell_interface.py get_pure_pages        [--pageStart=<page>, --pageEnd=<page>, --pageSize=<page>]
+    shell_interface.py get_pure_pages       [--pageStart=<page>, --pageEnd=<page>, --pageSize=<page>]
     shell_interface.py delete_old_logs
     shell_interface.py delete_by_recid
     shell_interface.py add_by_uuid
-    shell_interface.py get_owner_records       [--identifier=<value>, --identifierValue=<value>]
-    shell_interface.py group_split [--oldGroup=<recid>, --newGroups=<recid>]
-    shell_interface.py group_merge [--oldGroups=<recid>, --newGroup=<recid>]
+    shell_interface.py get_owner_records    [--identifier=<value>, --identifierValue=<value>]
+    shell_interface.py group_split          [--oldGroup=<recid>, --newGroups=<recid>]
+    shell_interface.py group_merge          [--oldGroups=<recid>, --newGroup=<recid>]
     shell_interface.py pure_import_xml
     shell_interface.py rdm_testing
 

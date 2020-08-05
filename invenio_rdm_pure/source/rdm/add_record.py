@@ -268,10 +268,6 @@ class RdmAddRecord:
         path = ["managingOrganisationalUnit", "externalId"]
         self._add_extension(item, "tug:managingOrganisationalUnit_externalId", path)
 
-        # self._add_field(item, 'createdDate',                 ['info', 'createdDate'])
-        # self._add_field(item, 'metadataModifBy',             ['info', 'modifiedBy'])
-        # self._add_field(item, 'metadataModifDate',           ['info', 'modifiedDate'])
-
     def _add_extension(self, item: dict, rdm_field: str, path: list):
         """ Adds the field to Pure extension """
         value = get_value(item, path)
@@ -280,7 +276,6 @@ class RdmAddRecord:
 
     def _process_electronic_versions(self):
         """ Data relative to files """
-        # self.data["versionFiles"] = []
         self.rdm_file_review = []
 
         if "electronicVersions" in self.item or "additionalFiles" in self.item:
@@ -308,7 +303,6 @@ class RdmAddRecord:
 
             # Organizational, Personal
             self.sub_data["type"] = "Personal"  # Organizational / Personal
-            # self._add_subdata(item, "pure_personRole", ["personRoles", 0, "value"])
 
             # - Identifiers -
             self.sub_data["identifiers"] = {}
@@ -328,7 +322,6 @@ class RdmAddRecord:
                     externalId = get_value(i, ["externalId"])
                     uuid = get_value(i, ["uuid"])
                     if name and externalId:
-                        # scheme = get_value(item, ['authorCollaboration', ''])
                         self.sub_data["affiliations"].append(
                             {
                                 "name": name,
@@ -615,9 +608,6 @@ class RdmAddRecord:
         # Access type
         value = get_value(item, ["accessTypes", 0, "value"])
         self.sub_data["accessType"] = self._accessright_conversion(value)
-
-        # # Append to sub_data to .data
-        # self.data["versionFiles"].append(self.sub_data)
 
         # Download file from Pure
         response = get_pure_file(self, file_url, file_name)
