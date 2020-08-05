@@ -21,7 +21,7 @@ blueprint = Blueprint(
 )
 
 
-@blueprint.route("/pure_import")
+@blueprint.route("/pure_import_xml")
 def index1():
     # Check if the XML file does not exist
     if not os.path.isfile(pure_import_file):
