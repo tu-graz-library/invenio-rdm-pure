@@ -14,7 +14,7 @@ from source.reports import Reports
 from source.rdm.delete_record import Delete
 
 
-class PureChangesByDate:
+class PureChanges:
     def __init__(self):
         self.add_record = RdmAddRecord()
         self.report = Reports()

@@ -1,5 +1,5 @@
 from source.log_manager import delete_old_log_files
-from source.rdm.run.changes import PureChangesByDate
+from source.rdm.run.changes import PureChanges
 from source.rdm.run.pages import RunPages
 from source.rdm.run.uuid import AddFromUuidList
 from source.rdm.run.owners import RdmOwners
@@ -22,7 +22,7 @@ class ShellInterface:
     def changes(self):
         """ Gets from Pure API endpoint 'changes' all the records that have been 
         created, modified and deleted. Next updates accordingly RDM records """
-        pure_changes_by_date = PureChangesByDate()
+        pure_changes_by_date = PureChanges()
         pure_changes_by_date.get_pure_changes()
 
     def pages(self, page_start, page_end, page_size):
