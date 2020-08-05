@@ -6,6 +6,8 @@ from setup import dirpath, pure_rdm_user_file, database_uri
 
 
 class RdmDatabase:
+    """ Responsible for database connection and querying. """
+
     def __init__(self):
         self.report = Reports()
         self._db_connect()
