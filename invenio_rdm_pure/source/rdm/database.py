@@ -51,5 +51,11 @@ class RdmDatabase:
         email = f"'{email}'"
         response = self.select_query("id", "accounts_user", {"email": email})
         if not response:
+            report = """
+            ERROR:
+            Pure admin user not found.
+            Make sure that the user is created and that it is stored in data_setup/rdmUser_pureEmail.txt
+            """
+            self.report.add(report)
             return False
         return response[0][0]
