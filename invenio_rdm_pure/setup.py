@@ -3,8 +3,9 @@ import os
 
 dirpath = os.path.dirname(os.path.abspath(__file__))
 
-# data_setup_path = f"{dirpath}/data_setup"
-data_setup_path = "/opt/invenio/var/instance/data_setup"
+data_setup_path = f"{dirpath}/data_setup"
+# data_setup_path = "/opt/invenio/var/instance/data_setup"
+# data_setup_path = f"{dirpath}/../../tugraz-repo/app_data/data_setup"
 
 pure_uuid_length = 36
 
