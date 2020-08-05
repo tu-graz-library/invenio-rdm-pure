@@ -80,6 +80,15 @@ class RdmAddRecord:
 
         # Sets as '_created_by' the RDM userid of the
         userid = self.rdm_db.get_pure_admin_userid()
+        if not userid:
+            report = """
+            ERROR:
+            Pure admin user not found.
+            Make sure that the user is created and that it is stored in data_setup/rdmUser_pureEmail.txt
+            """
+            self.report.add(report)
+            return False
+
         self.data["_created_by"] = userid
 
         # Access right
