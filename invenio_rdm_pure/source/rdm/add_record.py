@@ -78,7 +78,7 @@ class RdmAddRecord:
         # Record owners
         self._check_record_owners()
 
-        # Sets as '_created_by' the RDM userid of the
+        # Assign to '_created_by' the userid of the Pure admin user
         userid = self.rdm_db.get_pure_admin_userid()
         if not userid:
             return False
@@ -123,7 +123,7 @@ class RdmAddRecord:
         # Process various general fields
         self._process_general_fields(item)
 
-        # # Electronic Versions (files)
+        # Electronic Versions (files)
         self._process_electronic_versions()
 
         # Additional Files
