@@ -14,6 +14,10 @@ reports = Reports()
 
 
 def delete_old_log_files():
+    """ 
+    Deletes from reports/ directory all log files that exceed the 
+    maximum days permanence (days_keep_log)
+    """
 
     reports.add_template(
         ["console"], ["general", "title"], ["DELETE OLD LOGS", current_time() + "\n"]

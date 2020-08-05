@@ -39,6 +39,12 @@ Incomplete: {} - Duplicated: {} - Irrelevant:{}
 
 
 class Reports:
+    """
+    It is the responsible for giving a feedback to the user regarding
+    the steps performed during each task and the relative success.
+    This information is available in the reports/ directory.
+    """
+
     def add_template(self, files, template, arguments):
         if template == ["general", "title"]:
             arguments.append(current_time())
