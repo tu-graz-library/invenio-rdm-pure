@@ -13,8 +13,6 @@ from source.rdm.add_record import RdmAddRecord
 from source.reports import Reports
 from source.rdm.delete_record import Delete
 
-# To execute preferably between 22:30 and 23:30, so to get all changes from that day
-
 
 class PureChangesByDate:
     def __init__(self):
