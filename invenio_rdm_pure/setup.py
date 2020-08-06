@@ -13,9 +13,6 @@ days_keep_log = 30
 # Reduce the number of lines in data/successful_changes.txt
 lines_successful_changes = 90
 
-# Percentage of updated items to considere the upload task successful
-upload_percent_accept = 90
-
 # RDM
 rdm_host_url = open(f"{data_setup_path}/rdm_host_url.txt", "r").readline()
 token_rdm = open(f"{data_setup_path}/rdm_token.txt", "r").readline()
@@ -127,6 +124,9 @@ temporary_files_name = {
     "post_rdm_response": f"{base_path}/post_rdm_response.json",
     "post_rdm_metadata": f"{base_path}/post_rdm_metadata.json",
 }
+
+# Percentage of updated items to considere the upload task successful
+upload_percent_accept = 90
 
 # VERSIONING
 versioning_running = False
