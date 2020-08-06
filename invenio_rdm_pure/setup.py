@@ -7,6 +7,26 @@ data_setup_path = f"{dirpath}/data_setup"
 # data_setup_path = "/opt/invenio/var/instance/data_setup"
 # data_setup_path = f"{dirpath}/../../tugraz-repo/app_data/data_setup"
 
+# Deletes log files (reports/ directory) after x days
+days_keep_log = 30
+
+# Reduce the number of lines in data/successful_changes.txt
+lines_successful_changes = 90
+
+# Percentage of updated items to considere the upload task successful
+upload_percent_accept = 90
+
+# RDM
+rdm_host_url = open(f"{data_setup_path}/rdm_host_url.txt", "r").readline()
+token_rdm = open(f"{data_setup_path}/rdm_token.txt", "r").readline()
+rdm_records_url = f"{rdm_host_url}api/records/"
+# Time gap between RDM push requests
+push_dist_sec = 0.8
+# Too many requests sent to RDM server (waits 15 minutes (900/60 = 15))
+wait_429 = 900
+
+# OTHER
+iso6393_file_name = f"{dirpath}/source/iso6393.json"
 pure_uuid_length = 36
 
 # Pure REST API references
@@ -23,25 +43,7 @@ pure_import_file = f"{dirpath}/{pure_import_path}/pure_import.xml"
 pure_rdm_user_file = f"{data_setup_path}/rdmUser_pureEmail.txt"
 pure_rdm_password_file = f"{data_setup_path}/rdmUser_purePassword.txt"
 
-# RDM
-rdm_host_url = open(f"{data_setup_path}/rdm_host_url.txt", "r").readline()
-token_rdm = open(f"{data_setup_path}/rdm_token.txt", "r").readline()
-rdm_records_url = f"{rdm_host_url}api/records/"
-push_dist_sec = 0.8  # Time gap between RDM push requests
-wait_429 = 900  # Too many requests sent to the server (waits 15 minutes)
-
-# LOG FILES
-days_keep_log = 30  # Deletes log files after x days
-lines_successful_changes = 90  # Reduce the number of lines in successful_changes.txt
-
-# Percentage of updated items to considere the upload task successful
-upload_percent_accept = 90
-
-# OTHER
-iso6393_file_name = f"{dirpath}/source/iso6393.json"
-pure_uuid_length = 36
-
-# EMAIL
+# EMAIL     -------- TO REVIEW ------------------
 email_receiver = open(f"{data_setup_path}/email_receiver.txt", "r").readline()
 email_sender = open(f"{data_setup_path}/email_sender.txt", "r").readline()
 email_sender_password = open(
@@ -56,9 +58,6 @@ email_message = (
 
 # RESTRICTIONS
 possible_record_restrictions = ["groups", "owners", "ip_range", "ip_single"]
-
-# VERSIONING
-versioning_running = False
 
 # ACCESS RIGHTS
 accessright_pure_to_rdm = {
@@ -128,3 +127,6 @@ temporary_files_name = {
     "post_rdm_response": f"{base_path}/post_rdm_response.json",
     "post_rdm_metadata": f"{base_path}/post_rdm_metadata.json",
 }
+
+# VERSIONING
+versioning_running = False
