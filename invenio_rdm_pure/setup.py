@@ -13,14 +13,15 @@ days_keep_log = 30
 # Reduce the number of lines in data/successful_changes.txt
 lines_successful_changes = 90
 
+# Time gap between RDM post requests
+push_dist_sec = 0.8
+# Too many requests sent to RDM server (waits 15 minutes (900/60 = 15))
+# 429 is the HTTP response code
+wait_429 = 900
 # RDM
 rdm_host_url = open(f"{data_setup_path}/rdm_host_url.txt", "r").readline()
 token_rdm = open(f"{data_setup_path}/rdm_token.txt", "r").readline()
 rdm_records_url = f"{rdm_host_url}api/records/"
-# Time gap between RDM push requests
-push_dist_sec = 0.8
-# Too many requests sent to RDM server (waits 15 minutes (900/60 = 15))
-wait_429 = 900
 
 # OTHER
 iso6393_file_name = f"{dirpath}/source/iso6393.json"
