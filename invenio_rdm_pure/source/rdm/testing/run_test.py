@@ -43,7 +43,7 @@ class Testing:
 
     def _rdm_user_test(self):
 
-        test_user = "testing@tugraz.at"
+        test_user = "testing9@tugraz.at"
 
         # Create user
         command = f"pipenv run invenio users create {test_user} --password 123456"
@@ -70,7 +70,7 @@ class Testing:
         # Deactivate user
         command = f"pipenv run invenio users deactivate {test_user}"
         response = os.system(command)
-        self._response_check_user(response, "RDM activate user")
+        self._response_check_user(response, "RDM deactivate user")
 
     def _response_check_user(self, response, message: str):
         if response != 0:
