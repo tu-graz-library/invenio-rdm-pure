@@ -12,7 +12,7 @@ from flask_babelex import gettext as _
 from . import config
 
 
-class inveniordmpure(object):
+class invenio_rdm_pure(object):
     """invenio-rdm-pure extension."""
 
     def __init__(self, app=None):
