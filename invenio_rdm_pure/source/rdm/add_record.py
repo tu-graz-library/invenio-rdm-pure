@@ -412,8 +412,8 @@ class RdmAddRecord:
                 )
 
     def _applied_restrictions_check(self):
-        """ Checks if the restrictions applied to the record are valid.
-            e.g. ['groups', 'owners', 'ip_range', 'ip_single'] """
+        """Checks if the restrictions applied to the record are valid.
+        e.g. ['groups', 'owners', 'ip_range', 'ip_single']"""
         if not "applied_restrictions" in self.data:
             return False
 
@@ -535,12 +535,12 @@ class RdmAddRecord:
         return False
 
     def _get_rdm_file_review(self):
-        """ 
-        When a record is updated in Pure, there will be a check 
+        """
+        When a record is updated in Pure, there will be a check
         if the new file from Pure is the same as the old file in RDM.
         To do so it makes a comparison on the file size.
-        If the size is not the same, then it will be uploaded to RDM 
-        and a new internal review will be required. 
+        If the size is not the same, then it will be uploaded to RDM
+        and a new internal review will be required.
         """
 
         # Get from RDM file size and internalReview
@@ -573,8 +573,8 @@ class RdmAddRecord:
                     )
 
     def get_files_data(self, item: dict):
-        """ Gets metadata information from electronicVersions and additionalFiles files.
-            It also downloads the relative files. The Metadata without file will be ignored """
+        """Gets metadata information from electronicVersions and additionalFiles files.
+        It also downloads the relative files. The Metadata without file will be ignored"""
         if "file" not in item:
             return False
         elif "fileURL" not in item["file"] or "fileName" not in item["file"]:
@@ -692,8 +692,8 @@ class RdmAddRecord:
         return True
 
     def _http_response_counter(self, status_code: int):
-        """ According to the given http status code creates 
-            a new object element or increaes an existing one  """
+        """According to the given http status code creates
+        a new object element or increaes an existing one"""
         if status_code not in self.global_counters["http_responses"]:
             self.global_counters["http_responses"][status_code] = 0
         self.global_counters["http_responses"][status_code] += 1

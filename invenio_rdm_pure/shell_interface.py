@@ -20,8 +20,8 @@ class ShellInterface:
         pure_import_records.run_import()
 
     def changes(self):
-        """ Gets from Pure API endpoint 'changes' all the records that have been 
-        created, modified and deleted. Next updates accordingly RDM records """
+        """Gets from Pure API endpoint 'changes' all the records that have been
+        created, modified and deleted. Next updates accordingly RDM records"""
         pure_changes_by_date = PureChanges()
         pure_changes_by_date.get_pure_changes()
 
@@ -45,8 +45,8 @@ class ShellInterface:
         add_uuids.add_from_uuid_list()
 
     def owner(self, identifier, identifier_value):
-        """ Gets from pure all the records related to a certain user,
-            afterwards it create/modify/delete RDM records accordingly."""
+        """Gets from pure all the records related to a certain user,
+        afterwards it create/modify/delete RDM records accordingly."""
         rdm_owners = RdmOwners()
         rdm_owners.run_owners(identifier, identifier_value)
 

@@ -63,8 +63,8 @@ class GeneralFunctions:
 
     #   ---         ---         ---
     def get_userid_from_list_by_externalid(self, external_id: str, file_data: list):
-        """ given a user external_id, it checks if it is listed in data/user_ids_match.txt. 
-        If it is found it returns its relative user id """
+        """given a user external_id, it checks if it is listed in data/user_ids_match.txt.
+        If it is found it returns its relative user id"""
         for line in file_data:
             line = line.split("\n")[0]
             line = line.split(" ")

@@ -57,8 +57,8 @@ class ImportRecords:
         return os.path.isfile(file_name)
 
     def _check_uuid(self, item):
-        """ If a uuid is specified in the RDM record means that it was imported
-            from Pure. In this case, the record will be ignored """
+        """If a uuid is specified in the RDM record means that it was imported
+        from Pure. In this case, the record will be ignored"""
         if "uuid" in item:
             self.report.add(f"{self.report_base} Already in Pure")
             return False

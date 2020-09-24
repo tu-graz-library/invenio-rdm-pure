@@ -22,8 +22,8 @@ class PureChanges:
         self.general_functions = GeneralFunctions()
 
     def get_pure_changes(self):
-        """ Gets from Pure 'changes' endpoint all records that have been created / updated / deleted 
-            and modifies accordingly the relative RDM records """
+        """Gets from Pure 'changes' endpoint all records that have been created / updated / deleted
+        and modifies accordingly the relative RDM records"""
 
         # Get date of last update
         missing_updates = self._get_missing_updates()
@@ -182,8 +182,8 @@ class PureChanges:
             self.add_record.push_record_by_uuid(self.global_counters, uuid)
 
     def _get_missing_updates(self):
-        """ Reading successful_changes.txt gets the dates in 
-            which Pure changes have not been processed """
+        """Reading successful_changes.txt gets the dates in
+        which Pure changes have not been processed"""
 
         file_name = data_files_name["successful_changes"]
         check_if_file_exists(file_name)
