@@ -17,9 +17,6 @@ class invenio_rdm_pure(object):
 
     def __init__(self, app=None):
         """Extension initialization."""
-        # TODO: This is an example of translation string with comment. Please
-        # remove it.
-        # NOTE: This is a note to a translator.
         _("A translation string")
         if app:
             self.init_app(app)
