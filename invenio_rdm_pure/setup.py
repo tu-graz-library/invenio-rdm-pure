@@ -23,9 +23,6 @@ wait_429 = 900
 iso6393_file_name = f"{dirpath}/source/iso6393.json"
 pure_uuid_length = 36
 
-# Pure REST API references
-pure_username = open(f"{data_setup_path}/pure_username.txt", "r").readline()
-
 # Pure import
 pure_import_path = "templates/invenio_rdm_pure/temporary_files"
 pure_import_file = f"{dirpath}/{pure_import_path}/pure_import.xml"
