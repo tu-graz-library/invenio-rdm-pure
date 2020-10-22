@@ -102,7 +102,6 @@ INVENIO_RDM_PURE_CONFIG_PRESENT = False
 ## ========================
 ##
 RDM_HOST_URL = "https://127.0.0.1:5000/"
-RDM_TOKEN = ""
 RDM_RECORD_URL = RDM_HOST_URL + "api/records/{}"
 RDM_RECORDS_URL = RDM_HOST_URL + "api/records"
 RDM_PURE_USER_EMAIL = ""

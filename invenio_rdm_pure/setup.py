@@ -18,8 +18,6 @@ push_dist_sec = 0.8
 # Too many requests sent to RDM server (waits 15 minutes (900/60 = 15))
 # 429 is the HTTP response code
 wait_429 = 900
-# RDM
-token_rdm = open(f"{data_setup_path}/rdm_token.txt", "r").readline()
 
 # OTHER
 iso6393_file_name = f"{dirpath}/source/iso6393.json"

@@ -8,7 +8,6 @@ from source.reports import Reports
 from setup import (
     push_dist_sec,
     temporary_files_name,
-    token_rdm,
     wait_429,
 )
 
@@ -23,8 +22,6 @@ class Requests:
             headers["Content-Type"] = "application/json"
         if "file" in parameters:
             headers["Content-Type"] = "application/octet-stream"
-        if "token" in parameters:
-            headers["Authorization"] = f"Bearer {token_rdm}"
         return headers
 
     def _request_params(self):
@@ -32,7 +29,7 @@ class Requests:
 
     def get_metadata(self, additional_parameters: str, recid=""):
 
-        headers = self._request_headers(["content_type", "token"])
+        headers = self._request_headers(["content_type"])
         params = self._request_params()
 
         rdm_record_url = current_app.config.get("RDM_RECORD_URL")
@@ -83,7 +80,7 @@ class Requests:
 
         data = json.dumps(data).encode("utf-8")
 
-        headers = self._request_headers(["content_type", "token"])
+        headers = self._request_headers(["content_type"])
         params = self._request_params()
 
         rdm_record_url = current_app.config.get("RDM_RECORD_URL")
@@ -98,7 +95,7 @@ class Requests:
 
     def put_file(self, file_path_name: str, recid: str):
 
-        headers = self._request_headers(["file", "token"])
+        headers = self._request_headers(["file"])
         data = open(file_path_name, "rb").read()
 
         # Get only the file name
@@ -113,7 +110,7 @@ class Requests:
 
     def delete_metadata(self, recid: str):
 
-        headers = self._request_headers(["content_type", "token"])
+        headers = self._request_headers(["content_type"])
         rdm_record_url = current_app.config.get("RDM_RECORD_URL")
         url = rdm_record_url.format(recid)
 
