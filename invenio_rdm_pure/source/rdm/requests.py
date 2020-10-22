@@ -3,7 +3,6 @@ import time
 import json
 from setup import (
     token_rdm,
-    rdm_host_url,
     rdm_records_url,
     temporary_files_name,
     wait_429,

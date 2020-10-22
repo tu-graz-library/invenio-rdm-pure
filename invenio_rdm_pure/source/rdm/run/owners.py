@@ -2,7 +2,6 @@ import json
 from datetime import date, datetime
 from setup import (
     pure_rest_api_url,
-    rdm_host_url,
     token_rdm,
     data_files_name,
     pure_uuid_length,
