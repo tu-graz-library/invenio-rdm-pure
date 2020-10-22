@@ -4,7 +4,6 @@ from flask import current_app
 
 from setup import (
     email_message,
-    email_sender,
     email_sender_password,
     email_smtp_port,
     email_smtp_server,
@@ -20,6 +19,7 @@ def send_email(uuid: str, file_name: str):
     s.starttls()
 
     # Authentication
+    email_sender = current_app.config.get("RDM_PURE_USER_EMAIL")
     s.login(email_sender, email_sender_password)
 
     # sending the mail
