@@ -15,7 +15,7 @@ from source.rdm.general_functions import GeneralFunctions
 from source.rdm.requests import Requests
 from source.reports import Reports
 
-from setup import data_files_name, pure_rest_api_url, pure_uuid_length
+from setup import data_files_name, pure_uuid_length
 
 
 class RdmOwners:
