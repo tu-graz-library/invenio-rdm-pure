@@ -2,16 +2,12 @@ import json
 from datetime import date, datetime
 
 import requests
+from flask import current_app
 from requests.auth import HTTPBasicAuth
 from source.pure.requests import get_pure_metadata
 from source.reports import Reports
 
-from setup import (
-    log_files_name,
-    pure_password,
-    pure_username,
-    temporary_files_name,
-)
+from setup import log_files_name, pure_username, temporary_files_name
 
 reports = Reports()
 
@@ -55,6 +51,7 @@ def get_pure_record_metadata_by_uuid(uuid: str):
 def get_pure_file(shell_interface, file_url: str, file_name: str):
 
     # Get request to Pure
+    pure_password = current_app.config.get("PURE_PASSWORD")
     response = requests.get(file_url, auth=HTTPBasicAuth(pure_username, pure_password))
 
     if response.status_code >= 300:
