@@ -8,7 +8,6 @@ from source.reports import Reports
 
 from setup import (
     log_files_name,
-    pure_api_key,
     pure_password,
     pure_username,
     temporary_files_name,
@@ -18,6 +17,7 @@ reports = Reports()
 
 
 def get_pure_metadata(endpoint, identifier="", parameters={}, review=True):
+    pure_api_key = current_app.config.get("PURE_API_KEY")
     headers = {
         "api-key": pure_api_key,
         "Accept": "application/json",

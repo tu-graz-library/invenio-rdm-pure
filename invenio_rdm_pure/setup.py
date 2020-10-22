@@ -24,7 +24,6 @@ iso6393_file_name = f"{dirpath}/source/iso6393.json"
 pure_uuid_length = 36
 
 # Pure REST API references
-pure_api_key = open(f"{data_setup_path}/pure_api_key.txt", "r").readline()
 pure_password = open(f"{data_setup_path}/pure_password.txt", "r").readline()
 pure_username = open(f"{data_setup_path}/pure_username.txt", "r").readline()
 

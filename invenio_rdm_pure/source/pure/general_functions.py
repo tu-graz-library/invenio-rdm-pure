@@ -8,7 +8,6 @@ from source.reports import Reports
 
 from setup import (
     log_files_name,
-    pure_api_key,
     pure_password,
     pure_username,
     temporary_files_name,
