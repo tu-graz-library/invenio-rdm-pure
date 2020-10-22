@@ -93,3 +93,26 @@ RDM_RECORDS_METADATA_EXTENSIONS = {
 RDM_RECORDS_METADATA_NAMESPACES = {
     "tug": {"@context": "https://graz.pure.elsevier.com/"}
 }
+
+# Invenio-RDM-Pure
+# =========================
+#
+INVENIO_RDM_PURE_CONFIG_PRESENT = False
+## Invenio-RDM
+## ========================
+##
+RDM_HOST_URL = "https://127.0.0.1:5000/"
+RDM_TOKEN = ""
+RDM_RECORD_URL = RDM_HOST_URL + "api/records/{}"
+RDM_RECORDS_URL = RDM_HOST_URL + "api/records"
+RDM_PURE_USER_EMAIL = ""
+RDM_PURE_USER_PASSWORD = ""
+
+## Pure
+## ========================
+##
+PURE_API_URL = ""
+PURE_API_KEY = ""
+PURE_USERNAME = ""
+PURE_PASSWORD = ""
+PURE_RESPONSIBLE_EMAIL = ""
