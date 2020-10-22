@@ -32,9 +32,6 @@ pure_rdm_user_file = f"{data_setup_path}/rdmUser_pureEmail.txt"
 pure_rdm_password_file = f"{data_setup_path}/rdmUser_purePassword.txt"
 
 # EMAIL     -------- TO REVIEW ------------------
-email_sender_password = open(
-    f"{data_setup_path}/email_sender_password.txt", "r"
-).readline()
 email_smtp_server = "smtp.gmail.com"
 email_smtp_port = 587
 email_subject = "Delete Pure file"
