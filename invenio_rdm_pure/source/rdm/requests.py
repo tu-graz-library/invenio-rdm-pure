@@ -2,10 +2,15 @@ import json
 import time
 
 import requests
+from flask import current_app
 from source.reports import Reports
 
-from setup import push_dist_sec, rdm_records_url, temporary_files_name, \
-    token_rdm, wait_429
+from setup import (
+    push_dist_sec,
+    temporary_files_name,
+    token_rdm,
+    wait_429,
+)
 
 
 class Requests:
@@ -30,7 +35,8 @@ class Requests:
         headers = self._request_headers(["content_type", "token"])
         params = self._request_params()
 
-        url = f"{rdm_records_url}{recid}"
+        rdm_record_url = current_app.config.get("RDM_RECORD_URL")
+        url = rdm_record_url.format(recid)
 
         # Add parameters to url
         if len(additional_parameters) > 0:
@@ -57,6 +63,8 @@ class Requests:
 
         data_utf8 = data.encode("utf-8")
 
+        rdm_records_url = current_app.config.get("RDM_RECORDS_URL")
+
         response = requests.post(
             rdm_records_url,
             headers=headers,
@@ -78,7 +86,8 @@ class Requests:
         headers = self._request_headers(["content_type", "token"])
         params = self._request_params()
 
-        url = f"{rdm_records_url}{recid}"
+        rdm_record_url = current_app.config.get("RDM_RECORD_URL")
+        url = rdm_record_url.format(recid)
 
         response = requests.put(
             url, headers=headers, params=params, data=data, verify=False
@@ -95,14 +104,18 @@ class Requests:
         # Get only the file name
         file_name = file_path_name.split("/")[-1]
 
-        url = f"{rdm_records_url}{recid}/files/{file_name}"
+        rdm_record_url = current_app.config.get("RDM_RECORD_URL")
+        url = rdm_record_url.format(recid)
+
+        url += "/files/{file_name}"
 
         return requests.put(url, headers=headers, data=data, verify=False)
 
     def delete_metadata(self, recid: str):
 
         headers = self._request_headers(["content_type", "token"])
-        url = f"{rdm_records_url}{recid}"
+        rdm_record_url = current_app.config.get("RDM_RECORD_URL")
+        url = rdm_record_url.format(recid)
 
         response = requests.delete(url, headers=headers, verify=False)
 

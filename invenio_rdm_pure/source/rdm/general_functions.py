@@ -1,12 +1,13 @@
 import json
 
 import requests
+from flask import current_app
 from source.general_functions import add_spaces
 from source.rdm.delete_record import Delete
 from source.rdm.requests import Requests
 from source.reports import Reports
 
-from setup import rdm_host_url, versioning_running
+from setup import versioning_running
 
 
 class GeneralFunctions:
@@ -43,6 +44,7 @@ class GeneralFunctions:
 
             if count == 1:
                 # URLs to be transmitted to Pure if the record is successfuly added in RDM      # TODO TODO TODO TODO TODO
+                rdm_host_url = current_app.config.get("RDM_HOST_URL")
                 api_url = f"{rdm_host_url}api/records/{recid}"
                 landing_page_url = f"{rdm_host_url}records/{recid}"
                 newest_recid = recid
@@ -86,6 +88,7 @@ class GeneralFunctions:
 
         response = self.rdm_requests.put_metadata(recid, data)
 
+        rdm_host_url = current_app.config.get("RDM_HOST_URL")
         url = f"{rdm_host_url}api/records/{recid}"
         self.reports.add(f"\tRecord update @ {response} @ {url}")
 
