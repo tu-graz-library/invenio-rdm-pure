@@ -17,7 +17,6 @@ class invenio_rdm_pure(object):
 
     def __init__(self, app=None):
         """Extension initialization."""
-        _("A translation string")
         if app:
             self.init_app(app)
 
