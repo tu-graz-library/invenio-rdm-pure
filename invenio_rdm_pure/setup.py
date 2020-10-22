@@ -27,9 +27,6 @@ pure_uuid_length = 36
 pure_import_path = "templates/invenio_rdm_pure/temporary_files"
 pure_import_file = f"{dirpath}/{pure_import_path}/pure_import.xml"
 
-# RDM user pure_admin
-pure_rdm_password_file = f"{data_setup_path}/rdmUser_purePassword.txt"
-
 # EMAIL     -------- TO REVIEW ------------------
 email_smtp_server = "smtp.gmail.com"
 email_smtp_port = 587
