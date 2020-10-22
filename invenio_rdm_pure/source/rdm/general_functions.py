@@ -1,10 +1,12 @@
-import requests
 import json
-from setup import versioning_running, rdm_host_url
+
+import requests
 from source.general_functions import add_spaces
+from source.rdm.delete_record import Delete
 from source.rdm.requests import Requests
 from source.reports import Reports
-from source.rdm.delete_record import Delete
+
+from setup import rdm_host_url, versioning_running
 
 
 class GeneralFunctions:

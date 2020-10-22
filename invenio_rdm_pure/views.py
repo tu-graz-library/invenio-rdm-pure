@@ -8,13 +8,13 @@
 """Invenio module that adds pure"""
 
 import os
+
 from flask import Blueprint
 from flask_babelex import gettext as _
-from .setup import pure_import_file, dirpath, database_uri
+
+from .setup import database_uri, dirpath, pure_import_file
 from .source.rdm.database_uri import get_db_uri
-
 from .source.rdm.user_externalid import user_externalid
-
 
 blueprint = Blueprint(
     "invenio_rdm_pure",

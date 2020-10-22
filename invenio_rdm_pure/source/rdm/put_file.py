@@ -1,7 +1,9 @@
 import os
-from setup import temporary_files_name
+
 from source.rdm.requests import Requests
 from source.reports import Reports
+
+from setup import temporary_files_name
 
 
 def rdm_add_file(file_name: str, recid: str):

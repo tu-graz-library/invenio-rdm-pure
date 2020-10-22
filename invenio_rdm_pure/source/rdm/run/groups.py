@@ -1,9 +1,10 @@
 import json
 import os
+
 from source.general_functions import add_spaces
 from source.pure.requests import get_pure_metadata
-from source.rdm.general_functions import GeneralFunctions
 from source.rdm.database import RdmDatabase
+from source.rdm.general_functions import GeneralFunctions
 from source.rdm.requests import Requests
 from source.reports import Reports
 

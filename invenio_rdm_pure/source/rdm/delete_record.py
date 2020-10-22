@@ -1,8 +1,10 @@
 import time
-from setup import token_rdm, data_files_name, push_dist_sec
+
 from source.general_functions import current_time, file_read_lines
 from source.rdm.requests import Requests
 from source.reports import Reports
+
+from setup import data_files_name, push_dist_sec, token_rdm
 
 
 class Delete:

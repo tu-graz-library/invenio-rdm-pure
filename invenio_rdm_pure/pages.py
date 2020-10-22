@@ -1,4 +1,5 @@
 import json
+
 from source.general_functions import initialize_counters
 from source.pure.requests import get_pure_metadata
 from source.rdm.add_record import RdmAddRecord

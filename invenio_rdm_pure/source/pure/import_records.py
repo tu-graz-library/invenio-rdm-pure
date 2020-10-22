@@ -1,17 +1,15 @@
-import os
 import json
-from xml.etree import ElementTree as ET
+import os
 from xml.dom import minidom
-from source.rdm.requests import Requests
-from source.general_functions import (
-    get_value,
-    current_date,
-    add_spaces,
-    check_if_directory_exists,
-)
+from xml.etree import ElementTree as ET
+
+from source.general_functions import add_spaces, check_if_directory_exists, \
+    current_date, get_value
 from source.pure.general_functions import get_pure_record_metadata_by_uuid
+from source.rdm.requests import Requests
 from source.reports import Reports
-from setup import pure_import_file, pure_import_path, dirpath
+
+from setup import dirpath, pure_import_file, pure_import_path
 
 
 class ImportRecords:

@@ -1,12 +1,7 @@
 import smtplib
-from setup import (
-    email_receiver,
-    email_sender,
-    email_sender_password,
-    email_smtp_server,
-    email_smtp_port,
-    email_message,
-)
+
+from setup import email_message, email_receiver, email_sender, \
+    email_sender_password, email_smtp_port, email_smtp_server
 
 
 def send_email(uuid: str, file_name: str):

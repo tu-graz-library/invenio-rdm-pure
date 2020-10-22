@@ -1,8 +1,9 @@
 import json
+
 from source.general_functions import add_spaces
-from source.reports import Reports
-from source.rdm.requests import Requests
 from source.rdm.general_functions import GeneralFunctions
+from source.rdm.requests import Requests
+from source.reports import Reports
 
 
 class Versioning:

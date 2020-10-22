@@ -28,6 +28,7 @@ Options:
 from docopt import docopt
 from shell_interface import ShellInterface, method_call
 from source.general_functions import check_if_directory_exists
+
 from setup import dirpath
 
 if __name__ == "__main__":

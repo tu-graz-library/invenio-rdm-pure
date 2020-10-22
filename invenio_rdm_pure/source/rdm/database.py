@@ -1,8 +1,10 @@
+import os
+
 import psycopg2
 import yaml
-import os
 from source.reports import Reports
-from setup import dirpath, pure_rdm_user_file, database_uri
+
+from setup import database_uri, dirpath, pure_rdm_user_file
 
 
 class RdmDatabase:

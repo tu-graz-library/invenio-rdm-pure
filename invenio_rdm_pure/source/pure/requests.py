@@ -1,16 +1,12 @@
 import json
-import requests
 from datetime import date, datetime
+
+import requests
 from requests.auth import HTTPBasicAuth
-from setup import (
-    pure_username,
-    pure_password,
-    temporary_files_name,
-    pure_rest_api_url,
-    pure_api_key,
-    log_files_name,
-)
 from source.reports import Reports
+
+from setup import log_files_name, pure_api_key, pure_password, \
+    pure_rest_api_url, pure_username, temporary_files_name
 
 reports = Reports()
 

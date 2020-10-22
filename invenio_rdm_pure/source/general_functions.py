@@ -1,7 +1,8 @@
 import os
-from pathlib import Path
 from datetime import date, datetime
-from setup import pure_uuid_length, data_files_name
+from pathlib import Path
+
+from setup import data_files_name, pure_uuid_length
 
 
 def add_spaces(value: str, max_length=5):

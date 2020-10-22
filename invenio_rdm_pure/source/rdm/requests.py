@@ -1,14 +1,11 @@
-import requests
-import time
 import json
-from setup import (
-    token_rdm,
-    rdm_records_url,
-    temporary_files_name,
-    wait_429,
-    push_dist_sec,
-)
+import time
+
+import requests
 from source.reports import Reports
+
+from setup import push_dist_sec, rdm_records_url, temporary_files_name, \
+    token_rdm, wait_429
 
 
 class Requests:

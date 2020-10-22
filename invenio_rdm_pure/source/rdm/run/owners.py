@@ -1,24 +1,18 @@
 import json
 from datetime import date, datetime
-from setup import (
-    pure_rest_api_url,
-    token_rdm,
-    data_files_name,
-    pure_uuid_length,
-)
-from source.general_functions import (
-    initialize_counters,
-    add_spaces,
-    shorten_file_name,
-    file_read_lines,
-)
+
+from source.general_functions import add_spaces, file_read_lines, \
+    initialize_counters, shorten_file_name
 from source.pure.general_functions import get_next_page
 from source.pure.requests import get_pure_metadata
-from source.rdm.general_functions import GeneralFunctions
 from source.rdm.add_record import RdmAddRecord
 from source.rdm.database import RdmDatabase
+from source.rdm.general_functions import GeneralFunctions
 from source.rdm.requests import Requests
 from source.reports import Reports
+
+from setup import data_files_name, pure_rest_api_url, pure_uuid_length, \
+    token_rdm
 
 
 class RdmOwners:

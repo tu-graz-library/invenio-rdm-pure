@@ -1,8 +1,10 @@
-import os
 import json
-from setup import dirpath
-from source.reports import Reports
+import os
+
 from source.rdm.requests import Requests
+from source.reports import Reports
+
+from setup import dirpath
 
 
 class Testing:
