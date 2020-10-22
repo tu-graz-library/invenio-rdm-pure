@@ -2,9 +2,10 @@ import os
 
 import psycopg2
 import yaml
+from flask import current_app
 from source.reports import Reports
 
-from setup import database_uri, dirpath, pure_rdm_user_file
+from setup import database_uri, dirpath
 
 
 class RdmDatabase:
@@ -51,7 +52,7 @@ class RdmDatabase:
 
     def get_pure_admin_userid(self):
         """ Gets the userId of the Pure admin user """
-        email = open(pure_rdm_user_file, "r").read()
+        email = current_app.config.get("RDM_PURE_USER_EMAIL")
         email = f"'{email}'"
         response = self.select_query("id", "accounts_user", {"email": email})
         if not response:

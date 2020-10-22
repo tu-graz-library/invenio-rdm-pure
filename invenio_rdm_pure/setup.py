@@ -28,7 +28,6 @@ pure_import_path = "templates/invenio_rdm_pure/temporary_files"
 pure_import_file = f"{dirpath}/{pure_import_path}/pure_import.xml"
 
 # RDM user pure_admin
-pure_rdm_user_file = f"{data_setup_path}/rdmUser_pureEmail.txt"
 pure_rdm_password_file = f"{data_setup_path}/rdmUser_purePassword.txt"
 
 # EMAIL     -------- TO REVIEW ------------------
