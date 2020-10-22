@@ -12,9 +12,9 @@
 
 from datetime import timedelta
 
-from marshmallow.fields import Bool
 from invenio_records_rest.schemas.fields import SanitizedUnicode
 from marshmallow import fields
+from marshmallow.fields import Bool
 
 INVENIO_RDM_PURE_DEFAULT_VALUE = "foobar"
 """Default value for the application."""
