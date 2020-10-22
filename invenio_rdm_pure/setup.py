@@ -32,7 +32,6 @@ pure_rdm_user_file = f"{data_setup_path}/rdmUser_pureEmail.txt"
 pure_rdm_password_file = f"{data_setup_path}/rdmUser_purePassword.txt"
 
 # EMAIL     -------- TO REVIEW ------------------
-email_receiver = open(f"{data_setup_path}/email_receiver.txt", "r").readline()
 email_sender = open(f"{data_setup_path}/email_sender.txt", "r").readline()
 email_sender_password = open(
     f"{data_setup_path}/email_sender_password.txt", "r"
