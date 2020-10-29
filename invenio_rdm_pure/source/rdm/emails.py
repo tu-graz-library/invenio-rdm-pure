@@ -2,11 +2,7 @@ import smtplib
 
 from flask import current_app
 
-from setup import (
-    email_message,
-    email_smtp_port,
-    email_smtp_server,
-)
+from setup import email_message, email_smtp_port, email_smtp_server
 
 
 def send_email(uuid: str, file_name: str):

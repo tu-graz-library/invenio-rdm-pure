@@ -3,10 +3,16 @@ import os.path
 import time
 from datetime import date
 
-from source.general_functions import check_if_file_exists, file_read_lines, \
-    get_value, shorten_file_name
-from source.pure.general_functions import get_pure_file, \
-    get_pure_record_metadata_by_uuid
+from source.general_functions import (
+    check_if_file_exists,
+    file_read_lines,
+    get_value,
+    shorten_file_name,
+)
+from source.pure.general_functions import (
+    get_pure_file,
+    get_pure_record_metadata_by_uuid,
+)
 from source.pure.requests import get_pure_metadata
 from source.rdm.database import RdmDatabase
 from source.rdm.emails import send_email
@@ -17,9 +23,15 @@ from source.rdm.run.groups import RdmGroups
 from source.rdm.versioning import Versioning
 from source.reports import Reports
 
-from setup import accessright_pure_to_rdm, data_files_name, \
-    iso6393_file_name, possible_record_restrictions, push_dist_sec, \
-    resourcetype_pure_to_rdm, versioning_running
+from setup import (
+    accessright_pure_to_rdm,
+    data_files_name,
+    iso6393_file_name,
+    possible_record_restrictions,
+    push_dist_sec,
+    resourcetype_pure_to_rdm,
+    versioning_running,
+)
 
 
 class RdmAddRecord:

@@ -3,8 +3,12 @@ import os
 from xml.dom import minidom
 from xml.etree import ElementTree as ET
 
-from source.general_functions import add_spaces, check_if_directory_exists, \
-    current_date, get_value
+from source.general_functions import (
+    add_spaces,
+    check_if_directory_exists,
+    current_date,
+    get_value,
+)
 from source.pure.general_functions import get_pure_record_metadata_by_uuid
 from source.rdm.requests import Requests
 from source.reports import Reports

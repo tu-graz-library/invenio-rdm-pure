@@ -4,8 +4,13 @@ from datetime import date, datetime, timedelta
 from source.general_functions import check_if_file_exists, current_time
 from source.reports import Reports
 
-from setup import data_files_name, days_keep_log, dirpath, \
-    lines_successful_changes, reports_full_path
+from setup import (
+    data_files_name,
+    days_keep_log,
+    dirpath,
+    lines_successful_changes,
+    reports_full_path,
+)
 
 reports = Reports()
 

@@ -5,11 +5,7 @@ import requests
 from flask import current_app
 from source.reports import Reports
 
-from setup import (
-    push_dist_sec,
-    temporary_files_name,
-    wait_429,
-)
+from setup import push_dist_sec, temporary_files_name, wait_429
 
 
 class Requests:

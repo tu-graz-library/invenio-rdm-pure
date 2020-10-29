@@ -1,8 +1,11 @@
 import json
 from datetime import date, datetime, timedelta
 
-from source.general_functions import add_spaces, check_if_file_exists, \
-    initialize_counters
+from source.general_functions import (
+    add_spaces,
+    check_if_file_exists,
+    initialize_counters,
+)
 from source.pure.general_functions import get_next_page
 from source.pure.requests import get_pure_metadata
 from source.rdm.add_record import RdmAddRecord

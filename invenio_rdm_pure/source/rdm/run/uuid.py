@@ -1,5 +1,4 @@
-from source.general_functions import check_uuid_authenticity, \
-    initialize_counters
+from source.general_functions import check_uuid_authenticity, initialize_counters
 from source.rdm.add_record import RdmAddRecord
 from source.reports import Reports
 

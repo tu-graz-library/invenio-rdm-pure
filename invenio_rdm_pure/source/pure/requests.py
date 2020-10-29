@@ -6,10 +6,7 @@ from flask import current_app
 from requests.auth import HTTPBasicAuth
 from source.reports import Reports
 
-from setup import (
-    log_files_name,
-    temporary_files_name,
-)
+from setup import log_files_name, temporary_files_name
 
 reports = Reports()
 
