@@ -7,7 +7,7 @@
 
 """Invenio module that adds pure"""
 
-from .ext import invenio_rdm_pure
+from .ext import InvenioRdmPure
 from .version import __version__
 
-__all__ = ("__version__", "invenio_rdm_pure")
+__all__ = ("__version__", "InvenioRdmPure")

@@ -18,7 +18,7 @@ import pytest
 from flask import Flask
 from flask_babelex import Babel
 
-from invenio_rdm_pure import invenio_rdm_pure
+from invenio_rdm_pure import InvenioRdmPure
 from invenio_rdm_pure.views import blueprint
 
 
@@ -39,7 +39,7 @@ def create_app(instance_path):
         app = Flask("testapp", instance_path=instance_path)
         app.config.update(**config)
         Babel(app)
-        invenio_rdm_pure(app)
+        InvenioRdmPure(app)
         app.register_blueprint(blueprint)
         return app
 

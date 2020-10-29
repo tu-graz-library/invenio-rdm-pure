@@ -72,7 +72,7 @@ setup(
     platforms="any",
     entry_points={
         "invenio_base.apps": [
-            "invenio_rdm_pure = invenio_rdm_pure:invenio_rdm_pure",
+            "invenio_rdm_pure = invenio_rdm_pure:InvenioRdmPure",
         ],
         "invenio_base.blueprints": [
             "invenio_rdm_pure = invenio_rdm_pure.views:blueprint",

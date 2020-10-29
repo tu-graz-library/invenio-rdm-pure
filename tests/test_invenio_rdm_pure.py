@@ -9,7 +9,7 @@
 
 from flask import Flask
 
-from invenio_rdm_pure import invenio_rdm_pure
+from invenio_rdm_pure import InvenioRdmPure
 
 
 def test_version():
@@ -22,11 +22,11 @@ def test_version():
 def test_init():
     """Test extension initialization."""
     app = Flask("testapp")
-    ext = invenio_rdm_pure(app)
+    ext = InvenioRdmPure(app)
     assert "invenio-rdm-pure" in app.extensions
 
     app = Flask("testapp")
-    ext = invenio_rdm_pure()
+    ext = InvenioRdmPure()
     assert "invenio-rdm-pure" not in app.extensions
     ext.init_app(app)
     assert "invenio-rdm-pure" in app.extensions
