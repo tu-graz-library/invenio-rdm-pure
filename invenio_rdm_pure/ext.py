@@ -12,15 +12,11 @@ from flask_babelex import gettext as _
 from . import config
 
 
-class inveniordmpure(object):
+class InvenioRdmPure(object):
     """invenio-rdm-pure extension."""
 
     def __init__(self, app=None):
         """Extension initialization."""
-        # TODO: This is an example of translation string with comment. Please
-        # remove it.
-        # NOTE: This is a note to a translator.
-        _("A translation string")
         if app:
             self.init_app(app)
 
@@ -34,8 +30,25 @@ class inveniordmpure(object):
         # Use theme's base template if theme is installed
         if "BASE_TEMPLATE" in app.config:
             app.config.setdefault(
-                "INVENIO_RDM_PURE_BASE_TEMPLATE", app.config["BASE_TEMPLATE"],
+                "INVENIO_RDM_PURE_BASE_TEMPLATE",
+                app.config["BASE_TEMPLATE"],
             )
         for k in dir(config):
-            if k.startswith("INVENIO_RDM_PURE_"):
+            if (
+                k.startswith("INVENIO_RDM_PURE_")
+                or k.startswith("INVENIO_PURE")
+                or k.startswith("PURE")
+            ):
                 app.config.setdefault(k, getattr(config, k))
+        if "SQLALCHEMY_DATABASE_URI" in app.config:
+            database_uri = app.config.get("SQLALCHEMY_DATABASE_URI").split("//")[1]
+            database_credentials = database_uri.split("@")[0]
+            database_connection = database_uri.split("@")[1]
+            database_host = database_connection.split("/")[0]
+            database_name = database_connection.split("/")[1]
+            database_username = database_credentials.split(":")[0]
+            database_password = database_credentials.split(":")[1]
+            app.config.setdefault("INVENIO_DATABASE_HOST", database_host)
+            app.config.setdefault("INVENIO_DATABASE_NAME", database_name)
+            app.config.setdefault("INVENIO_DATABASE_USERNAME", database_username)
+            app.config.setdefault("INVENIO_DATABASE_PASSWORD", database_password)

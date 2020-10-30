@@ -1,17 +1,19 @@
 import json
 from datetime import date, datetime, timedelta
-from setup import data_files_name
+
 from source.general_functions import (
     add_spaces,
-    initialize_counters,
     check_if_file_exists,
+    initialize_counters,
 )
 from source.pure.general_functions import get_next_page
 from source.pure.requests import get_pure_metadata
-from source.rdm.general_functions import GeneralFunctions
 from source.rdm.add_record import RdmAddRecord
-from source.reports import Reports
 from source.rdm.delete_record import Delete
+from source.rdm.general_functions import GeneralFunctions
+from source.reports import Reports
+
+from setup import data_files_name
 
 
 class PureChanges:
@@ -22,8 +24,8 @@ class PureChanges:
         self.general_functions = GeneralFunctions()
 
     def get_pure_changes(self):
-        """ Gets from Pure 'changes' endpoint all records that have been created / updated / deleted 
-            and modifies accordingly the relative RDM records """
+        """Gets from Pure 'changes' endpoint all records that have been created / updated / deleted
+        and modifies accordingly the relative RDM records"""
 
         # Get date of last update
         missing_updates = self._get_missing_updates()
@@ -182,8 +184,8 @@ class PureChanges:
             self.add_record.push_record_by_uuid(self.global_counters, uuid)
 
     def _get_missing_updates(self):
-        """ Reading successful_changes.txt gets the dates in 
-            which Pure changes have not been processed """
+        """Reading successful_changes.txt gets the dates in
+        which Pure changes have not been processed"""
 
         file_name = data_files_name["successful_changes"]
         check_if_file_exists(file_name)

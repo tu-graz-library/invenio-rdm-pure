@@ -1,25 +1,23 @@
 import json
-import requests
 from datetime import date, datetime
+
+import requests
+from flask import current_app
 from requests.auth import HTTPBasicAuth
-from setup import (
-    pure_username,
-    pure_password,
-    temporary_files_name,
-    pure_rest_api_url,
-    pure_api_key,
-    log_files_name,
-)
 from source.reports import Reports
+
+from setup import log_files_name, temporary_files_name
 
 reports = Reports()
 
 
 def get_pure_metadata(endpoint, identifier="", parameters={}, review=True):
+    pure_api_key = current_app.config.get("PURE_API_KEY")
     headers = {
         "api-key": pure_api_key,
         "Accept": "application/json",
     }
+    pure_rest_api_url = current_app.config.get("PURE_API_URL")
     url = f"{pure_rest_api_url}{endpoint}/"
 
     # Identifies a person, research_output or date

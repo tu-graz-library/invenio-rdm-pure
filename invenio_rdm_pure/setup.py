@@ -1,5 +1,5 @@
-from datetime import date
 import os
+from datetime import date
 
 dirpath = os.path.dirname(os.path.abspath(__file__))
 
@@ -18,35 +18,16 @@ push_dist_sec = 0.8
 # Too many requests sent to RDM server (waits 15 minutes (900/60 = 15))
 # 429 is the HTTP response code
 wait_429 = 900
-# RDM
-rdm_host_url = open(f"{data_setup_path}/rdm_host_url.txt", "r").readline()
-token_rdm = open(f"{data_setup_path}/rdm_token.txt", "r").readline()
-rdm_records_url = f"{rdm_host_url}api/records/"
 
 # OTHER
 iso6393_file_name = f"{dirpath}/source/iso6393.json"
 pure_uuid_length = 36
 
-# Pure REST API references
-pure_rest_api_url = open(f"{data_setup_path}/pure_rest_api_url.txt", "r").readline()
-pure_api_key = open(f"{data_setup_path}/pure_api_key.txt", "r").readline()
-pure_password = open(f"{data_setup_path}/pure_password.txt", "r").readline()
-pure_username = open(f"{data_setup_path}/pure_username.txt", "r").readline()
-
 # Pure import
 pure_import_path = "templates/invenio_rdm_pure/temporary_files"
 pure_import_file = f"{dirpath}/{pure_import_path}/pure_import.xml"
 
-# RDM user pure_admin
-pure_rdm_user_file = f"{data_setup_path}/rdmUser_pureEmail.txt"
-pure_rdm_password_file = f"{data_setup_path}/rdmUser_purePassword.txt"
-
 # EMAIL     -------- TO REVIEW ------------------
-email_receiver = open(f"{data_setup_path}/email_receiver.txt", "r").readline()
-email_sender = open(f"{data_setup_path}/email_sender.txt", "r").readline()
-email_sender_password = open(
-    f"{data_setup_path}/email_sender_password.txt", "r"
-).readline()
 email_smtp_server = "smtp.gmail.com"
 email_smtp_port = 587
 email_subject = "Delete Pure file"

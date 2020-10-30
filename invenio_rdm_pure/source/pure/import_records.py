@@ -1,17 +1,19 @@
-import os
 import json
-from xml.etree import ElementTree as ET
+import os
 from xml.dom import minidom
-from source.rdm.requests import Requests
+from xml.etree import ElementTree as ET
+
 from source.general_functions import (
-    get_value,
-    current_date,
     add_spaces,
     check_if_directory_exists,
+    current_date,
+    get_value,
 )
 from source.pure.general_functions import get_pure_record_metadata_by_uuid
+from source.rdm.requests import Requests
 from source.reports import Reports
-from setup import pure_import_file, pure_import_path, dirpath
+
+from setup import dirpath, pure_import_file, pure_import_path
 
 
 class ImportRecords:
@@ -57,8 +59,8 @@ class ImportRecords:
         return os.path.isfile(file_name)
 
     def _check_uuid(self, item):
-        """ If a uuid is specified in the RDM record means that it was imported
-            from Pure. In this case, the record will be ignored """
+        """If a uuid is specified in the RDM record means that it was imported
+        from Pure. In this case, the record will be ignored"""
         if "uuid" in item:
             self.report.add(f"{self.report_base} Already in Pure")
             return False

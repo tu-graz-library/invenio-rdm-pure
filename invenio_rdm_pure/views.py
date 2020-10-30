@@ -8,16 +8,18 @@
 """Invenio module that adds pure"""
 
 import os
+
 from flask import Blueprint
 from flask_babelex import gettext as _
-from .setup import pure_import_file, dirpath, database_uri
-from .source.rdm.database_uri import get_db_uri
 
+from .setup import database_uri, dirpath, pure_import_file
 from .source.rdm.user_externalid import user_externalid
 
-
 blueprint = Blueprint(
-    "invenio_rdm_pure", __name__, template_folder="templates", static_folder="static",
+    "invenio_rdm_pure",
+    __name__,
+    template_folder="templates",
+    static_folder="static",
 )
 
 
@@ -28,12 +30,6 @@ def index1():
         # Run pure_import task to create the XML file
         os.system(f"python {dirpath}/cli.py pure_import")
     return open(pure_import_file, "r").read()
-
-
-@blueprint.route("/database_uri")
-def index2():
-    get_db_uri()
-    return "Files correctly created/updated"
 
 
 @blueprint.route("/user_import_records")

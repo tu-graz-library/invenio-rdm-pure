@@ -1,7 +1,8 @@
 from datetime import date, datetime
-from setup import log_files_name, dirpath
+
 from source.general_functions import add_spaces, check_if_directory_exists, current_time
 
+from setup import dirpath, log_files_name
 
 report_templates = {
     # GENERAL       ***

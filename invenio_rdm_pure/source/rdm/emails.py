@@ -1,12 +1,8 @@
 import smtplib
-from setup import (
-    email_receiver,
-    email_sender,
-    email_sender_password,
-    email_smtp_server,
-    email_smtp_port,
-    email_message,
-)
+
+from flask import current_app
+
+from setup import email_message, email_smtp_port, email_smtp_server
 
 
 def send_email(uuid: str, file_name: str):
@@ -18,10 +14,13 @@ def send_email(uuid: str, file_name: str):
     s.starttls()
 
     # Authentication
+    email_sender = current_app.config.get("RDM_PURE_USER_EMAIL")
+    email_sender_password = current_app.config.get("RDM_PURE_USER_PASSWORD")
     s.login(email_sender, email_sender_password)
 
     # sending the mail
     message = email_message.format(uuid, file_name)
+    email_receiver = current_app.config.get("PURE_RESPONSIBLE_EMAIL")
     s.sendmail(email_sender, email_receiver, message)
 
     # terminating the session

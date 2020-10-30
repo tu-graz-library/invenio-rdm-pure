@@ -1,8 +1,11 @@
+import os
+
 import psycopg2
 import yaml
-import os
+from flask import current_app
 from source.reports import Reports
-from setup import dirpath, pure_rdm_user_file, database_uri
+
+from setup import database_uri, dirpath
 
 
 class RdmDatabase:
@@ -15,10 +18,10 @@ class RdmDatabase:
     def _db_connect(self):
         """ Establis a connection to RDM database """
 
-        host = open(database_uri["db_host"], "r").readline()
-        name = open(database_uri["db_name"], "r").readline()
-        user = open(database_uri["db_user"], "r").readline()
-        password = open(database_uri["db_password"], "r").readline()
+        host = current_app.config.get("INVENIO_DATABASE_HOST")
+        name = current_app.config.get("INVENIO_DATABASE_NAME")
+        user = current_app.config.get("INVENIO_DATABASE_USERNAME")
+        password = current_app.config.get("INVENIO_DATABASE_PASSWORD")
 
         connection = psycopg2.connect(
             f"""\
@@ -49,7 +52,7 @@ class RdmDatabase:
 
     def get_pure_admin_userid(self):
         """ Gets the userId of the Pure admin user """
-        email = open(pure_rdm_user_file, "r").read()
+        email = current_app.config.get("RDM_PURE_USER_EMAIL")
         email = f"'{email}'"
         response = self.select_query("id", "accounts_user", {"email": email})
         if not response:

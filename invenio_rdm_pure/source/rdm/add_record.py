@@ -1,35 +1,37 @@
 import json
-import time
 import os.path
+import time
 from datetime import date
-from setup import (
-    versioning_running,
-    possible_record_restrictions,
-    data_files_name,
-    iso6393_file_name,
-    push_dist_sec,
-    accessright_pure_to_rdm,
-    resourcetype_pure_to_rdm,
-)
+
 from source.general_functions import (
-    shorten_file_name,
-    file_read_lines,
     check_if_file_exists,
+    file_read_lines,
     get_value,
+    shorten_file_name,
 )
 from source.pure.general_functions import (
-    get_pure_record_metadata_by_uuid,
     get_pure_file,
+    get_pure_record_metadata_by_uuid,
 )
 from source.pure.requests import get_pure_metadata
+from source.rdm.database import RdmDatabase
+from source.rdm.emails import send_email
 from source.rdm.general_functions import GeneralFunctions
 from source.rdm.put_file import rdm_add_file
-from source.rdm.emails import send_email
-from source.rdm.versioning import Versioning
-from source.rdm.run.groups import RdmGroups
-from source.rdm.database import RdmDatabase
 from source.rdm.requests import Requests
+from source.rdm.run.groups import RdmGroups
+from source.rdm.versioning import Versioning
 from source.reports import Reports
+
+from setup import (
+    accessright_pure_to_rdm,
+    data_files_name,
+    iso6393_file_name,
+    possible_record_restrictions,
+    push_dist_sec,
+    resourcetype_pure_to_rdm,
+    versioning_running,
+)
 
 
 class RdmAddRecord:
@@ -412,8 +414,8 @@ class RdmAddRecord:
                 )
 
     def _applied_restrictions_check(self):
-        """ Checks if the restrictions applied to the record are valid.
-            e.g. ['groups', 'owners', 'ip_range', 'ip_single'] """
+        """Checks if the restrictions applied to the record are valid.
+        e.g. ['groups', 'owners', 'ip_range', 'ip_single']"""
         if not "applied_restrictions" in self.data:
             return False
 
@@ -535,12 +537,12 @@ class RdmAddRecord:
         return False
 
     def _get_rdm_file_review(self):
-        """ 
-        When a record is updated in Pure, there will be a check 
+        """
+        When a record is updated in Pure, there will be a check
         if the new file from Pure is the same as the old file in RDM.
         To do so it makes a comparison on the file size.
-        If the size is not the same, then it will be uploaded to RDM 
-        and a new internal review will be required. 
+        If the size is not the same, then it will be uploaded to RDM
+        and a new internal review will be required.
         """
 
         # Get from RDM file size and internalReview
@@ -573,8 +575,8 @@ class RdmAddRecord:
                     )
 
     def get_files_data(self, item: dict):
-        """ Gets metadata information from electronicVersions and additionalFiles files.
-            It also downloads the relative files. The Metadata without file will be ignored """
+        """Gets metadata information from electronicVersions and additionalFiles files.
+        It also downloads the relative files. The Metadata without file will be ignored"""
         if "file" not in item:
             return False
         elif "fileURL" not in item["file"] or "fileName" not in item["file"]:
@@ -692,8 +694,8 @@ class RdmAddRecord:
         return True
 
     def _http_response_counter(self, status_code: int):
-        """ According to the given http status code creates 
-            a new object element or increaes an existing one  """
+        """According to the given http status code creates
+        a new object element or increaes an existing one"""
         if status_code not in self.global_counters["http_responses"]:
             self.global_counters["http_responses"][status_code] = 0
         self.global_counters["http_responses"][status_code] += 1

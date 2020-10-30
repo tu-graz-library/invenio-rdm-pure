@@ -1,15 +1,11 @@
-import requests
-import time
 import json
-from setup import (
-    token_rdm,
-    rdm_host_url,
-    rdm_records_url,
-    temporary_files_name,
-    wait_429,
-    push_dist_sec,
-)
+import time
+
+import requests
+from flask import current_app
 from source.reports import Reports
+
+from setup import push_dist_sec, temporary_files_name, wait_429
 
 
 class Requests:
@@ -22,8 +18,6 @@ class Requests:
             headers["Content-Type"] = "application/json"
         if "file" in parameters:
             headers["Content-Type"] = "application/octet-stream"
-        if "token" in parameters:
-            headers["Authorization"] = f"Bearer {token_rdm}"
         return headers
 
     def _request_params(self):
@@ -31,10 +25,11 @@ class Requests:
 
     def get_metadata(self, additional_parameters: str, recid=""):
 
-        headers = self._request_headers(["content_type", "token"])
+        headers = self._request_headers(["content_type"])
         params = self._request_params()
 
-        url = f"{rdm_records_url}{recid}"
+        rdm_record_url = current_app.config.get("RDM_RECORD_URL")
+        url = rdm_record_url.format(recid)
 
         # Add parameters to url
         if len(additional_parameters) > 0:
@@ -61,6 +56,8 @@ class Requests:
 
         data_utf8 = data.encode("utf-8")
 
+        rdm_records_url = current_app.config.get("RDM_RECORDS_URL")
+
         response = requests.post(
             rdm_records_url,
             headers=headers,
@@ -79,10 +76,11 @@ class Requests:
 
         data = json.dumps(data).encode("utf-8")
 
-        headers = self._request_headers(["content_type", "token"])
+        headers = self._request_headers(["content_type"])
         params = self._request_params()
 
-        url = f"{rdm_records_url}{recid}"
+        rdm_record_url = current_app.config.get("RDM_RECORD_URL")
+        url = rdm_record_url.format(recid)
 
         response = requests.put(
             url, headers=headers, params=params, data=data, verify=False
@@ -93,20 +91,24 @@ class Requests:
 
     def put_file(self, file_path_name: str, recid: str):
 
-        headers = self._request_headers(["file", "token"])
+        headers = self._request_headers(["file"])
         data = open(file_path_name, "rb").read()
 
         # Get only the file name
         file_name = file_path_name.split("/")[-1]
 
-        url = f"{rdm_records_url}{recid}/files/{file_name}"
+        rdm_record_url = current_app.config.get("RDM_RECORD_URL")
+        url = rdm_record_url.format(recid)
+
+        url += "/files/{file_name}"
 
         return requests.put(url, headers=headers, data=data, verify=False)
 
     def delete_metadata(self, recid: str):
 
-        headers = self._request_headers(["content_type", "token"])
-        url = f"{rdm_records_url}{recid}"
+        headers = self._request_headers(["content_type"])
+        rdm_record_url = current_app.config.get("RDM_RECORD_URL")
+        url = rdm_record_url.format(recid)
 
         response = requests.delete(url, headers=headers, verify=False)
 

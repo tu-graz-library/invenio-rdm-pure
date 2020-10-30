@@ -1,9 +1,10 @@
 import json
 import os
+
 from source.general_functions import add_spaces
 from source.pure.requests import get_pure_metadata
-from source.rdm.general_functions import GeneralFunctions
 from source.rdm.database import RdmDatabase
+from source.rdm.general_functions import GeneralFunctions
 from source.rdm.requests import Requests
 from source.reports import Reports
 
@@ -36,12 +37,12 @@ class RdmGroups:
 
     @_general_report_and_variables
     def rdm_group_split(self, old_group_externalId: str, new_groups_externalIds: list):
-        """ 
+        """
         1 - Create new groups
         2 - Add users to new groups
         3 - Remove users from old group
         4 - Delete old group
-        5 - Modify RDM record: 
+        5 - Modify RDM record:
             . group_restrictions
             . managingOrganisationUnit (if necessary)
             . organisationUnits
@@ -86,12 +87,12 @@ class RdmGroups:
 
     @_general_report_and_variables
     def rdm_group_merge(self, old_groups_externalId: list, new_group_externalId: str):
-        """ 
+        """
         1 - Create new group
         2 - Add users to new group
         3 - Remove users from old groups
         4 - Delete old groups
-        5 - Modify RDM records: 
+        5 - Modify RDM records:
             . group_restrictions
             . managingOrganisationUnit (if necessary)
             . organisationUnits

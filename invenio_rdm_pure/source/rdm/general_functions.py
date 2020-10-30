@@ -1,10 +1,13 @@
-import requests
 import json
-from setup import versioning_running, rdm_host_url
+
+import requests
+from flask import current_app
 from source.general_functions import add_spaces
+from source.rdm.delete_record import Delete
 from source.rdm.requests import Requests
 from source.reports import Reports
-from source.rdm.delete_record import Delete
+
+from setup import versioning_running
 
 
 class GeneralFunctions:
@@ -41,6 +44,7 @@ class GeneralFunctions:
 
             if count == 1:
                 # URLs to be transmitted to Pure if the record is successfuly added in RDM      # TODO TODO TODO TODO TODO
+                rdm_host_url = current_app.config.get("RDM_HOST_URL")
                 api_url = f"{rdm_host_url}api/records/{recid}"
                 landing_page_url = f"{rdm_host_url}records/{recid}"
                 newest_recid = recid
@@ -63,8 +67,8 @@ class GeneralFunctions:
 
     #   ---         ---         ---
     def get_userid_from_list_by_externalid(self, external_id: str, file_data: list):
-        """ given a user external_id, it checks if it is listed in data/user_ids_match.txt. 
-        If it is found it returns its relative user id """
+        """given a user external_id, it checks if it is listed in data/user_ids_match.txt.
+        If it is found it returns its relative user id"""
         for line in file_data:
             line = line.split("\n")[0]
             line = line.split(" ")
@@ -84,6 +88,7 @@ class GeneralFunctions:
 
         response = self.rdm_requests.put_metadata(recid, data)
 
+        rdm_host_url = current_app.config.get("RDM_HOST_URL")
         url = f"{rdm_host_url}api/records/{recid}"
         self.reports.add(f"\tRecord update @ {response} @ {url}")
 
