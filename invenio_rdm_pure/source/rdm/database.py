@@ -18,10 +18,10 @@ class RdmDatabase:
     def _db_connect(self):
         """ Establis a connection to RDM database """
 
-        host = open(database_uri["db_host"], "r").readline()
-        name = open(database_uri["db_name"], "r").readline()
-        user = open(database_uri["db_user"], "r").readline()
-        password = open(database_uri["db_password"], "r").readline()
+        host = current_app.config.get("INVENIO_DATABASE_HOST")
+        name = current_app.config.get("INVENIO_DATABASE_NAME")
+        user = current_app.config.get("INVENIO_DATABASE_USERNAME")
+        password = current_app.config.get("INVENIO_DATABASE_PASSWORD")
 
         connection = psycopg2.connect(
             f"""\
