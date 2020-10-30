@@ -101,20 +101,20 @@ INVENIO_PURE_CONFIG_PRESENT = False
     this variable should be set to True. """
 
 ## Invenio
-INVENIO_HOST_URL = "https://127.0.0.1:5000/"
-""" URL of invenio host. """
+INVENIO_PURE_HOST_URL = "https://127.0.0.1:5000/"
+""" URL of invenio host """
 
-INVENIO_RECORD_URL = INVENIO_HOST_URL + "api/records/{}"
-""" Endpoint to access single a record. """
+INVENIO_PURE_RECORD_URL = INVENIO_PURE_HOST_URL + "api/records/{}"
+""" Endpoint to access single a record """
 
-INVENIO_RECORDS_URL = INVENIO_HOST_URL + "api/records"
-""" Endpoint to access multiple records. """
+INVENIO_PURE_RECORDS_URL = INVENIO_PURE_HOST_URL + "api/records"
+""" Endpoint to access multiple records."""
 
 INVENIO_PURE_USER_EMAIL = ""
-""" Email of user creating the records. """
+""" Email of user creating the records """
 
 INVENIO_PURE_USER_PASSWORD = ""
-""" Password of user creating the records. """
+""" Password of user creating the records """
 
 
 ## Pure
@@ -125,10 +125,10 @@ PURE_API_KEY = ""
 """ Token/Key of the Pure Instance's REST API """
 
 PURE_USERNAME = ""
-""" Username of Pure user having the necessary permissions to acquire needed Pure entries. """
+""" Username of Pure user having the necessary permissions to acquire needed Pure entries """
 
 PURE_PASSWORD = ""
-""" Password of Pure user having the necessary permissions to acquire needed Pure entries. """
+""" Password of Pure user having the necessary permissions to acquire needed Pure entries """
 
 PURE_RESPONSIBLE_EMAIL = ""
-""" Email address of Pure user having the necessary permissions to delete Pure entries. """
+""" Email address of Pure user having the necessary permissions to delete Pure entries """

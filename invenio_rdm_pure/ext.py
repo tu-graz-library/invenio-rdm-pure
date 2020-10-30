@@ -34,5 +34,9 @@ class InvenioRdmPure(object):
                 app.config["BASE_TEMPLATE"],
             )
         for k in dir(config):
-            if k.startswith("INVENIO_RDM_PURE_"):
+            if (
+                k.startswith("INVENIO_RDM_PURE_")
+                or k.startswith("INVENIO_PURE")
+                or k.startswith("PURE")
+            ):
                 app.config.setdefault(k, getattr(config, k))
