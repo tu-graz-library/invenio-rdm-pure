@@ -1,3 +1,12 @@
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2020 Technische Universität Graz
+#
+# invenio-rdm-pure is free software; you can redistribute it and/or modify it
+# under the terms of the MIT License; see LICENSE file for more details.
+
+"""File description."""
+
 from source.general_functions import check_uuid_authenticity, initialize_counters
 from source.rdm.add_record import RdmAddRecord
 from source.reports import Reports
@@ -6,14 +15,17 @@ from setup import data_files_name
 
 
 class AddFromUuidList:
-    """ Reads from a txt file a list of record uuids and submit them to RDM """
+    """Reads from a txt file a list of record uuids and submit them to RDM."""
 
     def __init__(self):
+        """Description."""
         self.report = Reports()
         self.add_record = RdmAddRecord()
 
     def _set_counters_and_title(func):
+        """Description."""
         def _wrapper(self):
+            """Description."""
             self.report.add_template(
                 ["console"], ["general", "title"], ["PUSH RECORDS FROM LIST"]
             )
@@ -25,8 +37,7 @@ class AddFromUuidList:
 
     @_set_counters_and_title
     def add_from_uuid_list(self):
-        """ Submits to RDM all uuids in list (data/to_transfer.txt) """
-
+        """Submits to RDM all uuids in list (data/to_transfer.txt)."""
         uuids = self._read_file()
         if not uuids:
             return
@@ -43,7 +54,7 @@ class AddFromUuidList:
         return
 
     def _read_file(self):
-
+        """Description."""
         # read to_transmit.txt
         file_name = data_files_name["transfer_uuid_list"]
         uuids = open(file_name, "r").readlines()

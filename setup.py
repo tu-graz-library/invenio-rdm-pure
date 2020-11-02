@@ -5,7 +5,7 @@
 # invenio-rdm-pure is free software; you can redistribute it and/or modify it
 # under the terms of the MIT License; see LICENSE file for more details.
 
-"""Invenio module that adds pure"""
+"""Invenio module that adds pure."""
 
 import os
 
@@ -15,13 +15,8 @@ readme = open("README.rst").read()
 history = open("CHANGES.rst").read()
 
 tests_require = [
-    "check-manifest>=0.25",
-    "coverage>=4.0",
-    "isort>=4.3.3",
-    "pydocstyle>=2.0.0",
-    "pytest-cov>=2.5.1",
-    "pytest-pep8>=1.0.6",
-    "pytest-invenio>=1.2.1",
+    "pytest-invenio>=1.4.0",
+     "invenio-search[elasticsearch7]>=1.4.0",
 ]
 
 extras_require = {
@@ -43,8 +38,9 @@ setup_requires = [
 install_requires = [
     "Flask-BabelEx>=0.9.4",
     "docopt>=0.6.2",
-    "psycopg2>=2.8.4",
     "invenio_oauthclient>=1.2.1",
+    "invenio-rdm-records~=0.20.8",
+    "sqlalchemy-continuum>=1.3.11",
 ]
 
 packages = find_packages()

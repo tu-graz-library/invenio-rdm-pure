@@ -1,3 +1,12 @@
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2020 Technische Universität Graz
+#
+# invenio-rdm-pure is free software; you can redistribute it and/or modify it
+# under the terms of the MIT License; see LICENSE file for more details.
+
+"""File description."""
+
 import json
 import time
 
@@ -9,10 +18,14 @@ from setup import push_dist_sec, temporary_files_name, wait_429
 
 
 class Requests:
+    """Description."""
+
     def __init__(self):
+        """Description."""
         self.report = Reports()
 
     def _request_headers(self, parameters: list):
+        """Description."""
         headers = {}
         if "content_type" in parameters:
             headers["Content-Type"] = "application/json"
@@ -21,10 +34,11 @@ class Requests:
         return headers
 
     def _request_params(self):
+        """Description."""
         return (("prettyprint", "1"),)
 
     def get_metadata(self, additional_parameters: str, recid=""):
-
+        """Description."""
         headers = self._request_headers(["content_type"])
         params = self._request_params()
 
@@ -47,8 +61,7 @@ class Requests:
         return response
 
     def post_metadata(self, data: str):
-        """ Used to create a new record """
-
+        """Used to create a new record."""
         open(temporary_files_name["post_rdm_metadata"], "w").write(data)
 
         headers = self._request_headers(["content_type"])
@@ -72,8 +85,7 @@ class Requests:
         return response
 
     def put_metadata(self, recid: str, data: object):
-        """ Used to update an existing record """
-
+        """Used to update an existing record."""
         data = json.dumps(data).encode("utf-8")
 
         headers = self._request_headers(["content_type"])
@@ -90,7 +102,7 @@ class Requests:
         return response
 
     def put_file(self, file_path_name: str, recid: str):
-
+        """Description."""
         headers = self._request_headers(["file"])
         data = open(file_path_name, "rb").read()
 
@@ -105,7 +117,7 @@ class Requests:
         return requests.put(url, headers=headers, data=data, verify=False)
 
     def delete_metadata(self, recid: str):
-
+        """Description."""
         headers = self._request_headers(["content_type"])
         rdm_record_url = current_app.config.get("RDM_RECORD_URL")
         url = rdm_record_url.format(recid)
@@ -116,6 +128,7 @@ class Requests:
         return response
 
     def _check_response(self, response):
+        """Description."""
         http_code = response.status_code
         if http_code >= 300 and http_code != 429:
             self.report.add(str(response.content))
@@ -134,8 +147,7 @@ class Requests:
         return True
 
     def get_metadata_by_query(self, query_value: str):
-        """ Query RDM record metadata """
-
+        """Query RDM record metadata."""
         params = {"sort": "mostrecent", "size": 250, "page": 1, "q": f'"{query_value}"'}
         response = self.get_metadata(params)
 
@@ -143,8 +155,7 @@ class Requests:
         return response
 
     def get_metadata_by_recid(self, recid: str):
-        """ Having the record recid gets from RDM its metadata """
-
+        """Having the record recid gets from RDM its metadata."""
         if len(recid) != 11:
             report = f"\nERROR - The recid must have 11 characters. Given: {recid}\n"
             self.report.add(report)

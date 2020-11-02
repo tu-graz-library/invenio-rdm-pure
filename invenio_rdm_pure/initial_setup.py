@@ -1,9 +1,19 @@
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2020 Technische Universität Graz
+#
+# invenio-rdm-pure is free software; you can redistribute it and/or modify it
+# under the terms of the MIT License; see LICENSE file for more details.
+
+"""File description."""
+
 import getpass
 import os
 from pathlib import Path
 
 
 def _check_if_file_exists(file_name):
+    """_check_if_file_exists."""
     if not os.path.isfile(file_name):
         open(file_name, "a")
 

@@ -5,7 +5,7 @@
 # invenio-rdm-pure is free software; you can redistribute it and/or modify it
 # under the terms of the MIT License; see LICENSE file for more details.
 
-"""Invenio module that adds pure"""
+"""Invenio module that adds pure."""
 
 import os
 
@@ -25,6 +25,7 @@ blueprint = Blueprint(
 
 @blueprint.route("/pure_import_xml")
 def index1():
+    """Render pure_import_xml view."""
     # Check if the XML file does not exist
     if not os.path.isfile(pure_import_file):
         # Run pure_import task to create the XML file
@@ -34,6 +35,7 @@ def index1():
 
 @blueprint.route("/user_import_records")
 def index3():
+    """Render user_import_records view."""
     externalId = user_externalid()
     if not externalId:
         return "No user is logged in"

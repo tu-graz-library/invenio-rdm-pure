@@ -1,3 +1,12 @@
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2020 Technische Universität Graz
+#
+# invenio-rdm-pure is free software; you can redistribute it and/or modify it
+# under the terms of the MIT License; see LICENSE file for more details.
+
+"""File description."""
+
 import json
 from datetime import date, datetime, timedelta
 
@@ -17,16 +26,20 @@ from setup import data_files_name
 
 
 class PureChanges:
+    """Description."""
+
     def __init__(self):
+        """Description."""
         self.add_record = RdmAddRecord()
         self.report = Reports()
         self.delete = Delete()
         self.general_functions = GeneralFunctions()
 
     def get_pure_changes(self):
-        """Gets from Pure 'changes' endpoint all records that have been created / updated / deleted
-        and modifies accordingly the relative RDM records"""
+        """Gets from Pure 'changes' endpoint all records that have been created / updated / deleted.
 
+        and modifies accordingly the relative RDM records.
+        """
         # Get date of last update
         missing_updates = self._get_missing_updates()
 
@@ -39,8 +52,9 @@ class PureChanges:
         return
 
     def _set_counters_and_title(func):
+        """Description."""
         def _wrapper(self, changes_date: str):
-
+            """Description."""
             # Initialize global counters
             self.global_counters = initialize_counters()
 
@@ -60,8 +74,7 @@ class PureChanges:
 
     @_set_counters_and_title
     def _changes_by_date(self, changes_date: str):
-        """ Gets from Pure all changes that took place in a certain date """
-
+        """Gets from Pure all changes that took place in a certain date."""
         reference = changes_date
         page = 1
 
@@ -97,8 +110,7 @@ class PureChanges:
             page += 1
 
     def _records_to_process(self, response: object, page: int, changes_date: str):
-        """ Check if there are records in the response from pure """
-
+        """Check if there are records in the response from pure."""
         # Load response json
         json_response = json.loads(response.content)
 
@@ -119,8 +131,7 @@ class PureChanges:
         return json_response
 
     def _delete_records(self, json_response: dict):
-        """ Iterates over the Pure response and process all records that need to be deleted """
-
+        """Iterates over the Pure response and process all records that need to be deleted."""
         for item in json_response["items"]:
 
             if "changeType" not in item or "uuid" not in item:
@@ -149,8 +160,7 @@ class PureChanges:
         return True
 
     def _update_records(self, json_response: dict):
-        """ Iterates over the Pure response and process all records that need to be created/updated """
-
+        """Iterates over the Pure response and process all records that need to be created/updated."""
         for item in json_response["items"]:
 
             if "changeType" not in item or "uuid" not in item:
@@ -184,9 +194,7 @@ class PureChanges:
             self.add_record.push_record_by_uuid(self.global_counters, uuid)
 
     def _get_missing_updates(self):
-        """Reading successful_changes.txt gets the dates in
-        which Pure changes have not been processed"""
-
+        """Reading successful_changes.txt gets the dates in which Pure changes have not been processed."""
         file_name = data_files_name["successful_changes"]
         check_if_file_exists(file_name)
 
@@ -208,7 +216,7 @@ class PureChanges:
         return missing_updates
 
     def _report_summary(self):
-
+        """Description."""
         # Global counters
         self.report.summary_global_counters(self.report_files, self.global_counters)
 
@@ -219,7 +227,7 @@ class PureChanges:
         return
 
     def _initialize_local_counters(self):
-
+        """Description."""
         # Incomplete:  when the uuid or changeType are not specified
         # Duplicated:  e.g. when a record has been modified twice in a day
         # Irrelevant:  when familySystemName is not ResearchOutput

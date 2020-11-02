@@ -1,63 +1,39 @@
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2020 Technische Universität Graz
+#
+# invenio-rdm-pure is free software; you can redistribute it and/or modify it
+# under the terms of the MIT License; see LICENSE file for more details.
+
+"""File description."""
+
 from datetime import date, datetime
 
 from source.general_functions import add_spaces, check_if_directory_exists, current_time
 
 from setup import dirpath, log_files_name
 
-report_templates = {
-    # GENERAL       ***
-    "general": {
-        # Intro                     Arguments -> title, current time
-        "title": """
---   --   --
-
--- {} -- {}""",
-        # Summary global counters
-        "summary": """
-Successful      -> metadata: {} - files: {} - delete: {}
-Errors          -> metadata: {} - files: {} - delete: {}
-""",
-    },
-    # PAGES       ***
-    "pages": {
-        "page_and_size": "\nPage: {} - page size: {}",
-        #   --      --
-        "summary_single_line": """\
-{} - Page{} - Size{} - \
-Metadata (ok{}, error {}) - \
-File (ok{}, error{}) - \
-{}""",
-    },
-    # CHANGES       ***
-    "changes": {
-        "summary": """
-Pure changes:
-Update:     {} - Create:     {} - Delete:    {}
-Incomplete: {} - Duplicated: {} - Irrelevant:{}
-"""
-    },
-}
-
 
 class Reports:
-    """
-    It is the responsible for giving a feedback to the user regarding
+    """It is the responsible for giving a feedback to the user regarding.
+
     the steps performed during each task and the relative success.
+
     This information is available in the reports/ directory.
+
     """
 
     def add_template(self, files, template, arguments):
+        """Description."""
         if template == ["general", "title"]:
             arguments.append(current_time())
         report = report_templates[template[0]][template[1]].format(*arguments)
         self.add(report, files)
 
     def add(self, report, files=["console"]):
-
+        """Description."""
         report = self._report_columns_spaces(report)
-
         check_if_directory_exists(f"{dirpath}/reports")
-
         # For each log file
         for file in files:
             # Prints in console only when saving in console file
@@ -69,7 +45,7 @@ class Reports:
             open(file_name, "a").write(f"{report}\n")
 
     def _report_columns_spaces(self, report: str):
-        """ Sets the spacing between columns in a report line """
+        """Sets the spacing between columns in a report line."""
         count = 0
         result = ""
 
@@ -101,6 +77,7 @@ class Reports:
         return result
 
     def summary_global_counters(self, report_files, global_counters):
+        """Description."""
         arguments = []
         arguments.append(add_spaces(global_counters["metadata"]["success"]))
         arguments.append(add_spaces(global_counters["file"]["success"]))
@@ -115,7 +92,7 @@ class Reports:
             self.add(http_response_str, report_files)
 
     def pages_single_line(self, global_counters, pag, pag_size):
-        """ Adds to pages report log a summary of the page submission to RDM """
+        """Adds to pages report log a summary of the page submission to RDM."""
         current_time = datetime.now().strftime("%H:%M:%S")
         arguments = []
         arguments.append(add_spaces(current_time))
@@ -132,6 +109,7 @@ class Reports:
         return
 
     def metadata_http_responses(self, global_counters):
+        """Description."""
         if not global_counters["http_responses"]:
             return
         http_response_str = "Metadata HTTP responses -> "

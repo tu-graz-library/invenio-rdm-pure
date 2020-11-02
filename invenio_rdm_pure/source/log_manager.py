@@ -1,3 +1,12 @@
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2020 Technische Universität Graz
+#
+# invenio-rdm-pure is free software; you can redistribute it and/or modify it
+# under the terms of the MIT License; see LICENSE file for more details.
+
+"""File description."""
+
 import os
 from datetime import date, datetime, timedelta
 
@@ -17,10 +26,11 @@ reports = Reports()
 
 def delete_old_log_files():
     """
-    Deletes from reports/ directory all log files that exceed the
-    maximum days permanence (days_keep_log)
-    """
+    Deletes from reports/ directory all log files that exceed the.
 
+    maximum days permanence (days_keep_log).
+
+    """
     reports.add_template(
         ["console"], ["general", "title"], ["DELETE OLD LOGS", current_time() + "\n"]
     )
@@ -74,7 +84,7 @@ def delete_old_log_files():
 
 
 def align_response(file_name, action):
-
+    """Description."""
     max_length = 35
     spaces = max_length - len(str(file_name))
     file_with_spaces = str(file_name) + "".ljust(spaces)

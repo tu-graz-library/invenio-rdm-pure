@@ -1,3 +1,12 @@
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2020 Technische Universität Graz
+#
+# invenio-rdm-pure is free software; you can redistribute it and/or modify it
+# under the terms of the MIT License; see LICENSE file for more details.
+
+"""File description."""
+
 import json
 import os.path
 import time
@@ -35,7 +44,10 @@ from setup import (
 
 
 class RdmAddRecord:
+    """Description."""
+
     def __init__(self):
+        """Description."""
         self.rdm_requests = Requests()
         self.report = Reports()
         self.groups = RdmGroups()
@@ -44,14 +56,16 @@ class RdmAddRecord:
         self.rdm_db = RdmDatabase()
 
     def push_record_by_uuid(self, global_counters: dict, uuid: str):
-        """ Gets from Pure the metadata of a given uuid """
+        """Gets from Pure the metadata of a given uuid."""
         item = get_pure_record_metadata_by_uuid(uuid)
         if not item:
             return False
         return self.create_invenio_data(global_counters, item)
 
     def _set_initial_variables(func):
+        """Description."""
         def _wrapper(self, global_counters, item):
+            """Description."""
             self.global_counters = global_counters
             self.global_counters["total"] += 1
 
@@ -73,8 +87,7 @@ class RdmAddRecord:
 
     @_set_initial_variables
     def create_invenio_data(self, global_counters: dict, item: dict):
-        """ Process the data received from Pure and submits it to RDM """
-
+        """Process the data received from Pure and submits it to RDM."""
         # Versioning
         self._check_record_version()
 
@@ -153,6 +166,7 @@ class RdmAddRecord:
         self._update_all_uuid_versions()
 
     def _access_right_and_restrictions(self, item):
+        """Description."""
         # Access right
         permission = get_value(item, ["openAccessPermissions", 0, "value"])
         self.data["access_right"] = self._accessright_conversion(permission)
@@ -167,7 +181,7 @@ class RdmAddRecord:
             ]
 
     def _add_resource_type(self):
-
+        """Description."""
         # RDM   <-  <-  <-  PURE
         # publication       Article, Chapter, Book, Paper, (...) Thesis
         # poster            Poster
@@ -196,12 +210,14 @@ class RdmAddRecord:
             self.data["resource_type"]["subtype"] = "publication-other"
 
     def _add_title(self):
+        """Description."""
         title = get_value(self.item, ["title"])
         self.data["titles"] = [
             {"lang": self.language, "title": title, "type": "MainTitle"}
         ]
 
     def _add_description(self):
+        """Description."""
         abstract = get_value(self.item, ["abstracts", 0, "value"])
         if not abstract:
             abstract = "No description available for this record."
@@ -210,6 +226,7 @@ class RdmAddRecord:
         ]
 
     def _add_identifiers(self):
+        """Description."""
         self.data["version"] = "v0.0.2"
 
         self.data["identifiers"] = {  # TO REVIEW
@@ -217,6 +234,7 @@ class RdmAddRecord:
         }
 
     def _versioning_required(func):
+        """Description."""
         def _wrapper(self):
             if not versioning_running:
                 return
@@ -226,7 +244,7 @@ class RdmAddRecord:
 
     @_versioning_required
     def _check_record_version(self):
-        """ Checks if there are in RDM other versions of the same uuid """
+        """Checks if there are in RDM other versions of the same uuid."""
         # Get metadata version
         response = self.versioning.get_uuid_version(self.uuid)
         if response:
@@ -235,17 +253,18 @@ class RdmAddRecord:
 
     @_versioning_required
     def _update_all_uuid_versions(self):
-        """ Updates the versioning data of all records with the same uuid """
+        """Updates the versioning data of all records with the same uuid."""
         self.versioning.update_all_uuid_versions(self.uuid)
 
     def _check_record_owners(self):
-        """ Removes duplicate owners """
+        """Removes duplicate owners."""
         if "_owners" in self.item:
             self.data["_owners"] = list(set(self.item["_owners"]))
         else:
             self.data["_owners"] = list(set([1]))
 
     def _process_general_fields(self, item: dict):
+        """Description."""
         # Parameters:
         # 1- Pure records data
         # 2- RDM field
@@ -281,13 +300,13 @@ class RdmAddRecord:
         self._add_extension(item, "tug:managingOrganisationalUnit_externalId", path)
 
     def _add_extension(self, item: dict, rdm_field: str, path: list):
-        """ Adds the field to Pure extension """
+        """Adds the field to Pure extension."""
         value = get_value(item, path)
         if value:
             self.pure_extensions[rdm_field] = value
 
     def _process_electronic_versions(self):
-        """ Data relative to files """
+        """Data relative to files."""
         self.rdm_file_review = []
 
         if "electronicVersions" in self.item or "additionalFiles" in self.item:
@@ -299,7 +318,7 @@ class RdmAddRecord:
                 self.get_files_data(i)
 
     def _process_person_associations(self):
-        """ Process data ralative to the record creators """
+        """Process data ralative to the record creators."""
         if "personAssociations" not in self.item:
             return
 
@@ -355,15 +374,16 @@ class RdmAddRecord:
             # Append person to creators
             self.data["creators"].append(self.sub_data)
 
-    def _add_field_sub(
-        self, item: list, rdm_field_1: str, rdm_field_2: str, path: list
-    ):
-        """ Adds the field to sub_data """
-        value = get_value(item, path)
-        if value:
-            self.sub_data[rdm_field_1][rdm_field_2] = value
+#    def _add_field_sub(
+#        self, item: list, rdm_field_1: str, rdm_field_2: str, path: list
+#    ):
+#    """Adds the field to sub_data."""
+#        value = get_value(item, path)
+#        if value:
+#            self.sub_data[rdm_field_1][rdm_field_2] = value
 
     def _get_contributor_name(self, item: object):
+        """Description."""
         first_name = get_value(item, ["name", "firstName"])
         last_name = get_value(item, ["name", "lastName"])
 
@@ -375,6 +395,7 @@ class RdmAddRecord:
         self.sub_data["name"] = f"{first_name} {last_name}"
 
     def _process_contributor_orcid(self):
+        """Description."""
         if "uuid" in self.sub_data:
             person_uuid = self.sub_data["uuid"]
             person_name = self.sub_data["name"]
@@ -392,7 +413,7 @@ class RdmAddRecord:
                     self.sub_data["identifiers"]["orcid"] = orcid
 
     def _process_organisational_units(self):
-        """ Process the metadata relative to the organisational units """
+        """Process the metadata relative to the organisational units."""
         if "organisationalUnits" in self.item:
             self.data["group_restrictions"] = []
 
@@ -415,7 +436,9 @@ class RdmAddRecord:
 
     def _applied_restrictions_check(self):
         """Checks if the restrictions applied to the record are valid.
-        e.g. ['groups', 'owners', 'ip_range', 'ip_single']"""
+
+        e.g. ['groups', 'owners', 'ip_range', 'ip_single'].
+        """
         if not "applied_restrictions" in self.data:
             return False
 
@@ -428,7 +451,7 @@ class RdmAddRecord:
         return True
 
     def _post_metadata(self):
-        """ Submits the created json to RDM """
+        """Submits the created json to RDM."""
         uuid = self.item["uuid"]
         success_check = {"metadata": False, "file": False}
 
@@ -471,6 +494,7 @@ class RdmAddRecord:
         self._metadata_and_file_submission_check(success_check)
 
     def _process_post_response(self, response: object, uuid: str):
+        """Description."""
         # Count http responses
         self._http_response_counter(response.status_code)
 
@@ -486,6 +510,7 @@ class RdmAddRecord:
         return True
 
     def _process_file_response(self, response: object, success_check: object):
+        """Description."""
         if response:
             self.global_counters["file"]["success"] += 1
             success_check["file"] = True
@@ -494,7 +519,7 @@ class RdmAddRecord:
             self.global_counters["file"]["error"] += 1
 
     def _remove_uuid_from_list(self, uuid: str, file_name: str):
-        """ If the given uuid is in the given file then the line will be removed """
+        """If the given uuid is in the given file then the line will be removed."""
         check_if_file_exists(file_name)
 
         with open(file_name, "r") as f:
@@ -505,14 +530,14 @@ class RdmAddRecord:
                     f.write(line)
 
     def _add_field(self, item: list, rdm_field: str, path: list):
-        """ Adds the field to the data json """
+        """Adds the field to the data json."""
         value = get_value(item, path)
         if value:
             self.data[rdm_field] = value
         return
 
     def _accessright_conversion(self, pure_value: str):
-        """ Converts the Pure access right to the corresponding RDM value """
+        """Converts the Pure access right to the corresponding RDM value."""
         if pure_value in accessright_pure_to_rdm:
             return accessright_pure_to_rdm[pure_value]
 
@@ -522,7 +547,7 @@ class RdmAddRecord:
         return False
 
     def _language_conversion(self, pure_language: str):
-        """ Converts from pure full language name to iso6393 (3 characters) """
+        """Converts from pure full language name to iso6393 (3 characters)."""
         if pure_language == "Undefined/Unknown":
             return False
 
@@ -538,13 +563,16 @@ class RdmAddRecord:
 
     def _get_rdm_file_review(self):
         """
-        When a record is updated in Pure, there will be a check
+        When a record is updated in Pure, there will be a check.
+
         if the new file from Pure is the same as the old file in RDM.
+
         To do so it makes a comparison on the file size.
-        If the size is not the same, then it will be uploaded to RDM
+
+        If the size is not the same, then it will be uploaded to RDM.
+
         and a new internal review will be required.
         """
-
         # Get from RDM file size and internalReview
         params = {"sort": "mostrecent", "size": "100", "page": "1", "q": self.uuid}
         response = self.rdm_requests.get_metadata(params)
@@ -576,7 +604,9 @@ class RdmAddRecord:
 
     def get_files_data(self, item: dict):
         """Gets metadata information from electronicVersions and additionalFiles files.
-        It also downloads the relative files. The Metadata without file will be ignored"""
+
+        It also downloads the relative files. The Metadata without file will be ignored.
+        """
         if "file" not in item:
             return False
         elif "fileURL" not in item["file"] or "fileName" not in item["file"]:
@@ -627,13 +657,13 @@ class RdmAddRecord:
         self._process_file_download_response(response, file_name)
 
     def _add_subdata(self, item: list, rdm_field: str, path: list):
-        """ Adds the field to sub_data """
+        """Adds the field to sub_data."""
         value = get_value(item, path)
         if value:
             self.sub_data[rdm_field] = value
 
     def _process_file_download_response(self, response, file_name):
-        """ Checks if the file is already in RDM, and if it has already been reviewed """
+        """Checks if the file is already in RDM, and if it has already been reviewed."""
         # If the file is not in RDM
         if len(self.pure_rdm_file_match) == 0:
             match_review = "File not in RDM    "
@@ -656,7 +686,7 @@ class RdmAddRecord:
         self.record_files.append(file_name)
 
     def _get_orcid(self, person_uuid: str, name: str):
-        """ Gets from pure a person orcid """
+        """Gets from pure a person orcid."""
         # Pure request
         response = get_pure_metadata("persons", person_uuid, {}, False)
 
@@ -681,7 +711,7 @@ class RdmAddRecord:
         return False
 
     def _metadata_and_file_submission_check(self, success_check: dict):
-        """ Checks if both metadata and files were correctly transmitted """
+        """Checks if both metadata and files were correctly transmitted."""
         if success_check["metadata"] == True and success_check["file"] == True:
             # Remove uuid from to_transmit.txt
             self._remove_uuid_from_list(
@@ -694,8 +724,7 @@ class RdmAddRecord:
         return True
 
     def _http_response_counter(self, status_code: int):
-        """According to the given http status code creates
-        a new object element or increaes an existing one"""
+        """According to the given http status code creates a new object element or increaes an existing one."""
         if status_code not in self.global_counters["http_responses"]:
             self.global_counters["http_responses"][status_code] = 0
         self.global_counters["http_responses"][status_code] += 1

@@ -1,3 +1,12 @@
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2020 Technische Universität Graz
+#
+# invenio-rdm-pure is free software; you can redistribute it and/or modify it
+# under the terms of the MIT License; see LICENSE file for more details.
+
+"""File description."""
+
 import json
 
 import requests
@@ -11,7 +20,10 @@ from setup import versioning_running
 
 
 class GeneralFunctions:
+    """Description."""
+
     def __init__(self):
+        """Description."""
         self.rdm_requests = Requests()
         self.reports = Reports()
         self.delete = Delete()
@@ -19,12 +31,12 @@ class GeneralFunctions:
     def get_recid(self, uuid: str, global_counters: object):
         """
         Given a records' uuid, it returns all relative recids.
+
         It if needed to:
         1 - check if there are duplicates
         2 - delete duplicates
-        3 - add the record uuid and recid to all_rdm_records.txt
+        3 - add the record uuid and recid to all_rdm_records.txt.
         """
-
         response = self.rdm_requests.get_metadata_by_query(uuid)
 
         resp_json = json.loads(response.content)
@@ -67,8 +79,10 @@ class GeneralFunctions:
 
     #   ---         ---         ---
     def get_userid_from_list_by_externalid(self, external_id: str, file_data: list):
-        """given a user external_id, it checks if it is listed in data/user_ids_match.txt.
-        If it is found it returns its relative user id"""
+        """Given a user external_id, it checks if it is listed in data/user_ids_match.txt.
+
+        If it is found it returns its relative user id.
+        """
         for line in file_data:
             line = line.split("\n")[0]
             line = line.split(" ")
@@ -85,7 +99,7 @@ class GeneralFunctions:
 
     #   ---         ---         ---
     def update_rdm_record(self, recid: str, data: object):
-
+        """Description."""
         response = self.rdm_requests.put_metadata(recid, data)
 
         rdm_host_url = current_app.config.get("RDM_HOST_URL")

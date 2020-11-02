@@ -1,3 +1,12 @@
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2020 Technische Universität Graz
+#
+# invenio-rdm-pure is free software; you can redistribute it and/or modify it
+# under the terms of the MIT License; see LICENSE file for more details.
+
+"""File description."""
+
 import json
 import os
 from xml.dom import minidom
@@ -17,11 +26,15 @@ from setup import dirpath, pure_import_file, pure_import_path
 
 
 class ImportRecords:
+    """Description."""
+
     def __init__(self):
+        """Description."""
         self.rdm_requests = Requests()
         self.report = Reports()
 
     def run_import(self):
+        """Description."""
         # Report title
         self.report.add_template(["console"], ["general", "title"], ["PURE IMPORT"])
 
@@ -32,23 +45,19 @@ class ImportRecords:
 
         # Get RDM records by page
         while self.next_page:
-
             data = self._get_rdm_records_metadata(page)
-
             if not data:
                 if self._check_if_file_exists(pure_import_file):
                     self.report.add("\nTask correctly finished\n")
                 else:
                     self.report.add("\nTask ended - No xml file created\n")
                 return
-
             self._process_data(data, name_space)
-
             page += 1
-
         self._parse_xml()
 
     def _delete_old_xml(self):
+        """Description."""
         # Check if file exists
         if self._check_if_file_exists(pure_import_file):
             self.report.add("\nDelete old xml file")
@@ -56,18 +65,21 @@ class ImportRecords:
             os.remove(pure_import_file)
 
     def _check_if_file_exists(self, file_name):
+        """Description."""
         return os.path.isfile(file_name)
 
     def _check_uuid(self, item):
-        """If a uuid is specified in the RDM record means that it was imported
-        from Pure. In this case, the record will be ignored"""
+        """If a uuid is specified in the RDM record means that it was importedfrom Pure.
+
+        In this case, the record will be ignored.
+        """
         if "uuid" in item:
             self.report.add(f"{self.report_base} Already in Pure")
             return False
         return True
 
     def _check_date(self, item):
-        """ Checks if the record was created today """
+        """Checks if the record was created today."""
         if item["created"] > current_date():
             return True
         else:
@@ -76,8 +88,7 @@ class ImportRecords:
             return False
 
     def _create_xml(self):
-        """ Creates the xml file that will be imported in pure """
-
+        """Creates the xml file that will be imported in pure."""
         name_space = {
             "dataset": "v1.dataset.pure.atira.dk",
             "commons": "v3.commons.pure.atira.dk",
@@ -91,8 +102,7 @@ class ImportRecords:
         return name_space
 
     def _process_data(self, data, name_space):
-        """ Creates the xml file that will be imported in pure """
-
+        """Creates the xml file that will be imported in pure."""
         count = 0
 
         for item in data:
@@ -117,7 +127,7 @@ class ImportRecords:
             self._populate_xml(item_metadata, name_space)
 
     def _populate_xml(self, item, name_space):
-
+        """Description."""
         # Dataset element
         body = ET.SubElement(self.root, "{%s}dataset" % name_space["dataset"])
         body.set("type", "dataset")
@@ -170,6 +180,7 @@ class ImportRecords:
         self._add_organisations(body, name_space, item)
 
     def _add_publisher(self, body, name_space, item):
+        """Description."""
         publisher_name = get_value(item, ["publisherName"])
         publisher_uuid = get_value(item, ["publisherUuid"])
         publisher_type = get_value(item, ["publisherType"])
@@ -191,6 +202,7 @@ class ImportRecords:
         ).text = publisher_type
 
     def _add_organisations(self, body, name_space, item):
+        """Description."""
         if not "organisationalUnits" in item:
             return False
         organisations = self._sub_element(body, name_space["dataset"], "organisations")
@@ -211,6 +223,7 @@ class ImportRecords:
             name.text = get_value(unit_data, ["name"])
 
     def _add_persons(self, body, name_space, item):
+        """Description."""
         persons = self._sub_element(body, name_space["dataset"], "persons")
 
         for person_data in item["creators"]:
@@ -230,7 +243,7 @@ class ImportRecords:
             name.text = get_value(person_data, ["name"])
 
     def _add_links(self, body, name_space):
-        """ Adds relative links for RDM files and api """
+        """Adds relative links for RDM files and api."""
         link_files = get_value(self.full_item, ["links", "files"])
         link_self = get_value(self.full_item, ["links", "self"])
         recid = get_value(self.full_item, ["id"])
@@ -256,6 +269,7 @@ class ImportRecords:
                 ).text = "Link to record API"
 
     def _parse_xml(self):
+        """Description."""
         check_if_directory_exists(f"{dirpath}/{pure_import_path}")
 
         # Wrap it in an ElementTree instance and save as XML
@@ -263,24 +277,21 @@ class ImportRecords:
         open(pure_import_file, "w").write(xml_str)
 
     def _sub_element(self, element, namespace: str, sub_element_name: str):
-        """ Adds the the xml a sub element """
+        """Adds the the xml a sub element."""
         return ET.SubElement(element, "{%s}%s" % (namespace, sub_element_name))
 
-    def _add_attribute(
-        self, item: object, sub_element, attribute: str, value_path: list
-    ):
-        """ Gets from the rdm response a value and adds it as attribute to a given xml element """
-        value = get_value(item, value_path)
-        if value:
-            sub_element.set(attribute, value)
+#    def _add_attribute(self, item: object, sub_element, attribute: str, value_path: list):
+#    """Gets from the rdm response a value and adds it as attribute to a given xml element."""
+#        value = get_value(item, value_path)
+#        if value:
+#            sub_element.set(attribute, value)
 
     def _add_text(self, item: object, sub_element: object, path):
-        """ Gets from the rdm response a value and adds it as text to a given xml element """
+        """Gets from the rdm response a value and adds it as text to a given xml element."""
         sub_element.text = get_value(item, path)
 
     def _get_rdm_records_metadata(self, page: int):
-        """ Requests to rdm records metadata by page """
-
+        """Requests to rdm records metadata by page."""
         # Size of the pages received from RDM
         page_size = 50
 
@@ -299,6 +310,6 @@ class ImportRecords:
         self.report.add_template(
             ["console"], ["pages", "page_and_size"], [page, page_size]
         )
-        self.report.add("")  # adds empty line
+        self.report.add("")
 
         return json_data

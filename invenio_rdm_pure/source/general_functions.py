@@ -1,3 +1,12 @@
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2020 Technische Universität Graz
+#
+# invenio-rdm-pure is free software; you can redistribute it and/or modify it
+# under the terms of the MIT License; see LICENSE file for more details.
+
+"""File description."""
+
 import os
 from datetime import date, datetime
 from pathlib import Path
@@ -6,6 +15,7 @@ from setup import data_files_name, pure_uuid_length
 
 
 def add_spaces(value: str, max_length=5):
+    """Description."""
     # 5 is the standard maximum length of the given value
     spaces = max_length - len(str(value))
     if max_length > 5:
@@ -14,8 +24,7 @@ def add_spaces(value: str, max_length=5):
 
 
 def initialize_counters():
-    """ Initialize variables that will count through the whole task the success of each process """
-
+    """Initialize variables that will count through the whole task the success of each process."""
     global_counters = {
         "metadata": {
             "success": 0,
@@ -36,25 +45,29 @@ def initialize_counters():
 
 
 def current_time():
+    """Description."""
     return datetime.now().strftime("%H:%M:%S")
 
 
 def current_date():
+    """Description."""
     return datetime.today().strftime("%Y-%m-%d")
 
 
 def check_if_directory_exists(full_path: str):
+    """Description."""
     # If full_path does not exist creates the folder
     Path(full_path).mkdir(parents=True, exist_ok=True)
 
 
 def check_if_file_exists(file_name: str):
+    """Description."""
     if not os.path.isfile(file_name):
         open(file_name, "a")
 
 
 def file_read_lines(file_name: str):
-
+    """Description."""
     file_full_name = data_files_name[file_name]
 
     # Get file path
@@ -72,14 +85,14 @@ def file_read_lines(file_name: str):
 
 
 def check_uuid_authenticity(uuid: str):
-    """ Checks if lenght of the uuid is correct """
+    """Checks if lenght of the uuid is correct."""
     if len(uuid) != pure_uuid_length:
         return False
     return True
 
 
 def shorten_file_name(name: str):
-
+    """Description."""
     max_length = 60
     if len(name) > max_length:
         return name[0:max_length] + "..."
@@ -88,7 +101,7 @@ def shorten_file_name(name: str):
 
 
 def get_value(item, path: list):
-    """ Goes through the json item to get the information of the specified path """
+    """Goes through the json item to get the information of the specified path."""
     child = item
     count = 0
     # Iterates over the given path

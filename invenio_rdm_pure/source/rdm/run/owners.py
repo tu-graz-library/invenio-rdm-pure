@@ -1,3 +1,12 @@
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2020 Technische Universität Graz
+#
+# invenio-rdm-pure is free software; you can redistribute it and/or modify it
+# under the terms of the MIT License; see LICENSE file for more details.
+
+"""File description."""
+
 import json
 from datetime import date, datetime
 
@@ -19,7 +28,10 @@ from setup import data_files_name, pure_uuid_length
 
 
 class RdmOwners:
+    """Description."""
+
     def __init__(self):
+        """Description."""
         self.rdm_requests = Requests()
         self.rdm_db = RdmDatabase()
         self.report = Reports()
@@ -28,8 +40,9 @@ class RdmOwners:
         self.report_files = ["console", "owners"]
 
     def _set_counters_and_title(func):
+        """Description."""
         def _wrapper(self, identifier, identifier_value):
-
+            """Description."""
             self.report.add_template(
                 ["console"], ["general", "title"], ["OWNERS CHECK"]
             )
@@ -42,9 +55,10 @@ class RdmOwners:
 
     @_set_counters_and_title
     def run_owners(self, identifier: str, identifier_value: str):
-        """Gets from pure all the records related to a certain user (based on orcid or externalId),
-        afterwards it modifies/create RDM records accordingly."""
+        """Gets from pure all the records related to a certain user (based on orcid or externalId).
 
+        afterwards it modifies/create RDM records accordingly.
+        """
         self.report.add(f"\n{identifier}: {identifier_value}\n")
 
         # Gets the ID and IP of the logged in user
@@ -109,8 +123,7 @@ class RdmOwners:
         self._final_report()
 
     def _process_record_owners(self, recid):
-        """ Gets record metadata from RDM and checks if the user is already a record owner """
-
+        """Gets record metadata from RDM and checks if the user is already a record owner."""
         response = self.rdm_requests.get_metadata_by_recid(recid)
         rdm_json = json.loads(response.content)["metadata"]
 
@@ -127,8 +140,7 @@ class RdmOwners:
             self.local_counters["in_record"] += 1
 
     def _add_user_as_owner(self, data, recid):
-        """ Adds the current logged in user as record owner """
-
+        """Adds the current logged in user as record owner."""
         # When updating a record it is not possible to specify _communities field
         del data["_communities"]
 
@@ -144,7 +156,7 @@ class RdmOwners:
         self.local_counters["to_update"] += 1
 
     def _create_rdm_record(self, item: dict):
-        """ If a record of the processed user is not in RDM creates it """
+        """If a record of the processed user is not in RDM creates it."""
         item["_owners"] = [self.user_id]
 
         self.report.add("\tRDM record status @@ CREATE record")
@@ -154,6 +166,7 @@ class RdmOwners:
         self.rdm_add_record.create_invenio_data(self.global_counters, item)
 
     def _final_report(self):
+        """Description."""
         # Final report
         create = self.local_counters["create"]
         update = self.local_counters["to_update"]
@@ -163,8 +176,7 @@ class RdmOwners:
         self.report.summary_global_counters(self.report_files, self.global_counters)
 
     def _process_response(self, response: object, page: int):
-        """ Checks if there are records to process """
-
+        """Checks if there are records to process."""
         # Load response json
         resp_json = json.loads(response.content)
 
@@ -181,8 +193,7 @@ class RdmOwners:
         return resp_json
 
     def _get_user_uuid_from_pure(self, key_name: str, key_value: str):
-        """ Given the user's external id it return the relative user uuid  """
-
+        """Given the user's external id it return the relative user uuid."""
         # If the uuid is not found in the first x items then it will continue with the next page
         page = 1
         page_size = 10
@@ -231,8 +242,7 @@ class RdmOwners:
 
     #   ---         ---         ---
     def _get_user_id_from_rdm(self):
-        """ Gets the ID and IP of the logged in user """
-
+        """Gets the ID and IP of the logged in user."""
         table_name = "accounts_user_session_activity"
 
         # SQL query
@@ -257,8 +267,10 @@ class RdmOwners:
         return response[0][0]
 
     def _add_user_ids_match(self, external_id: str):
-        """Add user to user_ids_match.txt, where are specified:
-        rdm_user_id, user_uuid and user_external_id"""
+        """Add user to user_ids_match.txt, where are specified.
+
+        rdm_user_id, user_uuid and user_external_id.
+        """
         file_name = data_files_name["user_ids_match"]
 
         needs_to_add = self._check_user_ids_match("user_ids_match", external_id)
@@ -271,7 +283,7 @@ class RdmOwners:
             self.report.add(report, self.report_files)
 
     def _check_user_ids_match(self, file_name: str, external_id: str):
-
+        """Description."""
         lines = file_read_lines(file_name)
         for line in lines:
             line = line.split("\n")[0]

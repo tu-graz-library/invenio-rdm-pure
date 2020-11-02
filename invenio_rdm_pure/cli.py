@@ -1,4 +1,4 @@
-""" Pure synchronizer
+"""Pure synchronizer.
 
 Usage:
     shell_interface.py get_pure_changes
