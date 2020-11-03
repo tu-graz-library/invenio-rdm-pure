@@ -9,11 +9,13 @@
 
 import time
 
-from source.general_functions import current_time, file_read_lines
-from source.rdm.requests import Requests
-from source.reports import Reports
-
-from setup import data_files_name, push_dist_sec
+from invenio_rdm_pure.setup import data_files_name, push_dist_sec
+from invenio_rdm_pure.source.general_functions_source import (
+    current_time,
+    file_read_lines,
+)
+from invenio_rdm_pure.source.rdm.requests_rdm import Requests
+from invenio_rdm_pure.source.reports import Reports
 
 
 class Delete:

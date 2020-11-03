@@ -11,7 +11,7 @@ import os
 from datetime import date, datetime
 from pathlib import Path
 
-from setup import data_files_name, pure_uuid_length
+from invenio_rdm_pure.setup import data_files_name, pure_uuid_length
 
 
 def add_spaces(value: str, max_length=5):

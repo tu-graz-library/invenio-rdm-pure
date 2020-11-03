@@ -9,10 +9,9 @@
 
 import os
 
-from source.rdm.requests import Requests
-from source.reports import Reports
-
-from setup import temporary_files_name
+from invenio_rdm_pure.setup import temporary_files_name
+from invenio_rdm_pure.source.rdm.requests_rdm import Requests
+from invenio_rdm_pure.source.reports import Reports
 
 
 def rdm_add_file(file_name: str, recid: str):

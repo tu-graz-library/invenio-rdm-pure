@@ -13,9 +13,9 @@ from datetime import date, datetime
 import requests
 from flask import current_app
 from requests.auth import HTTPBasicAuth
-from source.reports import Reports
 
-from setup import log_files_name, temporary_files_name
+from invenio_rdm_pure.setup import log_files_name, temporary_files_name
+from invenio_rdm_pure.source.reports import Reports
 
 reports = Reports()
 

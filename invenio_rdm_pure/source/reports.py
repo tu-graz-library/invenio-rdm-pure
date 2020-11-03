@@ -9,9 +9,12 @@
 
 from datetime import date, datetime
 
-from source.general_functions import add_spaces, check_if_directory_exists, current_time
-
-from setup import dirpath, log_files_name
+from invenio_rdm_pure.setup import dirpath, log_files_name
+from invenio_rdm_pure.source.general_functions_source import (
+    add_spaces,
+    check_if_directory_exists,
+    current_time,
+)
 
 
 class Reports:

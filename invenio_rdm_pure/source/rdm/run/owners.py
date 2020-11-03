@@ -10,21 +10,20 @@
 import json
 from datetime import date, datetime
 
-from source.general_functions import (
+from invenio_rdm_pure.setup import data_files_name, pure_uuid_length
+from invenio_rdm_pure.source.general_functions_source import (
     add_spaces,
     file_read_lines,
     initialize_counters,
     shorten_file_name,
 )
-from source.pure.general_functions import get_next_page
-from source.pure.requests import get_pure_metadata
-from source.rdm.add_record import RdmAddRecord
-from source.rdm.database import RdmDatabase
-from source.rdm.general_functions import GeneralFunctions
-from source.rdm.requests import Requests
-from source.reports import Reports
-
-from setup import data_files_name, pure_uuid_length
+from invenio_rdm_pure.source.pure.general_functions_pure import get_next_page
+from invenio_rdm_pure.source.pure.requests_pure import get_pure_metadata
+from invenio_rdm_pure.source.rdm.add_record import RdmAddRecord
+from invenio_rdm_pure.source.rdm.database import RdmDatabase
+from invenio_rdm_pure.source.rdm.general_functions import GeneralFunctions
+from invenio_rdm_pure.source.rdm.requests_rdm import Requests
+from invenio_rdm_pure.source.reports import Reports
 
 
 class RdmOwners:

@@ -10,19 +10,18 @@
 import json
 from datetime import date, datetime, timedelta
 
-from source.general_functions import (
+from invenio_rdm_pure.setup import data_files_name
+from invenio_rdm_pure.source.general_functions_source import (
     add_spaces,
     check_if_file_exists,
     initialize_counters,
 )
-from source.pure.general_functions import get_next_page
-from source.pure.requests import get_pure_metadata
-from source.rdm.add_record import RdmAddRecord
-from source.rdm.delete_record import Delete
-from source.rdm.general_functions import GeneralFunctions
-from source.reports import Reports
-
-from setup import data_files_name
+from invenio_rdm_pure.source.pure.general_functions_pure import get_next_page
+from invenio_rdm_pure.source.pure.requests_pure import get_pure_metadata
+from invenio_rdm_pure.source.rdm.add_record import RdmAddRecord
+from invenio_rdm_pure.source.rdm.delete_record import Delete
+from invenio_rdm_pure.source.rdm.general_functions import GeneralFunctions
+from invenio_rdm_pure.source.reports import Reports
 
 
 class PureChanges:

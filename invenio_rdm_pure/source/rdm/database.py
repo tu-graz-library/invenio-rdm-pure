@@ -9,12 +9,12 @@
 
 import os
 
-import psycopg2
-import yaml
+# import psycopg2
+# import yaml
 from flask import current_app
-from source.reports import Reports
 
-from setup import database_uri, dirpath
+from invenio_rdm_pure.setup import database_uri, dirpath
+from invenio_rdm_pure.source.reports import Reports
 
 
 class RdmDatabase:
@@ -25,22 +25,22 @@ class RdmDatabase:
         self.report = Reports()
         self._db_connect()
 
-    def _db_connect(self):
-        """Establis a connection to RDM database."""
-        host = current_app.config.get("INVENIO_DATABASE_HOST")
-        name = current_app.config.get("INVENIO_DATABASE_NAME")
-        user = current_app.config.get("INVENIO_DATABASE_USERNAME")
-        password = current_app.config.get("INVENIO_DATABASE_PASSWORD")
+    # def _db_connect(self):
+    #     """Establis a connection to RDM database."""
+    #     host = current_app.config.get("INVENIO_DATABASE_HOST")
+    #     name = current_app.config.get("INVENIO_DATABASE_NAME")
+    #     user = current_app.config.get("INVENIO_DATABASE_USERNAME")
+    #     password = current_app.config.get("INVENIO_DATABASE_PASSWORD")
 
-        connection = psycopg2.connect(
-            f"""\
-            host={host} \
-            dbname={name} \
-            user={user} \
-            password={password} \
-            """
-        )
-        self.cursor = connection.cursor()
+    #     connection = psycopg2.connect(
+    #         f"""\
+    #         host={host} \
+    #         dbname={name} \
+    #         user={user} \
+    #         password={password} \
+    #         """
+    #     )
+    #     self.cursor = connection.cursor()
 
     def select_query(self, fields: str, table: str, filters={}):
         """Makes a select query to the database."""

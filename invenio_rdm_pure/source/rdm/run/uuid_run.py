@@ -7,11 +7,13 @@
 
 """File description."""
 
-from source.general_functions import check_uuid_authenticity, initialize_counters
-from source.rdm.add_record import RdmAddRecord
-from source.reports import Reports
-
-from setup import data_files_name
+from invenio_rdm_pure.setup import data_files_name
+from invenio_rdm_pure.source.general_functions_source import (
+    check_uuid_authenticity,
+    initialize_counters,
+)
+from invenio_rdm_pure.source.rdm.add_record import RdmAddRecord
+from invenio_rdm_pure.source.reports import Reports
 
 
 class AddFromUuidList:

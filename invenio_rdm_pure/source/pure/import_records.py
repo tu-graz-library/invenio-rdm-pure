@@ -12,17 +12,18 @@ import os
 from xml.dom import minidom
 from xml.etree import ElementTree as ET
 
-from source.general_functions import (
+from invenio_rdm_pure.setup import dirpath, pure_import_file, pure_import_path
+from invenio_rdm_pure.source.general_functions_source import (
     add_spaces,
     check_if_directory_exists,
     current_date,
     get_value,
 )
-from source.pure.general_functions import get_pure_record_metadata_by_uuid
-from source.rdm.requests import Requests
-from source.reports import Reports
-
-from setup import dirpath, pure_import_file, pure_import_path
+from invenio_rdm_pure.source.pure.general_functions_pure import (
+    get_pure_record_metadata_by_uuid,
+)
+from invenio_rdm_pure.source.rdm.requests_rdm import Requests
+from invenio_rdm_pure.source.reports import Reports
 
 
 class ImportRecords:
