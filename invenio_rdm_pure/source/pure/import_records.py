@@ -204,7 +204,7 @@ class ImportRecords:
 
     def _add_organisations(self, body, name_space, item):
         """Description."""
-        if not "organisationalUnits" in item:
+        if "organisationalUnits" not in item:
             return False
         organisations = self._sub_element(body, name_space["dataset"], "organisations")
 

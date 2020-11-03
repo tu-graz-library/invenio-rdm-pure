@@ -33,9 +33,9 @@ class ShellInterface:
 
     def changes(self):
         """Gets changes from Pure API endpoint.
-        
+
         all the records that have been created, modified and deleted.
-        
+
         Next updates accordingly RDM records.
         """
         pure_changes_by_date = PureChanges()

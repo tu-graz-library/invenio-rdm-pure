@@ -110,7 +110,7 @@ class RdmOwners:
                 recid = self.general_functions.get_recid(uuid, self.global_counters)
 
                 # Record NOT in RDM, create it
-                if recid == False:
+                if recid is False:
                     self._create_rdm_record(item)
                     continue
 
@@ -290,9 +290,7 @@ class RdmOwners:
 
             # Checks if at least one of the ids match
             if (
-                str(self.user_id) == line[0]
-                or self.user_uuid == line[1]
-                or external_id == line[2]
+                str(self.user_id) == line[0] or self.user_uuid == line[1] or external_id == line[2]
             ):
 
                 if line == [str(self.user_id), self.user_uuid, external_id]:

@@ -401,8 +401,7 @@ class RdmAddRecord:
 
             # External persons are not present in 'persons' Pure API endpoint
             if (
-                "type_p" in self.sub_data
-                and self.sub_data["type_p"] == "External person"
+                "type_p" in self.sub_data and self.sub_data["type_p"] == "External person"
             ):
                 report = f"\tPure get orcid @@ External person @ {person_uuid} @ {person_name}"
                 self.report.add(report)
@@ -438,7 +437,7 @@ class RdmAddRecord:
 
         e.g. ['groups', 'owners', 'ip_range', 'ip_single'].
         """
-        if not "applied_restrictions" in self.data:
+        if "applied_restrictions" not in self.data:
             return False
 
         for i in self.data["applied_restrictions"]:
@@ -668,7 +667,7 @@ class RdmAddRecord:
             match_review = "File not in RDM    "
 
         # If the file in pure is different from the one in RDM
-        elif self.pure_rdm_file_match[0] == False:
+        elif self.pure_rdm_file_match[0] is False:
             match_review = "Match: F, Review: -"
 
         # If the file is the same, checks if the one in RDM has been reviewed by internal stuff
@@ -711,7 +710,7 @@ class RdmAddRecord:
 
     def _metadata_and_file_submission_check(self, success_check: dict):
         """Checks if both metadata and files were correctly transmitted."""
-        if success_check["metadata"] == True and success_check["file"] == True:
+        if success_check["metadata"] is True and success_check["file"] is True:
             # Remove uuid from to_transmit.txt
             self._remove_uuid_from_list(
                 self.uuid, data_files_name["transfer_uuid_list"]

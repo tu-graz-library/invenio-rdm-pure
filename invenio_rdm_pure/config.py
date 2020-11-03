@@ -96,11 +96,13 @@ RDM_RECORDS_METADATA_NAMESPACES = {
 
 # Invenio-RDM-Pure
 INVENIO_PURE_CONFIG_PRESENT = False
-"""Helper variable to check the presence of pure configuration. 
-   If the values are present and correct in invenio.cfg 
-   this variable should be set to True."""
+"""Helper variable to check the presence of pure configuration.
 
-## Invenio
+   If the values are present and correct in invenio.cfg
+   this variable should be set to True.
+   """
+
+# Invenio
 INVENIO_PURE_HOST_URL = "https://127.0.0.1:5000/"
 """URL of invenio host."""
 
@@ -117,7 +119,7 @@ INVENIO_PURE_USER_PASSWORD = ""
 """Password of user creating the records."""
 
 
-## Pure
+# Pure
 PURE_API_URL = ""
 """URL of the Pure Instance's REST API."""
 

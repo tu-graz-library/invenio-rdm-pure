@@ -30,10 +30,3 @@ def test_init():
     assert "invenio-rdm-pure" not in app.extensions
     ext.init_app(app)
     assert "invenio-rdm-pure" in app.extensions
-
-
-def test_view(base_client):
-    """Test view."""
-    res = base_client.get("/")
-    assert res.status_code == 200
-    assert "Welcome to invenio-rdm-pure" in str(res.data)
