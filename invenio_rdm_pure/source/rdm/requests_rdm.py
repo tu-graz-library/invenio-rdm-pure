@@ -42,7 +42,7 @@ class Requests:
         headers = self._request_headers(["content_type"])
         params = self._request_params()
 
-        rdm_record_url = current_app.config.get("RDM_RECORD_URL")
+        rdm_record_url = current_app.config.get("INVENIO_PURE_RECORD_URL")
         url = rdm_record_url.format(recid)
 
         # Add parameters to url
@@ -69,7 +69,7 @@ class Requests:
 
         data_utf8 = data.encode("utf-8")
 
-        rdm_records_url = current_app.config.get("RDM_RECORDS_URL")
+        rdm_records_url = current_app.config.get("INVENIO_PURE_RECORDS_URL")
 
         response = requests.post(
             rdm_records_url,
@@ -91,7 +91,7 @@ class Requests:
         headers = self._request_headers(["content_type"])
         params = self._request_params()
 
-        rdm_record_url = current_app.config.get("RDM_RECORD_URL")
+        rdm_record_url = current_app.config.get("INVENIO_PURE_RECORD_URL")
         url = rdm_record_url.format(recid)
 
         response = requests.put(
@@ -109,7 +109,7 @@ class Requests:
         # Get only the file name
         file_name = file_path_name.split("/")[-1]
 
-        rdm_record_url = current_app.config.get("RDM_RECORD_URL")
+        rdm_record_url = current_app.config.get("INVENIO_PURE_RECORD_URL")
         url = rdm_record_url.format(recid)
 
         url += "/files/{file_name}"
@@ -119,7 +119,7 @@ class Requests:
     def delete_metadata(self, recid: str):
         """Description."""
         headers = self._request_headers(["content_type"])
-        rdm_record_url = current_app.config.get("RDM_RECORD_URL")
+        rdm_record_url = current_app.config.get("INVENIO_PURE_RECORD_URL")
         url = rdm_record_url.format(recid)
 
         response = requests.delete(url, headers=headers, verify=False)

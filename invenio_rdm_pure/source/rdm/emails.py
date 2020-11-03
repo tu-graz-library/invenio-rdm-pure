@@ -23,8 +23,8 @@ def send_email(uuid: str, file_name: str):
     s.starttls()
 
     # Authentication
-    email_sender = current_app.config.get("RDM_PURE_USER_EMAIL")
-    email_sender_password = current_app.config.get("RDM_PURE_USER_PASSWORD")
+    email_sender = current_app.config.get("INVENIO_PURE_USER_EMAIL")
+    email_sender_password = current_app.config.get("INVENIO_PURE_USER_PASSWORD")
     s.login(email_sender, email_sender_password)
 
     # sending the mail
