@@ -16,6 +16,39 @@ from invenio_rdm_pure.source.general_functions_source import (
     current_time,
 )
 
+report_templates = {
+    # GENERAL       ***
+    "general": {
+        # Intro                     Arguments -> title, current time
+        "title": """
+--   --   --
+-- {} -- {}""",
+        # Summary global counters
+        "summary": """
+Successful      -> metadata: {} - files: {} - delete: {}
+Errors          -> metadata: {} - files: {} - delete: {}
+""",
+    },
+    # PAGES       ***
+    "pages": {
+        "page_and_size": "\nPage: {} - page size: {}",
+        #   --      --
+        "summary_single_line": """\
+{} - Page{} - Size{} - \
+Metadata (ok{}, error {}) - \
+File (ok{}, error{}) - \
+{}""",
+    },
+    # CHANGES       ***
+    "changes": {
+        "summary": """
+Pure changes:
+Update:     {} - Create:     {} - Delete:    {}
+Incomplete: {} - Duplicated: {} - Irrelevant:{}
+"""
+    },
+}
+
 
 class Reports:
     """It is the responsible for giving a feedback to the user regarding.
