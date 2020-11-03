@@ -9,10 +9,10 @@
 
 import json
 
-from invenio_rdm_pure.source.general_functions_source import add_spaces
-from invenio_rdm_pure.source.rdm.general_functions import GeneralFunctions
-from invenio_rdm_pure.source.rdm.requests_rdm import Requests
-from invenio_rdm_pure.source.reports import Reports
+from ..general_functions_source import add_spaces
+from ..reports import Reports
+from .general_functions import GeneralFunctions
+from .requests_rdm import Requests
 
 
 class Versioning:

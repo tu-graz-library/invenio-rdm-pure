@@ -10,20 +10,20 @@
 import json
 from datetime import date, datetime
 
-from invenio_rdm_pure.setup import data_files_name, pure_uuid_length
-from invenio_rdm_pure.source.general_functions_source import (
+from ....setup import data_files_name, pure_uuid_length
+from ...general_functions_source import (
     add_spaces,
     file_read_lines,
     initialize_counters,
     shorten_file_name,
 )
-from invenio_rdm_pure.source.pure.general_functions_pure import get_next_page
-from invenio_rdm_pure.source.pure.requests_pure import get_pure_metadata
-from invenio_rdm_pure.source.rdm.add_record import RdmAddRecord
-from invenio_rdm_pure.source.rdm.database import RdmDatabase
-from invenio_rdm_pure.source.rdm.general_functions import GeneralFunctions
-from invenio_rdm_pure.source.rdm.requests_rdm import Requests
-from invenio_rdm_pure.source.reports import Reports
+from ...pure.general_functions_pure import get_next_page
+from ...pure.requests_pure import get_pure_metadata
+from ...reports import Reports
+from ..add_record import RdmAddRecord
+from ..database import RdmDatabase
+from ..general_functions import GeneralFunctions
+from ..requests_rdm import Requests
 
 
 class RdmOwners:
@@ -40,6 +40,7 @@ class RdmOwners:
 
     def _set_counters_and_title(func):
         """Description."""
+
         def _wrapper(self, identifier, identifier_value):
             """Description."""
             self.report.add_template(
@@ -290,7 +291,9 @@ class RdmOwners:
 
             # Checks if at least one of the ids match
             if (
-                str(self.user_id) == line[0] or self.user_uuid == line[1] or external_id == line[2]
+                str(self.user_id) == line[0]
+                or self.user_uuid == line[1]
+                or external_id == line[2]
             ):
 
                 if line == [str(self.user_id), self.user_uuid, external_id]:

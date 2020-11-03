@@ -10,12 +10,12 @@
 import json
 import os
 
-from invenio_rdm_pure.source.general_functions_source import add_spaces
-from invenio_rdm_pure.source.pure.requests_pure import get_pure_metadata
-from invenio_rdm_pure.source.rdm.database import RdmDatabase
-from invenio_rdm_pure.source.rdm.general_functions import GeneralFunctions
-from invenio_rdm_pure.source.rdm.requests_rdm import Requests
-from invenio_rdm_pure.source.reports import Reports
+from ...general_functions_source import add_spaces
+from ...pure.requests_pure import get_pure_metadata
+from ...reports import Reports
+from ..database import RdmDatabase
+from ..general_functions import GeneralFunctions
+from ..requests_rdm import Requests
 
 
 class RdmGroups:
@@ -31,6 +31,7 @@ class RdmGroups:
 
     def _general_report_and_variables(func):
         """Description."""
+
         def _wrapper(self, old_group_externalId, new_groups_externalIds):
             self.report.add_template(
                 self.report_files, ["general", "title"], ["GROUP SPLIT"]
@@ -89,6 +90,7 @@ class RdmGroups:
 
     def _general_report_and_variables(func):
         """Description."""
+
         def _wrapper(self, old_groups_externalId, new_group_externalId):
             self.report.add_template(
                 self.report_files, ["general", "title"], ["GROUP MERGE"]
@@ -154,7 +156,9 @@ class RdmGroups:
         self.report.add(report, self.report_files)
         return group_id
 
-    def _rdm_split_modify_record(self, old_group_externalId: str, new_groups_externalIds: list):
+    def _rdm_split_modify_record(
+        self, old_group_externalId: str, new_groups_externalIds: list
+    ):
         """Description."""
         # Get from RDM all old group's records
         response = self.rdm_requests.get_metadata_by_query(old_group_externalId)
@@ -193,7 +197,9 @@ class RdmGroups:
 
         return True
 
-    def _process_managing_organisational_unit(self, item: object, old_group_externalId: str):
+    def _process_managing_organisational_unit(
+        self, item: object, old_group_externalId: str
+    ):
         """Description."""
         managing_org_unit_externalid_value = item["extensions"][
             "tug:managingOrganisationalUnit_externalId"
@@ -210,7 +216,9 @@ class RdmGroups:
             ] = self.new_groups_data[0]["externalId"]
         return item
 
-    def _rdm_split_users_from_old_to_new_group(self, old_group_id: str, old_group_externalId: str, new_groups_externalIds: list):
+    def _rdm_split_users_from_old_to_new_group(
+        self, old_group_id: str, old_group_externalId: str, new_groups_externalIds: list
+    ):
         """Description."""
         # Get all users in old group
         response = self.rdm_db.select_query(

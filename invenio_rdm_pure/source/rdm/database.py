@@ -13,8 +13,8 @@ import os
 # import yaml
 from flask import current_app
 
-from invenio_rdm_pure.setup import database_uri, dirpath
-from invenio_rdm_pure.source.reports import Reports
+from ...setup import database_uri, dirpath
+from ..reports import Reports
 
 
 class RdmDatabase:

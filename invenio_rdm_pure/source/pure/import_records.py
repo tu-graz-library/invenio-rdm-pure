@@ -12,18 +12,17 @@ import os
 from xml.dom import minidom
 from xml.etree import ElementTree as ET
 
-from invenio_rdm_pure.setup import dirpath, pure_import_file, pure_import_path
-from invenio_rdm_pure.source.general_functions_source import (
+from setup import dirpath, pure_import_file, pure_import_path
+
+from ..general_functions_source import (
     add_spaces,
     check_if_directory_exists,
     current_date,
     get_value,
 )
-from invenio_rdm_pure.source.pure.general_functions_pure import (
-    get_pure_record_metadata_by_uuid,
-)
-from invenio_rdm_pure.source.rdm.requests_rdm import Requests
-from invenio_rdm_pure.source.reports import Reports
+from ..rdm.requests_rdm import Requests
+from ..reports import Reports
+from .general_functions_pure import get_pure_record_metadata_by_uuid
 
 
 class ImportRecords:
@@ -281,11 +280,11 @@ class ImportRecords:
         """Adds the the xml a sub element."""
         return ET.SubElement(element, "{%s}%s" % (namespace, sub_element_name))
 
-#    def _add_attribute(self, item: object, sub_element, attribute: str, value_path: list):
-#    """Gets from the rdm response a value and adds it as attribute to a given xml element."""
-#        value = get_value(item, value_path)
-#        if value:
-#            sub_element.set(attribute, value)
+    #    def _add_attribute(self, item: object, sub_element, attribute: str, value_path: list):
+    #    """Gets from the rdm response a value and adds it as attribute to a given xml element."""
+    #        value = get_value(item, value_path)
+    #        if value:
+    #            sub_element.set(attribute, value)
 
     def _add_text(self, item: object, sub_element: object, path):
         """Gets from the rdm response a value and adds it as text to a given xml element."""

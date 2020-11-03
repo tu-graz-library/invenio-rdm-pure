@@ -12,7 +12,11 @@ import os.path
 import time
 from datetime import date
 
-from invenio_rdm_pure.setup import (
+from flask import current_app
+from invenio_db import InvenioDB, db
+from invenio_records import InvenioRecords, Record
+
+from ...setup import (
     accessright_pure_to_rdm,
     data_files_name,
     iso6393_file_name,
@@ -21,25 +25,22 @@ from invenio_rdm_pure.setup import (
     resourcetype_pure_to_rdm,
     versioning_running,
 )
-from invenio_rdm_pure.source.general_functions_source import (
+from ..general_functions_source import (
     check_if_file_exists,
     file_read_lines,
     get_value,
     shorten_file_name,
 )
-from invenio_rdm_pure.source.pure.general_functions_pure import (
-    get_pure_file,
-    get_pure_record_metadata_by_uuid,
-)
-from invenio_rdm_pure.source.pure.requests_pure import get_pure_metadata
-from invenio_rdm_pure.source.rdm.database import RdmDatabase
-from invenio_rdm_pure.source.rdm.emails import send_email
-from invenio_rdm_pure.source.rdm.general_functions import GeneralFunctions
-from invenio_rdm_pure.source.rdm.put_file import rdm_add_file
-from invenio_rdm_pure.source.rdm.requests_rdm import Requests
-from invenio_rdm_pure.source.rdm.run.groups import RdmGroups
-from invenio_rdm_pure.source.rdm.versioning import Versioning
-from invenio_rdm_pure.source.reports import Reports
+from ..pure.general_functions_pure import get_pure_file, get_pure_record_metadata_by_uuid
+from ..pure.requests_pure import get_pure_metadata
+from ..rdm.database import RdmDatabase
+from ..rdm.emails import send_email
+from ..rdm.general_functions import GeneralFunctions
+from ..rdm.put_file import rdm_add_file
+from ..rdm.requests_rdm import Requests
+from ..rdm.run.groups import RdmGroups
+from ..rdm.versioning import Versioning
+from ..reports import Reports
 
 
 class RdmAddRecord:

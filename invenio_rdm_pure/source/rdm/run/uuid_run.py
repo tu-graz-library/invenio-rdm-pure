@@ -1,19 +1,8 @@
-# -*- coding: utf-8 -*-
-#
-# Copyright (C) 2020 Technische Universität Graz
-#
-# invenio-rdm-pure is free software; you can redistribute it and/or modify it
-# under the terms of the MIT License; see LICENSE file for more details.
+from setup import data_files_name
 
-"""File description."""
-
-from invenio_rdm_pure.setup import data_files_name
-from invenio_rdm_pure.source.general_functions_source import (
-    check_uuid_authenticity,
-    initialize_counters,
-)
-from invenio_rdm_pure.source.rdm.add_record import RdmAddRecord
-from invenio_rdm_pure.source.reports import Reports
+from ...general_functions_source import check_uuid_authenticity, initialize_counters
+from ...reports import Reports
+from ..add_record import RdmAddRecord
 
 
 class AddFromUuidList:
@@ -26,6 +15,7 @@ class AddFromUuidList:
 
     def _set_counters_and_title(func):
         """Description."""
+
         def _wrapper(self):
             """Description."""
             self.report.add_template(

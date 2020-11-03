@@ -9,10 +9,10 @@
 
 import json
 
-from invenio_rdm_pure.source.general_functions_source import initialize_counters
-from invenio_rdm_pure.source.pure.requests_pure import get_pure_metadata
-from invenio_rdm_pure.source.rdm.add_record import RdmAddRecord
-from invenio_rdm_pure.source.reports import Reports
+from ...general_functions_source import initialize_counters
+from ...pure.requests_pure import get_pure_metadata
+from ...reports import Reports
+from ..add_record import RdmAddRecord
 
 
 class RunPages:

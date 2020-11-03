@@ -7,15 +7,10 @@
 
 """File description."""
 
-import time
-
-from invenio_rdm_pure.setup import data_files_name, push_dist_sec
-from invenio_rdm_pure.source.general_functions_source import (
-    current_time,
-    file_read_lines,
-)
-from invenio_rdm_pure.source.rdm.requests_rdm import Requests
-from invenio_rdm_pure.source.reports import Reports
+from ...setup import data_files_name, push_dist_sec
+from ..general_functions_source import current_time, file_read_lines
+from ..reports import Reports
+from .requests_rdm import Requests
 
 
 class Delete:
@@ -50,6 +45,7 @@ class Delete:
 
     def _set_counters_and_title(func):
         """Description."""
+
         def _wrapper(self):
             """Description."""
             self.report.add_template(

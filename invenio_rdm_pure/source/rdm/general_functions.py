@@ -12,11 +12,11 @@ import json
 import requests
 from flask import current_app
 
-from invenio_rdm_pure.setup import versioning_running
-from invenio_rdm_pure.source.general_functions_source import add_spaces
-from invenio_rdm_pure.source.rdm.delete_record import Delete
-from invenio_rdm_pure.source.rdm.requests_rdm import Requests
-from invenio_rdm_pure.source.reports import Reports
+from ...setup import versioning_running
+from ..general_functions_source import add_spaces
+from ..reports import Reports
+from .delete_record import Delete
+from .requests_rdm import Requests
 
 
 class GeneralFunctions:

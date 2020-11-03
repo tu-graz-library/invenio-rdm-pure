@@ -13,8 +13,8 @@ import time
 import requests
 from flask import current_app
 
-from invenio_rdm_pure.setup import push_dist_sec, temporary_files_name, wait_429
-from invenio_rdm_pure.source.reports import Reports
+from ...setup import push_dist_sec, temporary_files_name, wait_429
+from ..reports import Reports
 
 
 class Requests:

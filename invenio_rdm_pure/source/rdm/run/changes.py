@@ -10,18 +10,21 @@
 import json
 from datetime import date, datetime, timedelta
 
-from invenio_rdm_pure.setup import data_files_name
-from invenio_rdm_pure.source.general_functions_source import (
+from ....setup import data_files_name
+from ...general_functions_source import (
     add_spaces,
     check_if_file_exists,
     initialize_counters,
 )
-from invenio_rdm_pure.source.pure.general_functions_pure import get_next_page
-from invenio_rdm_pure.source.pure.requests_pure import get_pure_metadata
-from invenio_rdm_pure.source.rdm.add_record import RdmAddRecord
-from invenio_rdm_pure.source.rdm.delete_record import Delete
-from invenio_rdm_pure.source.rdm.general_functions import GeneralFunctions
-from invenio_rdm_pure.source.reports import Reports
+from ...pure.general_functions_pure import (
+    get_next_page,
+    get_pure_record_metadata_by_uuid,
+)
+from ...pure.requests_pure import get_pure_metadata
+from ...reports import Reports
+from ..add_record import RdmAddRecord
+from ..delete_record import Delete
+from ..general_functions import GeneralFunctions
 
 
 class PureChanges:
@@ -52,6 +55,7 @@ class PureChanges:
 
     def _set_counters_and_title(func):
         """Description."""
+
         def _wrapper(self, changes_date: str):
             """Description."""
             # Initialize global counters
