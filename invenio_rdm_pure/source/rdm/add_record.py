@@ -31,7 +31,10 @@ from ..general_functions_source import (
     get_value,
     shorten_file_name,
 )
-from ..pure.general_functions_pure import get_pure_file, get_pure_record_metadata_by_uuid
+from ..pure.general_functions_pure import (
+    get_pure_file,
+    get_pure_record_metadata_by_uuid,
+)
 from ..pure.requests_pure import get_pure_metadata
 from ..rdm.database import RdmDatabase
 from ..rdm.emails import send_email
@@ -64,6 +67,7 @@ class RdmAddRecord:
 
     def _set_initial_variables(func):
         """Description."""
+
         def _wrapper(self, global_counters, item):
             """Description."""
             self.global_counters = global_counters
@@ -235,6 +239,7 @@ class RdmAddRecord:
 
     def _versioning_required(func):
         """Description."""
+
         def _wrapper(self):
             if not versioning_running:
                 return
@@ -374,13 +379,13 @@ class RdmAddRecord:
             # Append person to creators
             self.data["creators"].append(self.sub_data)
 
-#    def _add_field_sub(
-#        self, item: list, rdm_field_1: str, rdm_field_2: str, path: list
-#    ):
-#    """Adds the field to sub_data."""
-#        value = get_value(item, path)
-#        if value:
-#            self.sub_data[rdm_field_1][rdm_field_2] = value
+    #    def _add_field_sub(
+    #        self, item: list, rdm_field_1: str, rdm_field_2: str, path: list
+    #    ):
+    #    """Adds the field to sub_data."""
+    #        value = get_value(item, path)
+    #        if value:
+    #            self.sub_data[rdm_field_1][rdm_field_2] = value
 
     def _get_contributor_name(self, item: object):
         """Description."""
@@ -402,7 +407,8 @@ class RdmAddRecord:
 
             # External persons are not present in 'persons' Pure API endpoint
             if (
-                "type_p" in self.sub_data and self.sub_data["type_p"] == "External person"
+                "type_p" in self.sub_data
+                and self.sub_data["type_p"] == "External person"
             ):
                 report = f"\tPure get orcid @@ External person @ {person_uuid} @ {person_name}"
                 self.report.add(report)
