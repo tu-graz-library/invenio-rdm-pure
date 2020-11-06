@@ -42,11 +42,11 @@ class InvenioRdmPure(object):
         if "SQLALCHEMY_DATABASE_URI" in app.config:
             database_uri = app.config.get("SQLALCHEMY_DATABASE_URI").split("//")[1]
             database_credentials = database_uri.split("@")[0]
-            database_connection = database_uri.split("@")[0]
+            database_connection = database_uri.split("@")[1]
             database_host = database_connection.split("/")[0]
-            database_name = database_connection.split("/")[0]
+            database_name = database_connection.split("/")[1]
             database_username = database_credentials.split(":")[0]
-            database_password = database_credentials.split(":")[0]
+            database_password = database_credentials.split(":")[1]
             app.config.setdefault("INVENIO_DATABASE_HOST", database_host)
             app.config.setdefault("INVENIO_DATABASE_NAME", database_name)
             app.config.setdefault("INVENIO_DATABASE_USERNAME", database_username)
