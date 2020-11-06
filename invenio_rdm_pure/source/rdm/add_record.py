@@ -379,13 +379,13 @@ class RdmAddRecord:
             # Append person to creators
             self.data["creators"].append(self.sub_data)
 
-    #    def _add_field_sub(
-    #        self, item: list, rdm_field_1: str, rdm_field_2: str, path: list
-    #    ):
-    #    """Adds the field to sub_data."""
-    #        value = get_value(item, path)
-    #        if value:
-    #            self.sub_data[rdm_field_1][rdm_field_2] = value
+    def _add_field_sub(
+        self, item: list, rdm_field_1: str, rdm_field_2: str, path: list
+    ):
+        """Adds the field to sub_data."""
+        value = get_value(item, path)
+        if value:
+            self.sub_data[rdm_field_1][rdm_field_2] = value
 
     def _get_contributor_name(self, item: object):
         """Description."""
