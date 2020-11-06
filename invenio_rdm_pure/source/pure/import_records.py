@@ -12,8 +12,7 @@ import os
 from xml.dom import minidom
 from xml.etree import ElementTree as ET
 
-from setup import dirpath, pure_import_file, pure_import_path
-
+from ...setup import dirpath, pure_import_file, pure_import_path
 from ..general_functions_source import (
     add_spaces,
     check_if_directory_exists,

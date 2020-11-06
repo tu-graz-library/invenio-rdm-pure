@@ -15,14 +15,14 @@ from invenio_rdm_pure.source.general_functions_source import (
     current_time,
 )
 from invenio_rdm_pure.source.reports import Reports
-from setup import (
+
+from ..setup import (
     data_files_name,
     days_keep_log,
     dirpath,
     lines_successful_changes,
     reports_full_path,
 )
-
 from .general_functions_source import check_if_file_exists, current_time
 from .reports import Reports
 
