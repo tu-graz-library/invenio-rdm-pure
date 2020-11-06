@@ -20,9 +20,7 @@ tests_require = [
 ]
 
 extras_require = {
-    "docs": [
-        "Sphinx>=1.5.1",
-    ],
+    "docs": ["Sphinx>=1.5.1",],
     "tests": tests_require,
 }
 
@@ -67,19 +65,13 @@ setup(
     include_package_data=True,
     platforms="any",
     entry_points={
-        "invenio_base.apps": [
-            "invenio_rdm_pure = invenio_rdm_pure:InvenioRdmPure",
-        ],
+        "invenio_base.apps": ["invenio_rdm_pure = invenio_rdm_pure:InvenioRdmPure",],
         "invenio_base.blueprints": [
             "invenio_rdm_pure = invenio_rdm_pure.views:blueprint",
         ],
-        "invenio_i18n.translations": [
-            "messages = invenio_rdm_pure",
-        ],
+        "invenio_i18n.translations": ["messages = invenio_rdm_pure",],
         "invenio_celery.tasks": ["invenio_rdm_pure = invenio_rdm_pure.tasks"],
-        "invenio_config.module": [
-            "invenio_rdm_pure = invenio_rdm_pure.config",
-        ],
+        "invenio_config.module": ["invenio_rdm_pure = invenio_rdm_pure.config",],
         # TODO: Edit these entry points to fit your needs.
         # 'invenio_access.actions': [],
         # 'invenio_admin.actions': [],

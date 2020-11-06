@@ -30,12 +30,13 @@ class InvenioRdmPure(object):
         # Use theme's base template if theme is installed
         if "BASE_TEMPLATE" in app.config:
             app.config.setdefault(
-                "INVENIO_RDM_PURE_BASE_TEMPLATE",
-                app.config["BASE_TEMPLATE"],
+                "INVENIO_RDM_PURE_BASE_TEMPLATE", app.config["BASE_TEMPLATE"],
             )
         for k in dir(config):
             if (
-                k.startswith("INVENIO_RDM_PURE_") or k.startswith("INVENIO_PURE") or k.startswith("PURE")
+                k.startswith("INVENIO_RDM_PURE_")
+                or k.startswith("INVENIO_PURE")
+                or k.startswith("PURE")
             ):
                 app.config.setdefault(k, getattr(config, k))
         if "SQLALCHEMY_DATABASE_URI" in app.config:
