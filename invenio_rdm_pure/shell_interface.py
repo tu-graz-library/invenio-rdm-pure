@@ -1,68 +1,86 @@
-from source.log_manager import delete_old_log_files
-from source.pure.import_records import ImportRecords
-from source.rdm.delete_record import Delete
-from source.rdm.run.changes import PureChanges
-from source.rdm.run.groups import RdmGroups
-from source.rdm.run.owners import RdmOwners
-from source.rdm.run.pages import RunPages
-from source.rdm.run.uuid import AddFromUuidList
-from source.rdm.testing.run_test import Testing
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2020 Technische Universität Graz
+#
+# invenio-rdm-pure is free software; you can redistribute it and/or modify it
+# under the terms of the MIT License; see LICENSE file for more details.
+
+"""File description."""
+
+from invenio_rdm_pure.source.log_manager import delete_old_log_files
+from invenio_rdm_pure.source.pure.import_records import ImportRecords
+from invenio_rdm_pure.source.rdm.delete_record import Delete
+from invenio_rdm_pure.source.rdm.run.changes import PureChanges
+from invenio_rdm_pure.source.rdm.run.groups import RdmGroups
+from invenio_rdm_pure.source.rdm.run.owners import RdmOwners
+from invenio_rdm_pure.source.rdm.run.pages import RunPages
+from invenio_rdm_pure.source.rdm.run.uuid_run import AddFromUuidList
+from invenio_rdm_pure.source.rdm.testing.run_test import Testing
 
 
 class ShellInterface:
+    """ShellInterface."""
+
     def testing(self):
+        """testing."""
         testing = Testing()
         testing.run()
 
     def pure_import(self):
-        """  """
+        """Pure import."""
         pure_import_records = ImportRecords()
         pure_import_records.run_import()
 
     def changes(self):
-        """Gets from Pure API endpoint 'changes' all the records that have been
-        created, modified and deleted. Next updates accordingly RDM records"""
+        """Gets changes from Pure API endpoint.
+
+        all the records that have been created, modified and deleted.
+
+        Next updates accordingly RDM records.
+        """
         pure_changes_by_date = PureChanges()
         pure_changes_by_date.get_pure_changes()
 
     def pages(self, page_start, page_end, page_size):
-        """ Push to RDM records from Pure by page """
+        """Push to RDM records from Pure by page."""
         run_pages = RunPages()
         run_pages.get_pure_by_page(page_start, page_end, page_size)
 
     def logs(self):
-        """ Delete old log files """
+        """Delete old log files."""
         delete_old_log_files()
 
     def delete(self):
-        """ Delete RDM records by recid (to_delete.log) """
+        """Delete RDM records by recid (to_delete.log)."""
         delete = Delete()
         delete.from_list()
 
     def uuid(self):
-        """ Push to RDM all uuids that are in to_transfer.log """
+        """Push to RDM all uuids that are in to_transfer.log."""
         add_uuids = AddFromUuidList()
         add_uuids.add_from_uuid_list()
 
     def owner(self, identifier, identifier_value):
-        """Gets from pure all the records related to a certain user,
-        afterwards it create/modify/delete RDM records accordingly."""
+        """Gets from pure all the records related to a certain user.
+
+        afterwards it create/modify/delete RDM records accordingly.
+        """
         rdm_owners = RdmOwners()
         rdm_owners.run_owners(identifier, identifier_value)
 
     def rdm_group_split(self, old_id, new_ids):
-        """ Split a single group into moltiple ones """
+        """Split a single group into moltiple ones."""
         rdm_groups = RdmGroups()
         rdm_groups.rdm_group_split(old_id, new_ids)
 
     def rdm_group_merge(self, old_ids, new_id):
-        """ Merges multiple groups into a single one """
+        """Merges multiple groups into a single one."""
         rdm_groups = RdmGroups()
         rdm_groups.rdm_group_merge(old_ids, new_id)
 
 
 def method_call(docopt_instance: object, arguments: dict):
-
+    """Call method."""
     if arguments["pure_import_xml"]:
         docopt_instance.pure_import()
 

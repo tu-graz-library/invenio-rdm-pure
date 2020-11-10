@@ -1,19 +1,28 @@
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2020 Technische Universität Graz
+#
+# invenio-rdm-pure is free software; you can redistribute it and/or modify it
+# under the terms of the MIT License; see LICENSE file for more details.
+
+"""File description."""
+
 import json
 from datetime import date, datetime
 
 import requests
 from flask import current_app
 from requests.auth import HTTPBasicAuth
-from source.pure.requests import get_pure_metadata
-from source.reports import Reports
 
-from setup import log_files_name, temporary_files_name
+from ...setup import log_files_name, temporary_files_name
+from ..reports import Reports
+from .requests_pure import get_pure_metadata
 
 reports = Reports()
 
 
 def get_next_page(resp_json):
-
+    """Description."""
     if "navigationLinks" in resp_json:
         if "next" in resp_json["navigationLinks"][0]["ref"]:
             return resp_json["navigationLinks"][0]["href"]
@@ -25,8 +34,7 @@ def get_next_page(resp_json):
 
 
 def get_pure_record_metadata_by_uuid(uuid: str):
-    """ Method used to get from Pure record's metadata """
-
+    """Method used to get from Pure record's metadata."""
     # PURE REQUEST
     response = get_pure_metadata("research-outputs", uuid)
 
@@ -49,7 +57,7 @@ def get_pure_record_metadata_by_uuid(uuid: str):
 
 
 def get_pure_file(shell_interface, file_url: str, file_name: str):
-
+    """Description."""
     # Get request to Pure
     pure_username = current_app.config.get("PURE_USERNAME")
     pure_password = current_app.config.get("PURE_PASSWORD")

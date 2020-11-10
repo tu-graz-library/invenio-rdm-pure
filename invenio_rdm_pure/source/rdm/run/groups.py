@@ -1,16 +1,28 @@
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2020 Technische Universität Graz
+#
+# invenio-rdm-pure is free software; you can redistribute it and/or modify it
+# under the terms of the MIT License; see LICENSE file for more details.
+
+"""File description."""
+
 import json
 import os
 
-from source.general_functions import add_spaces
-from source.pure.requests import get_pure_metadata
-from source.rdm.database import RdmDatabase
-from source.rdm.general_functions import GeneralFunctions
-from source.rdm.requests import Requests
-from source.reports import Reports
+from ...general_functions_source import add_spaces
+from ...pure.requests_pure import get_pure_metadata
+from ...reports import Reports
+from ..database import RdmDatabase
+from ..general_functions import GeneralFunctions
+from ..requests_rdm import Requests
 
 
 class RdmGroups:
+    """Description."""
+
     def __init__(self):
+        """Description."""
         self.rdm_db = RdmDatabase()
         self.report = Reports()
         self.rdm_requests = Requests()
@@ -18,6 +30,8 @@ class RdmGroups:
         self.report_files = ["console", "groups"]
 
     def _general_report_and_variables(func):
+        """Description."""
+
         def _wrapper(self, old_group_externalId, new_groups_externalIds):
             self.report.add_template(
                 self.report_files, ["general", "title"], ["GROUP SPLIT"]
@@ -38,11 +52,16 @@ class RdmGroups:
     @_general_report_and_variables
     def rdm_group_split(self, old_group_externalId: str, new_groups_externalIds: list):
         """
-        1 - Create new groups
-        2 - Add users to new groups
-        3 - Remove users from old group
-        4 - Delete old group
-        5 - Modify RDM record:
+        1 - Create new groups.
+
+        2 - Add users to new groups.
+
+        3 - Remove users from old group.
+
+        4 - Delete old group.
+
+        5 - Modify RDM record:.
+
             . group_restrictions
             . managingOrganisationUnit (if necessary)
             . organisationUnits
@@ -70,6 +89,8 @@ class RdmGroups:
         self._rdm_split_modify_record(old_group_externalId, new_groups_externalIds)
 
     def _general_report_and_variables(func):
+        """Description."""
+
         def _wrapper(self, old_groups_externalId, new_group_externalId):
             self.report.add_template(
                 self.report_files, ["general", "title"], ["GROUP MERGE"]
@@ -88,14 +109,19 @@ class RdmGroups:
     @_general_report_and_variables
     def rdm_group_merge(self, old_groups_externalId: list, new_group_externalId: str):
         """
-        1 - Create new group
-        2 - Add users to new group
-        3 - Remove users from old groups
-        4 - Delete old groups
-        5 - Modify RDM records:
+        1 - Create new group.
+
+        2 - Add users to new group.
+
+        3 - Remove users from old groups.
+
+        4 - Delete old groups.
+
+        5 - Modify RDM records:.
+
             . group_restrictions
             . managingOrganisationUnit (if necessary)
-            . organisationUnits
+            . organisationUnits.
         """
         group_name = self._get_pure_group_metadata(new_group_externalId)
         if not group_name:
@@ -115,6 +141,7 @@ class RdmGroups:
         )
 
     def _get_rdm_group_id(self, externalId: str):
+        """Description."""
         response = self.rdm_db.select_query(
             "id, description", "accounts_role", {"name": f"'{externalId}'"}
         )
@@ -132,7 +159,7 @@ class RdmGroups:
     def _rdm_split_modify_record(
         self, old_group_externalId: str, new_groups_externalIds: list
     ):
-
+        """Description."""
         # Get from RDM all old group's records
         response = self.rdm_requests.get_metadata_by_query(old_group_externalId)
 
@@ -173,6 +200,7 @@ class RdmGroups:
     def _process_managing_organisational_unit(
         self, item: object, old_group_externalId: str
     ):
+        """Description."""
         managing_org_unit_externalid_value = item["extensions"][
             "tug:managingOrganisationalUnit_externalId"
         ]
@@ -191,7 +219,7 @@ class RdmGroups:
     def _rdm_split_users_from_old_to_new_group(
         self, old_group_id: str, old_group_externalId: str, new_groups_externalIds: list
     ):
-
+        """Description."""
         # Get all users in old group
         response = self.rdm_db.select_query(
             "user_id", "accounts_userrole", {"role_id": old_group_id}
@@ -225,7 +253,7 @@ class RdmGroups:
         new_group_data: dict,
         new_group_externalId: str,
     ):
-
+        """Description."""
         # Get from RDM all records with old groups
         for old_group_externalId in old_groups_externalId:
 
@@ -279,6 +307,7 @@ class RdmGroups:
     def _process_organisational_units(
         self, item, new_group_data, old_groups_externalId
     ):
+        """Description."""
         new_organisationalUnits_data = [new_group_data]
 
         if "organisationalUnits" not in item:
@@ -299,6 +328,7 @@ class RdmGroups:
     def _process_group_restrictions(
         self, item, old_group_externalId, new_group_externalId
     ):
+        """Description."""
         if "group_restrictions" not in item:
             return item
 
@@ -313,6 +343,7 @@ class RdmGroups:
     def _merge_users_from_old_to_new_group(
         self, old_groups_externalId: list, new_group_externalId: str
     ):
+        """Description."""
         # Iterate over old groups
         for old_group_externalId in old_groups_externalId:
 
@@ -360,8 +391,7 @@ class RdmGroups:
             # Delete old group
 
     def _get_pure_group_metadata(self, externalId: str):
-        """ Get organisationalUnit name and uuid """
-
+        """Get organisationalUnit name and uuid."""
         # PURE REQUEST
         response = get_pure_metadata(
             "organisational-units",
@@ -400,8 +430,7 @@ class RdmGroups:
         return False
 
     def _rdm_check_if_group_exists(self, group_externalId: str):
-        """ Checks if the group already exists"""
-
+        """Checks if the group already exists."""
         response = self.rdm_db.select_query(
             "*", "accounts_role", {"name": f"'{group_externalId}'"}
         )
@@ -413,14 +442,14 @@ class RdmGroups:
         return False
 
     def rdm_create_group(self, externalId: str, group_name: str):
-
+        """Description."""
         # Checks if the group already exists
         response = self._rdm_check_if_group_exists(externalId)
         if response:
             return True
 
-        group_name = group_name.replace("(", "\(")
-        group_name = group_name.replace(")", "\)")
+        group_name = group_name.replace("(", "(")
+        group_name = group_name.replace(")", ")")
         group_name = group_name.replace(" ", "_")
 
         # Run command
@@ -439,7 +468,7 @@ class RdmGroups:
     def _rdm_add_user_to_group(
         self, user_id: int, group_externalId: str, group_name: str
     ):
-
+        """Description."""
         # Get user's rdm email
         user_email = self.rdm_db.select_query(
             "email", "accounts_user", {"id": user_id}
@@ -477,7 +506,7 @@ class RdmGroups:
             self.report.add(f"Warning @ Creating group response: {response}")
 
     def _group_add_user(self, user_email: str, new_group_externalId: str, user_id: str):
-
+        """Description."""
         # Get group id
         group_id = self.rdm_db.select_query(
             "id", "accounts_role", {"name": f"'{new_group_externalId}'"}
@@ -503,7 +532,7 @@ class RdmGroups:
         return True
 
     def _group_remove_user(self, user_email: str, group_name: str):
-
+        """Description."""
         # Get user id
         user_id = self.rdm_db.select_query(
             "id", "accounts_user", {"email": f"'{user_email}'"}

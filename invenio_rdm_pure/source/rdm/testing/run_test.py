@@ -1,18 +1,30 @@
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2020 Technische Universität Graz
+#
+# invenio-rdm-pure is free software; you can redistribute it and/or modify it
+# under the terms of the MIT License; see LICENSE file for more details.
+
+"""File description."""
+
 import json
 import os
 
-from source.rdm.requests import Requests
-from source.reports import Reports
-
-from setup import dirpath
+from invenio_rdm_pure.setup import dirpath
+from invenio_rdm_pure.source.rdm.requests_rdm import Requests
+from invenio_rdm_pure.source.reports import Reports
 
 
 class Testing:
+    """Description."""
+
     def __init__(self):
+        """Description."""
         self.report = Reports()
         self.rdm_requests = Requests()
 
     def run(self):
+        """Description."""
         # Title
         self.report.add_template(["console"], ["general", "title"], ["TESTING"])
         # Records
@@ -21,6 +33,7 @@ class Testing:
         self._rdm_user_test()
 
     def _post_get_rdm_record(self):
+        """Description."""
         # RDM post metadata
         data = open(f"{dirpath}/source/rdm/testing/example_data.json", "r").read()
         response = self.rdm_requests.post_metadata(data)
@@ -37,6 +50,7 @@ class Testing:
         self._response_check_post(response, "RDM record delete")
 
     def _response_check_post(self, response, message: str):
+        """Description."""
         if response.status_code >= 300:
             self.report.add(f"{message} - Error: {response.content}")
             return False
@@ -44,7 +58,7 @@ class Testing:
         return True
 
     def _rdm_user_test(self):
-
+        """Description."""
         test_user = "testing9@tugraz.at"
 
         # Create user
@@ -75,6 +89,7 @@ class Testing:
         self._response_check_user(response, "RDM deactivate user")
 
     def _response_check_user(self, response, message: str):
+        """Description."""
         if response != 0:
             self.report.add(f"{message} - Error code: {response}")
             return False

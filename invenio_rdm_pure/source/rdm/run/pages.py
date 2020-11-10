@@ -1,19 +1,30 @@
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2020 Technische Universität Graz
+#
+# invenio-rdm-pure is free software; you can redistribute it and/or modify it
+# under the terms of the MIT License; see LICENSE file for more details.
+
+"""File description."""
+
 import json
 
-from source.general_functions import initialize_counters
-from source.pure.requests import get_pure_metadata
-from source.rdm.add_record import RdmAddRecord
-from source.reports import Reports
+from ...general_functions_source import initialize_counters
+from ...pure.requests_pure import get_pure_metadata
+from ...reports import Reports
+from ..add_record import RdmAddRecord
 
 
 class RunPages:
+    """Description."""
+
     def __init__(self):
+        """Description."""
         self.report = Reports()
         self.rdm_add_record = RdmAddRecord()
 
     def get_pure_by_page(self, page_begin: int, page_end: int, page_size: int):
-        """ Gets records from Pure 'research-outputs' endpoint by page and submit them to RDM. """
-
+        """Gets records from Pure 'research-outputs' endpoint by page and submit them to RDM."""
         for page in range(page_begin, page_end):
 
             self.global_counters = initialize_counters()
@@ -40,6 +51,7 @@ class RunPages:
             self.report_summary(page, page_size)
 
     def report_summary(self, pag, page_size):
+        """Description."""
         # Global counters
         self.report.summary_global_counters(["console"], self.global_counters)
         # Summary pages.log

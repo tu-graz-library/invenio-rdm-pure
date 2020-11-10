@@ -1,13 +1,21 @@
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2020 Technische Universität Graz
+#
+# invenio-rdm-pure is free software; you can redistribute it and/or modify it
+# under the terms of the MIT License; see LICENSE file for more details.
+
+"""File description."""
+
 import os
 
-from source.rdm.requests import Requests
-from source.reports import Reports
-
-from setup import temporary_files_name
+from ...setup import temporary_files_name
+from ..reports import Reports
+from .requests_rdm import Requests
 
 
 def rdm_add_file(file_name: str, recid: str):
-
+    """Description."""
     rdm_requests = Requests()
     reports = Reports()
 

@@ -5,7 +5,7 @@
 # invenio-rdm-pure is free software; you can redistribute it and/or modify it
 # under the terms of the MIT License; see LICENSE file for more details.
 
-"""Invenio module that adds pure"""
+"""Invenio module that adds pure."""
 
 import os
 
@@ -15,19 +15,12 @@ readme = open("README.rst").read()
 history = open("CHANGES.rst").read()
 
 tests_require = [
-    "check-manifest>=0.25",
-    "coverage>=4.0",
-    "isort>=4.3.3",
-    "pydocstyle>=2.0.0",
-    "pytest-cov>=2.5.1",
-    "pytest-pep8>=1.0.6",
-    "pytest-invenio>=1.2.1",
+    "pytest-invenio>=1.4.0",
+    "invenio-search[elasticsearch7]>=1.4.0",
 ]
 
 extras_require = {
-    "docs": [
-        "Sphinx>=1.5.1",
-    ],
+    "docs": ["Sphinx>=1.5.1",],
     "tests": tests_require,
 }
 
@@ -43,8 +36,9 @@ setup_requires = [
 install_requires = [
     "Flask-BabelEx>=0.9.4",
     "docopt>=0.6.2",
-    "psycopg2>=2.8.4",
     "invenio_oauthclient>=1.2.1",
+    "invenio-rdm-records~=0.20.8",
+    "sqlalchemy-continuum>=1.3.11",
 ]
 
 packages = find_packages()
@@ -71,19 +65,13 @@ setup(
     include_package_data=True,
     platforms="any",
     entry_points={
-        "invenio_base.apps": [
-            "invenio_rdm_pure = invenio_rdm_pure:InvenioRdmPure",
-        ],
+        "invenio_base.apps": ["invenio_rdm_pure = invenio_rdm_pure:InvenioRdmPure",],
         "invenio_base.blueprints": [
             "invenio_rdm_pure = invenio_rdm_pure.views:blueprint",
         ],
-        "invenio_i18n.translations": [
-            "messages = invenio_rdm_pure",
-        ],
+        "invenio_i18n.translations": ["messages = invenio_rdm_pure",],
         "invenio_celery.tasks": ["invenio_rdm_pure = invenio_rdm_pure.tasks"],
-        "invenio_config.module": [
-            "invenio_rdm_pure = invenio_rdm_pure.config",
-        ],
+        "invenio_config.module": ["invenio_rdm_pure = invenio_rdm_pure.config",],
         # TODO: Edit these entry points to fit your needs.
         # 'invenio_access.actions': [],
         # 'invenio_admin.actions': [],

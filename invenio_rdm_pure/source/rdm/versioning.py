@@ -1,20 +1,31 @@
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2020 Technische Universität Graz
+#
+# invenio-rdm-pure is free software; you can redistribute it and/or modify it
+# under the terms of the MIT License; see LICENSE file for more details.
+
+"""File description."""
+
 import json
 
-from source.general_functions import add_spaces
-from source.rdm.general_functions import GeneralFunctions
-from source.rdm.requests import Requests
-from source.reports import Reports
+from ..general_functions_source import add_spaces
+from ..reports import Reports
+from .general_functions import GeneralFunctions
+from .requests_rdm import Requests
 
 
 class Versioning:
+    """Description."""
+
     def __init__(self):
+        """Description."""
         self.report = Reports()
         self.rdm_requests = Requests()
         self.general_functions = GeneralFunctions()
 
     def get_uuid_version(self, uuid):
-        """ Gives the version to use for a new record and old versions of the same uuid """
-
+        """Gives the version to use for a new record and old versions of the same uuid."""
         # Request
         response = self.rdm_requests.get_metadata_by_query(uuid)
 
@@ -67,6 +78,7 @@ class Versioning:
         return [new_version, all_metadata_versions]
 
     def update_all_uuid_versions(self, uuid):
+        """Description."""
         # Request
         response = self.rdm_requests.get_metadata_by_query(uuid)
 

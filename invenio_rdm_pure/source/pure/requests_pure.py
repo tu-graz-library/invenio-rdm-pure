@@ -1,17 +1,27 @@
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2020 Technische Universität Graz
+#
+# invenio-rdm-pure is free software; you can redistribute it and/or modify it
+# under the terms of the MIT License; see LICENSE file for more details.
+
+"""File description."""
+
 import json
 from datetime import date, datetime
 
 import requests
 from flask import current_app
 from requests.auth import HTTPBasicAuth
-from source.reports import Reports
 
-from setup import log_files_name, temporary_files_name
+from ...setup import log_files_name, temporary_files_name
+from ..reports import Reports
 
 reports = Reports()
 
 
 def get_pure_metadata(endpoint, identifier="", parameters={}, review=True):
+    """Description."""
     pure_api_key = current_app.config.get("PURE_API_KEY")
     headers = {
         "api-key": pure_api_key,
