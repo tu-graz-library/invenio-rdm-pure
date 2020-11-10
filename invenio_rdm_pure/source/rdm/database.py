@@ -61,7 +61,7 @@ class RdmDatabase:
 
     def get_pure_admin_userid(self):
         """Gets the userId of the Pure admin user."""
-        email = current_app.config.get("RDM_PURE_USER_EMAIL")
+        email = current_app.config.get("INVENIO_PURE_USER_EMAIL")
         email = f"'{email}'"
         response = self.select_query("id", "accounts_user", {"email": email})
         if not response:
