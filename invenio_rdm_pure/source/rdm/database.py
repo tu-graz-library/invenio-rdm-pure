@@ -12,6 +12,8 @@ import os
 # import psycopg2
 # import yaml
 from flask import current_app
+from flask_security.utils import hash_password
+from invenio_db import db
 
 from ...setup import database_uri, dirpath
 from ..reports import Reports
@@ -59,17 +61,24 @@ class RdmDatabase:
             return False
         return self.cursor.fetchall()
 
-    def get_pure_admin_userid(self):
-        """Gets the userId of the Pure admin user."""
-        email = current_app.config.get("INVENIO_PURE_USER_EMAIL")
-        email = f"'{email}'"
-        response = self.select_query("id", "accounts_user", {"email": email})
-        if not response:
-            report = """
-            ERROR:
-            Pure admin user not found.
-            Make sure that the user is created and that it is stored in data_setup/rdmUser_pureEmail.txt
-            """
-            self.report.add(report)
-            return False
-        return response[0][0]
+    def get_pure_user_id(self):
+        """Gets the userId of the Pure user.
+
+        In case the user doesn't exist yet,
+        it is created with credentials defined in config.py.
+        """
+        datastore = current_app.extensions["security"].datastore
+        if datastore is not None:
+            invenio_pure_user_email = current_app.config.get("INVENIO_PURE_USER_EMAIL")
+            invenio_pure_user_password = current_app.config.get(
+                "INVENIO_PURE_USER_PASSWORD"
+            )
+            invenio_pure_user = datastore.get_user(invenio_pure_user_email)
+            if not invenio_pure_user:
+                invenio_pure_user = datastore.create_user(
+                    email=invenio_pure_user_email,
+                    password=hash_password(invenio_pure_user_password),
+                    active=True,
+                )
+                db.session.commit()
+            return invenio_pure_user.id
