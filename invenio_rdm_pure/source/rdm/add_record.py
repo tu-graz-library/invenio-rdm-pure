@@ -99,7 +99,7 @@ class RdmAddRecord:
         self._check_record_owners()
 
         # Assign to '_created_by' the userid of the Pure admin user
-        userid = self.rdm_db.get_pure_admin_userid()
+        userid = self.rdm_db.get_pure_user_id()
         if not userid:
             return False
         self.data["_created_by"] = userid
