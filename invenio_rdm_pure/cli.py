@@ -27,9 +27,9 @@ Options:
 """
 from docopt import docopt
 
-from invenio_rdm_pure.setup import dirpath
-from invenio_rdm_pure.shell_interface import ShellInterface, method_call
-from invenio_rdm_pure.source.general_functions_source import check_if_directory_exists
+from .setup import dirpath
+from .shell_interface import ShellInterface, method_call
+from .source.general_functions_source import check_if_directory_exists
 
 if __name__ == "__main__":
     arguments = docopt(__doc__, version="Pure synchronizer 1.0")
