@@ -10,12 +10,6 @@
 import os
 from datetime import date, datetime, timedelta
 
-from .general_functions_source import (
-    check_if_file_exists,
-    current_time,
-)
-from .reports import Reports
-
 from ..setup import (
     data_files_name,
     days_keep_log,

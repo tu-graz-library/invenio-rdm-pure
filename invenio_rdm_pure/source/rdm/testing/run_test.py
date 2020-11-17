@@ -11,8 +11,8 @@ import json
 import os
 
 from ....setup import dirpath
-from ..requests_rdm import Requests
 from ...reports import Reports
+from ..requests_rdm import Requests
 
 
 class Testing:
