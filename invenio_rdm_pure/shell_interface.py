@@ -7,15 +7,15 @@
 
 """File description."""
 
-from invenio_rdm_pure.source.log_manager import delete_old_log_files
-from invenio_rdm_pure.source.pure.import_records import ImportRecords
-from invenio_rdm_pure.source.rdm.delete_record import Delete
-from invenio_rdm_pure.source.rdm.run.changes import PureChanges
-from invenio_rdm_pure.source.rdm.run.groups import RdmGroups
-from invenio_rdm_pure.source.rdm.run.owners import RdmOwners
-from invenio_rdm_pure.source.rdm.run.pages import RunPages
-from invenio_rdm_pure.source.rdm.run.uuid_run import AddFromUuidList
-from invenio_rdm_pure.source.rdm.testing.run_test import Testing
+from .source.log_manager import delete_old_log_files
+from .source.pure.import_records import ImportRecords
+from .source.rdm.delete_record import Delete
+from .source.rdm.run.changes import PureChanges
+from .source.rdm.run.groups import RdmGroups
+from .source.rdm.run.owners import RdmOwners
+from .source.rdm.run.pages import RunPages
+from .source.rdm.run.uuid_run import AddFromUuidList
+from .source.rdm.testing.run_test import Testing
 
 
 class ShellInterface:

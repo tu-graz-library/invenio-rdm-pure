@@ -16,7 +16,10 @@ from .setup import database_uri, dirpath, pure_import_file
 from .source.rdm.user_externalid import user_externalid
 
 blueprint = Blueprint(
-    "invenio_rdm_pure", __name__, template_folder="templates", static_folder="static",
+    "invenio_rdm_pure",
+    __name__,
+    template_folder="templates",
+    static_folder="static",
 )
 
 

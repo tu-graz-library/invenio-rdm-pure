@@ -10,9 +10,9 @@
 import json
 import os
 
-from invenio_rdm_pure.setup import dirpath
-from invenio_rdm_pure.source.rdm.requests_rdm import Requests
-from invenio_rdm_pure.source.reports import Reports
+from ....setup import dirpath
+from ...reports import Reports
+from ..requests_rdm import Requests
 
 
 class Testing:
