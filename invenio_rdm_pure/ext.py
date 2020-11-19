@@ -30,8 +30,7 @@ class InvenioRdmPure(object):
         # Use theme's base template if theme is installed
         if "BASE_TEMPLATE" in app.config:
             app.config.setdefault(
-                "INVENIO_RDM_PURE_BASE_TEMPLATE",
-                app.config["BASE_TEMPLATE"],
+                "INVENIO_RDM_PURE_BASE_TEMPLATE", app.config["BASE_TEMPLATE"],
             )
         for k in dir(config):
             if (

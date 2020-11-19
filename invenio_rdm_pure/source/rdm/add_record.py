@@ -16,7 +16,6 @@ from flask import current_app
 from flask_principal import Identity
 from invenio_access.permissions import any_user, superuser_access
 from invenio_db import InvenioDB, db
-from invenio_records_resources.services.records.results import RecordItem
 from invenio_rdm_records.permissions import RDMRecordPermissionPolicy
 from invenio_rdm_records.records import BibliographicRecord
 from invenio_rdm_records.services import (
@@ -25,6 +24,7 @@ from invenio_rdm_records.services import (
 )
 from invenio_records import InvenioRecords, Record
 from invenio_records_permissions.generators import AnyUser
+from invenio_records_resources.services.records.results import RecordItem
 
 from ...setup import (
     accessright_pure_to_rdm,

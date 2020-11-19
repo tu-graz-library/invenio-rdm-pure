@@ -13,14 +13,11 @@ from flask import Blueprint
 from flask_babelex import gettext as _
 
 from .setup import database_uri, dirpath, pure_import_file
-from .source.rdm.user_externalid import user_externalid
 from .source.rdm.testing.run_test import Testing
+from .source.rdm.user_externalid import user_externalid
 
 blueprint = Blueprint(
-    "invenio_rdm_pure",
-    __name__,
-    template_folder="templates",
-    static_folder="static",
+    "invenio_rdm_pure", __name__, template_folder="templates", static_folder="static",
 )
 
 

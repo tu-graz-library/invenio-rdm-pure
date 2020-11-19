@@ -9,7 +9,7 @@
 
 import json
 import time
-from os import path, makedirs
+from os import makedirs, path
 
 import requests
 from flask import current_app
