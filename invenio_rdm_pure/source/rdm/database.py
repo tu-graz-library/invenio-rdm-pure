@@ -25,7 +25,7 @@ class RdmDatabase:
     def __init__(self):
         """Description."""
         self.report = Reports()
-        self._db_connect()
+        # self._db_connect()
 
     # def _db_connect(self):
     #     """Establis a connection to RDM database."""
