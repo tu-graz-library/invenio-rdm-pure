@@ -13,8 +13,18 @@ import time
 from datetime import date
 
 from flask import current_app
+from flask_principal import Identity
+from invenio_access.permissions import any_user
 from invenio_db import InvenioDB, db
+from invenio_records_resources.services.records.results import RecordItem
+from invenio_rdm_records.permissions import RDMRecordPermissionPolicy
+from invenio_rdm_records.records import BibliographicRecord
+from invenio_rdm_records.services import (
+    BibliographicRecordService,
+    BibliographicRecordServiceConfig,
+)
 from invenio_records import InvenioRecords, Record
+from invenio_records_permissions.generators import AnyUser
 
 from ...setup import (
     accessright_pure_to_rdm,
@@ -44,6 +54,18 @@ from ..rdm.requests_rdm import Requests
 from ..rdm.run.groups import RdmGroups
 from ..rdm.versioning import Versioning
 from ..reports import Reports
+
+
+class PermissionPolicy(RDMRecordPermissionPolicy):
+    """Policy class to use with BibliographicRecordServiceConfig."""
+
+    can_update = [AnyUser()]
+
+
+class ServiceConfig(BibliographicRecordServiceConfig):
+    """Config class to use with BibliographicRecordService."""
+
+    permission_policy_cls = PermissionPolicy
 
 
 class RdmAddRecord:
@@ -168,6 +190,43 @@ class RdmAddRecord:
 
         # Updates the versioning data of all records with the same uuid
         self._update_all_uuid_versions()
+
+    def create_record(self, data) -> RecordItem:
+        """Creates record from JSON data."""
+        identity = Identity(current_app.config.get(self.rdm_db.get_pure_user_id()))
+        identity.provides.add(any_user)
+        service = BibliographicRecordService(config=ServiceConfig)
+        record = service.create(identity, data)
+        service.update
+        service.publish(id_=record.id, identity=identity)
+
+        if record is not None:
+            return record
+        else:
+            return None
+
+    def delete_record(self, recid: str) -> None:
+        """Deletes record with given recid."""
+        if not recid:
+            raise ValueError("Can't delete record without providing recid.")
+        identity = Identity(current_app.config.get(self.rdm_db.get_pure_user_id()))
+        identity.provides.add(any_user)
+        service = BibliographicRecordService(config=ServiceConfig)
+        deleted = service.delete(id_=recid, identity=identity)
+        if not deleted:
+            raise RuntimeError("Failed to delete record.")
+
+    def is_newest_record(self, record: RecordItem):
+        """Checks if the given record is the most recently inserted one."""
+        if record is not None:
+            newest_query = {"sort": "newest", "size": 1, "page": 1}
+            response = self.rdm_requests.get_metadata(newest_query)
+            if response.ok:
+                response_json = json.loads(response.text)
+                newest_recid = response_json["hits"]["hits"][0]["id"]
+                if record.id == newest_recid:
+                    return True
+        return False
 
     def _access_right_and_restrictions(self, item):
         """Description."""
