@@ -120,6 +120,9 @@ class RdmAddRecord:
         # Record owners
         self._check_record_owners()
 
+        # Initialize data attribute
+        self.data = dict()
+
         # Assign to '_created_by' the userid of the Pure admin user
         userid = self.rdm_db.get_pure_user_id()
         if not userid:
