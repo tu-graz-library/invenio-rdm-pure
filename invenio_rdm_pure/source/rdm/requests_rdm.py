@@ -9,9 +9,11 @@
 
 import json
 import time
+from os import path, makedirs
 
 import requests
 from flask import current_app
+from requests import Response
 
 from ...setup import push_dist_sec, temporary_files_name, wait_429
 from ..reports import Reports
@@ -37,13 +39,15 @@ class Requests:
         """Description."""
         return (("prettyprint", "1"),)
 
-    def get_metadata(self, additional_parameters: str, recid=""):
-        """Description."""
+    def get_metadata(self, additional_parameters: dict, recid: str = "") -> Response:
+        """Retrieves metadata from Invenio via its REST API."""
         headers = self._request_headers(["content_type"])
         params = self._request_params()
-
-        rdm_record_url = current_app.config.get("INVENIO_PURE_RECORD_URL")
-        url = rdm_record_url.format(recid)
+        if not recid:
+            url = str(current_app.config.get("INVENIO_PURE_RECORDS_URL"))
+        else:
+            rdm_record_url: str = str(current_app.config.get("INVENIO_PURE_RECORD_URL"))
+            url = rdm_record_url.format(recid)
 
         # Add parameters to url
         if len(additional_parameters) > 0:
@@ -55,7 +59,13 @@ class Requests:
 
         # Sending request
         response = requests.get(url, headers=headers, params=params, verify=False)
-        open(temporary_files_name["get_rdm_metadata"], "wb").write(response.content)
+
+        # Write response to file
+        get_response_file = temporary_files_name["get_rdm_metadata"]
+        if not path.exists(path.dirname(get_response_file)):
+            makedirs(path.dirname(get_response_file))
+        with open(get_response_file, "wb") as fp:
+            fp.write(response.content)
 
         self._check_response(response)
         return response
