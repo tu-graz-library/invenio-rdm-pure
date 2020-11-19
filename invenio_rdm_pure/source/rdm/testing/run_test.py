@@ -12,42 +12,43 @@ import os
 
 from ....setup import dirpath
 from ...reports import Reports
+from ..add_record import RdmAddRecord
 from ..requests_rdm import Requests
 
 
 class Testing:
-    """Description."""
+    """Module to test the functionalities of the Addon."""
 
     def __init__(self):
         """Description."""
         self.report = Reports()
         self.rdm_requests = Requests()
+        self.rdm_add_record = RdmAddRecord()
 
-    def run(self):
-        """Description."""
-        # Title
+    def run_tests(self):
+        """Runs the tests."""
+        # Sets logging variables (FIXME: implement proper logging)
         self.report.add_template(["console"], ["general", "title"], ["TESTING"])
-        # Records
-        self._post_get_rdm_record()
-        # Users
-        self._rdm_user_test()
+        # Record CRUD Test
+        self._run_record_crud_test()
+        # Users (FIXME: implement proper user tests)
+        # self._rdm_user_test()
 
-    def _post_get_rdm_record(self):
-        """Description."""
-        # RDM post metadata
-        data = open(f"{dirpath}/source/rdm/testing/example_data.json", "r").read()
-        response = self.rdm_requests.post_metadata(data)
-        response = self._response_check_post(response, "\nRDM post metadata")
-        if not response:
-            return False
+    def _run_record_crud_test(self):
+        """CRUD Test for Records implementing invenio's internal API."""
+        # CREATE record from example data
+        data = json.loads(
+            open(f"{dirpath}/source/rdm/testing/example_data.json", "r").read()
+        )
+        record = self.rdm_add_record.create_record(data=data)
 
-        # Delete RDM record
-        params = {"sort": "mostrecent", "size": 1, "page": 1}
-        response = self.rdm_requests.get_metadata(params)
-        resp_json = json.loads(response.content)
-        recid = resp_json["hits"]["hits"][0]["metadata"]["recid"]
-        response = self.rdm_requests.delete_metadata(recid)
-        self._response_check_post(response, "RDM record delete")
+        # Check whether record creation was successful
+        if record is not None:
+            if self.rdm_add_record.is_newest_record(record):
+                # DELETE record from example data
+                self.rdm_add_record.delete_record(record.id)
+        else:
+            raise RuntimeError("Couldn't create record: Test failed.")
 
     def _response_check_post(self, response, message: str):
         """Description."""

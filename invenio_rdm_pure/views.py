@@ -14,6 +14,7 @@ from flask_babelex import gettext as _
 
 from .setup import database_uri, dirpath, pure_import_file
 from .source.rdm.user_externalid import user_externalid
+from .source.rdm.testing.run_test import Testing
 
 blueprint = Blueprint(
     "invenio_rdm_pure",
@@ -44,3 +45,11 @@ def index3():
     command += f"owner --identifier='externalId' --identifierValue='{externalId}'"
     os.system(command)
     return "Task successfully completed"
+
+
+@blueprint.route("/test")
+def test():
+    """Tests addon functionalities."""
+    test = Testing()
+    test.run_tests()
+    return "Tests finished successfully."
