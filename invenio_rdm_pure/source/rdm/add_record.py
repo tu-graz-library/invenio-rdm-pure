@@ -207,7 +207,6 @@ class RdmAddRecord:
         identity.provides.add(any_user)
         service = BibliographicRecordService(config=ServiceConfig)
         record = service.create(identity, data)
-        service.update
         service.publish(id_=record.id, identity=identity)
 
         if record is not None:
@@ -220,11 +219,11 @@ class RdmAddRecord:
         if not recid:
             raise ValueError("Can't delete record without providing recid.")
         identity = Identity(current_app.config.get(self.rdm_db.get_pure_user_id()))
-        identity.provides.add(superuser_access)
+        identity.provides.add(any_user)
         service = BibliographicRecordService(config=ServiceConfig)
-        # deleted = service.delete(id_=recid, identity=identity) FIXME: PermissionDeniedError
-        # if not deleted:
-        #     raise RuntimeError("Failed to delete record.")
+        deleted = service.delete(id_=recid, identity=identity)
+        if not deleted:
+            raise RuntimeError("Failed to delete record.")
 
     def is_newest_record(self, record: RecordItem):
         """Checks if the given record is the most recently inserted one."""
