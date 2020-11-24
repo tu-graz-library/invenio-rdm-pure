@@ -85,9 +85,11 @@ class RdmDatabase:
 
     def make_user_admin(self, id_or_email: str) -> None:
         """Gives the user with given id or email administrator rights."""
-        return None # FIXME: Method stub'd until auxiliary methods are implemented.
+        return None  # FIXME: Method stub'd until auxiliary methods are implemented.
         datastore = current_app.extensions["security"].datastore
         if datastore is not None:
-            invenio_pure_user = datastore.get_user(id_or_email) # FIXME: Not implemented yet.
-            admin_role = datastore.find_role("admin") # FIXME: Not implemented yet.
+            invenio_pure_user = datastore.get_user(
+                id_or_email
+            )  # FIXME: Not implemented yet.
+            admin_role = datastore.find_role("admin")  # FIXME: Not implemented yet.
             datastore.add_role_to_user(invenio_pure_user, admin_role)
