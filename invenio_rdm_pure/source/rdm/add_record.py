@@ -202,7 +202,7 @@ class RdmAddRecord:
         self._update_all_uuid_versions()
 
     def create_record(self, data) -> RecordItem:
-        """Creates record from JSON data."""
+        """Creates a record from JSON data."""
         identity = Identity(current_app.config.get(self.rdm_db.get_pure_user_id()))
         identity.provides.add(any_user)
         service = BibliographicRecordService(config=ServiceConfig)
@@ -213,6 +213,24 @@ class RdmAddRecord:
             return record
         else:
             return None
+
+    def update_record(self, recid: str, data) -> RecordItem:
+        """Updates a record with JSON data."""
+        identity = Identity(current_app.config.get(self.rdm_db.get_pure_user_id()))
+        identity.provides.add(any_user)
+        service = BibliographicRecordService(config=ServiceConfig)
+        original_record = service.read(id_=recid, identity=identity)
+        original_revision_id = original_record._record.revision_id
+        updated_record = service.update(id_=recid, identity=identity, data=data)
+        # service.publish(id_=record.id, identity=identity)
+
+        if (
+            updated_record is None
+            or updated_record._record.revision_id != original_revision_id + 1
+        ):
+            raise RuntimeError("Failed to update record.")
+        else:
+            return updated_record
 
     def delete_record(self, recid: str) -> None:
         """Deletes record with given recid."""
@@ -225,7 +243,7 @@ class RdmAddRecord:
         if not deleted:
             raise RuntimeError("Failed to delete record.")
 
-    def is_newest_record(self, record: RecordItem):
+    def is_newest_record(self, record: RecordItem) -> bool:
         """Checks if the given record is the most recently inserted one."""
         if record is not None:
             newest_query = {"sort": "newest", "size": 1, "page": 1}

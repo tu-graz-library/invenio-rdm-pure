@@ -42,6 +42,12 @@ class Testing:
         )
         record = self.rdm_add_record.create_record(data=data)
 
+        # UPDATE record from example data
+        updated_data = json.loads(
+            open(f"{dirpath}/source/rdm/testing/example_data_update.json", "r").read()
+        )
+        updated_record = self.rdm_add_record.update_record(record.id, updated_data)
+
         # Check whether record creation was successful
         if record is not None:
             if self.rdm_add_record.is_newest_record(record):
