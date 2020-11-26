@@ -24,11 +24,11 @@ from ..general_functions_source import (
     get_value,
     shorten_file_name,
 )
-from ..pure.general_functions_pure import (
+from ..pure.requests_pure import (
     get_pure_file,
+    get_pure_metadata,
     get_pure_record_metadata_by_uuid,
 )
-from ..pure.requests_pure import get_pure_metadata
 from ..rdm.database import RdmDatabase
 from ..rdm.general_functions import GeneralFunctions
 from ..rdm.put_file import rdm_add_file
