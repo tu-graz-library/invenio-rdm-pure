@@ -52,7 +52,7 @@ class RecordManager(object):
     @classmethod
     def instance(cls):
         """Instance method to facilitate singleton pattern."""
-        if cls.__instance == None:
+        if cls.__instance is None:
             cls.__instance = RecordManager(cls.__create_key)
         return cls.__instance
 

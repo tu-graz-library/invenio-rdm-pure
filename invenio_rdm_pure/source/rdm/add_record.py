@@ -8,16 +8,13 @@
 """File description."""
 
 import json
-import os.path
 import time
-from datetime import date
 
 from ...setup import (
     accessright_pure_to_rdm,
     data_files_name,
     iso6393_file_name,
     possible_record_restrictions,
-    push_dist_sec,
     resourcetype_pure_to_rdm,
     versioning_running,
 )
@@ -33,7 +30,6 @@ from ..pure.general_functions_pure import (
 )
 from ..pure.requests_pure import get_pure_metadata
 from ..rdm.database import RdmDatabase
-from ..rdm.emails import send_email
 from ..rdm.general_functions import GeneralFunctions
 from ..rdm.put_file import rdm_add_file
 from ..rdm.requests_rdm import Requests
