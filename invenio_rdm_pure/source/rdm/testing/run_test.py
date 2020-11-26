@@ -24,7 +24,7 @@ class Testing:
         self.report = Reports()
         self.rdm_requests = Requests()
 
-    def run_tests(self):
+    def run_tests(self) -> None:
         """Runs the tests."""
         # Sets logging variables (FIXME: implement proper logging)
         self.report.add_template(["console"], ["general", "title"], ["TESTING"])
@@ -33,7 +33,7 @@ class Testing:
         # Users (FIXME: implement proper user tests)
         # self._rdm_user_test()
 
-    def _run_record_crud_test(self):
+    def _run_record_crud_test(self) -> None:
         """CRUD Test for Records implementing invenio's internal API."""
         # CREATE record from example data
         data = json.loads(
