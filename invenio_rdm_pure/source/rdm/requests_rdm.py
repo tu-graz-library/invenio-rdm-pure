@@ -38,10 +38,12 @@ class Requests:
         """Description."""
         return (("prettyprint", "1"),)
 
-    def get_metadata(self, additional_parameters: dict, recid: str = "") -> Response:
+    @classmethod
+    def get_metadata(cls, additional_parameters: dict, recid: str = "") -> Response:
         """Retrieves metadata from Invenio via its REST API."""
-        headers = self._request_headers(["content_type"])
-        params = self._request_params()
+        headers = dict()
+        headers["Content-Type"] = "application/json"
+        params = cls._request_params()
         if not recid:
             url = str(current_app.config.get("INVENIO_PURE_RECORDS_URL"))
         else:
@@ -66,7 +68,7 @@ class Requests:
         with open(get_response_file, "wb") as fp:
             fp.write(response.content)
 
-        self._check_response(response)
+        cls._check_response(response)
         return response
 
     def post_metadata(self, data: str):
@@ -136,17 +138,18 @@ class Requests:
         self._check_response(response)
         return response
 
-    def _check_response(self, response):
+    @classmethod
+    def _check_response(cls, response):
         """Description."""
         http_code = response.status_code
         if http_code >= 300 and http_code != 429:
-            self.report.add(str(response.content))
+            cls.report.add(str(response.content))
             return False
 
         # Checks if too many requests are submitted to RDM (more then 5000 / hour)
         if response.status_code == 429:
             report = f"{response.content}\nToo many RDM requests.. wait {wait_429 / 60} minutes\n"
-            self.report.add(report)
+            cls.report.add(report)
             time.sleep(wait_429)
             return False
 
