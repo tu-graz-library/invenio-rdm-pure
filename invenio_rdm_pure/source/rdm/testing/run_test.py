@@ -10,6 +10,8 @@
 import json
 import os
 
+from invenio_records_resources.services.records.results import RecordItem
+
 from ....setup import dirpath
 from ...reports import Reports
 from ..record_manager import RecordManager
@@ -35,25 +37,40 @@ class Testing:
 
     def _run_record_crud_test(self) -> None:
         """CRUD Test for Records implementing invenio's internal API."""
-        # CREATE record from example data
         data = json.loads(
             open(f"{dirpath}/source/rdm/testing/example_data.json", "r").read()
         )
-        record = RecordManager.instance().create_record(data=data)
-
-        # UPDATE record from example data
         updated_data = json.loads(
             open(f"{dirpath}/source/rdm/testing/example_data_update.json", "r").read()
         )
-        updated_record = RecordManager.instance().update_record(record.id, updated_data)
 
-        # Check whether record creation was successful
-        if record is not None:
-            if RecordManager.instance().is_newest_record(record):
-                # DELETE record from example data
-                RecordManager.instance().delete_record(record.id)
-        else:
+        record = self._run_record_create_test(data)
+        updated_record = self._run_record_update_test(record.id, updated_data)
+        self._run_newest_record_test(updated_record)
+        self._run_record_delete_test(updated_record)
+
+    def _run_record_create_test(self, data: dict) -> RecordItem:
+        """Tests record creation from JSON data."""
+        record = RecordManager.instance().create_record(data=data)
+        if record is None:
             raise RuntimeError("Couldn't create record: Test failed.")
+        return record
+
+    def _run_record_update_test(self, recid: str, updated_data: dict) -> RecordItem:
+        """Tests record update from JSON data."""
+        updated_record = RecordManager.instance().update_record(recid, updated_data)
+        if updated_record is None:
+            raise RuntimeError("Couldn't update record: Test failed.")
+        return updated_record
+
+    def _run_newest_record_test(self, record: RecordItem) -> None:
+        """Tests whether the given record is the newest."""
+        if not RecordManager.instance().is_newest_record(record=record):
+            raise RuntimeError("Record is not the newest record: Test failed.")
+
+    def _run_record_delete_test(self, record: RecordItem) -> None:
+        """Tests record deletion."""
+        RecordManager.instance().delete_record(record.id)
 
     def _response_check_post(self, response, message: str):
         """Description."""
