@@ -652,7 +652,7 @@ class RdmAddRecord:
         self.sub_data["accessType"] = self._accessright_conversion(value)
 
         # Download file from Pure
-        response = get_pure_file(self, file_url, file_name)
+        response = get_pure_file(file_url, file_name)
         # Checks if the file is already in RDM, and if it has already been reviewed
         self._process_file_download_response(response, file_name)
 
