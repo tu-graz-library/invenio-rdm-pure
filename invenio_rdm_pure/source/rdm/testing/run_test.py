@@ -5,7 +5,7 @@
 # invenio-rdm-pure is free software; you can redistribute it and/or modify it
 # under the terms of the MIT License; see LICENSE file for more details.
 
-"""File description."""
+"""Module to test the functionalities of the Addon."""
 
 import json
 import os
@@ -17,10 +17,10 @@ from ..requests_rdm import Requests
 
 
 class Testing:
-    """Module to test the functionalities of the Addon."""
+    """Class to test the functionalities of the Addon."""
 
     def __init__(self):
-        """Description."""
+        """Constructor of class Testing."""
         self.report = Reports()
         self.rdm_requests = Requests()
 
