@@ -68,11 +68,8 @@ class RecordManager(object):
 
     def create_record(self, data) -> Optional[RecordItem]:
         """Creates a record from JSON data."""
-        identity = Identity(current_app.config.get(RdmDatabase.get_pure_user_id()))
-        identity.provides.add(any_user)
-        service = BibliographicRecordService(config=ServiceConfig)
-        record = service.create(identity, data)
-        service.publish(id_=record.id, identity=identity)
+        record = self.service.create(self.identity, data)
+        self.service.publish(id_=record.id, identity=self.identity)
 
         if record is not None:
             return record
@@ -81,12 +78,11 @@ class RecordManager(object):
 
     def update_record(self, recid: str, data) -> RecordItem:
         """Updates a record with JSON data."""
-        identity = Identity(current_app.config.get(RdmDatabase.get_pure_user_id()))
-        identity.provides.add(any_user)
-        service = BibliographicRecordService(config=ServiceConfig)
-        original_record = service.read(id_=recid, identity=identity)
+        original_record = self.service.read(id_=recid, identity=self.identity)
         original_revision_id = original_record._record.revision_id
-        updated_record = service.update(id_=recid, identity=identity, data=data)
+        updated_record = self.service.update(
+            id_=recid, identity=self.identity, data=data
+        )
 
         if (
             updated_record is None
@@ -100,10 +96,7 @@ class RecordManager(object):
         """Deletes record with given recid."""
         if not recid:
             raise ValueError("Can't delete record without providing recid.")
-        identity = Identity(current_app.config.get(RdmDatabase.get_pure_user_id()))
-        identity.provides.add(any_user)
-        service = BibliographicRecordService(config=ServiceConfig)
-        deleted = service.delete(id_=recid, identity=identity)
+        deleted = self.service.delete(id_=recid, identity=self.identity)
         if not deleted:
             raise RuntimeError("Failed to delete record.")
 
