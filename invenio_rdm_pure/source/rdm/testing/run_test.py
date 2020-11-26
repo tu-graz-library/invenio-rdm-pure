@@ -12,7 +12,7 @@ import os
 
 from ....setup import dirpath
 from ...reports import Reports
-from ..add_record import RdmAddRecord
+from ..record_manager import RecordManager
 from ..requests_rdm import Requests
 
 
@@ -23,7 +23,6 @@ class Testing:
         """Description."""
         self.report = Reports()
         self.rdm_requests = Requests()
-        self.rdm_add_record = RdmAddRecord()
 
     def run_tests(self):
         """Runs the tests."""
@@ -40,19 +39,19 @@ class Testing:
         data = json.loads(
             open(f"{dirpath}/source/rdm/testing/example_data.json", "r").read()
         )
-        record = self.rdm_add_record.create_record(data=data)
+        record = RecordManager.instance().create_record(data=data)
 
         # UPDATE record from example data
         updated_data = json.loads(
             open(f"{dirpath}/source/rdm/testing/example_data_update.json", "r").read()
         )
-        updated_record = self.rdm_add_record.update_record(record.id, updated_data)
+        updated_record = RecordManager.instance().update_record(record.id, updated_data)
 
         # Check whether record creation was successful
         if record is not None:
-            if self.rdm_add_record.is_newest_record(record):
+            if RecordManager.instance().is_newest_record(record):
                 # DELETE record from example data
-                self.rdm_add_record.delete_record(record.id)
+                RecordManager.instance().delete_record(record.id)
         else:
             raise RuntimeError("Couldn't create record: Test failed.")
 
