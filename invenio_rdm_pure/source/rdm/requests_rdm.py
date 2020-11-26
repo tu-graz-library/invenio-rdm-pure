@@ -22,9 +22,7 @@ from ..reports import Reports
 class Requests:
     """Description."""
 
-    def __init__(self):
-        """Description."""
-        self.report = Reports()
+    report = Reports()
 
     def _request_headers(self, parameters: list):
         """Description."""
