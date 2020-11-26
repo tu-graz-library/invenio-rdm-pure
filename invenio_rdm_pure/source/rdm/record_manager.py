@@ -8,6 +8,7 @@
 """Record Manager Module to facilitate Invenio Record interaction."""
 
 import json
+from typing import Optional
 
 from flask import current_app
 from flask_principal import Identity
@@ -46,11 +47,11 @@ class ServiceConfig(BibliographicRecordServiceConfig):
 class RecordManager(object):
     """Record Manager Class to facilitate Invenio Record interaction."""
 
-    __instance = None
+    __instance: Optional["RecordManager"] = None
     __create_key = object()
 
     @classmethod
-    def instance(cls):
+    def instance(cls) -> "RecordManager":
         """Instance method to facilitate singleton pattern."""
         if cls.__instance is None:
             cls.__instance = RecordManager(cls.__create_key)
@@ -65,7 +66,7 @@ class RecordManager(object):
         self.identity.provides.add(any_user)
         self.service = BibliographicRecordService(config=ServiceConfig)
 
-    def create_record(self, data) -> RecordItem:
+    def create_record(self, data) -> Optional[RecordItem]:
         """Creates a record from JSON data."""
         identity = Identity(current_app.config.get(RdmDatabase.get_pure_user_id()))
         identity.provides.add(any_user)
