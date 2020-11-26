@@ -16,11 +16,11 @@ from ...general_functions_source import (
     check_if_file_exists,
     initialize_counters,
 )
-from ...pure.general_functions_pure import (
+from ...pure.requests_pure import (
     get_next_page,
+    get_pure_metadata,
     get_pure_record_metadata_by_uuid,
 )
-from ...pure.requests_pure import get_pure_metadata
 from ...reports import Reports
 from ..add_record import RdmAddRecord
 from ..delete_record import Delete

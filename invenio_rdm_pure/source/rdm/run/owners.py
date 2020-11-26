@@ -17,8 +17,7 @@ from ...general_functions_source import (
     initialize_counters,
     shorten_file_name,
 )
-from ...pure.general_functions_pure import get_next_page
-from ...pure.requests_pure import get_pure_metadata
+from ...pure.requests_pure import get_next_page, get_pure_metadata
 from ...reports import Reports
 from ..add_record import RdmAddRecord
 from ..database import RdmDatabase

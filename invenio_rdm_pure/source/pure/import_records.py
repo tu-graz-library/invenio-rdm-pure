@@ -21,7 +21,7 @@ from ..general_functions_source import (
 )
 from ..rdm.requests_rdm import Requests
 from ..reports import Reports
-from .general_functions_pure import get_pure_record_metadata_by_uuid
+from .requests_pure import get_pure_record_metadata_by_uuid
 
 
 class ImportRecords:
