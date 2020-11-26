@@ -61,7 +61,8 @@ class RdmDatabase:
             return False
         return self.cursor.fetchall()
 
-    def get_pure_user_id(self):
+    @staticmethod
+    def get_pure_user_id():
         """Gets the userId of the Pure user.
 
         In case the user doesn't exist yet,

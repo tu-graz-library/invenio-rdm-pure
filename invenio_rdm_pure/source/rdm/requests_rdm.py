@@ -35,7 +35,8 @@ class Requests:
             headers["Content-Type"] = "application/octet-stream"
         return headers
 
-    def _request_params(self):
+    @staticmethod
+    def _request_params():
         """Description."""
         return (("prettyprint", "1"),)
 
