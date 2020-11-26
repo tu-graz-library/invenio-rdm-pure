@@ -56,7 +56,7 @@ def get_pure_record_metadata_by_uuid(uuid: str):
     return json.loads(response.content)
 
 
-def get_pure_file(shell_interface, file_url: str, file_name: str):
+def get_pure_file(file_url: str, file_name: str):
     """Description."""
     # Get request to Pure
     pure_username = current_app.config.get("PURE_USERNAME")
