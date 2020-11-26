@@ -14,7 +14,7 @@ import requests
 from flask import current_app
 from requests.auth import HTTPBasicAuth
 
-from ...setup import log_files_name, temporary_files_name
+from ...setup import temporary_files_name
 from ..reports import Reports
 
 reports = Reports()
