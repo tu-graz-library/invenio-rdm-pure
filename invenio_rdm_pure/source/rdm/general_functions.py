@@ -96,14 +96,3 @@ class GeneralFunctions:
                 self.reports.add(report)
 
                 return user_id
-
-    #   ---         ---         ---
-    def update_rdm_record(self, recid: str, data: object):
-        """Description."""
-        response = self.rdm_requests.put_metadata(recid, data)
-
-        rdm_host_url = current_app.config.get("INVENIO_PURE_HOST_URL")
-        url = f"{rdm_host_url}api/records/{recid}"
-        self.reports.add(f"\tRecord update @ {response} @ {url}")
-
-        return response

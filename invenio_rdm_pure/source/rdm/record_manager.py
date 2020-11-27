@@ -21,7 +21,9 @@ from invenio_records_permissions.generators import AnyUser
 from invenio_records_permissions.policies import RecordPermissionPolicy
 from invenio_records_resources.services.records.results import RecordItem
 from marshmallow.exceptions import ValidationError
+from requests.models import Response
 
+from ..reports import Reports
 from .database import RdmDatabase
 from .requests_rdm import Requests
 
@@ -96,6 +98,16 @@ class RecordManager(object):
             raise RuntimeError("Failed to update record.")
         else:
             return updated_record
+
+    def update_record_rest(self, recid: str, data: dict) -> Response:
+        """Description."""
+        response = Requests().put_metadata(recid, data)
+
+        rdm_host_url = current_app.config.get("INVENIO_PURE_HOST_URL")
+        url = f"{rdm_host_url}api/records/{recid}"
+        Reports().add(f"\tRecord update @ {response} @ {url}")
+
+        return response
 
     def delete_record(self, recid: str) -> None:
         """Deletes record with given recid."""
