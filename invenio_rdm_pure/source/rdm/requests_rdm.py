@@ -96,12 +96,13 @@ class Requests:
         self._check_response(response)
         return response
 
-    def put_metadata(self, recid: str, data: object):
+    @classmethod
+    def put_metadata(cls, recid: str, data: object):
         """Used to update an existing record."""
         data = json.dumps(data).encode("utf-8")
 
-        headers = self._request_headers(["content_type"])
-        params = self._request_params()
+        headers = cls._request_headers(["content_type"])
+        params = cls._request_params()
 
         rdm_record_url = current_app.config.get("INVENIO_PURE_RECORD_URL")
         url = rdm_record_url.format(recid)
@@ -110,7 +111,7 @@ class Requests:
             url, headers=headers, params=params, data=data, verify=False
         )
 
-        self._check_response(response)
+        cls._check_response(response)
         return response
 
     def put_file(self, file_path_name: str, recid: str):
