@@ -97,14 +97,14 @@ class Requests:
         return response
 
     @classmethod
-    def put_metadata(cls, recid: str, data: object):
+    def put_metadata(cls, recid: str, data: object) -> Response:
         """Used to update an existing record."""
         data = json.dumps(data).encode("utf-8")
 
         headers = cls._request_headers(["content_type"])
         params = cls._request_params()
 
-        rdm_record_url = current_app.config.get("INVENIO_PURE_RECORD_URL")
+        rdm_record_url = str(current_app.config.get("INVENIO_PURE_RECORD_URL"))
         url = rdm_record_url.format(recid)
 
         response = requests.put(
