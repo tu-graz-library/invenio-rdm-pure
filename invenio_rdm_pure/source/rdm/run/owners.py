@@ -22,6 +22,7 @@ from ...reports import Reports
 from ..add_record import RdmAddRecord
 from ..database import RdmDatabase
 from ..general_functions import GeneralFunctions
+from ..record_manager import RecordManager
 from ..requests_rdm import Requests
 
 
@@ -150,7 +151,7 @@ class RdmOwners:
         )
 
         # Add owner to an existing RDM record
-        self.general_functions.update_rdm_record(recid, data)
+        RecordManager.instance().update_record(recid, data)
 
         self.local_counters["to_update"] += 1
 
