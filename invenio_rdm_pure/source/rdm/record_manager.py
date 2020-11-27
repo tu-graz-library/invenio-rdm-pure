@@ -100,7 +100,7 @@ class RecordManager(object):
             return updated_record
 
     def update_record_rest(self, recid: str, data: dict) -> Response:
-        """Description."""
+        """Updates a record via REST API with JSON data."""
         response = Requests().put_metadata(recid, data)
 
         rdm_host_url = current_app.config.get("INVENIO_PURE_HOST_URL")
