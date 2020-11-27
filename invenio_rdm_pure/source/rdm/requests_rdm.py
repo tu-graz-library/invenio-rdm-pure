@@ -24,7 +24,8 @@ class Requests:
 
     report = Reports()
 
-    def _request_headers(self, parameters: list):
+    @staticmethod
+    def _request_headers(parameters: list):
         """Description."""
         headers = {}
         if "content_type" in parameters:
