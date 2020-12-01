@@ -66,6 +66,9 @@ def base_app(request):
 
     app.config.update(
         SQLALCHEMY_DATABASE_URI=os.getenv("SQLALCHEMY_DATABASE_URI", "sqlite://"),
+        SQLALCHEMY_TRACK_MODIFICATIONS=False,
+        TESTING=True,
+        SECRET_KEY="testing",
     )
 
     InvenioConfigDefault(app)
