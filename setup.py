@@ -17,6 +17,8 @@ history = open("CHANGES.rst").read()
 tests_require = [
     "pytest-invenio>=1.4.0",
     "invenio-search[elasticsearch7]>=1.4.0",
+    "invenio-config>=1.0.3",
+    "SQLAlchemy-Utils>=0.33.1,<0.36",  # FIXME without this: ContextualVersionConflict {invenio-files-rest}
 ]
 
 extras_require = {
