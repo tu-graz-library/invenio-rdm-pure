@@ -14,7 +14,7 @@ from invenio_records_resources.services.records.results import RecordItem
 from invenio_rdm_pure.source.rdm.record_manager import RecordManager
 
 
-def run_record_crud_test(app) -> None:
+def test_record_crud(base_app) -> None:
     """CRUD Test for Records implementing invenio's internal API."""
     data = json.loads(open(f"/data/example_data.json", "r").read())
     updated_data = json.loads(open(f"/data/example_data.json", "r").read())
