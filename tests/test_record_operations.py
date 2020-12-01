@@ -8,6 +8,7 @@
 """Record operation tests."""
 
 import json
+import os
 
 from invenio_records_resources.services.records.results import RecordItem
 
@@ -16,8 +17,14 @@ from invenio_rdm_pure.source.rdm.record_manager import RecordManager
 
 def test_record_crud(base_app) -> None:
     """CRUD Test for Records implementing invenio's internal API."""
-    data = json.loads(open(f"/data/example_data.json", "r").read())
-    updated_data = json.loads(open(f"/data/example_data.json", "r").read())
+    data_path = os.path.join(os.path.dirname(__file__), "data", "example_data.json")
+    data = json.load(open(data_path))
+    assert data is not None
+    updated_data_path = os.path.join(
+        os.path.dirname(__file__), "data", "example_data_update.json"
+    )
+    updated_data = json.load(open(updated_data_path))
+    assert updated_data is not None
 
     record = run_record_create_test(data)
     updated_record = run_record_update_test(record.id, updated_data)
