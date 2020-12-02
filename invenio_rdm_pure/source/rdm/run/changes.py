@@ -11,17 +11,13 @@ import json
 from datetime import date, datetime, timedelta
 
 from ....setup import data_files_name
-from ...general_functions_source import (
-    add_spaces,
-    check_if_file_exists,
-    initialize_counters,
-)
 from ...pure.requests_pure import (
     get_next_page,
     get_pure_metadata,
     get_pure_record_metadata_by_uuid,
 )
 from ...reports import Reports
+from ...utils import add_spaces, check_if_file_exists, initialize_counters
 from ..add_record import RdmAddRecord
 from ..delete_record import Delete
 from ..requests_rdm import Requests

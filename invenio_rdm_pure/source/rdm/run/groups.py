@@ -13,11 +13,10 @@ import os
 from flask_login import current_user
 from invenio_oauthclient.models import UserIdentity
 
-from ...general_functions_source import add_spaces
 from ...pure.requests_pure import get_pure_metadata
 from ...reports import Reports
+from ...utils import add_spaces
 from ..database import RdmDatabase
-from ..general_functions import GeneralFunctions
 from ..record_manager import RecordManager
 from ..requests_rdm import Requests
 

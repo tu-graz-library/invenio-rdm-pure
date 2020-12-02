@@ -16,8 +16,8 @@ from flask import current_app
 from requests import Response
 
 from ...setup import push_dist_sec, temporary_files_name, versioning_running, wait_429
-from ..general_functions_source import add_spaces
 from ..reports import Reports
+from ..utils import add_spaces
 
 
 class Requests:

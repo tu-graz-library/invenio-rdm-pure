@@ -9,10 +9,10 @@
 
 import json
 
-from .source.general_functions_source import initialize_counters
 from .source.pure.requests_pure import get_pure_metadata
 from .source.rdm.add_record import RdmAddRecord
 from .source.reports import Reports
+from .source.utils import initialize_counters
 
 
 class RunPages:

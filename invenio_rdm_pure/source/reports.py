@@ -10,11 +10,7 @@
 import datetime
 
 from ..setup import dirpath, log_files_name
-from .general_functions_source import (
-    add_spaces,
-    check_if_directory_exists,
-    current_time,
-)
+from .utils import add_spaces, check_if_directory_exists, current_time
 
 report_templates = {
     # GENERAL       ***

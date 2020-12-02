@@ -9,9 +9,9 @@
 
 import json
 
-from ...general_functions_source import initialize_counters
 from ...pure.requests_pure import get_pure_metadata
 from ...reports import Reports
+from ...utils import initialize_counters
 from ..add_record import RdmAddRecord
 
 
