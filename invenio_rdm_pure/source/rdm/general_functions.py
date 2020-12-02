@@ -77,7 +77,6 @@ class GeneralFunctions:
 
         return newest_recid
 
-    #   ---         ---         ---
     def get_userid_from_list_by_externalid(self, external_id: str, file_data: list):
         """Given a user external_id, it checks if it is listed in data/user_ids_match.txt.
 
