@@ -203,6 +203,7 @@ class Requests:
         # Iterate over all records with the same uuid
         # The first record is the most recent (they are sorted)
         count = 0
+        newest_recid = ""
         for item in resp_json["hits"]["hits"]:
             count += 1
 
