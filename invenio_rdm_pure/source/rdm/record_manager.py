@@ -79,7 +79,7 @@ class RecordManager(object):
         except ValidationError:
             return None
 
-    def update_record(self, recid: str, data) -> RecordItem:
+    def update_record(self, recid: str, data: dict) -> RecordItem:
         """Updates a record with JSON data."""
         original_record = self.service.read(id_=recid, identity=self.identity)
         original_revision_id = original_record._record.revision_id
