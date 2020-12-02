@@ -67,7 +67,7 @@ class RecordManager(object):
         self.identity.provides.add(any_user)
         self.service = BibliographicRecordService(config=ServiceConfig)
 
-    def create_record(self, data) -> Optional[RecordItem]:
+    def create_record(self, data: dict) -> Optional[RecordItem]:
         """Creates a record from JSON data."""
         if not data:
             return None
