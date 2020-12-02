@@ -8,10 +8,19 @@
 """File description."""
 
 import os
+import smtplib
 from datetime import date, datetime
 from pathlib import Path
 
-from ..setup import data_files_name, pure_uuid_length
+from flask import current_app
+
+from ..setup import (
+    data_files_name,
+    email_message,
+    email_smtp_port,
+    email_smtp_server,
+    pure_uuid_length,
+)
 
 
 def add_spaces(value: str, max_length=5):
@@ -146,3 +155,25 @@ def get_userid_from_list_by_externalid(self, external_id: str, file_data: list):
             self.reports.add(report)
 
             return user_id
+
+
+def send_email(uuid: str, file_name: str):
+    """Description."""
+    # creates SMTP session
+    s = smtplib.SMTP(email_smtp_server, email_smtp_port)
+
+    # start TLS for security
+    s.starttls()
+
+    # Authentication
+    email_sender = current_app.config.get("INVENIO_PURE_USER_EMAIL")
+    email_sender_password = current_app.config.get("INVENIO_PURE_USER_PASSWORD")
+    s.login(email_sender, email_sender_password)
+
+    # sending the mail
+    message = email_message.format(uuid, file_name)
+    email_receiver = current_app.config.get("PURE_RESPONSIBLE_EMAIL")
+    s.sendmail(email_sender, email_receiver, message)
+
+    # terminating the session
+    s.quit()
