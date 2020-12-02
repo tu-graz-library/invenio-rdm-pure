@@ -46,7 +46,6 @@ class RdmAddRecord:
         self.rdm_requests = Requests()
         self.report = Reports()
         self.groups = RdmGroups()
-        self.general_functions = GeneralFunctions()
         self.versioning = Versioning()
         self.rdm_db = RdmDatabase()
 
@@ -468,7 +467,7 @@ class RdmAddRecord:
         time.sleep(1)
 
         # Gets recid from RDM
-        recid = self.general_functions.get_recid(uuid, self.global_counters)
+        recid = self.rdm_requests.get_recid(uuid, self.global_counters)
         if not recid:
             return False
 

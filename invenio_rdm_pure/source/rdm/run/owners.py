@@ -21,7 +21,6 @@ from ...pure.requests_pure import get_next_page, get_pure_metadata
 from ...reports import Reports
 from ..add_record import RdmAddRecord
 from ..database import RdmDatabase
-from ..general_functions import GeneralFunctions
 from ..record_manager import RecordManager
 from ..requests_rdm import Requests
 
@@ -35,7 +34,6 @@ class RdmOwners:
         self.rdm_db = RdmDatabase()
         self.report = Reports()
         self.rdm_add_record = RdmAddRecord()
-        self.general_functions = GeneralFunctions()
         self.report_files = ["console", "owners"]
 
     def _set_counters_and_title(func):
@@ -108,7 +106,7 @@ class RdmOwners:
                 self.report.add(f"\n\tRecord uuid  @ {uuid} @ {title}")
 
                 # Get from RDM the recid
-                recid = self.general_functions.get_recid(uuid, self.global_counters)
+                recid = self.rdm_requests.get_recid(uuid, self.global_counters)
 
                 # Record NOT in RDM, create it
                 if recid is False:
