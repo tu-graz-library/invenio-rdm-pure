@@ -40,7 +40,6 @@ class RdmGroups:
         self.rdm_db = RdmDatabase()
         self.report = Reports()
         self.rdm_requests = Requests()
-        self.general_functions = GeneralFunctions()
         self.report_files = ["console", "groups"]
 
     def _general_report_and_variables(func):

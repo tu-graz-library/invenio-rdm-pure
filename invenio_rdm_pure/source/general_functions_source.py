@@ -126,3 +126,23 @@ def get_value(item, path: list):
     value = value.replace('"', '\\"')  # adds \ before "
     value = value.replace("\n", "")  # removes new lines
     return value
+
+
+def get_userid_from_list_by_externalid(self, external_id: str, file_data: list):
+    """Given a user external_id, it checks if it is listed in data/user_ids_match.txt.
+
+    If it is found it returns its relative user id.
+    """
+    for line in file_data:
+        line = line.split("\n")[0]
+        line = line.split(" ")
+
+        # Checks if at least one of the ids match
+        if external_id == line[2]:
+            user_id = line[0]
+            user_id_spaces = add_spaces(user_id)
+
+            report = f"\tRDM owner list @@ User id:     {user_id_spaces} @ externalId: {external_id}"
+            self.reports.add(report)
+
+            return user_id
