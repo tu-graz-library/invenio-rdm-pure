@@ -32,6 +32,16 @@ def test_record_crud(base_app) -> None:
     run_record_delete_test(updated_record)
 
 
+def test_create_record_invalid_json(base_app) -> None:
+    """Test record creation with invalid record as argument."""
+    data_path = os.path.join(
+        os.path.dirname(__file__), "data", "example_invalid_data.json"
+    )
+    invalid_data = json.load(open(data_path))
+    record = RecordManager.instance().create_record(invalid_data)
+    assert record is None
+
+
 def run_record_create_test(data: dict) -> RecordItem:
     """Tests record creation from JSON data."""
     record = RecordManager.instance().create_record(data=data)

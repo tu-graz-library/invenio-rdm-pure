@@ -20,6 +20,7 @@ from invenio_rdm_records.services import (
 from invenio_records_permissions.generators import AnyUser
 from invenio_records_permissions.policies import RecordPermissionPolicy
 from invenio_records_resources.services.records.results import RecordItem
+from marshmallow.exceptions import ValidationError
 
 from .database import RdmDatabase
 from .requests_rdm import Requests
@@ -68,12 +69,14 @@ class RecordManager(object):
 
     def create_record(self, data) -> Optional[RecordItem]:
         """Creates a record from JSON data."""
-        record = self.service.create(self.identity, data)
-        self.service.publish(id_=record.id, identity=self.identity)
-
-        if record is not None:
+        if not data:
+            return None
+        try:
+            record = self.service.create(self.identity, data)
+            self.service.publish(id_=record.id, identity=self.identity)
             return record
-        else:
+
+        except ValidationError:
             return None
 
     def update_record(self, recid: str, data) -> RecordItem:
