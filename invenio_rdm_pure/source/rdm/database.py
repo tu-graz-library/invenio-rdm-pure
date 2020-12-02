@@ -25,24 +25,6 @@ class RdmDatabase:
     def __init__(self):
         """Description."""
         self.report = Reports()
-        self._db_connect()
-
-    # def _db_connect(self):
-    #     """Establis a connection to RDM database."""
-    #     host = current_app.config.get("INVENIO_DATABASE_HOST")
-    #     name = current_app.config.get("INVENIO_DATABASE_NAME")
-    #     user = current_app.config.get("INVENIO_DATABASE_USERNAME")
-    #     password = current_app.config.get("INVENIO_DATABASE_PASSWORD")
-
-    #     connection = psycopg2.connect(
-    #         f"""\
-    #         host={host} \
-    #         dbname={name} \
-    #         user={user} \
-    #         password={password} \
-    #         """
-    #     )
-    #     self.cursor = connection.cursor()
 
     def select_query(self, fields: str, table: str, filters={}):
         """Makes a select query to the database."""
@@ -61,7 +43,8 @@ class RdmDatabase:
             return False
         return self.cursor.fetchall()
 
-    def get_pure_user_id(self):
+    @staticmethod
+    def get_pure_user_id():
         """Gets the userId of the Pure user.
 
         In case the user doesn't exist yet,
@@ -82,3 +65,14 @@ class RdmDatabase:
                 )
                 db.session.commit()
             return invenio_pure_user.id
+
+    def make_user_admin(self, id_or_email: str) -> None:
+        """Gives the user with given id or email administrator rights."""
+        return None  # FIXME: Method stub'd until auxiliary methods are implemented.
+        datastore = current_app.extensions["security"].datastore
+        if datastore is not None:
+            invenio_pure_user = datastore.get_user(
+                id_or_email
+            )  # FIXME: Not implemented yet.
+            admin_role = datastore.find_role("admin")  # FIXME: Not implemented yet.
+            datastore.add_role_to_user(invenio_pure_user, admin_role)

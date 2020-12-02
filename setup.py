@@ -17,6 +17,8 @@ history = open("CHANGES.rst").read()
 tests_require = [
     "pytest-invenio>=1.4.0",
     "invenio-search[elasticsearch7]>=1.4.0",
+    "invenio-config>=1.0.3",
+    "SQLAlchemy-Utils>=0.33.1,<0.36",  # FIXME without this: ContextualVersionConflict {invenio-files-rest}
 ]
 
 extras_require = {
@@ -39,7 +41,7 @@ install_requires = [
     "Flask-BabelEx>=0.9.4",
     "docopt>=0.6.2",
     "invenio_oauthclient>=1.2.1",
-    "invenio-rdm-records>=0.23.4",
+    "invenio-rdm-records~=0.23.4",
     "sqlalchemy-continuum>=1.3.11",
 ]
 

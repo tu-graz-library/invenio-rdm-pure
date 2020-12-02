@@ -5,49 +5,33 @@
 # invenio-rdm-pure is free software; you can redistribute it and/or modify it
 # under the terms of the MIT License; see LICENSE file for more details.
 
-"""File description."""
+"""Module to test the functionalities of the Addon."""
 
 import json
 import os
 
+from invenio_records_resources.services.records.results import RecordItem
+
 from ....setup import dirpath
 from ...reports import Reports
+from ..record_manager import RecordManager
 from ..requests_rdm import Requests
 
 
 class Testing:
-    """Description."""
+    """Class to test the functionalities of the Addon."""
 
     def __init__(self):
-        """Description."""
+        """Constructor of class Testing."""
         self.report = Reports()
         self.rdm_requests = Requests()
 
-    def run(self):
-        """Description."""
-        # Title
+    def run_tests(self) -> None:
+        """Runs the tests."""
+        # Sets logging variables (FIXME: implement proper logging)
         self.report.add_template(["console"], ["general", "title"], ["TESTING"])
-        # Records
-        self._post_get_rdm_record()
-        # Users
-        self._rdm_user_test()
-
-    def _post_get_rdm_record(self):
-        """Description."""
-        # RDM post metadata
-        data = open(f"{dirpath}/source/rdm/testing/example_data.json", "r").read()
-        response = self.rdm_requests.post_metadata(data)
-        response = self._response_check_post(response, "\nRDM post metadata")
-        if not response:
-            return False
-
-        # Delete RDM record
-        params = {"sort": "mostrecent", "size": 1, "page": 1}
-        response = self.rdm_requests.get_metadata(params)
-        resp_json = json.loads(response.content)
-        recid = resp_json["hits"]["hits"][0]["metadata"]["recid"]
-        response = self.rdm_requests.delete_metadata(recid)
-        self._response_check_post(response, "RDM record delete")
+        # Users (FIXME: implement proper user tests)
+        # self._rdm_user_test()
 
     def _response_check_post(self, response, message: str):
         """Description."""

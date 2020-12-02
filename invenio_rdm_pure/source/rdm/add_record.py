@@ -8,20 +8,13 @@
 """File description."""
 
 import json
-import os.path
 import time
-from datetime import date
-
-from flask import current_app
-from invenio_db import InvenioDB, db
-from invenio_records import InvenioRecords, Record
 
 from ...setup import (
     accessright_pure_to_rdm,
     data_files_name,
     iso6393_file_name,
     possible_record_restrictions,
-    push_dist_sec,
     resourcetype_pure_to_rdm,
     versioning_running,
 )
@@ -37,7 +30,6 @@ from ..pure.general_functions_pure import (
 )
 from ..pure.requests_pure import get_pure_metadata
 from ..rdm.database import RdmDatabase
-from ..rdm.emails import send_email
 from ..rdm.general_functions import GeneralFunctions
 from ..rdm.put_file import rdm_add_file
 from ..rdm.requests_rdm import Requests
@@ -97,6 +89,9 @@ class RdmAddRecord:
 
         # Record owners
         self._check_record_owners()
+
+        # Initialize data attribute
+        self.data = dict()
 
         # Assign to '_created_by' the userid of the Pure admin user
         userid = self.rdm_db.get_pure_user_id()

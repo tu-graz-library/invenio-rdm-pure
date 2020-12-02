@@ -9,9 +9,11 @@
 
 import json
 import time
+from os import makedirs, path
 
 import requests
 from flask import current_app
+from requests import Response
 
 from ...setup import push_dist_sec, temporary_files_name, wait_429
 from ..reports import Reports
@@ -20,9 +22,7 @@ from ..reports import Reports
 class Requests:
     """Description."""
 
-    def __init__(self):
-        """Description."""
-        self.report = Reports()
+    report = Reports()
 
     def _request_headers(self, parameters: list):
         """Description."""
@@ -33,17 +33,22 @@ class Requests:
             headers["Content-Type"] = "application/octet-stream"
         return headers
 
-    def _request_params(self):
+    @staticmethod
+    def _request_params():
         """Description."""
         return (("prettyprint", "1"),)
 
-    def get_metadata(self, additional_parameters: str, recid=""):
-        """Description."""
-        headers = self._request_headers(["content_type"])
-        params = self._request_params()
-
-        rdm_record_url = current_app.config.get("INVENIO_PURE_RECORD_URL")
-        url = rdm_record_url.format(recid)
+    @classmethod
+    def get_metadata(cls, additional_parameters: dict, recid: str = "") -> Response:
+        """Retrieves metadata from Invenio via its REST API."""
+        headers = dict()
+        headers["Content-Type"] = "application/json"
+        params = cls._request_params()
+        if not recid:
+            url = str(current_app.config.get("INVENIO_PURE_RECORDS_URL"))
+        else:
+            rdm_record_url: str = str(current_app.config.get("INVENIO_PURE_RECORD_URL"))
+            url = rdm_record_url.format(recid)
 
         # Add parameters to url
         if len(additional_parameters) > 0:
@@ -55,9 +60,15 @@ class Requests:
 
         # Sending request
         response = requests.get(url, headers=headers, params=params, verify=False)
-        open(temporary_files_name["get_rdm_metadata"], "wb").write(response.content)
 
-        self._check_response(response)
+        # Write response to file
+        get_response_file = temporary_files_name["get_rdm_metadata"]
+        if not path.exists(path.dirname(get_response_file)):
+            makedirs(path.dirname(get_response_file))
+        with open(get_response_file, "wb") as fp:
+            fp.write(response.content)
+
+        cls._check_response(response)
         return response
 
     def post_metadata(self, data: str):
@@ -127,17 +138,18 @@ class Requests:
         self._check_response(response)
         return response
 
-    def _check_response(self, response):
+    @classmethod
+    def _check_response(cls, response):
         """Description."""
         http_code = response.status_code
         if http_code >= 300 and http_code != 429:
-            self.report.add(str(response.content))
+            cls.report.add(str(response.content))
             return False
 
         # Checks if too many requests are submitted to RDM (more then 5000 / hour)
         if response.status_code == 429:
             report = f"{response.content}\nToo many RDM requests.. wait {wait_429 / 60} minutes\n"
-            self.report.add(report)
+            cls.report.add(report)
             time.sleep(wait_429)
             return False
 
