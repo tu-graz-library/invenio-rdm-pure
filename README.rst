@@ -9,11 +9,11 @@
  invenio-rdm-pure
 ==================
 
-.. image:: https://img.shields.io/travis/fair-data-austria/invenio-rdm-pure.svg
-        :target: https://travis-ci.org/fair-data-austria/invenio-rdm-pure
+.. image:: https://travis-ci.com/tu-graz-library/invenio-rdm-pure.svg
+        :target: https://travis-ci.com/github/tu-graz-library/invenio-rdm-pure
 
-.. image:: https://img.shields.io/coveralls/fair-data-austria/invenio-rdm-pure.svg
-        :target: https://coveralls.io/r/fair-data-austria/invenio-rdm-pure
+.. image:: https://coveralls.io/repos/github/tu-graz-library/invenio-rdm-pure/badge.svg
+        :target: https://coveralls.io/github/tu-graz-library/invenio-rdm-pure
 
 .. image:: https://img.shields.io/github/tag/fair-data-austria/invenio-rdm-pure.svg
         :target: https://github.com/fair-data-austria/invenio-rdm-pure/releases
