@@ -25,24 +25,6 @@ class RdmDatabase:
     def __init__(self):
         """Description."""
         self.report = Reports()
-        # self._db_connect()
-
-    # def _db_connect(self):
-    #     """Establis a connection to RDM database."""
-    #     host = current_app.config.get("INVENIO_DATABASE_HOST")
-    #     name = current_app.config.get("INVENIO_DATABASE_NAME")
-    #     user = current_app.config.get("INVENIO_DATABASE_USERNAME")
-    #     password = current_app.config.get("INVENIO_DATABASE_PASSWORD")
-
-    #     connection = psycopg2.connect(
-    #         f"""\
-    #         host={host} \
-    #         dbname={name} \
-    #         user={user} \
-    #         password={password} \
-    #         """
-    #     )
-    #     self.cursor = connection.cursor()
 
     def select_query(self, fields: str, table: str, filters={}):
         """Makes a select query to the database."""
