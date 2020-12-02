@@ -45,11 +45,3 @@ def index3():
     command += f"owner --identifier='externalId' --identifierValue='{externalId}'"
     os.system(command)
     return "Task successfully completed"
-
-
-@blueprint.route("/test")
-def test():
-    """Tests addon functionalities."""
-    test = Testing()
-    test.run_tests()
-    return "Tests finished successfully."
