@@ -48,6 +48,15 @@ def test_create_record_invalid_json(base_app) -> None:
     assert record is None
 
 
+def test_delete_record_noid(base_app) -> None:
+    """Test record creation with recordID as argument."""
+    try:
+        RecordManager.instance().delete_record("")
+        assert False
+    except ValueError:
+        assert True
+
+
 def run_record_create_test(data: dict) -> RecordItem:
     """Tests record creation from JSON data."""
     record = RecordManager.instance().create_record(data=data)
