@@ -24,7 +24,6 @@ from ..pure.requests_pure import (
     get_pure_record_metadata_by_uuid,
 )
 from ..rdm.database import RdmDatabase
-from ..rdm.put_file import rdm_add_file
 from ..rdm.requests_rdm import Requests
 from ..rdm.run.groups import RdmGroups
 from ..rdm.versioning import Versioning
@@ -476,7 +475,7 @@ class RdmAddRecord:
         for file_name in self.record_files:
 
             # Submit request
-            response = rdm_add_file(file_name, recid)
+            response = self.rdm_requests.rdm_add_file(file_name, recid)
             # Process response
             successful = self._process_file_response(response, success_check)
 
