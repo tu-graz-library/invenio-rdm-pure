@@ -21,6 +21,7 @@ from ...setup import (
 from ..general_functions_source import (
     check_if_file_exists,
     file_read_lines,
+    get_userid_from_list_by_externalid,
     get_value,
     shorten_file_name,
 )
@@ -30,7 +31,6 @@ from ..pure.requests_pure import (
     get_pure_record_metadata_by_uuid,
 )
 from ..rdm.database import RdmDatabase
-from ..rdm.general_functions import GeneralFunctions
 from ..rdm.put_file import rdm_add_file
 from ..rdm.requests_rdm import Requests
 from ..rdm.run.groups import RdmGroups
@@ -364,9 +364,7 @@ class RdmAddRecord:
 
             # Checks if the record owner is available in user_ids_match.txt
             person_external_id = get_value(item, ["person", "externalId"])
-            owner = self.general_functions.get_userid_from_list_by_externalid(
-                person_external_id, file_data
-            )
+            owner = get_userid_from_list_by_externalid(person_external_id, file_data)
             if owner and int(owner) not in self.data["_owners"]:
                 self.data["_owners"].append(int(owner))
 
