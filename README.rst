@@ -27,6 +27,8 @@
 .. image:: https://readthedocs.org/projects/invenio-rdm-pure/badge/?version=latest
         :target: https://invenio-rdm-pure.readthedocs.io/en/latest/?badge=latest
 
+.. image:: https://img.shields.io/badge/code%20style-black-000000.svg
+    :target: https://github.com/psf/black
 
 Invenio module that adds TUGraz Pure integration.
 
