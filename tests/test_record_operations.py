@@ -32,6 +32,12 @@ def test_record_crud(base_app) -> None:
     run_record_delete_test(updated_record)
 
 
+def test_create_record_none(base_app) -> None:
+    """Test record creation with None as argument."""
+    record = RecordManager.instance().create_record(None)
+    assert record is None
+
+
 def test_create_record_invalid_json(base_app) -> None:
     """Test record creation with invalid record as argument."""
     data_path = os.path.join(
