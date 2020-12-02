@@ -30,47 +30,8 @@ class Testing:
         """Runs the tests."""
         # Sets logging variables (FIXME: implement proper logging)
         self.report.add_template(["console"], ["general", "title"], ["TESTING"])
-        # Record CRUD Test
-        self._run_record_crud_test()
         # Users (FIXME: implement proper user tests)
         # self._rdm_user_test()
-
-    def _run_record_crud_test(self) -> None:
-        """CRUD Test for Records implementing invenio's internal API."""
-        data = json.loads(
-            open(f"{dirpath}/source/rdm/testing/example_data.json", "r").read()
-        )
-        updated_data = json.loads(
-            open(f"{dirpath}/source/rdm/testing/example_data_update.json", "r").read()
-        )
-
-        record = self._run_record_create_test(data)
-        updated_record = self._run_record_update_test(record.id, updated_data)
-        self._run_newest_record_test(updated_record)
-        self._run_record_delete_test(updated_record)
-
-    def _run_record_create_test(self, data: dict) -> RecordItem:
-        """Tests record creation from JSON data."""
-        record = RecordManager.instance().create_record(data=data)
-        if record is None:
-            raise RuntimeError("Couldn't create record: Test failed.")
-        return record
-
-    def _run_record_update_test(self, recid: str, updated_data: dict) -> RecordItem:
-        """Tests record update from JSON data."""
-        updated_record = RecordManager.instance().update_record(recid, updated_data)
-        if updated_record is None:
-            raise RuntimeError("Couldn't update record: Test failed.")
-        return updated_record
-
-    def _run_newest_record_test(self, record: RecordItem) -> None:
-        """Tests whether the given record is the newest."""
-        if not RecordManager.instance().is_newest_record(record=record):
-            raise RuntimeError("Record is not the newest record: Test failed.")
-
-    def _run_record_delete_test(self, record: RecordItem) -> None:
-        """Tests record deletion."""
-        RecordManager.instance().delete_record(record.id)
 
     def _response_check_post(self, response, message: str):
         """Description."""
