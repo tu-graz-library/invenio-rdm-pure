@@ -18,13 +18,6 @@ from ...setup import (
     resourcetype_pure_to_rdm,
     versioning_running,
 )
-from ..general_functions_source import (
-    check_if_file_exists,
-    file_read_lines,
-    get_userid_from_list_by_externalid,
-    get_value,
-    shorten_file_name,
-)
 from ..pure.requests_pure import (
     get_pure_file,
     get_pure_metadata,
@@ -36,6 +29,13 @@ from ..rdm.requests_rdm import Requests
 from ..rdm.run.groups import RdmGroups
 from ..rdm.versioning import Versioning
 from ..reports import Reports
+from ..utils import (
+    check_if_file_exists,
+    file_read_lines,
+    get_userid_from_list_by_externalid,
+    get_value,
+    shorten_file_name,
+)
 
 
 class RdmAddRecord:

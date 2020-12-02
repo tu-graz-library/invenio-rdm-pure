@@ -17,8 +17,8 @@ from ..setup import (
     lines_successful_changes,
     reports_full_path,
 )
-from .general_functions_source import check_if_file_exists, current_time
 from .reports import Reports
+from .utils import check_if_file_exists, current_time
 
 reports = Reports()
 
