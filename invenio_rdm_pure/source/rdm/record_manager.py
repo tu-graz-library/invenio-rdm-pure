@@ -81,6 +81,8 @@ class RecordManager(object):
 
     def update_record(self, recid: str, data: dict) -> RecordItem:
         """Updates a record with JSON data."""
+        if not data:
+            return None
         original_record = self.service.read(id_=recid, identity=self.identity)
         original_revision_id = original_record._record.revision_id
         updated_record = self.service.update(
