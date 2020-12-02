@@ -9,7 +9,7 @@
 
 import json
 import time
-from os import makedirs, path
+from os import makedirs, path, remove
 
 import requests
 from flask import current_app
@@ -231,3 +231,25 @@ class Requests:
                         global_counters["delete"]["error"] += 1
 
         return newest_recid
+
+    def rdm_add_file(file_name: str, recid: str):
+        """Description."""
+        rdm_requests = Requests()
+        reports = Reports()
+
+        file_path_name = f"{temporary_files_name['base_path']}/{file_name}"
+
+        # PUT FILE TO RDM
+        response = rdm_requests.put_file(file_path_name, recid)
+
+        # Report
+        reports.add(f"\tRDM put file @ {response} @ {file_name}")
+
+        if response.status_code >= 300:
+            reports.add(response.content)
+            return False
+
+        else:
+            # if the upload was successful then delete file from /reports/temporary_files
+            remove(file_path_name)
+            return True
