@@ -7,14 +7,9 @@
 
 """Module to test the functionalities of the Addon."""
 
-import json
 import os
 
-from invenio_records_resources.services.records.results import RecordItem
-
-from ....setup import dirpath
 from ...reports import Reports
-from ..record_manager import RecordManager
 from ..requests_rdm import Requests
 
 

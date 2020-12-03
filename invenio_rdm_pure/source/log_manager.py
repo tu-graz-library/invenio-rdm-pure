@@ -8,12 +8,11 @@
 """File description."""
 
 import os
-from datetime import date, datetime, timedelta
+from datetime import date, timedelta
 
 from ..setup import (
     data_files_name,
     days_keep_log,
-    dirpath,
     lines_successful_changes,
     reports_full_path,
 )

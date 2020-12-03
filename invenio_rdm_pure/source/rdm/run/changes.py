@@ -8,14 +8,10 @@
 """File description."""
 
 import json
-from datetime import date, datetime, timedelta
+from datetime import datetime, timedelta
 
 from ....setup import data_files_name
-from ...pure.requests_pure import (
-    get_next_page,
-    get_pure_metadata,
-    get_pure_record_metadata_by_uuid,
-)
+from ...pure.requests_pure import get_next_page, get_pure_metadata
 from ...reports import Reports
 from ...utils import add_spaces, check_if_file_exists, initialize_counters
 from ..add_record import RdmAddRecord
