@@ -9,7 +9,7 @@
 docker-services-cli up postgresql es redis && \
 pydocstyle invenio_rdm_pure tests docs && \
 isort --check-only --diff --recursive invenio_rdm_pure tests && \
-check-manifest --ignore ".travis-*" && \
+check-manifest --ignore ".*-requirements.txt" && \
 sphinx-build -qnNW docs docs/_build/html && \
 pytest
 
