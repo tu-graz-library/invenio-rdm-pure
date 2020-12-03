@@ -7,7 +7,6 @@
 
 """File description."""
 
-from .source.log_manager import delete_old_log_files
 from .source.pure.import_records import ImportRecords
 from .source.rdm.delete_record import Delete
 from .source.rdm.run.changes import PureChanges
@@ -16,6 +15,7 @@ from .source.rdm.run.owners import RdmOwners
 from .source.rdm.run.pages import RunPages
 from .source.rdm.run.uuid_run import AddFromUuidList
 from .source.rdm.testing.run_test import Testing
+from .source.reports import Reports
 
 
 class ShellInterface:
@@ -48,7 +48,7 @@ class ShellInterface:
 
     def logs(self):
         """Delete old log files."""
-        delete_old_log_files()
+        Reports().delete_old_log_files()
 
     def delete(self):
         """Delete RDM records by recid (to_delete.log)."""
