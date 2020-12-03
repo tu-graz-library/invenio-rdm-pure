@@ -7,15 +7,10 @@
 
 """File description."""
 
-import os
-
-# import psycopg2
-# import yaml
 from flask import current_app
 from flask_security.utils import hash_password
 from invenio_db import db
 
-from ...setup import database_uri, dirpath
 from ..reports import Reports
 
 

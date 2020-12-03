@@ -16,7 +16,6 @@ from ...setup import dirpath, pure_import_file, pure_import_path
 from ..rdm.requests_rdm import Requests
 from ..reports import Reports
 from ..utils import add_spaces, check_if_directory_exists, current_date, get_value
-from .requests_pure import get_pure_record_metadata_by_uuid
 
 
 class ImportRecords:

@@ -9,7 +9,7 @@
 
 import os
 import smtplib
-from datetime import date, datetime
+from datetime import datetime
 from pathlib import Path
 
 from flask import current_app

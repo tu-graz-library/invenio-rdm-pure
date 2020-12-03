@@ -8,7 +8,6 @@
 """File description."""
 
 import json
-from datetime import date, datetime
 
 import requests
 from flask import current_app

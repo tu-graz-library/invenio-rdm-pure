@@ -12,9 +12,8 @@ import os
 from flask import Blueprint
 from flask_babelex import gettext as _
 
-from .setup import database_uri, dirpath, pure_import_file
+from .setup import dirpath, pure_import_file
 from .source.rdm.run.groups import user_externalid
-from .source.rdm.testing.run_test import Testing
 
 blueprint = Blueprint(
     "invenio_rdm_pure",
