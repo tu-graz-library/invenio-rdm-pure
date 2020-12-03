@@ -81,23 +81,20 @@ class RecordManager(object):
         except ValidationError:
             return None
 
-    def update_record(self, recid: str, data: dict) -> RecordItem:
+    def update_record(self, recid: str, data: dict) -> Optional[RecordItem]:
         """Updates a record with JSON data."""
         if not data:
             return None
-        original_record = self.service.read(id_=recid, identity=self.identity)
-        original_revision_id = original_record._record.revision_id
-        updated_record = self.service.update(
-            id_=recid, identity=self.identity, data=data
-        )
-
-        if (
-            updated_record is None
-            or updated_record._record.revision_id != original_revision_id + 1
-        ):
-            raise RuntimeError("Failed to update record.")
-        else:
+        try:
+            original_record = self.service.read(id_=recid, identity=self.identity)
+            original_revision_id = original_record._record.revision_id
+            updated_record = self.service.update(
+                id_=recid, identity=self.identity, data=data
+            )
             return updated_record
+
+        except ValidationError:
+            return None
 
     def update_record_rest(self, recid: str, data: dict) -> Response:
         """Updates a record via REST API with JSON data."""
