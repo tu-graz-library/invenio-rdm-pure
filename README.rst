@@ -9,8 +9,8 @@
  invenio-rdm-pure
 ==================
 
-.. image:: https://travis-ci.com/tu-graz-library/invenio-rdm-pure.svg
-        :target: https://travis-ci.com/github/tu-graz-library/invenio-rdm-pure
+.. image:: https://github.com/tu-graz-library/invenio-rdm-pure/workflows/CI/badge.svg
+        :target: https://github.com/tu-graz-library/invenio-rdm-pure/actions?query=workflow%3ACI
 
 .. image:: https://coveralls.io/repos/github/tu-graz-library/invenio-rdm-pure/badge.svg
         :target: https://coveralls.io/github/tu-graz-library/invenio-rdm-pure
