@@ -37,6 +37,4 @@ recursive-include invenio_rdm_pure *.json
 recursive-include invenio_rdm_pure *.py
 recursive-include tests *.py
 recursive-include tests *.json
-
-# added by check-manifest
-recursive-include invenio_rdm_pure *.py
+recursive-include .github/workflows *.yml

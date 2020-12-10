@@ -49,25 +49,25 @@ Gets from Pure all the records belonging to a certain user and modifies/create R
 Pure_import:
 Get records from RDM and creates with this data an XML file suitable to be imported into Pure, which will be available at the URL …/pure_import.
 The RDM records are filtered in two ways:
--	Records that have a value in the field extensions/tug:uuid have been imported from Pure, therefore will be ignored. See _check_uuid method in invenio_rdm_pure/source/pure/import_records.py
--	 All records created before the date of the import will be ignored. See _check_date method in invenio_rdm_pure/source/pure/import_records.py
+-   Records that have a value in the field extensions/tug:uuid have been imported from Pure, therefore will be ignored. See _check_uuid method in invenio_rdm_pure/source/pure/import_records.py
+-    All records created before the date of the import will be ignored. See _check_date method in invenio_rdm_pure/source/pure/import_records.py
 
 Group_split:
 When a group in Pure (organisationalUnit) splits in two, the same process needs to take place also in RDM. Therefore, the following steps:
--	Create new groups
--	Add users belonging to old group into the new groups
--	Remove users from old group
--	Delete old group
--	Modify RDM records belonging to the old group
+-   Create new groups
+-   Add users belonging to old group into the new groups
+-   Remove users from old group
+-   Delete old group
+-   Modify RDM records belonging to the old group
 It takes as input parameters 
 
 Group_merge:
 It is the opposite process as compared to group_split. In this case, two groups in Pure (organisationalUnit) merge into one following the next steps:
--	Create new group
--	Remove users from old groups
--	Add users to new group
--	Delete old groups
--	Modify RDM records belonging to the old groups
+-   Create new group
+-   Remove users from old groups
+-   Add users to new group
+-   Delete old groups
+-   Modify RDM records belonging to the old groups
 
 Logs: 
 Removes all old log files from invenio_rdm_pure/reports. The number of days that these files will be kept is specified in invenio_rdm_pure/setup.py days_keep_log variable.
@@ -84,8 +84,8 @@ CLI - NOT SCHEDULED TASKS
 -------------------------
 Testing:
 Performs testing related to: 
--	RDM records creation and deletion;
--	RDM user creation, role assignment, role removal, user deactivation;
+-   RDM records creation and deletion;
+-   RDM user creation, role assignment, role removal, user deactivation;
 
 Delete:
 Deletes all records listed (by recid) in invenio_rdm_pure/data/to_delete.txt
@@ -120,7 +120,7 @@ https://127.0.0.1:5000/database_uri
 Creates in invenio_rdm_pure/data_setup/ the necessary files for database interaction
 
 https://127.0.0.1:5000/user_import_records
-•	Gets the externalId of the logged-in user
-•	Gets from Pure all records belonging to the given externalId
-•	Checks if these records are already in RDM; if not, they will be added
+•   Gets the externalId of the logged-in user
+•   Gets from Pure all records belonging to the given externalId
+•   Checks if these records are already in RDM; if not, they will be added
 Note: this is a temporary way to trigger this task. It was necessary to trigger through the browser in order to get the user externalId. When celery scheduled tasks will be running there will be no need any more of this view.
