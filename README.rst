@@ -9,11 +9,11 @@
  invenio-rdm-pure
 ==================
 
-.. image:: https://img.shields.io/travis/fair-data-austria/invenio-rdm-pure.svg
-        :target: https://travis-ci.org/fair-data-austria/invenio-rdm-pure
+.. image:: https://github.com/tu-graz-library/invenio-rdm-pure/workflows/CI/badge.svg
+        :target: https://github.com/tu-graz-library/invenio-rdm-pure/actions?query=workflow%3ACI
 
-.. image:: https://img.shields.io/coveralls/fair-data-austria/invenio-rdm-pure.svg
-        :target: https://coveralls.io/r/fair-data-austria/invenio-rdm-pure
+.. image:: https://coveralls.io/repos/github/tu-graz-library/invenio-rdm-pure/badge.svg
+        :target: https://coveralls.io/github/tu-graz-library/invenio-rdm-pure
 
 .. image:: https://img.shields.io/github/tag/fair-data-austria/invenio-rdm-pure.svg
         :target: https://github.com/fair-data-austria/invenio-rdm-pure/releases
@@ -27,6 +27,8 @@
 .. image:: https://readthedocs.org/projects/invenio-rdm-pure/badge/?version=latest
         :target: https://invenio-rdm-pure.readthedocs.io/en/latest/?badge=latest
 
+.. image:: https://img.shields.io/badge/code%20style-black-000000.svg
+    :target: https://github.com/psf/black
 
 Invenio module that adds TUGraz Pure integration.
 
