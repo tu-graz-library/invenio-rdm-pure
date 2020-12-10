@@ -8,8 +8,8 @@
 """File description."""
 
 from ....setup import data_files_name
-from ...general_functions_source import check_uuid_authenticity, initialize_counters
 from ...reports import Reports
+from ...utils import check_uuid_authenticity, initialize_counters
 from ..add_record import RdmAddRecord
 
 

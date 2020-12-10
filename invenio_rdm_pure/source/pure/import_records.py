@@ -13,15 +13,9 @@ from xml.dom import minidom
 from xml.etree import ElementTree as ET
 
 from ...setup import dirpath, pure_import_file, pure_import_path
-from ..general_functions_source import (
-    add_spaces,
-    check_if_directory_exists,
-    current_date,
-    get_value,
-)
 from ..rdm.requests_rdm import Requests
 from ..reports import Reports
-from .general_functions_pure import get_pure_record_metadata_by_uuid
+from ..utils import add_spaces, check_if_directory_exists, current_date, get_value
 
 
 class ImportRecords:

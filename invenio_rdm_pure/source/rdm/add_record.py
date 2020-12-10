@@ -18,24 +18,23 @@ from ...setup import (
     resourcetype_pure_to_rdm,
     versioning_running,
 )
-from ..general_functions_source import (
-    check_if_file_exists,
-    file_read_lines,
-    get_value,
-    shorten_file_name,
-)
-from ..pure.general_functions_pure import (
+from ..pure.requests_pure import (
     get_pure_file,
+    get_pure_metadata,
     get_pure_record_metadata_by_uuid,
 )
-from ..pure.requests_pure import get_pure_metadata
 from ..rdm.database import RdmDatabase
-from ..rdm.general_functions import GeneralFunctions
-from ..rdm.put_file import rdm_add_file
 from ..rdm.requests_rdm import Requests
 from ..rdm.run.groups import RdmGroups
 from ..rdm.versioning import Versioning
 from ..reports import Reports
+from ..utils import (
+    check_if_file_exists,
+    file_read_lines,
+    get_userid_from_list_by_externalid,
+    get_value,
+    shorten_file_name,
+)
 
 
 class RdmAddRecord:
@@ -46,7 +45,6 @@ class RdmAddRecord:
         self.rdm_requests = Requests()
         self.report = Reports()
         self.groups = RdmGroups()
-        self.general_functions = GeneralFunctions()
         self.versioning = Versioning()
         self.rdm_db = RdmDatabase()
 
@@ -365,9 +363,7 @@ class RdmAddRecord:
 
             # Checks if the record owner is available in user_ids_match.txt
             person_external_id = get_value(item, ["person", "externalId"])
-            owner = self.general_functions.get_userid_from_list_by_externalid(
-                person_external_id, file_data
-            )
+            owner = get_userid_from_list_by_externalid(person_external_id, file_data)
             if owner and int(owner) not in self.data["_owners"]:
                 self.data["_owners"].append(int(owner))
 
@@ -468,7 +464,7 @@ class RdmAddRecord:
         time.sleep(1)
 
         # Gets recid from RDM
-        recid = self.general_functions.get_recid(uuid, self.global_counters)
+        recid = self.rdm_requests.get_recid(uuid, self.global_counters)
         if not recid:
             return False
 
@@ -479,7 +475,7 @@ class RdmAddRecord:
         for file_name in self.record_files:
 
             # Submit request
-            response = rdm_add_file(file_name, recid)
+            response = self.rdm_requests.rdm_add_file(file_name, recid)
             # Process response
             successful = self._process_file_response(response, success_check)
 
@@ -652,7 +648,7 @@ class RdmAddRecord:
         self.sub_data["accessType"] = self._accessright_conversion(value)
 
         # Download file from Pure
-        response = get_pure_file(self, file_url, file_name)
+        response = get_pure_file(file_url, file_name)
         # Checks if the file is already in RDM, and if it has already been reviewed
         self._process_file_download_response(response, file_name)
 

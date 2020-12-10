@@ -10,12 +10,25 @@
 import json
 import os
 
-from ...general_functions_source import add_spaces
+from flask_login import current_user
+from invenio_oauthclient.models import UserIdentity
+
 from ...pure.requests_pure import get_pure_metadata
 from ...reports import Reports
+from ...utils import add_spaces
 from ..database import RdmDatabase
-from ..general_functions import GeneralFunctions
+from ..record_manager import RecordManager
 from ..requests_rdm import Requests
+
+
+def user_externalid():
+    """Description."""
+    if current_user.is_authenticated:
+        id = current_user.get_id()
+        user_external = UserIdentity.query.filter_by(id_user=id).first()
+        if user_external:
+            return user_external.id
+    return False
 
 
 class RdmGroups:
@@ -26,7 +39,6 @@ class RdmGroups:
         self.rdm_db = RdmDatabase()
         self.report = Reports()
         self.rdm_requests = Requests()
-        self.general_functions = GeneralFunctions()
         self.report_files = ["console", "groups"]
 
     def _general_report_and_variables(func):
@@ -193,7 +205,7 @@ class RdmGroups:
 
             # Update record
             recid = item["recid"]
-            response = self.general_functions.update_rdm_record(recid, item)
+            response = RecordManager.instance().update_record(recid, item)
 
         return True
 
@@ -302,7 +314,7 @@ class RdmGroups:
                 del item["_communities"]
 
                 # Update record
-                response = self.general_functions.update_rdm_record(item["recid"], item)
+                response = RecordManager.instance().update_record(item["recid"], item)
 
     def _process_organisational_units(
         self, item, new_group_data, old_groups_externalId

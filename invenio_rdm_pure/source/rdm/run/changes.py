@@ -8,23 +8,15 @@
 """File description."""
 
 import json
-from datetime import date, datetime, timedelta
+from datetime import datetime, timedelta
 
 from ....setup import data_files_name
-from ...general_functions_source import (
-    add_spaces,
-    check_if_file_exists,
-    initialize_counters,
-)
-from ...pure.general_functions_pure import (
-    get_next_page,
-    get_pure_record_metadata_by_uuid,
-)
-from ...pure.requests_pure import get_pure_metadata
+from ...pure.requests_pure import get_next_page, get_pure_metadata
 from ...reports import Reports
+from ...utils import add_spaces, check_if_file_exists, initialize_counters
 from ..add_record import RdmAddRecord
 from ..delete_record import Delete
-from ..general_functions import GeneralFunctions
+from ..requests_rdm import Requests
 
 
 class PureChanges:
@@ -35,7 +27,7 @@ class PureChanges:
         self.add_record = RdmAddRecord()
         self.report = Reports()
         self.delete = Delete()
-        self.general_functions = GeneralFunctions()
+        self.rdm_requests = Requests()
 
     def get_pure_changes(self):
         """Gets from Pure 'changes' endpoint all records that have been created / updated / deleted.
@@ -152,7 +144,7 @@ class PureChanges:
             self.report.add(report)
 
             # Gets the record recid
-            recid = self.general_functions.get_recid(uuid, self.global_counters)
+            recid = self.rdm_requests.get_recid(uuid, self.global_counters)
 
             if recid:
                 # Deletes the record from RDM

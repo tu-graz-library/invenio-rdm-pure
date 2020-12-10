@@ -21,7 +21,9 @@ from invenio_records_permissions.generators import AnyUser
 from invenio_records_permissions.policies import RecordPermissionPolicy
 from invenio_records_resources.services.records.results import RecordItem
 from marshmallow.exceptions import ValidationError
+from requests.models import Response
 
+from ..reports import Reports
 from .database import RdmDatabase
 from .requests_rdm import Requests
 
@@ -79,23 +81,30 @@ class RecordManager(object):
         except ValidationError:
             return None
 
-    def update_record(self, recid: str, data: dict) -> RecordItem:
+    def update_record(self, recid: str, data: dict) -> Optional[RecordItem]:
         """Updates a record with JSON data."""
         if not data:
             return None
-        original_record = self.service.read(id_=recid, identity=self.identity)
-        original_revision_id = original_record._record.revision_id
-        updated_record = self.service.update(
-            id_=recid, identity=self.identity, data=data
-        )
-
-        if (
-            updated_record is None
-            or updated_record._record.revision_id != original_revision_id + 1
-        ):
-            raise RuntimeError("Failed to update record.")
-        else:
+        try:
+            original_record = self.service.read(id_=recid, identity=self.identity)
+            original_revision_id = original_record._record.revision_id
+            updated_record = self.service.update(
+                id_=recid, identity=self.identity, data=data
+            )
             return updated_record
+
+        except ValidationError:
+            return None
+
+    def update_record_rest(self, recid: str, data: dict) -> Response:
+        """Updates a record via REST API with JSON data."""
+        response = Requests().put_metadata(recid, data)
+
+        rdm_host_url = current_app.config.get("INVENIO_PURE_HOST_URL")
+        url = f"{rdm_host_url}api/records/{recid}"
+        Reports().add(f"\tRecord update @ {response} @ {url}")
+
+        return response
 
     def delete_record(self, recid: str) -> None:
         """Deletes record with given recid."""

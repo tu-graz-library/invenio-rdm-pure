@@ -10,6 +10,7 @@
 from flask import Flask
 
 from invenio_rdm_pure import InvenioRdmPure
+from invenio_rdm_pure.source.rdm.run.uuid_run import AddFromUuidList
 
 
 def test_version():
@@ -30,3 +31,12 @@ def test_init():
     assert "invenio-rdm-pure" not in app.extensions
     ext.init_app(app)
     assert "invenio-rdm-pure" in app.extensions
+
+
+def test_add_from_uuid_list():
+    """Tests the method add_from_uuid_list."""
+    try:
+        AddFromUuidList().add_from_uuid_list()
+        assert False
+    except FileNotFoundError:
+        assert True

@@ -9,14 +9,15 @@
 
 import json
 import time
-from os import makedirs, path
+from os import makedirs, path, remove
 
 import requests
 from flask import current_app
 from requests import Response
 
-from ...setup import push_dist_sec, temporary_files_name, wait_429
+from ...setup import push_dist_sec, temporary_files_name, versioning_running, wait_429
 from ..reports import Reports
+from ..utils import add_spaces
 
 
 class Requests:
@@ -24,7 +25,8 @@ class Requests:
 
     report = Reports()
 
-    def _request_headers(self, parameters: list):
+    @staticmethod
+    def _request_headers(parameters: list):
         """Description."""
         headers = {}
         if "content_type" in parameters:
@@ -95,21 +97,22 @@ class Requests:
         self._check_response(response)
         return response
 
-    def put_metadata(self, recid: str, data: object):
+    @classmethod
+    def put_metadata(cls, recid: str, data: object) -> Response:
         """Used to update an existing record."""
         data = json.dumps(data).encode("utf-8")
 
-        headers = self._request_headers(["content_type"])
-        params = self._request_params()
+        headers = cls._request_headers(["content_type"])
+        params = cls._request_params()
 
-        rdm_record_url = current_app.config.get("INVENIO_PURE_RECORD_URL")
+        rdm_record_url = str(current_app.config.get("INVENIO_PURE_RECORD_URL"))
         url = rdm_record_url.format(recid)
 
         response = requests.put(
             url, headers=headers, params=params, data=data, verify=False
         )
 
-        self._check_response(response)
+        cls._check_response(response)
         return response
 
     def put_file(self, file_path_name: str, recid: str):
@@ -178,3 +181,75 @@ class Requests:
 
         self._check_response(response)
         return response
+
+    def get_recid(self, uuid: str, global_counters: object):
+        """
+        Given a records' uuid, it returns all relative recids.
+
+        It if needed to:
+        1 - check if there are duplicates
+        2 - delete duplicates
+        3 - add the record uuid and recid to all_rdm_records.txt.
+        """
+        response = self.rdm_requests.get_metadata_by_query(uuid)
+
+        resp_json = json.loads(response.content)
+
+        total_recids = resp_json["hits"]["total"]
+        if total_recids == 0:
+            # If there are no records with the same uuid means it is the first one (version 1)
+            return False
+
+        # Iterate over all records with the same uuid
+        # The first record is the most recent (they are sorted)
+        count = 0
+        newest_recid = ""
+        for item in resp_json["hits"]["hits"]:
+            count += 1
+
+            recid = item["metadata"]["recid"]
+
+            if count == 1:
+                # URLs to be transmitted to Pure if the record is successfuly added in RDM      # TODO TODO TODO TODO TODO
+                rdm_host_url = current_app.config.get("INVENIO_PURE_HOST_URL")
+                api_url = f"{rdm_host_url}api/records/{recid}"
+                landing_page_url = f"{rdm_host_url}records/{recid}"
+                newest_recid = recid
+
+                report = f"\tRDM get recid @ {response} @ Total: {add_spaces(total_recids)} @ {api_url}"
+                self.reports.add(report)
+
+            else:
+                # If versioning is running then it is not necessary to delete older versions of the record
+                if not versioning_running:
+                    # Duplicate records are deleted
+                    response = self.delete.record(recid)
+
+                    if response:
+                        global_counters["delete"]["success"] += 1
+                    else:
+                        global_counters["delete"]["error"] += 1
+
+        return newest_recid
+
+    def rdm_add_file(file_name: str, recid: str):
+        """Description."""
+        rdm_requests = Requests()
+        reports = Reports()
+
+        file_path_name = f"{temporary_files_name['base_path']}/{file_name}"
+
+        # PUT FILE TO RDM
+        response = rdm_requests.put_file(file_path_name, recid)
+
+        # Report
+        reports.add(f"\tRDM put file @ {response} @ {file_name}")
+
+        if response.status_code >= 300:
+            reports.add(response.content)
+            return False
+
+        else:
+            # if the upload was successful then delete file from /reports/temporary_files
+            remove(file_path_name)
+            return True

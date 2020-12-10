@@ -8,21 +8,14 @@
 """File description."""
 
 import json
-from datetime import date, datetime
 
 from ....setup import data_files_name, pure_uuid_length
-from ...general_functions_source import (
-    add_spaces,
-    file_read_lines,
-    initialize_counters,
-    shorten_file_name,
-)
-from ...pure.general_functions_pure import get_next_page
-from ...pure.requests_pure import get_pure_metadata
+from ...pure.requests_pure import get_next_page, get_pure_metadata
 from ...reports import Reports
+from ...utils import file_read_lines, initialize_counters, shorten_file_name
 from ..add_record import RdmAddRecord
 from ..database import RdmDatabase
-from ..general_functions import GeneralFunctions
+from ..record_manager import RecordManager
 from ..requests_rdm import Requests
 
 
@@ -35,7 +28,6 @@ class RdmOwners:
         self.rdm_db = RdmDatabase()
         self.report = Reports()
         self.rdm_add_record = RdmAddRecord()
-        self.general_functions = GeneralFunctions()
         self.report_files = ["console", "owners"]
 
     def _set_counters_and_title(func):
@@ -108,7 +100,7 @@ class RdmOwners:
                 self.report.add(f"\n\tRecord uuid  @ {uuid} @ {title}")
 
                 # Get from RDM the recid
-                recid = self.general_functions.get_recid(uuid, self.global_counters)
+                recid = self.rdm_requests.get_recid(uuid, self.global_counters)
 
                 # Record NOT in RDM, create it
                 if recid is False:
@@ -151,7 +143,7 @@ class RdmOwners:
         )
 
         # Add owner to an existing RDM record
-        self.general_functions.update_rdm_record(recid, data)
+        RecordManager.instance().update_record(recid, data)
 
         self.local_counters["to_update"] += 1
 

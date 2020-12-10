@@ -48,6 +48,32 @@ def test_create_record_invalid_json(base_app) -> None:
     assert record is None
 
 
+def test_update_record_none(base_app) -> None:
+    """Test record update with None as argument."""
+    data_path = os.path.join(os.path.dirname(__file__), "data", "example_data.json")
+    data = json.load(open(data_path))
+    record = RecordManager.instance().create_record(data=data)
+    assert record is not None
+    updated_record = RecordManager.instance().update_record(recid=record.id, data=None)
+    assert updated_record is None
+
+
+def test_update_record_invalid(base_app) -> None:
+    """Test record update with None as argument."""
+    data_path = os.path.join(os.path.dirname(__file__), "data", "example_data.json")
+    data = json.load(open(data_path))
+    record = RecordManager.instance().create_record(data=data)
+    assert record is not None
+    data_path = os.path.join(
+        os.path.dirname(__file__), "data", "example_invalid_data.json"
+    )
+    invalid_data = json.load(open(data_path))
+    updated_record = RecordManager.instance().update_record(
+        recid=record.id, data=invalid_data
+    )
+    assert updated_record is None
+
+
 def test_delete_record_noid(base_app) -> None:
     """Test record creation with recordID as argument."""
     try:
