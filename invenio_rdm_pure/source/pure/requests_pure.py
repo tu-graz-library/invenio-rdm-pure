@@ -8,6 +8,7 @@
 """File description."""
 
 import json
+from typing import List
 
 import requests
 from flask import current_app
@@ -17,6 +18,50 @@ from ...setup import temporary_files_name
 from ..reports import Reports
 
 reports = Reports()
+
+
+def get_research_output_count(pure_api_key: str, pure_api_url: str) -> int:
+    """Get the amount of available research outputs at /research-outputs endpoint.
+
+    There are ca. 65300 research output entries in Pure (15.12.2020).
+    Return -1 if the GET request is not OK.
+    """
+    headers = {
+        "api-key": pure_api_key,
+        "accept": "application/json",
+    }
+    url = pure_api_url + "research-outputs"
+    response = requests.get(url, headers=headers)
+    if response.status_code == 200:
+        return int(json.loads(response.text)["count"])
+    else:
+        return -1
+
+
+def get_research_outputs(
+    pure_api_key: str, pure_api_url: str, size: int, offset: int
+) -> List[dict]:
+    """Get a list of research outputs.
+
+    Pure API identifies a series by the following parameters:
+    The *size* parameter defines the length of the series.
+    The *offset* parameter defines the offset of the series.
+    Return [] if the GET request is not OK.
+    """
+    headers = {
+        "api-key": pure_api_key,
+        "accept": "application/json",
+    }
+    url = pure_api_url + "research-outputs?size={}&offset={}".format(
+        str(size), str(offset)
+    )  # There are ca. 65300 research output entries in Pure (15.12.2020)
+    response = requests.get(url, headers=headers)
+    if response.status_code == 200:
+        response_json = json.loads(response.text)
+        items = response_json["items"]
+        return items
+    else:
+        return []
 
 
 def get_pure_metadata(endpoint, identifier="", parameters={}, review=True):
