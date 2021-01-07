@@ -20,7 +20,7 @@ tests_require = [
     "invenio-config>=1.0.3",
     "SQLAlchemy-Utils>=0.33.1,<0.36",  # FIXME without this: ContextualVersionConflict {invenio-files-rest}
     # TODO: remove once a new release is out
-    "docker-services-cli>=0.2.1,<0.3.0",
+    # "docker-services-cli>=0.3.0",
 ]
 
 extras_require = {
