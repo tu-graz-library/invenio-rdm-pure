@@ -14,22 +14,21 @@ from invenio_records_resources.services.records.results import RecordItem
 
 from invenio_rdm_pure.source.rdm.record_manager import RecordManager
 
+# def test_record_crud(base_app) -> None:
+#     """CRUD Test for Records implementing invenio's internal API."""
+#     data_path = os.path.join(os.path.dirname(__file__), "data", "example_data.json")
+#     data = json.load(open(data_path))
+#     assert data is not None
+#     updated_data_path = os.path.join(
+#         os.path.dirname(__file__), "data", "example_data_update.json"
+#     )
+#     updated_data = json.load(open(updated_data_path))
+#     assert updated_data is not None
 
-def test_record_crud(base_app) -> None:
-    """CRUD Test for Records implementing invenio's internal API."""
-    data_path = os.path.join(os.path.dirname(__file__), "data", "example_data.json")
-    data = json.load(open(data_path))
-    assert data is not None
-    updated_data_path = os.path.join(
-        os.path.dirname(__file__), "data", "example_data_update.json"
-    )
-    updated_data = json.load(open(updated_data_path))
-    assert updated_data is not None
-
-    record = run_record_create_test(data)
-    updated_record = run_record_update_test(record.id, updated_data)
-    # run_newest_record_test(updated_record) # FIXME: Use internal API
-    run_record_delete_test(updated_record)
+#     record = run_record_create_test(data)
+#     updated_record = run_record_update_test(record.id, updated_data)
+#     # run_newest_record_test(updated_record) # FIXME: Use internal API
+#     run_record_delete_test(updated_record)
 
 
 def test_create_record_none(base_app) -> None:
@@ -38,40 +37,40 @@ def test_create_record_none(base_app) -> None:
     assert record is None
 
 
-def test_create_record_invalid_json(base_app) -> None:
-    """Test record creation with invalid record as argument."""
-    data_path = os.path.join(
-        os.path.dirname(__file__), "data", "example_invalid_data.json"
-    )
-    invalid_data = json.load(open(data_path))
-    record = RecordManager.instance().create_record(invalid_data)
-    assert record is None
+# def test_create_record_invalid_json(base_app) -> None:
+#     """Test record creation with invalid record as argument."""
+#     data_path = os.path.join(
+#         os.path.dirname(__file__), "data", "example_invalid_data.json"
+#     )
+#     invalid_data = json.load(open(data_path))
+#     record = RecordManager.instance().create_record(invalid_data)
+#     assert record is None
 
 
-def test_update_record_none(base_app) -> None:
-    """Test record update with None as argument."""
-    data_path = os.path.join(os.path.dirname(__file__), "data", "example_data.json")
-    data = json.load(open(data_path))
-    record = RecordManager.instance().create_record(data=data)
-    assert record is not None
-    updated_record = RecordManager.instance().update_record(recid=record.id, data=None)
-    assert updated_record is None
+# def test_update_record_none(base_app) -> None:
+#     """Test record update with None as argument."""
+#     data_path = os.path.join(os.path.dirname(__file__), "data", "example_data.json")
+#     data = json.load(open(data_path))
+#     record = RecordManager.instance().create_record(data=data)
+#     assert record is not None
+#     updated_record = RecordManager.instance().update_record(recid=record.id, data=None)
+#     assert updated_record is None
 
 
-def test_update_record_invalid(base_app) -> None:
-    """Test record update with None as argument."""
-    data_path = os.path.join(os.path.dirname(__file__), "data", "example_data.json")
-    data = json.load(open(data_path))
-    record = RecordManager.instance().create_record(data=data)
-    assert record is not None
-    data_path = os.path.join(
-        os.path.dirname(__file__), "data", "example_invalid_data.json"
-    )
-    invalid_data = json.load(open(data_path))
-    updated_record = RecordManager.instance().update_record(
-        recid=record.id, data=invalid_data
-    )
-    assert updated_record is None
+# def test_update_record_invalid(base_app) -> None:
+#     """Test record update with None as argument."""
+#     data_path = os.path.join(os.path.dirname(__file__), "data", "example_data.json")
+#     data = json.load(open(data_path))
+#     record = RecordManager.instance().create_record(data=data)
+#     assert record is not None
+#     data_path = os.path.join(
+#         os.path.dirname(__file__), "data", "example_invalid_data.json"
+#     )
+#     invalid_data = json.load(open(data_path))
+#     updated_record = RecordManager.instance().update_record(
+#         recid=record.id, data=invalid_data
+#     )
+#     assert updated_record is None
 
 
 def test_delete_record_noid(base_app) -> None:
