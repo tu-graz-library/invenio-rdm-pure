@@ -11,13 +11,6 @@ from enum import Enum
 from .marc21_record import Marc21Record
 
 
-class MetadataFormat(Enum):
-    """Enum select metadata types."""
-    PURE_JSON = 0
-    PURE_XML = 1
-    MARC21_XML = 2
-
-
 class Converter(object):
     """Converter Class to facilitate conversion of metadata."""
 
