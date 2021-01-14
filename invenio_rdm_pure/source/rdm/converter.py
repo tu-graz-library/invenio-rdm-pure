@@ -6,7 +6,8 @@
 # under the terms of the MIT License; see LICENSE file for more details.
 
 """Converter Module to facilitate conversion of metadata."""
-from enum import Enum
+import json
+import os
 
 from .marc21_record import Marc21Record
 
@@ -16,7 +17,22 @@ class Converter(object):
 
     def __init__(self):
         """Default Constructor of the class."""
-        pass
+        # Cache iso639-3 language codes to dict
+        self.languages = self.initialize_languages()
+
+    def initialize_languages(self) -> dict:
+        """Description."""
+        language_cache = dict()
+        path = os.path.join(os.path.dirname(__file__), "iso6393.json")
+        with open(path) as file:
+            languages = json.load(file)
+            for language in languages:
+                language_cache[language["name"]] = dict()
+                for key, value in language.items():
+                    if key == "iso6393":
+                        language_cache[language["name"]] = value
+                        break
+        return language_cache
 
     def convert_pure_json_to_marc21_xml(self, pure_json: dict):
         """Convert record from Pure JSON format to MARC21XML."""
