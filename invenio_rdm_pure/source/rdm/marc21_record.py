@@ -25,7 +25,7 @@ class DataField(object):
         self.tag = tag
         self.ind1 = ind1
         self.ind2 = ind2
-        self.subfields = [SubField]
+        self.subfields = list()
 
 
 class SubField(object):
@@ -43,8 +43,8 @@ class Marc21Record(object):
     def __init__(self, leader: str = ""):
         """Default constructor of the class."""
         self.leader = leader
-        self.controlfields = [ControlField]
-        self.datafields = [DataField]
+        self.controlfields = list()
+        self.datafields = list()
 
     def print_to_xml(self, indent: int = 4) -> str:
         """Method to pretty-print the record as XML."""
