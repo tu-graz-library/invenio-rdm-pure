@@ -20,7 +20,7 @@ class ControlField(object):
 class DataField(object):
     """DataField class representing the datafield HTML tag in MARC21 XML."""
 
-    def __init__(self, tag: str = "", ind1: str = "", ind2: str = "", value: str = ""):
+    def __init__(self, tag: str = "", ind1: str = "", ind2: str = ""):
         """Default constructor of the class."""
         self.tag = tag
         self.ind1 = ind1
