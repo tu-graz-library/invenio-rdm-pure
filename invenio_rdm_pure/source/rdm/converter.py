@@ -351,13 +351,18 @@ class Converter(object):
 
     def convert_relatedProjects(
         self, value: str, record: Marc21Record
-    ):  # TODO: Logic TBD
+    ): # DONE
         """Add the relatedProjects attribute to the Marc21Record."""
         if isinstance(value, list):
             for entry in value:
-                pass  # TODO: Logic TBD
-                # datafield = DataField(tag="536", value=value)
-                # record.datafields.append(datafield)
+                project_names = []  # To avoid multiple insertions (identical EN and DE entries)
+                for locale in entry["name"]["text"]:
+                    if locale["value"] not in project_names:
+                        project_names.append(locale["value"])
+                        datafield = DataField(tag="536")
+                        subfield = SubField(code="a", value=locale["value"])
+                        datafield.subfields.append(subfield)
+                        record.datafields.append(datafield)
         else:
             raise RuntimeError("Unhandled value type")
 
