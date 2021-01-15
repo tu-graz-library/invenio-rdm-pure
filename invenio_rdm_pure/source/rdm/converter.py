@@ -46,7 +46,7 @@ class Converter(object):
         convert_function = getattr(self, f"convert_{attribute}", lambda *args: None)
         convert_function(value, record)
 
-    def convert_abstract(self, value: str, record: Marc21Record):  # DONE
+    def convert_abstract(self, value: str, record: Marc21Record):
         """Add the abstract to the Marc21Record."""
         if isinstance(value, dict):
             abstracts = []  # To avoid multiple insertions (identical EN and DE entries)
@@ -60,7 +60,7 @@ class Converter(object):
         else:
             raise RuntimeError("Unhandled value type")
 
-    def convert_additionalLinks(self, value: str, record: Marc21Record):  # DONE
+    def convert_additionalLinks(self, value: str, record: Marc21Record):
         """Add the additionalLinks attribute to the Marc21Record."""
         if isinstance(value, list):
             for link in value:
@@ -74,7 +74,7 @@ class Converter(object):
         else:
             raise RuntimeError("Unhandled value type")
 
-    def convert_bibliographicalNote(self, value: str, record: Marc21Record):  # DONE
+    def convert_bibliographicalNote(self, value: str, record: Marc21Record):
         """Add the bibliographicalNote attribute to the Marc21Record."""
         if isinstance(value, dict):
             notes = []  # To avoid multiple insertions (identical EN and DE entries)
@@ -88,7 +88,7 @@ class Converter(object):
         else:
             raise RuntimeError("Unhandled value type")
 
-    def convert_edition(self, value: str, record: Marc21Record):  # DONE
+    def convert_edition(self, value: str, record: Marc21Record):
         """Add the edition attribute to the Marc21Record."""
         if isinstance(value, str):
             datafield = DataField(tag="250")
@@ -98,7 +98,7 @@ class Converter(object):
         else:
             raise RuntimeError("Unhandled value type")
 
-    def convert_electronicIsbns(self, value: str, record: Marc21Record):  # DONE
+    def convert_electronicIsbns(self, value: str, record: Marc21Record):
         """Add the electronicIsbns attribute to the Marc21Record."""
         if isinstance(value, list) and len(value) == 1:
             datafield = DataField(tag="020")
@@ -108,7 +108,7 @@ class Converter(object):
         else:
             raise RuntimeError("Unhandled value type")
 
-    def convert_event(self, value: str, record: Marc21Record):  # DONE
+    def convert_event(self, value: str, record: Marc21Record):
         """Add the event attribute to the Marc21Record."""
         if isinstance(value, dict):
             event_names = []  # To avoid multiple insertions (identical EN and DE entries)
@@ -122,7 +122,7 @@ class Converter(object):
         else:
             raise RuntimeError("Unhandled value type")
 
-    def convert_isbns(self, value: str, record: Marc21Record):  # DONE
+    def convert_isbns(self, value: str, record: Marc21Record):
         """Add the isbns attribute to the Marc21Record."""
         if isinstance(value, list):
             for isbn in value:
@@ -133,7 +133,7 @@ class Converter(object):
         else:
             raise RuntimeError("Unhandled value type")
 
-    def convert_journalAssociation(self, value: str, record: Marc21Record):  # DONE
+    def convert_journalAssociation(self, value: str, record: Marc21Record):
         """Add the journalAssociation attribute to the Marc21Record."""
         if isinstance(value, dict):
             journal_association = value["title"]["value"]
@@ -144,7 +144,7 @@ class Converter(object):
         else:
             raise RuntimeError("Unhandled value type")
 
-    def convert_journalNumber(self, value: str, record: Marc21Record):  # DONE
+    def convert_journalNumber(self, value: str, record: Marc21Record):
         """Add the journalNumber attribute to the Marc21Record."""
         if isinstance(value, str):
             datafield = DataField(tag="773", ind1="0", ind2="8")
@@ -154,7 +154,7 @@ class Converter(object):
         else:
             raise RuntimeError("Unhandled value type")
 
-    def convert_keywordGroups(self, value: str, record: Marc21Record):  # DONE
+    def convert_keywordGroups(self, value: str, record: Marc21Record):
         """Add the keywordGroups attribute to the Marc21Record."""
         if isinstance(value, list):
             for keywordgroup in value:
@@ -184,7 +184,7 @@ class Converter(object):
         else:
             raise RuntimeError("Unhandled value type")
 
-    def convert_language(self, value: str, record: Marc21Record):  # DONE
+    def convert_language(self, value: str, record: Marc21Record):
         """Add the language attribute to the Marc21Record."""
         if isinstance(value, dict):
             for locale in value["term"]["text"]:
@@ -200,7 +200,7 @@ class Converter(object):
 
     def convert_managingOrganisationalUnit(
         self, value: str, record: Marc21Record
-    ):  # DONE
+    ):
         """Add the managingOrganisationalUnit attribute to the Marc21Record."""
         if isinstance(value, dict) and "name" in value and "text" in value["name"]:
             if isinstance(value["name"]["text"], list):
@@ -222,7 +222,7 @@ class Converter(object):
         else:
             raise RuntimeError("Unhandled value type")
 
-    def convert_numberOfPages(self, value: str, record: Marc21Record):  # DONE
+    def convert_numberOfPages(self, value: str, record: Marc21Record):
         """Add the numberOfPages attribute to the Marc21Record."""
         if isinstance(value, int):
             datafield = DataField(tag="300")
@@ -232,7 +232,7 @@ class Converter(object):
         else:
             raise RuntimeError("Unhandled value type")
 
-    def convert_organisationalUnits(self, value: str, record: Marc21Record):  # DONE
+    def convert_organisationalUnits(self, value: str, record: Marc21Record):
         """Add the organisationalUnits attribute to the Marc21Record."""
         if isinstance(value, list):
             for o_unit in value:
@@ -252,7 +252,7 @@ class Converter(object):
         else:
             raise RuntimeError("Unhandled value type")
 
-    def convert_pages(self, value: str, record: Marc21Record):  # DONE
+    def convert_pages(self, value: str, record: Marc21Record):
         """Add the pages attriute to the Marc21Record."""
         if isinstance(value, str):
             pages = value
@@ -273,7 +273,7 @@ class Converter(object):
         datafield.subfields.append(subfield)
         record.datafields.append(datafield)
 
-    def convert_peerReview(self, value: str, record: Marc21Record):  # DONE
+    def convert_peerReview(self, value: str, record: Marc21Record):
         """Add the peerReview attribute to the Marc21Record."""
         if isinstance(value, bool):
             status = "Peer Reviewed" if value else "Not Peer Reviewed"
@@ -284,7 +284,7 @@ class Converter(object):
         else:
             raise RuntimeError("Unhandled value type")
 
-    def convert_placeOfPublication(self, value: str, record: Marc21Record):  # DONE
+    def convert_placeOfPublication(self, value: str, record: Marc21Record):
         """Add the placeOfPublication attribute to the Marc21Record."""
         if isinstance(value, str):
             datafield = DataField(tag="264")
@@ -294,7 +294,7 @@ class Converter(object):
         else:
             raise RuntimeError("Unhandled value type")
 
-    def convert_publicationSeries(self, value: str, record: Marc21Record):  # DONE
+    def convert_publicationSeries(self, value: str, record: Marc21Record):
         """Add the publicationSeries attribute to the Marc21Record."""
         if isinstance(value, list):
             for series in value:
@@ -306,7 +306,7 @@ class Converter(object):
             subfield_v = SubField(code="v", value=value)
             raise RuntimeError("Unhandled value type")
 
-    def convert_publicationStatuses(self, value: str, record: Marc21Record):  # DONE
+    def convert_publicationStatuses(self, value: str, record: Marc21Record):
         """Add the publicationStatuses attribute to the Marc21Record."""
         if isinstance(value, list):
             for entry in value:
@@ -333,7 +333,7 @@ class Converter(object):
         else:
             raise RuntimeError("Unhandled value type")
 
-    def convert_publisher(self, value: str, record: Marc21Record):  # DONE
+    def convert_publisher(self, value: str, record: Marc21Record):
         """Add the publisher attribute to the Marc21Record."""
         if isinstance(value, dict):
             publishers = (
@@ -366,7 +366,7 @@ class Converter(object):
         else:
             raise RuntimeError("Unhandled value type")
 
-    def convert_subTitle(self, value: str, record: Marc21Record):  # DONE
+    def convert_subTitle(self, value: str, record: Marc21Record):
         """Add the subTitle attribute to the Marc21Record."""
         if isinstance(value, list):
             for subtitle in value:
@@ -388,7 +388,7 @@ class Converter(object):
         else:
             raise RuntimeError("Unhandled value type")
 
-    def convert_title(self, value: str, record: Marc21Record):  # DONE
+    def convert_title(self, value: str, record: Marc21Record):
         """Add the title attribute to the Marc21Record."""
         if isinstance(value, dict) and "value" in value:
             title = value["value"]
@@ -399,7 +399,7 @@ class Converter(object):
         else:
             raise RuntimeError("Unhandled value type")
 
-    def convert_volume(self, value: str, record: Marc21Record):  # DONE
+    def convert_volume(self, value: str, record: Marc21Record):
         """Add the volume attribute to the Marc21Record."""
         if isinstance(value, str):
             datafield_490 = DataField(tag="490", ind1="0")
