@@ -11,6 +11,7 @@ import os
 import smtplib
 from datetime import datetime
 from pathlib import Path
+from typing import List
 
 from flask import current_app
 
@@ -61,6 +62,33 @@ def current_time():
 def current_date():
     """Description."""
     return datetime.today().strftime("%Y-%m-%d")
+
+
+def get_dates_in_span(
+    start: datetime.date, stop: datetime.date, step: int
+) -> List[datetime.date]:
+    """Returns an ascending list of dates with given step between the two endpoints of the span."""
+    dates = []
+    if start == stop:
+        return [start]
+    elif step == 0:
+        return []
+    elif step < 0:
+        if start < stop:
+            return []
+        else:
+            while start >= stop:
+                dates.append(start)
+                start += datetime.timedelta(step)
+            dates.reverse()
+    elif step > 0:
+        if stop < start:
+            return []
+        else:
+            while start <= stop:
+                dates.append(start)
+                start += datetime.timedelta(step)
+    return dates
 
 
 def check_if_directory_exists(full_path: str):
