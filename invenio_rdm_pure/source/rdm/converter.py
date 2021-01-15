@@ -158,35 +158,29 @@ class Converter(object):
         """Add the keywordGroups attribute to the Marc21Record."""
         if isinstance(value, list):
             for keywordgroup in value:
-                if isinstance(keywordgroup["keywordContainers"], list):
-                    for keywordcontainer in keywordgroup["keywordContainers"]:
-                        if "freeKeywords" in keywordcontainer:
-                            free_keywords = []
-                            for freekeyword in keywordcontainer["freeKeywords"]:
-                                if "freeKeywords" in freekeyword and isinstance(
-                                    freekeyword["freeKeywords"], list
-                                ):
-                                    for word in freekeyword["freeKeywords"]:
-                                        if word not in free_keywords:
-                                            free_keywords.append(word)
-                                            datafield = DataField(tag="650", ind2="4")
-                                            subfield = SubField(code="g", value=word)
-                                            datafield.subfields.append(subfield)
-                                            record.datafields.append(datafield)
-                        elif "structuredKeyword" in keywordcontainer:
-                            structured_keyword = keywordcontainer["structuredKeyword"]
-                            text_values = []
-                            for text in structured_keyword["term"]["text"]:
-                                if "value" in text and text["value"] not in text_values:
-                                    text_values.append(text["value"])
+                for keywordcontainer in keywordgroup["keywordContainers"]:
+                    if "freeKeywords" in keywordcontainer:
+                        free_keywords = []
+                        for freekeyword in keywordcontainer["freeKeywords"]:
+                            for word in freekeyword["freeKeywords"]:
+                                if word not in free_keywords:
+                                    free_keywords.append(word)
                                     datafield = DataField(tag="650", ind2="4")
-                                    subfield = SubField(code="a", value=text["value"])
+                                    subfield = SubField(code="g", value=word)
                                     datafield.subfields.append(subfield)
                                     record.datafields.append(datafield)
-                        else:
-                            raise RuntimeError("Unhandled Keyword type")
-                else:
-                    raise RuntimeError("Unhandled value type")
+                    elif "structuredKeyword" in keywordcontainer:
+                        structured_keyword = keywordcontainer["structuredKeyword"]
+                        structured_keywords = []
+                        for locale in structured_keyword["term"]["text"]:
+                            if locale["value"] not in structured_keywords:
+                                structured_keywords.append(locale["value"])
+                                datafield = DataField(tag="650", ind2="4")
+                                subfield = SubField(code="a", value=locale["value"])
+                                datafield.subfields.append(subfield)
+                                record.datafields.append(datafield)
+                    else:
+                        raise RuntimeError("Unhandled Keyword type")
         else:
             raise RuntimeError("Unhandled value type")
 
