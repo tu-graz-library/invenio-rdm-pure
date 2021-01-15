@@ -66,7 +66,8 @@ class Synchronizer(object):
 
         Pure API identifies a series by the following parameters:
         The *size* parameter defines the length of the series.
-        The *offset* parameter defines the offset of the series."""
+        The *offset* parameter defines the offset of the series.
+        """
         research_outputs = get_research_outputs(
             pure_api_key,
             pure_api_url,
