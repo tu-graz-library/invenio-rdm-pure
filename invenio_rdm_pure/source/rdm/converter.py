@@ -111,7 +111,7 @@ class Converter(object):
     def convert_event(self, value: str, record: Marc21Record):  # DONE
         """Add the event attribute to the Marc21Record."""
         if isinstance(value, dict):
-            event_names = []
+            event_names = []  # To avoid multiple insertions (identical EN and DE entries)
             for event_name in value["name"]["text"]:
                 if event_name["value"] not in event_names:
                     event_names.append(event_name["value"])
