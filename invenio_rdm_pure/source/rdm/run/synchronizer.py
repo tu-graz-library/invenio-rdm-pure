@@ -8,7 +8,6 @@
 """Synchronizer module to facilitate record synchronization between Invenio and Pure."""
 
 import datetime
-import json
 import os
 from concurrent.futures import ThreadPoolExecutor
 from typing import List
