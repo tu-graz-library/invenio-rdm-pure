@@ -9,6 +9,8 @@
 
 import datetime
 import os
+import time
+import traceback
 from concurrent.futures import ThreadPoolExecutor
 from typing import List
 
@@ -20,6 +22,7 @@ from ...pure.requests_pure import (
     get_research_outputs,
 )
 from ...utils import get_dates_in_span
+from ..converter import Converter
 
 
 class Synchronizer(object):
@@ -49,14 +52,23 @@ class Synchronizer(object):
         research_count = get_research_output_count(pure_api_key, pure_api_url)
         assert research_count != -1, "Failed to get research output count"
         with ThreadPoolExecutor(max_workers=os.cpu_count()) as executor:
-            for job_counter in range(0, research_count // granularity):
-                executor.submit(
-                    self.synchronize_research_outputs,
-                    pure_api_key,
-                    pure_api_url,
-                    granularity,
-                    job_counter * granularity,
-                )
+            for job_counter in range(0, (research_count // granularity) + 1):
+                if job_counter == (research_count // granularity):
+                    executor.submit(
+                        self.synchronize_research_outputs,
+                        pure_api_key,
+                        pure_api_url,
+                        research_count - job_counter * granularity,
+                        job_counter * granularity,
+                    )
+                else:
+                    executor.submit(
+                        self.synchronize_research_outputs,
+                        pure_api_key,
+                        pure_api_url,
+                        granularity,
+                        job_counter * granularity,
+                    )
 
     def synchronize_research_outputs(
         self, pure_api_key: str, pure_api_url: str, size: int, offset: int
@@ -67,15 +79,24 @@ class Synchronizer(object):
         The *size* parameter defines the length of the series.
         The *offset* parameter defines the offset of the series.
         """
-        research_outputs = get_research_outputs(
-            pure_api_key,
-            pure_api_url,
-            size,
-            offset,
-        )  # Fetch research outputs from Pure
-
+        while True:
+            research_outputs = get_research_outputs(
+                pure_api_key,
+                pure_api_url,
+                size,
+                offset,
+            )  # Fetch research outputs from Pure
+            if research_outputs:
+                break
+            else:
+                time.sleep(0.001)
+        # Check if list is not empty
+        converter = Converter()
         for research_output in research_outputs:
-            pass  # TODO: Convert research outputs to marc21 record
+            try:
+                converter.convert_pure_json_to_marc21_xml(research_output)
+            except RuntimeError:
+                traceback.print_exc()
 
         # TODO: Store record with the help of marc21 module
         pass
