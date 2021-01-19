@@ -62,3 +62,32 @@ class Marc21Record(object):
                     if sf.code == ref_sf.code and sf.value == ref_sf.value:
                         return True
         return False
+
+    def add_value(
+        self,
+        tag: str = "",
+        ind1: str = "",
+        ind2: str = "",
+        code: str = "",
+        value: str = "",
+    ) -> None:
+        """Add value to record at for given datafield and subfield."""
+        datafield = DataField(tag, ind1, ind2)
+        subfield = SubField(code, value)
+        datafield.subfields.append(subfield)
+        self.datafields.append(datafield)
+
+    def add_unique_value(
+        self,
+        tag: str = "",
+        ind1: str = "",
+        ind2: str = "",
+        code: str = "",
+        value: str = "",
+    ) -> None:
+        """Add value to record if it doesn't already contain it."""
+        datafield = DataField(tag, ind1, ind2)
+        subfield = SubField(code, value)
+        if not self.contains(datafield, subfield):
+            datafield.subfields.append(subfield)
+            self.datafields.append(datafield)
