@@ -122,7 +122,7 @@ class Marc21Record(object):
         code: str = "",
         value: str = "",
     ) -> None:
-        """Add value to record at for given datafield and subfield."""
+        """Add value to record for given datafield and subfield."""
         datafield = DataField(tag, ind1, ind2)
         subfield = SubField(code, value)
         datafield.subfields.append(subfield)
