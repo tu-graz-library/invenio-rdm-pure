@@ -7,6 +7,8 @@
 
 """MARC21 Record Module to facilitate storage of records in MARC21 format."""
 
+from os import linesep
+
 
 class ControlField(object):
     """ControlField class representing the controlfield HTML tag in MARC21 XML."""
@@ -46,9 +48,58 @@ class Marc21Record(object):
         self.controlfields = list()
         self.datafields = list()
 
-    def print_to_xml(self, indent: int = 4) -> str:
-        """Method to pretty-print the record as XML."""
-        pass
+    def print_to_xml(self, tagsep: str = linesep, indent: int = 4) -> str:
+        """Pretty-print the record as XML string."""
+        record = ["<record>"]
+        record.append(tagsep)
+        if self.leader:
+            record.append(self.getLeaderXmlTag())
+        for controlfield in self.controlfields:
+            record.append(self.getControlFieldXmlTag(controlfield, tagsep, indent))
+        for datafield in self.datafields:
+            record.append(self.getDataFieldXmlTag(datafield, tagsep, indent))
+        record.append("</record>")
+        return "".join(record)
+
+    @staticmethod
+    def getLeaderXmlTag(leader: str, tagsep: str = linesep) -> str:
+        """Get the leader XML tag of the Marc21Record as string."""
+        leader_tag = ["<leader>"]
+        leader_tag.append(leader)
+        leader_tag.append("</leader>")
+        leader_tag.append(tagsep)
+        return "".join(leader_tag)
+
+    @staticmethod
+    def getControlFieldXmlTag(
+        controlfield: ControlField, tagsep: str = linesep, indent: int = 4
+    ) -> str:
+        """Get a controlfield XML tag of the Marc21Record as string."""
+        controlfield_tag = [" " * indent]
+        controlfield_tag.append(
+            f'<controlfield tag="{controlfield.tag}">{controlfield.value}'
+        )
+        controlfield_tag.append("</controlfield>")
+        controlfield_tag.append(tagsep)
+        return "".join(controlfield_tag)
+
+    @staticmethod
+    def getDataFieldXmlTag(
+        datafield: DataField, tagsep: str = linesep, indent: int = 4
+    ) -> str:
+        """Get a datafield XML tag of the Marc21Record as string."""
+        datafield_tag = [" " * indent]
+        datafield_tag.append(
+            f'<datafield tag="{datafield.tag}" ind1="{datafield.ind1}", ind2={datafield.ind2}>{datafield.value}'
+        )
+        datafield_tag.append(tagsep)
+        for subfield in datafield.subfields:
+            datafield_tag.append(" " * indent)
+            datafield_tag.append(f'<subfield code="{subfield.code}">{subfield.value}')
+            datafield_tag.append(tagsep)
+        datafield_tag.append("</datafield>")
+        datafield_tag.append(tagsep)
+        return "".join(datafield_tag)
 
     def contains(self, ref_df: DataField, ref_sf: SubField) -> bool:
         """Return True if record contains reference datafield, which contains reference subfield."""
