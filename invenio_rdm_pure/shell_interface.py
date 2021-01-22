@@ -14,7 +14,8 @@ from .source.rdm.run.groups import RdmGroups
 from .source.rdm.run.owners import RdmOwners
 from .source.rdm.run.pages import RunPages
 from .source.rdm.run.uuid_run import AddFromUuidList
-from .source.rdm.testing.run_test import Testing
+
+# from .source.rdm.testing.run_test import Testing
 from .source.reports import Reports
 
 
