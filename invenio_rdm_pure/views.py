@@ -13,7 +13,6 @@ from flask import Blueprint
 from flask_babelex import gettext as _
 
 from .setup import dirpath, pure_import_file
-from .source.rdm.run.groups import user_externalid
 
 blueprint = Blueprint(
     "invenio_rdm_pure",
@@ -31,16 +30,3 @@ def index1():
         # Run pure_import task to create the XML file
         os.system(f"python {dirpath}/cli.py pure_import")
     return open(pure_import_file, "r").read()
-
-
-@blueprint.route("/user_import_records")
-def index3():
-    """Render user_import_records view."""
-    externalId = user_externalid()
-    if not externalId:
-        return "No user is logged in"
-
-    command = "python /home/bootcamp/src/cli2/invenio-rdm-pure/invenio_rdm_pure/cli.py "
-    command += f"owner --identifier='externalId' --identifierValue='{externalId}'"
-    os.system(command)
-    return "Task successfully completed"

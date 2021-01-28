@@ -10,24 +10,11 @@
 import json
 import os
 
-from flask_login import current_user
-from invenio_oauthclient.models import UserIdentity
-
 from ...pure.requests_pure import get_pure_metadata
 from ...reports import Reports
 from ...utils import add_spaces
 from ..database import RdmDatabase
 from ..requests_rdm import Requests
-
-
-def user_externalid():
-    """Description."""
-    if current_user.is_authenticated:
-        id = current_user.get_id()
-        user_external = UserIdentity.query.filter_by(id_user=id).first()
-        if user_external:
-            return user_external.id
-    return False
 
 
 class RdmGroups:
