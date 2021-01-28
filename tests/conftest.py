@@ -21,14 +21,6 @@ from invenio_access import InvenioAccess
 from invenio_accounts import InvenioAccounts
 from invenio_config import InvenioConfigDefault
 from invenio_db import InvenioDB, db
-from invenio_indexer import InvenioIndexer
-from invenio_pidrelations import InvenioPIDRelations
-from invenio_pidstore import InvenioPIDStore
-from invenio_records import InvenioRecords
-from invenio_records_rest import InvenioRecordsREST
-from invenio_rest import InvenioREST
-from invenio_search import InvenioSearch
-from sqlalchemy_utils.functions import create_database, database_exists, drop_database
 
 from invenio_rdm_pure import InvenioRdmPure
 from invenio_rdm_pure.views import blueprint
@@ -73,15 +65,8 @@ def base_app(request):
 
     InvenioConfigDefault(app)
     InvenioDB(app)
-    InvenioRecords(app)
-    InvenioPIDStore(app)
-    InvenioPIDRelations(app)
     InvenioAccounts(app)
     InvenioAccess(app)
-    InvenioIndexer(app)
-    InvenioSearch(app)
-    InvenioREST(app)
-    InvenioRecordsREST(app)
     InvenioRdmPure(app)
 
     with app.app_context():
