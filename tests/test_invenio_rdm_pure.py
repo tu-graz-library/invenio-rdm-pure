@@ -31,12 +31,3 @@ def test_init():
     assert "invenio-rdm-pure" not in app.extensions
     ext.init_app(app)
     assert "invenio-rdm-pure" in app.extensions
-
-
-def test_add_from_uuid_list():
-    """Tests the method add_from_uuid_list."""
-    try:
-        AddFromUuidList().add_from_uuid_list()
-        assert False
-    except FileNotFoundError:
-        assert True

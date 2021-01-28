@@ -16,11 +16,6 @@ history = open("CHANGES.rst").read()
 
 tests_require = [
     "pytest-invenio>=1.4.0",
-    "invenio-search[elasticsearch7]>=1.4.0",
-    "invenio-config>=1.0.3",
-    "SQLAlchemy-Utils>=0.33.1,<0.36",  # FIXME without this: ContextualVersionConflict {invenio-files-rest}
-    # TODO: remove once a new release is out
-    # "docker-services-cli>=0.3.0",
 ]
 
 extras_require = {
@@ -42,9 +37,10 @@ setup_requires = [
 install_requires = [
     "Flask-BabelEx>=0.9.4",
     "docopt>=0.6.2",
-    "invenio_oauthclient>=1.2.1",
-    "invenio-rdm-records>=0.23.4",
-    "sqlalchemy-continuum>=1.3.11",
+    "invenio-app>=1.3.0,<2.0.0",
+    "invenio-db>=1.0.8",
+    "invenio-access~=1.3.3",
+    "invenio-accounts>=1.4.3",
 ]
 
 packages = find_packages()
