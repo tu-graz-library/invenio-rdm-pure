@@ -1,0 +1,1022 @@
+{
+    "pureId": -34590405,
+    "externalId": "pariatur",
+    "externalIdSource": "ut minim consequat ipsum",
+    "uuid": "aliquip amet cupidatat",
+    "title": {
+        "formatted": true,
+        "value": "laborum sunt ut nulla"
+    },
+    "peerReview": false,
+    "numberOfPages": 8701253,
+    "managingOrganisationalUnit": {
+        "uuid": "laboris occaecat",
+        "link": {
+            "ref": "in laborum Ut",
+            "href": "cillum"
+        },
+        "externalId": "nostrud consequat",
+        "externalIdSource": "nulla reprehenderit",
+        "externallyManaged": true,
+        "name": {
+            "formatted": true,
+            "text": [
+                {
+                    "locale": "qui ex eu",
+                    "value": "fugiat proident exercitation voluptate"
+                },
+                {
+                    "locale": "eu cillum laboris",
+                    "value": "magna"
+                }
+            ]
+        },
+        "type": {
+            "pureId": 71094962,
+            "uri": "laboris ullamco deserunt",
+            "term": {
+                "formatted": true,
+                "text": [
+                    {
+                        "locale": "sit elit",
+                        "value": "consectetur Ut cillum"
+                    },
+                    {
+                        "locale": "minim ut ex do eiusmod",
+                        "value": "velit Lorem officia et"
+                    }
+                ]
+            }
+        }
+    },
+    "confidential": false,
+    "info": {
+        "createdBy": "aliqua et",
+        "createdDate": "enim reprehenderit in",
+        "modifiedBy": "cupidatat in dolor sint ea",
+        "modifiedDate": "laborum laboris quis ut",
+        "portalUrl": "magna aliqua",
+        "prettyURLIdentifiers": [
+            "Lorem ullamco"
+        ]
+    },
+    "placeOfPublication": "pariatur proident ullamco",
+    "edition": "do occaecat anim Duis dolor",
+    "publisher": {
+        "uuid": "irure",
+        "link": {
+            "ref": "Excepteur",
+            "href": "ad occaecat mollit"
+        },
+        "name": {
+            "formatted": true,
+            "text": [
+                {
+                    "value": "do"
+                }
+            ]
+        },
+        "type": {
+            "pureId": -77918887,
+            "uri": "exercitation nisi",
+            "term": {
+                "formatted": false,
+                "text": [
+                    {
+                        "locale": "deserunt",
+                        "value": "nostrud commodo aliquip proident sed"
+                    },
+                    {
+                        "locale": "reprehenderit veniam",
+                        "value": "Lorem commodo dolore"
+                    }
+                ]
+            }
+        }
+    },
+    "type": {
+        "pureId": -38315568,
+        "uri": "proident cupidatat occaecat",
+        "term": {
+            "formatted": false,
+            "text": [
+                {
+                    "locale": "est deserunt aliquip",
+                    "value": "laborum dolor sunt consequat occaecat"
+                },
+                {
+                    "locale": "Ut non ipsum",
+                    "value": "dolor"
+                }
+            ]
+        }
+    },
+    "category": {
+        "pureId": 27260934,
+        "uri": "nostrud",
+        "term": {
+            "formatted": true,
+            "text": [
+                {
+                    "locale": "proident laborum qui cupidatat",
+                    "value": "quis dolor consequat in sint"
+                },
+                {
+                    "locale": "velit nulla",
+                    "value": "quis"
+                }
+            ]
+        }
+    },
+    "language": {
+        "pureId": 58050124,
+        "uri": "dolore sit in",
+        "term": {
+            "formatted": false,
+            "text": [
+                {
+                    "locale": "en_GB",
+                    "value": "English"
+                },
+                {
+                    "locale": "ut nostrud in laborum",
+                    "value": "dolor consequat"
+                }
+            ]
+        }
+    },
+    "totalNumberOfAuthors": -40780480,
+    "openAccessPermission": {
+        "pureId": -78866375,
+        "uri": "tempor ut sed incididunt",
+        "term": {
+            "formatted": false,
+            "text": [
+                {
+                    "locale": "ex",
+                    "value": "minim"
+                },
+                {
+                    "locale": "laboris dolore anim occaecat",
+                    "value": "culpa eu"
+                }
+            ]
+        }
+    },
+    "visibility": {
+        "key": "est",
+        "value": {
+            "formatted": false,
+            "text": [
+                {
+                    "locale": "Excepteur tempor veniam exercitation in",
+                    "value": "minim"
+                },
+                {
+                    "locale": "cupidatat officia Ut",
+                    "value": "enim est"
+                }
+            ]
+        }
+    },
+    "workflow": {
+        "workflowStep": "reprehenderit consequat",
+        "value": {
+            "formatted": true,
+            "text": [
+                {
+                    "locale": "reprehenderit qui",
+                    "value": "et magna velit"
+                },
+                {
+                    "locale": "in culpa",
+                    "value": "aliqua id laborum fugiat"
+                }
+            ]
+        }
+    },
+    "publicationStatuses": [
+        {
+            "pureId": 67993795,
+            "externalId": "consequat magna",
+            "externalIdSource": "consequat amet",
+            "current": false,
+            "publicationDate": {
+                "year": 20783988
+            },
+            "publicationStatus": {
+                "pureId": -95887093,
+                "uri": "deserunt ad velit in tempor",
+                "term": {
+                    "formatted": false,
+                    "text": [
+                        {
+                            "locale": "consectetur sed amet minim fugiat",
+                            "value": "laboris deserunt"
+                        },
+                        {
+                            "locale": "ut anim",
+                            "value": "nostrud et velit in cupidatat"
+                        }
+                    ]
+                }
+            }
+        }
+    ],
+    "personAssociations": [
+        {
+            "pureId": -47464927,
+            "person": {
+                "uuid": "aliquip",
+                "link": {
+                    "ref": "Excepteur esse ut elit nostrud",
+                    "href": "et veniam"
+                },
+                "externalId": "veniam ipsum irure in id",
+                "externalIdSource": "id",
+                "externallyManaged": false,
+                "name": {
+                    "formatted": false,
+                    "text": [
+                        {
+                            "value": "velit non proident"
+                        }
+                    ]
+                }
+            },
+            "name": {
+                "firstName": "commodo consequat in Lorem",
+                "lastName": "ipsum elit aliquip id"
+            },
+            "correspondingAuthor": true,
+            "personRole": {
+                "pureId": 14362079,
+                "uri": "sit aliqua aliquip dolor",
+                "term": {
+                    "formatted": true,
+                    "text": [
+                        {
+                            "locale": "pariatur in",
+                            "value": "ea irure"
+                        },
+                        {
+                            "locale": "in consequat labore",
+                            "value": "aliquip ut"
+                        }
+                    ]
+                }
+            },
+            "organisationalUnits": [
+                {
+                    "uuid": "aute",
+                    "link": {
+                        "ref": "sint consectetur",
+                        "href": "fugiat officia veniam"
+                    },
+                    "externalId": "ex tempor dolore ipsum aliqua",
+                    "externalIdSource": "aute dolor velit ad Lorem",
+                    "externallyManaged": true,
+                    "name": {
+                        "formatted": true,
+                        "text": [
+                            {
+                                "locale": "dolore aliquip dolor magna occaecat",
+                                "value": "non"
+                            },
+                            {
+                                "locale": "irure consectetur",
+                                "value": "anim commodo voluptate eu"
+                            }
+                        ]
+                    },
+                    "type": {
+                        "pureId": -71763726,
+                        "uri": "laboris",
+                        "term": {
+                            "formatted": false,
+                            "text": [
+                                {
+                                    "locale": "mollit",
+                                    "value": "aliquip ad"
+                                },
+                                {
+                                    "locale": "deserunt mollit Lorem quis pariatur",
+                                    "value": "reprehenderit sed aliqua labore"
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "pureId": -64791540,
+            "name": {
+                "firstName": "fugiat veniam proident",
+                "lastName": "non"
+            },
+            "correspondingAuthor": false,
+            "personRole": {
+                "pureId": -92891681,
+                "uri": "quis ut aliqua sint velit",
+                "term": {
+                    "formatted": false,
+                    "text": [
+                        {
+                            "locale": "sunt sed ea Excepteur",
+                            "value": "ex incididunt Lorem enim in"
+                        },
+                        {
+                            "locale": "elit nulla",
+                            "value": "quis"
+                        }
+                    ]
+                }
+            },
+            "organisationalUnits": [
+                {
+                    "uuid": "laborum in dolore",
+                    "link": {
+                        "ref": "deserunt anim laborum qui",
+                        "href": "nulla"
+                    },
+                    "externalId": "proident aliquip ut nisi",
+                    "externalIdSource": "anim incididunt dolore cillum",
+                    "externallyManaged": false,
+                    "name": {
+                        "formatted": true,
+                        "text": [
+                            {
+                                "locale": "ipsum tempor ex Ut in",
+                                "value": "culpa elit labore"
+                            },
+                            {
+                                "locale": "dolore",
+                                "value": "id"
+                            }
+                        ]
+                    },
+                    "type": {
+                        "pureId": 14853630,
+                        "uri": "aute sunt labore",
+                        "term": {
+                            "formatted": false,
+                            "text": [
+                                {
+                                    "locale": "sunt aliqua quis ullamco commodo",
+                                    "value": "dolore"
+                                },
+                                {
+                                    "locale": "Duis qui mollit",
+                                    "value": "anim minim cillum nostrud"
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "pureId": -20007257,
+            "name": {
+                "firstName": "enim ipsum proident officia",
+                "lastName": "dolore ad irure occaecat deserunt"
+            },
+            "correspondingAuthor": false,
+            "personRole": {
+                "pureId": -41993233,
+                "uri": "enim",
+                "term": {
+                    "formatted": true,
+                    "text": [
+                        {
+                            "locale": "Duis",
+                            "value": "amet nulla velit nisi"
+                        },
+                        {
+                            "locale": "sit nulla dolore dolore ut",
+                            "value": "officia Excepteur dolore Lorem"
+                        }
+                    ]
+                }
+            },
+            "organisationalUnits": [
+                {
+                    "uuid": "amet",
+                    "link": {
+                        "ref": "amet proident",
+                        "href": "veniam ipsum sit anim esse"
+                    },
+                    "externalId": "dolor aliqua laboris sit",
+                    "externalIdSource": "anim",
+                    "externallyManaged": false,
+                    "name": {
+                        "formatted": false,
+                        "text": [
+                            {
+                                "locale": "anim dolore aliqua sint",
+                                "value": "nulla aliquip anim laboris do"
+                            },
+                            {
+                                "locale": "magna minim",
+                                "value": "officia ut occaecat Ut"
+                            }
+                        ]
+                    },
+                    "type": {
+                        "pureId": -15474342,
+                        "uri": "in qui",
+                        "term": {
+                            "formatted": true,
+                            "text": [
+                                {
+                                    "locale": "cupidatat",
+                                    "value": "tempor adipisicing minim proident ea"
+                                },
+                                {
+                                    "locale": "est nulla esse tempor",
+                                    "value": "ut consequat enim"
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        }
+    ],
+    "organisationalUnits": [
+        {
+            "uuid": "anim aute magna elit",
+            "link": {
+                "ref": "in magna cupidatat sint aliqua",
+                "href": "cupidatat"
+            },
+            "externalId": "enim amet ipsum",
+            "externalIdSource": "esse",
+            "externallyManaged": false,
+            "name": {
+                "formatted": false,
+                "text": [
+                    {
+                        "locale": "ex proident laborum anim qui",
+                        "value": "deserunt"
+                    },
+                    {
+                        "locale": "magna deserunt",
+                        "value": "occaecat anim sed ullamco veniam"
+                    }
+                ]
+            },
+            "type": {
+                "pureId": -51976153,
+                "uri": "voluptate",
+                "term": {
+                    "formatted": false,
+                    "text": [
+                        {
+                            "locale": "aliquip occaecat nulla Duis",
+                            "value": "magna eu tempor"
+                        },
+                        {
+                            "locale": "elit consequat incididunt ad velit",
+                            "value": "velit"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "uuid": "dolore ex nulla voluptate",
+            "link": {
+                "ref": "reprehenderit sed sint pariatur ipsum",
+                "href": "ullamco anim dolore cupidatat ut"
+            },
+            "externalId": "minim do ut est",
+            "externalIdSource": "in",
+            "externallyManaged": false,
+            "name": {
+                "formatted": false,
+                "text": [
+                    {
+                        "locale": "Ut et adipisicing",
+                        "value": "magna sunt"
+                    },
+                    {
+                        "locale": "incididunt consequat anim",
+                        "value": "anim"
+                    }
+                ]
+            },
+            "type": {
+                "pureId": -68788270,
+                "uri": "voluptate reprehenderit incididunt et",
+                "term": {
+                    "formatted": false,
+                    "text": [
+                        {
+                            "locale": "veniam",
+                            "value": "ex"
+                        },
+                        {
+                            "locale": "qui eu",
+                            "value": "amet ex"
+                        }
+                    ]
+                }
+            }
+        }
+    ],
+    "keywordGroups": [
+        {
+            "pureId": -70050707,
+            "logicalName": "eu",
+            "type": {
+                "term": {
+                    "formatted": false,
+                    "text": [
+                        {
+                            "locale": "consequat Duis cillum ut",
+                            "value": "proident do est laboris"
+                        },
+                        {
+                            "locale": "enim Lorem proident sit",
+                            "value": "ullamco dolor"
+                        }
+                    ]
+                }
+            },
+            "keywordContainers": [
+                {
+                    "pureId": -60884734,
+                    "freeKeywords": [
+                        {
+                            "pureId": -75450551,
+                            "locale": "proident cillum in",
+                            "freeKeywords": [
+                                "in",
+                                "ut mollit ut Lorem",
+                                "aliqua exercitation consequat eu"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "pureId": 6544513,
+            "logicalName": "ipsum voluptate deserunt nisi nulla",
+            "type": {
+                "uri": "adipisicing",
+                "term": {
+                    "formatted": true,
+                    "text": [
+                        {
+                            "locale": "incididunt sed",
+                            "value": "commodo tempor sed"
+                        },
+                        {
+                            "locale": "minim",
+                            "value": "in in laboris Lorem"
+                        }
+                    ]
+                }
+            },
+            "keywordContainers": [
+                {
+                    "pureId": -29472247,
+                    "structuredKeyword": {
+                        "pureId": 64442954,
+                        "uri": "in sunt in in",
+                        "term": {
+                            "formatted": true,
+                            "text": [
+                                {
+                                    "locale": "pariatur",
+                                    "value": "sunt"
+                                },
+                                {
+                                    "locale": "consequat commodo",
+                                    "value": "fugiat veniam dolore"
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "pureId": 15179212,
+            "logicalName": "laboris est eu mollit enim",
+            "type": {
+                "uri": "dolore fugiat cupidatat sit",
+                "term": {
+                    "formatted": true,
+                    "text": [
+                        {
+                            "locale": "Lorem",
+                            "value": "voluptate officia est"
+                        },
+                        {
+                            "locale": "ut qui",
+                            "value": "Duis sunt"
+                        }
+                    ]
+                }
+            },
+            "keywordContainers": [
+                {
+                    "pureId": 65164983,
+                    "structuredKeyword": {
+                        "pureId": -75119495,
+                        "uri": "cillum proident officia anim",
+                        "term": {
+                            "formatted": false,
+                            "text": [
+                                {
+                                    "locale": "sunt do",
+                                    "value": "non magna anim minim"
+                                },
+                                {
+                                    "locale": "dolor proident velit",
+                                    "value": "cupidatat eiusmod"
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        }
+    ],
+    "isbns": [
+        "sit"
+    ],
+    "volume": "exercitation sed in",
+    "bibliographicalNote": {
+        "formatted": true,
+        "text": [
+            {
+                "locale": "qui",
+                "value": "cupidatat eu"
+            }
+        ]
+    },
+    "electronicVersions": [
+        {
+            "pureId": -20209627,
+            "visibleOnPortalDate": "anim officia cupidatat enim",
+            "creator": "commodo sint ut",
+            "created": "Ut adipisicing in quis",
+            "title": "pariatur",
+            "file": {
+                "fileName": "tempor esse veniam consectetur id",
+                "mimeType": "ullamco sunt Excepteur",
+                "size": -39528353,
+                "fileURL": "deserunt quis sint",
+                "pureId": 3800442
+            },
+            "accessType": {
+                "pureId": -9110904,
+                "uri": "consequat sed laborum occaecat",
+                "term": {
+                    "formatted": false,
+                    "text": [
+                        {
+                            "locale": "Lorem cupidatat do sunt",
+                            "value": "id nostrud laboris consequat"
+                        },
+                        {
+                            "locale": "aliquip ullamco laborum",
+                            "value": "ipsum officia pariatur"
+                        }
+                    ]
+                }
+            },
+            "versionType": {
+                "pureId": -172879,
+                "uri": "dolore consectetur id amet",
+                "term": {
+                    "formatted": false,
+                    "text": [
+                        {
+                            "locale": "ad qui et",
+                            "value": "laborum"
+                        },
+                        {
+                            "locale": "id amet adipisicing",
+                            "value": "sunt nisi elit veniam enim"
+                        }
+                    ]
+                }
+            }
+        }
+    ],
+    "additionalLinks": [
+        {
+            "pureId": 25285026,
+            "url": "ullamco ad Duis ut non"
+        }
+    ],
+    "publicationSeries": [
+        {
+            "pureId": -23652135,
+            "name": "ex",
+            "publisherName": "in non anim"
+        }
+    ],
+    "subTitle": {
+        "formatted": false,
+        "value": "elit sit"
+    },
+    "electronicIsbns": [
+        "nostrud culpa dolore qui nulla",
+        "in"
+    ],
+    "hostPublicationTitle": "culpa aliqua dolore",
+    "event": {
+        "uuid": "fugiat tempor",
+        "link": {
+            "ref": "adipisicing ad laboris officia",
+            "href": "magna in sint Excepteur veniam"
+        },
+        "name": {
+            "formatted": false,
+            "text": [
+                {
+                    "locale": "consequat Ut sunt id in",
+                    "value": "occaecat reprehenderit mollit"
+                }
+            ]
+        },
+        "type": {
+            "pureId": 47332656,
+            "uri": "quis dolore",
+            "term": {
+                "formatted": false,
+                "text": [
+                    {
+                        "locale": "minim Duis et irure ipsum",
+                        "value": "qui"
+                    },
+                    {
+                        "locale": "aliquip dolore deserunt ea eiusmod",
+                        "value": "ut quis enim reprehenderit"
+                    }
+                ]
+            }
+        }
+    },
+    "pages": "nulla",
+    "externalOrganisations": [
+        {
+            "uuid": "sed officia amet sint",
+            "link": {
+                "ref": "laborum sit ut",
+                "href": "in"
+            },
+            "name": {
+                "formatted": true,
+                "text": [
+                    {
+                        "locale": "in Lorem ullamco",
+                        "value": "incididunt cillum tempor Duis Ut"
+                    },
+                    {
+                        "locale": "et tempor ut non eiusmod",
+                        "value": "incididunt"
+                    }
+                ]
+            },
+            "type": {
+                "pureId": 66233466,
+                "uri": "tempor ipsum deserunt",
+                "term": {
+                    "formatted": true,
+                    "text": [
+                        {
+                            "locale": "aliqua cillum",
+                            "value": "Ut esse enim ut"
+                        },
+                        {
+                            "locale": "occaecat reprehenderit aliquip",
+                            "value": "est nostrud"
+                        }
+                    ]
+                }
+            }
+        }
+    ],
+    "relatedProjects": [
+        {
+            "uuid": "nulla incididunt pariatur",
+            "link": {
+                "ref": "ad occaecat eu",
+                "href": "quis qui tempor"
+            },
+            "externalId": "est",
+            "externalIdSource": "anim",
+            "externallyManaged": false,
+            "name": {
+                "formatted": true,
+                "text": [
+                    {
+                        "locale": "veniam",
+                        "value": "Ut sint cillum ut laboris"
+                    },
+                    {
+                        "locale": "sit",
+                        "value": "consectetur elit id dolore eu"
+                    }
+                ]
+            },
+            "type": {
+                "pureId": 44882622,
+                "uri": "ex anim",
+                "term": {
+                    "formatted": false,
+                    "text": [
+                        {
+                            "locale": "velit adipisicing ipsum",
+                            "value": "ut irure sint"
+                        },
+                        {
+                            "locale": "laboris reprehenderit quis ad nulla",
+                            "value": "qui"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "uuid": "pariatur ad aliquip sint",
+            "link": {
+                "ref": "in",
+                "href": "est consectetur eu ad sunt"
+            },
+            "externalId": "et deserunt tempor cillum",
+            "externalIdSource": "ea Lorem",
+            "externallyManaged": false,
+            "name": {
+                "formatted": false,
+                "text": [
+                    {
+                        "locale": "do occaecat",
+                        "value": "sunt pariatur ullamco"
+                    },
+                    {
+                        "locale": "sed labore",
+                        "value": "ex in"
+                    }
+                ]
+            },
+            "type": {
+                "pureId": -56693189,
+                "uri": "minim incididunt pariatur nostrud Duis",
+                "term": {
+                    "formatted": false,
+                    "text": [
+                        {
+                            "locale": "Excepteur Duis",
+                            "value": "adipisicing veniam"
+                        },
+                        {
+                            "locale": "cillum est",
+                            "value": "consequat id consectetur sunt Ut"
+                        }
+                    ]
+                }
+            }
+        }
+    ],
+    "journalAssociation": {
+        "pureId": 43436958,
+        "title": {
+            "value": "in"
+        },
+        "journal": {
+            "uuid": "est sint fugiat",
+            "link": {
+                "ref": "nulla",
+                "href": "minim cupidatat"
+            },
+            "name": {
+                "formatted": false,
+                "text": [
+                    {
+                        "value": "laboris"
+                    }
+                ]
+            },
+            "type": {
+                "pureId": 1353776,
+                "uri": "occaecat Excepteur magna",
+                "term": {
+                    "formatted": false,
+                    "text": [
+                        {
+                            "locale": "sunt aliquip magna",
+                            "value": "in dolor proident"
+                        },
+                        {
+                            "locale": "ea",
+                            "value": "dolore in consequat nisi aliqua"
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "journalNumber": "officia in mollit eiusmod tempor",
+    "submissionYear": -46276156,
+    "totalScopusCitations": -38378863,
+    "scopusMetrics": [
+        {
+            "value": 45429082,
+            "year": -25426618
+        },
+        {
+            "value": -26306378,
+            "year": -42073189
+        },
+        {
+            "value": -57718878,
+            "year": -77362960
+        },
+        {
+            "value": 33950620,
+            "year": -43957393
+        },
+        {
+            "value": 67435004,
+            "year": 98422885
+        }
+    ],
+    "abstract": {
+        "formatted": false,
+        "text": [
+            {
+                "locale": "do cupidatat sunt dolore officia",
+                "value": "amet sed"
+            }
+        ]
+    },
+    "additionalFiles": [
+        {
+            "pureId": -70088512,
+            "visibleOnPortalDate": "aliquip nisi consequat et reprehenderit",
+            "creator": "officia qui",
+            "created": "magna in anim velit dolore",
+            "file": {
+                "fileName": "nostrud non id",
+                "mimeType": "proident sit",
+                "size": -62241343,
+                "fileURL": "Lorem dolor",
+                "pureId": -25547313
+            },
+            "title": "tempor ullamco sed",
+            "accessType": {
+                "pureId": 60456064,
+                "uri": "velit consectetur anim",
+                "term": {
+                    "formatted": false,
+                    "text": [
+                        {
+                            "locale": "anim",
+                            "value": "Excepteur aliqua dolor qui"
+                        },
+                        {
+                            "locale": "in in consectetur et",
+                            "value": "Ut amet"
+                        }
+                    ]
+                }
+            }
+        }
+    ],
+    "outputMedia": {
+        "pureId": 50059310,
+        "uri": "in sunt aliqua qui",
+        "term": {
+            "formatted": false,
+            "text": [
+                {
+                    "locale": "Ut nulla laborum",
+                    "value": "proident est"
+                },
+                {
+                    "locale": "Ut",
+                    "value": "voluptate quis sit fugiat in"
+                }
+            ]
+        }
+    },
+    "typeDescription": {
+        "formatted": true,
+        "text": [
+            {
+                "locale": "do labore adipisicing",
+                "value": "nostrud ut aliqua velit"
+            }
+        ]
+    },
+    "patentNumber": "ipsum sit"
+}
