@@ -15,7 +15,6 @@ from ...reports import Reports
 from ...utils import file_read_lines, initialize_counters, shorten_file_name
 from ..add_record import RdmAddRecord
 from ..database import RdmDatabase
-from ..record_manager import RecordManager
 from ..requests_rdm import Requests
 
 
@@ -143,7 +142,7 @@ class RdmOwners:
         )
 
         # Add owner to an existing RDM record
-        RecordManager.instance().update_record(recid, data)
+        # RecordManager.instance().update_record(recid, data)
 
         self.local_counters["to_update"] += 1
 

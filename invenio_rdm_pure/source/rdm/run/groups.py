@@ -17,7 +17,6 @@ from ...pure.requests_pure import get_pure_metadata
 from ...reports import Reports
 from ...utils import add_spaces
 from ..database import RdmDatabase
-from ..record_manager import RecordManager
 from ..requests_rdm import Requests
 
 
@@ -205,7 +204,7 @@ class RdmGroups:
 
             # Update record
             recid = item["recid"]
-            response = RecordManager.instance().update_record(recid, item)
+            # response = RecordManager.instance().update_record(recid, item)
 
         return True
 
@@ -314,7 +313,7 @@ class RdmGroups:
                 del item["_communities"]
 
                 # Update record
-                response = RecordManager.instance().update_record(item["recid"], item)
+                # response = RecordManager.instance().update_record(item["recid"], item)
 
     def _process_organisational_units(
         self, item, new_group_data, old_groups_externalId

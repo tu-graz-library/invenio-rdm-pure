@@ -11,7 +11,6 @@ import json
 
 from ..reports import Reports
 from ..utils import add_spaces
-from .record_manager import RecordManager
 from .requests_rdm import Requests
 
 
@@ -110,4 +109,4 @@ class Versioning:
             item["metadataOtherVersions"] = all_metadata_versions
 
             # Update record
-            RecordManager.instance().update_record(recid, item)
+            # RecordManager.instance().update_record(recid, item)
