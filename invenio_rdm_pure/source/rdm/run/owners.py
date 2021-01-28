@@ -142,7 +142,6 @@ class RdmOwners:
         )
 
         # Add owner to an existing RDM record
-        # RecordManager.instance().update_record(recid, data)
 
         self.local_counters["to_update"] += 1
 

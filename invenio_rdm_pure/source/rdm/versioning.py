@@ -109,4 +109,3 @@ class Versioning:
             item["metadataOtherVersions"] = all_metadata_versions
 
             # Update record
-            # RecordManager.instance().update_record(recid, item)
