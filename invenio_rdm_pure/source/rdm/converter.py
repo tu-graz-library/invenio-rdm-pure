@@ -39,7 +39,7 @@ class Converter(object):
         record = Marc21Record()
         for attribute, value in pure_json.items():
             self.convert_attribute(attribute, value, record)
-        record.print_to_xml()
+        return record.print_to_xml()
 
     def convert_attribute(self, attribute: str, value: object, record: Marc21Record):
         """Traverse first level elements of dictionary and extract necessary attributes."""
