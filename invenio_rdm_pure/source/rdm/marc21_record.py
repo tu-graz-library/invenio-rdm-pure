@@ -79,6 +79,7 @@ class Marc21Record(object):
         controlfield_tag.append(
             f'<controlfield tag="{controlfield.tag}">{controlfield.value}'
         )
+        controlfield_tag.append(" " * indent)
         controlfield_tag.append("</controlfield>")
         controlfield_tag.append(tagsep)
         return "".join(controlfield_tag)
@@ -94,9 +95,10 @@ class Marc21Record(object):
         )
         datafield_tag.append(tagsep)
         for subfield in datafield.subfields:
-            datafield_tag.append(" " * indent)
+            datafield_tag.append(2 * " " * indent)
             datafield_tag.append(f'<subfield code="{subfield.code}">{subfield.value}')
             datafield_tag.append(tagsep)
+        datafield_tag.append(" " * indent)
         datafield_tag.append("</datafield>")
         datafield_tag.append(tagsep)
         return "".join(datafield_tag)
