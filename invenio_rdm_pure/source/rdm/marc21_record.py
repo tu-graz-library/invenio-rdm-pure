@@ -97,6 +97,7 @@ class Marc21Record(object):
         for subfield in datafield.subfields:
             datafield_tag.append(2 * " " * indent)
             datafield_tag.append(f'<subfield code="{subfield.code}">{subfield.value}')
+            datafield_tag.append(f'</subfield>')
             datafield_tag.append(tagsep)
         datafield_tag.append(" " * indent)
         datafield_tag.append("</datafield>")
