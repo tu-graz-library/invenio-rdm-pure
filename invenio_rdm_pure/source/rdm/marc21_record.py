@@ -91,7 +91,7 @@ class Marc21Record(object):
         """Get a datafield XML tag of the Marc21Record as string."""
         datafield_tag = [" " * indent]
         datafield_tag.append(
-            f'<datafield tag="{datafield.tag}" ind1="{datafield.ind1}", ind2={datafield.ind2}>'
+            f'<datafield tag="{datafield.tag}" ind1="{datafield.ind1}" ind2="{datafield.ind2}">'
         )
         datafield_tag.append(tagsep)
         for subfield in datafield.subfields:
