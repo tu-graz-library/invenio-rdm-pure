@@ -53,7 +53,7 @@ class Marc21Record(object):
         record = ["<record>"]
         record.append(tagsep)
         if self.leader:
-            record.append(self.getLeaderXmlTag())
+            record.append(self.getLeaderXmlTag(self.leader))
         for controlfield in self.controlfields:
             record.append(self.getControlFieldXmlTag(controlfield, tagsep, indent))
         for datafield in self.datafields:
