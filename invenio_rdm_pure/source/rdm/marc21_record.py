@@ -46,7 +46,9 @@ class SubField(object):
 class Marc21Record(object):
     """MARC21 Record class to facilitate storage of records in MARC21 format."""
 
-    def __init__(self, leader: str = ""):
+    def __init__(
+        self, leader: str = "97628dxefp 201109bOq4500"
+    ):  # TODO: find a way to generate proper leaders
         """Default constructor of the class."""
         self.leader = leader
         self.controlfields = list()
@@ -54,7 +56,10 @@ class Marc21Record(object):
 
     def print_to_xml(self, tagsep: str = linesep, indent: int = 4) -> str:
         """Pretty-print the record as XML string."""
-        record = ["<record>"]
+        record = ["<?xml version='1.0' ?>"]
+        record.append(
+            '<record xmlns="http://www.loc.gov/MARC21/slim" xsi:schemaLocation="http://www.loc.gov/MARC21/slim schema.xsd" type="Bibliographic" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">'
+        )
         record.append(tagsep)
         if self.leader:
             record.append(self.getLeaderXmlTag(self.leader))
