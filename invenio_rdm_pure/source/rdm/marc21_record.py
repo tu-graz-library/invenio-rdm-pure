@@ -7,7 +7,11 @@
 
 """MARC21 Record Module to facilitate storage of records in MARC21 format."""
 
+from io import StringIO
 from os import linesep
+from os.path import dirname, join
+
+from lxml import etree
 
 
 class ControlField(object):
@@ -59,7 +63,18 @@ class Marc21Record(object):
         for datafield in self.datafields:
             record.append(self.getDataFieldXmlTag(datafield, tagsep, indent))
         record.append("</record>")
-        return "".join(record)
+        return Marc21Record.validateMarc21Xml("".join(record))
+
+    @staticmethod
+    def validateMarc21Xml(record: str) -> str:
+        """Validate the record against a Marc21XML Schema."""
+        with open(
+            join(dirname(__file__), "MARC21slim.xsd"), "r", encoding="utf-8"
+        ) as fp:
+            marc21xml_schema = etree.XMLSchema(etree.parse(fp))
+            marc21xml = etree.parse(StringIO(record))
+            marc21xml_schema.assertValid(marc21xml)
+            return record
 
     @staticmethod
     def getLeaderXmlTag(leader: str, tagsep: str = linesep) -> str:
@@ -97,7 +112,7 @@ class Marc21Record(object):
         for subfield in datafield.subfields:
             datafield_tag.append(2 * " " * indent)
             datafield_tag.append(f'<subfield code="{subfield.code}">{subfield.value}')
-            datafield_tag.append(f'</subfield>')
+            datafield_tag.append(f"</subfield>")
             datafield_tag.append(tagsep)
         datafield_tag.append(" " * indent)
         datafield_tag.append("</datafield>")

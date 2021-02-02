@@ -41,6 +41,7 @@ install_requires = [
     "invenio-db>=1.0.8",
     "invenio-access~=1.3.3",
     "invenio-accounts>=1.4.3",
+    "lxml>=4.6.2",
 ]
 
 packages = find_packages()
