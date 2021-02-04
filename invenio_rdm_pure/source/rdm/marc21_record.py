@@ -102,18 +102,7 @@ class Marc21Record(object):
         for datafield in self.datafields:
             record.append(datafield.to_xml_tag(tagsep, indent))
         record.append("</record>")
-        return Marc21Record.validateMarc21Xml("".join(record))
-
-    @staticmethod
-    def validateMarc21Xml(record: str) -> str:
-        """Validate the record against a Marc21XML Schema."""
-        with open(
-            join(dirname(__file__), "MARC21slim.xsd"), "r", encoding="utf-8"
-        ) as fp:
-            marc21xml_schema = etree.XMLSchema(etree.parse(fp))
-            marc21xml = etree.parse(StringIO(record))
-            marc21xml_schema.assertValid(marc21xml)
-            return record
+        return Marc21Record.validate_marc21_xml_string("".join(record))
 
     def get_leader_xml_tag(self, tagsep: str = linesep) -> str:
         """Get the leader XML tag of the Marc21Record as string."""
@@ -164,3 +153,14 @@ class Marc21Record(object):
         if not self.contains(datafield, subfield):
             datafield.subfields.append(subfield)
             self.datafields.append(datafield)
+
+    @staticmethod
+    def validate_marc21_xml_string(record: str) -> str:
+        """Validate the record against a Marc21XML Schema."""
+        with open(
+            join(dirname(__file__), "MARC21slim.xsd"), "r", encoding="utf-8"
+        ) as fp:
+            marc21xml_schema = etree.XMLSchema(etree.parse(fp))
+            marc21xml = etree.parse(StringIO(record))
+            marc21xml_schema.assertValid(marc21xml)
+            return record
