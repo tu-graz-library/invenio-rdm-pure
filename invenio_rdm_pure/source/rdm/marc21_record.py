@@ -96,7 +96,7 @@ class Marc21Record(object):
         )
         record.append(tagsep)
         if self.leader:
-            record.append(self.getLeaderXmlTag(self.leader))
+            record.append(self.get_leader_xml_tag())
         for controlfield in self.controlfields:
             record.append(controlfield.to_xml_tag(tagsep, indent))
         for datafield in self.datafields:
@@ -115,11 +115,10 @@ class Marc21Record(object):
             marc21xml_schema.assertValid(marc21xml)
             return record
 
-    @staticmethod
-    def getLeaderXmlTag(leader: str, tagsep: str = linesep) -> str:
+    def get_leader_xml_tag(self, tagsep: str = linesep) -> str:
         """Get the leader XML tag of the Marc21Record as string."""
         leader_tag = ["<leader>"]
-        leader_tag.append(leader)
+        leader_tag.append(self.leader)
         leader_tag.append("</leader>")
         leader_tag.append(tagsep)
         return "".join(leader_tag)
