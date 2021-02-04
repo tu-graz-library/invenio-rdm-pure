@@ -78,9 +78,11 @@ class SubField(object):
 class Marc21Record(object):
     """MARC21 Record class to facilitate storage of records in MARC21 format."""
 
-    def __init__(
-        self, leader: str = "97628dxefp 201109bOq4500"
-    ):  # TODO: find a way to generate proper leaders
+    LEADER_PLACEHOLDER = (
+        "97628dxefp 201109bOq4500"  # TODO: find a way to generate proper leaders
+    )
+
+    def __init__(self, leader: str = LEADER_PLACEHOLDER):
         """Default constructor of the class."""
         self.leader = leader
         self.controlfields = list()
