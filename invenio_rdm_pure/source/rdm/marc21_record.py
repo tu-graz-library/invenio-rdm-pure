@@ -22,6 +22,15 @@ class ControlField(object):
         self.tag = tag
         self.value = value
 
+    def to_xml_tag(self, tagsep: str = linesep, indent: int = 4) -> str:
+        """Get the Marc21 Controlfield XML tag as string."""
+        controlfield_tag = [" " * indent]
+        controlfield_tag.append(f'<controlfield tag="{self.tag}">{self.value}')
+        controlfield_tag.append(" " * indent)
+        controlfield_tag.append("</controlfield>")
+        controlfield_tag.append(tagsep)
+        return "".join(controlfield_tag)
+
 
 class DataField(object):
     """DataField class representing the datafield HTML tag in MARC21 XML."""
@@ -33,6 +42,21 @@ class DataField(object):
         self.ind2 = ind2
         self.subfields = list()
 
+    def to_xml_tag(self, tagsep: str = linesep, indent: int = 4) -> str:
+        """Get the Marc21 Datafield XML tag as string."""
+        datafield_tag = [" " * indent]
+        datafield_tag.append(
+            f'<datafield tag="{self.tag}" ind1="{self.ind1}" ind2="{self.ind2}">'
+        )
+        datafield_tag.append(tagsep)
+        for subfield in self.subfields:
+            datafield_tag.append(2 * " " * indent)
+            datafield_tag.append(subfield.to_xml_tag(tagsep, indent))
+        datafield_tag.append(" " * indent)
+        datafield_tag.append("</datafield>")
+        datafield_tag.append(tagsep)
+        return "".join(datafield_tag)
+
 
 class SubField(object):
     """SubField class representing the subfield HTML tag in MARC21 XML."""
@@ -41,6 +65,14 @@ class SubField(object):
         """Default constructor of the class."""
         self.code = code
         self.value = value
+
+    def to_xml_tag(self, tagsep: str = linesep, indent: int = 4) -> str:
+        """Get the Marc21 Subfield XML tag as string."""
+        subfield_tag = [2 * " " * indent]
+        subfield_tag.append(f'<subfield code="{self.code}">{self.value}')
+        subfield_tag.append(f"</subfield>")
+        subfield_tag.append(tagsep)
+        return "".join(subfield_tag)
 
 
 class Marc21Record(object):
@@ -64,9 +96,9 @@ class Marc21Record(object):
         if self.leader:
             record.append(self.getLeaderXmlTag(self.leader))
         for controlfield in self.controlfields:
-            record.append(self.getControlFieldXmlTag(controlfield, tagsep, indent))
+            record.append(controlfield.to_xml_tag(tagsep, indent))
         for datafield in self.datafields:
-            record.append(self.getDataFieldXmlTag(datafield, tagsep, indent))
+            record.append(datafield.to_xml_tag(tagsep, indent))
         record.append("</record>")
         return Marc21Record.validateMarc21Xml("".join(record))
 
@@ -89,40 +121,6 @@ class Marc21Record(object):
         leader_tag.append("</leader>")
         leader_tag.append(tagsep)
         return "".join(leader_tag)
-
-    @staticmethod
-    def getControlFieldXmlTag(
-        controlfield: ControlField, tagsep: str = linesep, indent: int = 4
-    ) -> str:
-        """Get a controlfield XML tag of the Marc21Record as string."""
-        controlfield_tag = [" " * indent]
-        controlfield_tag.append(
-            f'<controlfield tag="{controlfield.tag}">{controlfield.value}'
-        )
-        controlfield_tag.append(" " * indent)
-        controlfield_tag.append("</controlfield>")
-        controlfield_tag.append(tagsep)
-        return "".join(controlfield_tag)
-
-    @staticmethod
-    def getDataFieldXmlTag(
-        datafield: DataField, tagsep: str = linesep, indent: int = 4
-    ) -> str:
-        """Get a datafield XML tag of the Marc21Record as string."""
-        datafield_tag = [" " * indent]
-        datafield_tag.append(
-            f'<datafield tag="{datafield.tag}" ind1="{datafield.ind1}" ind2="{datafield.ind2}">'
-        )
-        datafield_tag.append(tagsep)
-        for subfield in datafield.subfields:
-            datafield_tag.append(2 * " " * indent)
-            datafield_tag.append(f'<subfield code="{subfield.code}">{subfield.value}')
-            datafield_tag.append(f"</subfield>")
-            datafield_tag.append(tagsep)
-        datafield_tag.append(" " * indent)
-        datafield_tag.append("</datafield>")
-        datafield_tag.append(tagsep)
-        return "".join(datafield_tag)
 
     def contains(self, ref_df: DataField, ref_sf: SubField) -> bool:
         """Return True if record contains reference datafield, which contains reference subfield."""
