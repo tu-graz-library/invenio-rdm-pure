@@ -88,8 +88,8 @@ class Marc21Record(object):
         self.controlfields = list()
         self.datafields = list()
 
-    def print_to_xml(self, tagsep: str = linesep, indent: int = 4) -> str:
-        """Pretty-print the record as XML string."""
+    def to_xml_string(self, tagsep: str = linesep, indent: int = 4) -> str:
+        """Get a pretty-printed XML string of the record."""
         record = ["<?xml version='1.0' ?>"]
         record.append(
             '<record xmlns="http://www.loc.gov/MARC21/slim" xsi:schemaLocation="http://www.loc.gov/MARC21/slim schema.xsd" type="Bibliographic" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">'
