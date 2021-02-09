@@ -35,6 +35,7 @@ recursive-include docs Makefile
 recursive-include invenio_rdm_pure *.html
 recursive-include invenio_rdm_pure *.json
 recursive-include invenio_rdm_pure *.py
+recursive-include invenio_rdm_pure *.xsd
 recursive-include tests *.py
 recursive-include tests *.json
 recursive-include .github/workflows *.yml
