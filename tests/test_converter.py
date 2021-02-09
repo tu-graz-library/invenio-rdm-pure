@@ -9,7 +9,7 @@
 import json
 from os.path import dirname, join
 
-from invenio_rdm_pure.source.rdm.converter import Converter
+from invenio_rdm_pure.source.rdm.converter import Converter, Marc21Record
 
 
 def load_json(filename):
@@ -23,4 +23,4 @@ def test_conversion():
     marc21_xml = converter.convert_pure_json_to_marc21_xml(
         load_json(join("data", "pure_record_fake.json"))
     )
-    assert type(marc21_xml) is str
+    assert Marc21Record.is_valid_marc21_xml_string(marc21_xml)

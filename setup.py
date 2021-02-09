@@ -39,8 +39,9 @@ install_requires = [
     "docopt>=0.6.2",
     "invenio-app>=1.3.0,<2.0.0",
     "invenio-db>=1.0.8",
-    "invenio-access~=1.3.3",
+    "invenio-access>=1.3.3",
     "invenio-accounts>=1.4.3",
+    "lxml>=4.6.2",
 ]
 
 packages = find_packages()

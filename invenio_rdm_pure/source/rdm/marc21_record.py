@@ -7,7 +7,11 @@
 
 """MARC21 Record Module to facilitate storage of records in MARC21 format."""
 
+from io import StringIO
 from os import linesep
+from os.path import dirname, join
+
+from lxml import etree
 
 
 class ControlField(object):
@@ -18,16 +22,39 @@ class ControlField(object):
         self.tag = tag
         self.value = value
 
+    def to_xml_tag(self, tagsep: str = linesep, indent: int = 4) -> str:
+        """Get the Marc21 Controlfield XML tag as string."""
+        controlfield_tag = " " * indent
+        controlfield_tag += f'<controlfield tag="{self.tag}">{self.value}'
+        controlfield_tag += " " * indent
+        controlfield_tag += "</controlfield>"
+        controlfield_tag += tagsep
+        return controlfield_tag
+
 
 class DataField(object):
     """DataField class representing the datafield HTML tag in MARC21 XML."""
 
-    def __init__(self, tag: str = "", ind1: str = "", ind2: str = ""):
+    def __init__(self, tag: str = "", ind1: str = " ", ind2: str = " "):
         """Default constructor of the class."""
         self.tag = tag
         self.ind1 = ind1
         self.ind2 = ind2
         self.subfields = list()
+
+    def to_xml_tag(self, tagsep: str = linesep, indent: int = 4) -> str:
+        """Get the Marc21 Datafield XML tag as string."""
+        datafield_tag = " " * indent
+        datafield_tag += (
+            f'<datafield tag="{self.tag}" ind1="{self.ind1}" ind2="{self.ind2}">'
+        )
+        datafield_tag += tagsep
+        for subfield in self.subfields:
+            datafield_tag += subfield.to_xml_tag(tagsep, indent)
+        datafield_tag += " " * indent
+        datafield_tag += "</datafield>"
+        datafield_tag += tagsep
+        return datafield_tag
 
 
 class SubField(object):
@@ -38,68 +65,50 @@ class SubField(object):
         self.code = code
         self.value = value
 
+    def to_xml_tag(self, tagsep: str = linesep, indent: int = 4) -> str:
+        """Get the Marc21 Subfield XML tag as string."""
+        subfield_tag = 2 * " " * indent
+        subfield_tag += f'<subfield code="{self.code}">{self.value}'
+        subfield_tag += f"</subfield>"
+        subfield_tag += tagsep
+        return subfield_tag
+
 
 class Marc21Record(object):
     """MARC21 Record class to facilitate storage of records in MARC21 format."""
 
-    def __init__(self, leader: str = ""):
+    LEADER_PLACEHOLDER = (
+        "00000nam a2200000zca4500"  # TODO: find a way to generate proper leaders
+    )
+
+    def __init__(self, leader: str = LEADER_PLACEHOLDER):
         """Default constructor of the class."""
         self.leader = leader
         self.controlfields = list()
         self.datafields = list()
 
-    def print_to_xml(self, tagsep: str = linesep, indent: int = 4) -> str:
-        """Pretty-print the record as XML string."""
-        record = ["<record>"]
-        record.append(tagsep)
+    def to_xml_string(self, tagsep: str = linesep, indent: int = 4) -> str:
+        """Get a pretty-printed XML string of the record."""
+        record = "<?xml version='1.0' ?>"
+        record += '<record xmlns="http://www.loc.gov/MARC21/slim" xsi:schemaLocation="http://www.loc.gov/MARC21/slim schema.xsd" type="Bibliographic" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">'
+        record += tagsep
         if self.leader:
-            record.append(self.getLeaderXmlTag())
+            record += self.get_leader_xml_tag(tagsep, indent)
         for controlfield in self.controlfields:
-            record.append(self.getControlFieldXmlTag(controlfield, tagsep, indent))
+            record += controlfield.to_xml_tag(tagsep, indent)
         for datafield in self.datafields:
-            record.append(self.getDataFieldXmlTag(datafield, tagsep, indent))
-        record.append("</record>")
-        return "".join(record)
+            record += datafield.to_xml_tag(tagsep, indent)
+        record += "</record>"
+        return record
 
-    @staticmethod
-    def getLeaderXmlTag(leader: str, tagsep: str = linesep) -> str:
+    def get_leader_xml_tag(self, tagsep: str = linesep, indent: int = 4) -> str:
         """Get the leader XML tag of the Marc21Record as string."""
-        leader_tag = ["<leader>"]
-        leader_tag.append(leader)
-        leader_tag.append("</leader>")
-        leader_tag.append(tagsep)
-        return "".join(leader_tag)
-
-    @staticmethod
-    def getControlFieldXmlTag(
-        controlfield: ControlField, tagsep: str = linesep, indent: int = 4
-    ) -> str:
-        """Get a controlfield XML tag of the Marc21Record as string."""
-        controlfield_tag = [" " * indent]
-        controlfield_tag.append(
-            f'<controlfield tag="{controlfield.tag}">{controlfield.value}'
-        )
-        controlfield_tag.append("</controlfield>")
-        controlfield_tag.append(tagsep)
-        return "".join(controlfield_tag)
-
-    @staticmethod
-    def getDataFieldXmlTag(
-        datafield: DataField, tagsep: str = linesep, indent: int = 4
-    ) -> str:
-        """Get a datafield XML tag of the Marc21Record as string."""
-        datafield_tag = [" " * indent]
-        datafield_tag.append(
-            f'<datafield tag="{datafield.tag}" ind1="{datafield.ind1}", ind2={datafield.ind2}>'
-        )
-        datafield_tag.append(tagsep)
-        for subfield in datafield.subfields:
-            datafield_tag.append(" " * indent)
-            datafield_tag.append(f'<subfield code="{subfield.code}">{subfield.value}')
-            datafield_tag.append(tagsep)
-        datafield_tag.append("</datafield>")
-        datafield_tag.append(tagsep)
-        return "".join(datafield_tag)
+        leader_tag = " " * indent
+        leader_tag += "<leader>"
+        leader_tag += self.leader
+        leader_tag += "</leader>"
+        leader_tag += tagsep
+        return leader_tag
 
     def contains(self, ref_df: DataField, ref_sf: SubField) -> bool:
         """Return True if record contains reference datafield, which contains reference subfield."""
@@ -117,8 +126,8 @@ class Marc21Record(object):
     def add_value(
         self,
         tag: str = "",
-        ind1: str = "",
-        ind2: str = "",
+        ind1: str = " ",
+        ind2: str = " ",
         code: str = "",
         value: str = "",
     ) -> None:
@@ -131,8 +140,8 @@ class Marc21Record(object):
     def add_unique_value(
         self,
         tag: str = "",
-        ind1: str = "",
-        ind2: str = "",
+        ind1: str = " ",
+        ind2: str = " ",
         code: str = "",
         value: str = "",
     ) -> None:
@@ -142,3 +151,13 @@ class Marc21Record(object):
         if not self.contains(datafield, subfield):
             datafield.subfields.append(subfield)
             self.datafields.append(datafield)
+
+    @staticmethod
+    def is_valid_marc21_xml_string(record: str) -> bool:
+        """Validate the record against a Marc21XML Schema."""
+        with open(
+            join(dirname(__file__), "MARC21slim.xsd"), "r", encoding="utf-8"
+        ) as fp:
+            marc21xml_schema = etree.XMLSchema(etree.parse(fp))
+            marc21xml = etree.parse(StringIO(record))
+            return marc21xml_schema.validate(marc21xml)
