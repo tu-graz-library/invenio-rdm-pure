@@ -78,7 +78,7 @@ class Marc21Record(object):
     """MARC21 Record class to facilitate storage of records in MARC21 format."""
 
     LEADER_PLACEHOLDER = (
-        "97628dxefp 201109bOq4500"  # TODO: find a way to generate proper leaders
+        "00000nam a2200000zca4500"  # TODO: find a way to generate proper leaders
     )
 
     def __init__(self, leader: str = LEADER_PLACEHOLDER):
