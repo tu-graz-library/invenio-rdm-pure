@@ -1,7 +1,6 @@
 # Invenio_rdm_pure
 invenio_rdm_pure/data_setup/
 invenio_rdm_pure/tests/
-invenio_rdm_pure/data/
 invenio_rdm_pure/data/temporary_files/
 invenio_rdm_pure/templates/invenio_rdm_pure/temporary_files/
 docker-services.yml
