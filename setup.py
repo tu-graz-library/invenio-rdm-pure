@@ -35,12 +35,13 @@ setup_requires = [
 ]
 
 install_requires = [
-    "Flask-BabelEx>=0.9.4",
     "docopt>=0.6.2",
-    "invenio-app>=1.3.0,<2.0.0",
-    "invenio-db>=1.0.8",
+    "Flask-BabelEx>=0.9.4",
     "invenio-access>=1.3.3",
     "invenio-accounts>=1.4.3",
+    "invenio-app>=1.3.0",
+    "invenio-celery>=1.2.2",
+    "invenio-db>=1.0.8",
     "lxml>=4.6.2",
 ]
 
@@ -77,10 +78,10 @@ setup(
         "invenio_i18n.translations": [
             "messages = invenio_rdm_pure",
         ],
-        "invenio_celery.tasks": ["invenio_rdm_pure = invenio_rdm_pure.tasks"],
         "invenio_config.module": [
             "invenio_rdm_pure = invenio_rdm_pure.config",
         ],
+        "invenio_celery.tasks": ["invenio_rdm_pure = invenio_rdm_pure.tasks"],
         # TODO: Edit these entry points to fit your needs.
         # 'invenio_access.actions': [],
         # 'invenio_admin.actions': [],

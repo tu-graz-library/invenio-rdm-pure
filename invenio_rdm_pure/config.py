@@ -10,7 +10,7 @@
 # TODO: This is an example file. Remove it if your package does not use any
 # extra configuration variables.
 
-from datetime import timedelta
+from celery.schedules import crontab
 
 INVENIO_RDM_PURE_DEFAULT_VALUE = "foobar"
 """Default value for the application."""
@@ -19,10 +19,10 @@ INVENIO_RDM_PURE_BASE_TEMPLATE = "invenio_rdm_pure/base.html"
 """Default base template for the demo page."""
 
 CELERYBEAT_SCHEDULE = {
-    "indexer": {
-        "task": "invenio_indexer.tasks.process_bulk_queue",
-        "schedule": timedelta(minutes=0.1),
-    }
+    "synchronize_records": {
+        "task": "invenio_rdm_pure.tasks.synchronize_records",
+        "schedule": crontab(hour=1, minute=0, day_of_week=0),
+    },
 }
 
 
