@@ -7,9 +7,9 @@
 
 """File description."""
 
-import os
 import smtplib
 from datetime import datetime
+from os.path import dirname, isabs, isfile, join
 from pathlib import Path
 from typing import List
 
@@ -22,6 +22,19 @@ from ..setup import (
     email_smtp_server,
     pure_uuid_length,
 )
+
+
+def load_file_as_string(path):
+    """Open a file and return the content as UTF-8 encoded string."""
+    if not isabs(path):
+        path = join(dirname(__file__), path)
+
+    if not isfile(path):
+        return ""
+
+    with open(path, "rb") as fp:
+        input = fp.read()
+        return input.decode("utf-8")
 
 
 def add_spaces(value: str, max_length=5):
@@ -99,7 +112,7 @@ def check_if_directory_exists(full_path: str):
 
 def check_if_file_exists(file_name: str):
     """Description."""
-    if not os.path.isfile(file_name):
+    if not isfile(file_name):
         open(file_name, "a")
 
 

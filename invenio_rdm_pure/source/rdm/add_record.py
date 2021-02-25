@@ -10,6 +10,8 @@
 import json
 import time
 
+from flask import current_app
+
 from ...setup import (
     accessright_pure_to_rdm,
     data_files_name,
@@ -92,7 +94,13 @@ class RdmAddRecord:
         self.data = dict()
 
         # Assign to '_created_by' the userid of the Pure admin user
-        userid = self.rdm_db.get_pure_user_id()
+        invenio_pure_user_email = str(current_app.config.get("INVENIO_PURE_USER_EMAIL"))
+        invenio_pure_user_password = str(
+            current_app.config.get("INVENIO_PURE_USER_PASSWORD")
+        )
+        userid = self.rdm_db.get_user_id(
+            invenio_pure_user_email, invenio_pure_user_password
+        )
         if not userid:
             return False
         self.data["_created_by"] = userid

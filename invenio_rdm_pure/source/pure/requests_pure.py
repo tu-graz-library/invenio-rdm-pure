@@ -8,6 +8,7 @@
 """File description."""
 
 import json
+from os.path import join
 from typing import List
 
 import requests
@@ -116,6 +117,26 @@ def get_pure_file(file_url: str, file_name: str):
     open(f"{base_path}/{file_name}", "wb").write(response.content)
 
     return response
+
+
+def download_pure_file(
+    file_url: str,
+    pure_username: str,
+    pure_password: str,
+    destination_path: str,
+    file_name: str,
+) -> str:
+    """Download a file from Pure to given destination path with given file name.
+
+    Return path to the downloaded file upon success, empty string upon failure.
+    """
+    response = requests.get(file_url, auth=HTTPBasicAuth(pure_username, pure_password))
+    if response.status_code != 200:
+        return ""
+    path = join(destination_path, file_name)
+    with open(path, "wb") as fp:
+        fp.write(response.content)
+    return path
 
 
 def get_pure_record_metadata_by_uuid(uuid: str):

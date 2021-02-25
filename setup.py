@@ -18,9 +18,19 @@ tests_require = [
     "pytest-invenio>=1.4.0",
 ]
 
+# Should follow inveniosoftware/invenio versions
+invenio_db_version = ">=1.0.4,<2.0.0"
+invenio_search_version = ">=1.4.0,<2.0.0"
+
 extras_require = {
     "docs": [
         "Sphinx>=1.5.1",
+    ],
+    "elasticsearch7": [
+        "invenio-search[elasticsearch7]{}".format(invenio_search_version),
+    ],
+    "postgresql": [
+        "invenio-db[postgresql,versioning]{}".format(invenio_db_version),
     ],
     "tests": tests_require,
 }
@@ -42,6 +52,7 @@ install_requires = [
     "invenio-app>=1.3.0",
     "invenio-celery>=1.2.2",
     "invenio-db>=1.0.8",
+    "invenio-records-marc21>=0.1.0",
     "lxml>=4.6.2",
 ]
 

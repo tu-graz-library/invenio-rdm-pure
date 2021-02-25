@@ -46,7 +46,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -r .${{matrix.requirements-level}}-${{ matrix.python-version }}-requirements.txt
-          pip install .[all]
+          pip install .[all,postgresql,elasticsearch7]
           pip freeze
 
       - name: Run tests
