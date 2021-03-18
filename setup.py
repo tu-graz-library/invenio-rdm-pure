@@ -19,7 +19,7 @@ tests_require = [
 ]
 
 # Should follow inveniosoftware/invenio versions
-invenio_db_version = ">=1.0.4,<2.0.0"
+invenio_db_version = ">=1.0.8,<2.0.0"
 invenio_search_version = ">=1.4.0,<2.0.0"
 
 extras_require = {
@@ -47,12 +47,13 @@ setup_requires = [
 install_requires = [
     "docopt>=0.6.2",
     "Flask-BabelEx>=0.9.4",
-    "invenio-access>=1.3.3",
+    "invenio-access>=1.4.2",
     "invenio-accounts>=1.4.3",
-    "invenio-app>=1.3.0",
+    # "invenio-app>=1.3.1",
+    "invenio-config>=1.0.3",
     "invenio-celery>=1.2.2",
     "invenio-db>=1.0.8",
-    "invenio-records-marc21>=0.1.0",
+    "invenio-records-marc21>=0.1.1",
     "lxml>=4.6.2",
 ]
 
@@ -116,10 +117,8 @@ setup(
         "Programming Language :: Python",
         "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
         "Topic :: Software Development :: Libraries :: Python Modules",
-        "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.6",
-        "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
         "Development Status :: 1 - Planning",
     ],
 )
