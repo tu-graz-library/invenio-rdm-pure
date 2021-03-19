@@ -18,9 +18,19 @@ tests_require = [
     "pytest-invenio>=1.4.0",
 ]
 
+# Should follow inveniosoftware/invenio versions
+invenio_db_version = ">=1.0.8,<2.0.0"
+invenio_search_version = ">=1.4.0,<2.0.0"
+
 extras_require = {
     "docs": [
         "Sphinx>=1.5.1",
+    ],
+    "elasticsearch7": [
+        "invenio-search[elasticsearch7]{}".format(invenio_search_version),
+    ],
+    "postgresql": [
+        "invenio-db[postgresql,versioning]{}".format(invenio_db_version),
     ],
     "tests": tests_require,
 }
@@ -35,12 +45,15 @@ setup_requires = [
 ]
 
 install_requires = [
-    "Flask-BabelEx>=0.9.4",
     "docopt>=0.6.2",
-    "invenio-app>=1.3.0,<2.0.0",
-    "invenio-db>=1.0.8",
-    "invenio-access>=1.3.3",
+    "Flask-BabelEx>=0.9.4",
+    "invenio-access>=1.4.2",
     "invenio-accounts>=1.4.3",
+    # "invenio-app>=1.3.1",
+    "invenio-config>=1.0.3",
+    "invenio-celery>=1.2.2",
+    "invenio-db>=1.0.8",
+    "invenio-records-marc21>=0.1.1",
     "lxml>=4.6.2",
 ]
 
@@ -77,10 +90,10 @@ setup(
         "invenio_i18n.translations": [
             "messages = invenio_rdm_pure",
         ],
-        "invenio_celery.tasks": ["invenio_rdm_pure = invenio_rdm_pure.tasks"],
         "invenio_config.module": [
             "invenio_rdm_pure = invenio_rdm_pure.config",
         ],
+        "invenio_celery.tasks": ["invenio_rdm_pure = invenio_rdm_pure.tasks"],
         # TODO: Edit these entry points to fit your needs.
         # 'invenio_access.actions': [],
         # 'invenio_admin.actions': [],
@@ -104,10 +117,8 @@ setup(
         "Programming Language :: Python",
         "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
         "Topic :: Software Development :: Libraries :: Python Modules",
-        "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.6",
-        "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
         "Development Status :: 1 - Planning",
     ],
 )
