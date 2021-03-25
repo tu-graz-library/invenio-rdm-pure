@@ -49,11 +49,10 @@ install_requires = [
     "Flask-BabelEx>=0.9.4",
     "invenio-access>=1.4.2",
     "invenio-accounts>=1.4.3",
-    # "invenio-app>=1.3.1",
     "invenio-config>=1.0.3",
     "invenio-celery>=1.2.2",
     "invenio-db>=1.0.8",
-    "invenio-records-marc21>=0.1.1",
+    "invenio-records-marc21>=0.2.0",
     "lxml>=4.6.2",
     "faker>=5.0.2",
 ]
