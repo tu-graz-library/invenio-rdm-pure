@@ -10,16 +10,22 @@
 import datetime
 import os
 import time
-import traceback
 from concurrent.futures import ThreadPoolExecutor
-from os.path import dirname, isabs, isfile, join
+from os.path import basename, dirname, isabs, isfile, join
 from pathlib import Path
 from typing import List
 
 from flask import current_app
 from flask_principal import Identity
 from invenio_access.permissions import any_user
-from invenio_records_marc21.services import Marc21RecordService, Metadata, RecordItem
+from invenio_db import db
+from invenio_files_rest.models import ObjectVersion
+from invenio_records_marc21.services import (
+    Marc21DraftFilesService,
+    Marc21RecordService,
+    Metadata,
+    RecordItem,
+)
 
 from ...pure.requests_pure import (
     download_pure_file,
@@ -60,7 +66,9 @@ class Synchronizer(object):
         invenio_pure_user_password = str(
             current_app.config.get("INVENIO_PURE_USER_PASSWORD")
         )
-        self.pure_user_id = database.get_user_id(invenio_pure_user_email, invenio_pure_user_password)
+        self.pure_user_id = database.get_user_id(
+            invenio_pure_user_email, invenio_pure_user_password
+        )
 
     def run_initial_synchronization(self) -> None:
         """Run the initial synchronization.
@@ -117,14 +125,12 @@ class Synchronizer(object):
                 if Marc21Record.is_valid_marc21_xml_string(record_xml):
                     # Store record with the help of marc21 module
                     with app.app_context():
-                        record = self.create_record(record_xml)
                         files = self.download_record_files(research_output)
-                        self.attach_files_to_record(files, record)
-                        self.delete_record_files(files)
-            except RuntimeError:
-                traceback.print_exc()
+                        self.create_record(record_xml, files)
+            except RuntimeError as exc:
+                current_app.logger.exception(exc)
 
-    def create_record(self, record_xml: str) -> RecordItem:
+    def create_record(self, record_xml: str, file_attachments: List[str]) -> None:
         """Create Invenio record from Marc21XML string."""
         identity = Identity(self.pure_user_id)
         identity.provides.add(any_user)
@@ -132,8 +138,9 @@ class Synchronizer(object):
         metadata.xml = record_xml
         service = Marc21RecordService()
         draft = service.create(metadata=metadata, identity=identity)
-        record = service.publish(id_=draft.id, identity=identity)
-        return record
+        self.attach_files_to_draft(file_attachments, draft)
+        self.delete_record_files(file_attachments)
+        service.publish(id_=draft.id, identity=identity)
 
     def download_record_files(
         self, record: dict, destination_path: str = "temp"
@@ -161,19 +168,27 @@ class Synchronizer(object):
                     file_paths.append(file_path)
         return file_paths
 
-    def attach_files_to_record(self, files: List[str], record_item: RecordItem) -> None:
+    def attach_files_to_draft(self, files: List[str], draft: RecordItem) -> None:
         """Attach files to given record."""
-        resolver = Resolver()
+        identity = Identity(self.pure_user_id)
+        identity.provides.add(any_user)
+        service = Marc21DraftFilesService()
+        if files:
+            draft = service.update_files_options(
+                id_=draft.id, identity=identity, data={"enabled": False}
+            )
         for file in files:
-            with open(file, "rb") as fp:
-                # pid, record = resolver.resolve(record_item.id)
-                # record.files[str(basename(file))] = fp
-                pass
+            filep = open(file, "rb")
+            ObjectVersion.create(
+                str(draft._record.bucket_id), str(basename(file)), stream=filep
+            )
+            filep.close()
+            db.session.commit()
 
     def delete_record_files(self, file_paths: List[str]) -> None:
         """Delete files with given path."""
         for file_path in file_paths:
-            Path.unlink(file_path)
+            Path(file_path).unlink(missing_ok=True)
 
     def run_scheduled_synchronization(self) -> None:
         """Run scheduled synchronization.
