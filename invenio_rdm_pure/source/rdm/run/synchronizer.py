@@ -32,9 +32,8 @@ from ...pure.requests_pure import (
     get_research_output_count,
     get_research_outputs,
 )
-from ...utils import get_dates_in_span
+from ...utils import get_dates_in_span, get_user_id
 from ..converter import Converter, Marc21Record
-from ..database import RdmDatabase
 
 
 class Synchronizer(object):
@@ -61,12 +60,11 @@ class Synchronizer(object):
         self.pure_username = pure_username
         self.pure_password = pure_password
 
-        database = RdmDatabase()
         invenio_pure_user_email = str(current_app.config.get("INVENIO_PURE_USER_EMAIL"))
         invenio_pure_user_password = str(
             current_app.config.get("INVENIO_PURE_USER_PASSWORD")
         )
-        self.pure_user_id = database.get_user_id(
+        self.pure_user_id = get_user_id(
             invenio_pure_user_email, invenio_pure_user_password
         )
 

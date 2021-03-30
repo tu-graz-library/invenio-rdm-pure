@@ -15,6 +15,7 @@ from os.path import dirname, isfile, join
 
 import click
 from faker import Faker
+from flask import current_app
 from flask.cli import with_appcontext
 from flask_principal import Identity
 from invenio_access.permissions import any_user
@@ -22,8 +23,7 @@ from invenio_records_marc21.services import Marc21RecordService, Metadata
 from invenio_records_marc21.vocabularies import Vocabularies
 
 from .source.rdm.converter import Converter, Marc21Record
-from .source.rdm.database import RdmDatabase
-from .source.utils import load_file_as_string
+from .source.utils import get_user_id, load_file_as_string
 
 
 def fake_access_right():
@@ -50,7 +50,12 @@ def create_invenio_record(record: dict) -> None:
         click.secho("ERROR - Can't convert provided JSON to valid Marc21XML.", fg="red")
         return
 
-    identity = Identity(RdmDatabase.get_pure_user_id())
+    invenio_pure_user_email = str(current_app.config.get("INVENIO_PURE_USER_EMAIL"))
+    invenio_pure_user_password = str(
+        current_app.config.get("INVENIO_PURE_USER_PASSWORD")
+    )
+    pure_user_id = get_user_id(invenio_pure_user_email, invenio_pure_user_password)
+    identity = Identity(pure_user_id)
     identity.provides.add(any_user)
     metadata = Metadata()
     metadata.xml = record_marc21

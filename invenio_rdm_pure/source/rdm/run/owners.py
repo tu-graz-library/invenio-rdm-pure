@@ -14,7 +14,6 @@ from ...pure.requests_pure import get_next_page, get_pure_metadata
 from ...reports import Reports
 from ...utils import file_read_lines, initialize_counters, shorten_file_name
 from ..add_record import RdmAddRecord
-from ..database import RdmDatabase
 from ..requests_rdm import Requests
 
 
@@ -24,7 +23,6 @@ class RdmOwners:
     def __init__(self):
         """Description."""
         self.rdm_requests = Requests()
-        self.rdm_db = RdmDatabase()
         self.report = Reports()
         self.rdm_add_record = RdmAddRecord()
         self.report_files = ["console", "owners"]

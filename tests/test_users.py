@@ -7,21 +7,19 @@
 
 """User operation tests."""
 
-from invenio_rdm_pure.source.rdm.database import RdmDatabase
+from invenio_rdm_pure.source.utils import get_user_id
 
 
 def test_create_pure_user(base_app) -> None:
     """Test to create pure user."""
-    database = RdmDatabase()
-    id = database.get_user_id("pure_user", "pure_password")
+    id = get_user_id("pure_user", "pure_password")
     assert id is not None
 
 
 def test_get_pure_user_id(base_app) -> None:
     """Test to create pure user and then get their ID."""
-    database = RdmDatabase()
-    created_id = database.get_user_id("pure_user", "pure_password")
+    created_id = get_user_id("pure_user", "pure_password")
     assert created_id is not None
-    retrieved_id = database.get_user_id("pure_user", "pure_password")
+    retrieved_id = get_user_id("pure_user", "pure_password")
     assert retrieved_id is not None
     assert created_id == retrieved_id
