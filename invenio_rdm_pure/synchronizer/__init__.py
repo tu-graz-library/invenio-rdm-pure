@@ -5,6 +5,8 @@
 # invenio-rdm-pure is free software; you can redistribute it and/or modify it
 # under the terms of the MIT License; see LICENSE file for more details.
 
-"""Invenio module that adds pure."""
+"""Synchronizer Module."""
 
-__all__ = ("__version__", "InvenioRdmPure")
+from .synchronizer import Synchronizer
+
+__all__ = "Synchronizer"

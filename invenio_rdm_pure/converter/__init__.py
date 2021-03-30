@@ -7,4 +7,13 @@
 
 """Invenio module that adds pure."""
 
-__all__ = ("__version__", "InvenioRdmPure")
+from .converter import Converter
+from .marc21_record import ControlField, DataField, Marc21Record, SubField
+
+__all__ = (
+    "Converter",
+    "Marc21Record",
+    "ControlField",
+    "DataField",
+    "SubField",
+)

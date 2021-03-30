@@ -27,13 +27,13 @@ from invenio_records_marc21.services import (
     RecordItem,
 )
 
-from ...pure.requests_pure import (
+from ..converter import Converter, Marc21Record
+from ..pure.utils import (
     download_pure_file,
     get_research_output_count,
     get_research_outputs,
 )
-from ...utils import get_dates_in_span, get_user_id
-from ..converter import Converter, Marc21Record
+from ..utils import get_dates_in_span, get_user_id
 
 
 class Synchronizer(object):

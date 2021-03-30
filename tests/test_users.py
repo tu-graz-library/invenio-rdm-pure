@@ -7,7 +7,7 @@
 
 """User operation tests."""
 
-from invenio_rdm_pure.source.utils import get_user_id
+from invenio_rdm_pure.utils import get_user_id
 
 
 def test_create_pure_user(base_app) -> None:

@@ -9,10 +9,11 @@
 import json
 from os.path import dirname, join
 
-from invenio_rdm_pure.source.rdm.converter import Converter, Marc21Record
+from invenio_rdm_pure.converter import Converter, Marc21Record
 
 
 def load_json(filename):
+    """Load JSON file as dict."""
     with open(join(dirname(__file__), filename), "rb") as fp:
         return json.load(fp)
 

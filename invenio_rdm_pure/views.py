@@ -7,8 +7,6 @@
 
 """Invenio module that adds pure."""
 
-import os
-
 from flask import Blueprint
 from flask_babelex import gettext as _
 

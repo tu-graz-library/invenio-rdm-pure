@@ -10,7 +10,7 @@
 from celery import shared_task
 from flask import current_app
 
-from .source.rdm.run.synchronizer import Synchronizer
+from .synchronizer import Synchronizer
 
 
 @shared_task

@@ -22,8 +22,8 @@ from invenio_access.permissions import any_user
 from invenio_records_marc21.services import Marc21RecordService, Metadata
 from invenio_records_marc21.vocabularies import Vocabularies
 
-from .source.rdm.converter import Converter, Marc21Record
-from .source.utils import get_user_id, load_file_as_string
+from .converter import Converter, Marc21Record
+from .utils import get_user_id, load_file_as_string
 
 
 def fake_access_right():
