@@ -89,22 +89,6 @@ def get_pure_metadata(endpoint, identifier="", parameters={}, review=True):
     return response
 
 
-def get_pure_file(file_url: str, file_name: str, base_path: str):
-    """Description."""
-    # Get request to Pure
-    pure_username = current_app.config.get("PURE_USERNAME")
-    pure_password = current_app.config.get("PURE_PASSWORD")
-    response = requests.get(file_url, auth=HTTPBasicAuth(pure_username, pure_password))
-
-    if response.status_code >= 300:
-        return False
-
-    # Save file
-    open(f"{base_path}/{file_name}", "wb").write(response.content)
-
-    return response
-
-
 def download_pure_file(
     file_url: str,
     pure_username: str,
