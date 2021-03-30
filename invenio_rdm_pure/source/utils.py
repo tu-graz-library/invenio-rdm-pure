@@ -32,7 +32,7 @@ def get_user_id(user_email: str, user_password: str):
                 email=user_email,
                 password=hash_password(user_password),
                 active=True,
-)
+            )
             db.session.commit()
         return user.id
 
@@ -141,7 +141,7 @@ def check_if_file_exists(file_name: str):
         open(file_name, "a")
 
 
-def file_read_lines(file_name: str):
+def file_read_lines(file_name: str, data_files_name: dict):
     """Description."""
     file_full_name = data_files_name[file_name]
 
@@ -159,7 +159,7 @@ def file_read_lines(file_name: str):
     return open(file_full_name).readlines()
 
 
-def check_uuid_authenticity(uuid: str):
+def check_uuid_authenticity(uuid: str, pure_uuid_length: int):
     """Checks if lenght of the uuid is correct."""
     if len(uuid) != pure_uuid_length:
         return False
@@ -223,7 +223,13 @@ def get_userid_from_list_by_externalid(self, external_id: str, file_data: list):
             return user_id
 
 
-def send_email(uuid: str, file_name: str):
+def send_email(
+    uuid: str,
+    file_name: str,
+    email_smtp_server: str,
+    email_smtp_port: int,
+    email_message: str,
+):
     """Description."""
     # creates SMTP session
     s = smtplib.SMTP(email_smtp_server, email_smtp_port)
