@@ -28,8 +28,7 @@ class ImportRecords:
         """Description."""
         page = 1
         self.next_page = True
-        self._delete_old_xml()
-        name_space = self._create_xml()
+        xml = self._create_xml()
 
         # Get RDM records by page
         while self.next_page:
@@ -42,7 +41,7 @@ class ImportRecords:
                 #     self.report.add("\nTask ended - No xml file created\n")
                 #     pass
                 return
-            self._process_data(data, name_space)
+            self._process_data(data, xml)
             page += 1
         self._parse_xml()
 
@@ -88,7 +87,7 @@ class ImportRecords:
         self.root = ET.Element("{%s}datasets" % name_space["dataset"])
         return name_space
 
-    def _process_data(self, data, name_space):
+    def _process_data(self, data, xml):
         """Creates the xml file that will be imported in pure."""
         count = 0
 
@@ -108,23 +107,23 @@ class ImportRecords:
                 continue
 
             # Adds fields to the created xml element
-            self._populate_xml(item_metadata, name_space)
+            self._populate_xml(item_metadata, xml)
 
-    def _populate_xml(self, item, name_space):
+    def _populate_xml(self, item, xml):
         """Description."""
         # Dataset element
-        body = ET.SubElement(self.root, "{%s}dataset" % name_space["dataset"])
+        body = ET.SubElement(self.root, "{%s}dataset" % xml["dataset"])
         body.set("type", "dataset")
 
         # Title                     (mandatory field)
         value = get_value(item, ["titles", 0, "title"])
         if not value:
             return False
-        self._sub_element(body, name_space["dataset"], "title").text = value
+        self._sub_element(body, xml["dataset"], "title").text = value
 
         # Managing organisation     (mandatory field)
         organisational_unit = self._sub_element(
-            body, name_space["dataset"], "managingOrganisation"
+            body, xml["dataset"], "managingOrganisation"
         )
         self._add_attribute(
             item,
@@ -134,34 +133,30 @@ class ImportRecords:
         )
 
         # Persons                   (mandatory field)
-        self._add_persons(body, name_space, item)
+        self._add_persons(body, xml, item)
 
         # Available date            (mandatory field)
-        date = self._sub_element(body, name_space["dataset"], "availableDate")
-        sub_date = self._sub_element(date, name_space["commons"], "year")
+        date = self._sub_element(body, xml["dataset"], "availableDate")
+        sub_date = self._sub_element(date, xml["commons"], "year")
         sub_date.text = get_value(item, ["publication_date"])
 
         # Publisher                 (mandatory field)
-        self._add_publisher(body, name_space, item)
+        self._add_publisher(body, xml, item)
 
         # Description
         value = get_value(item, ["abstract"])
         value = "test description"
         if value:
-            descriptions = self._sub_element(
-                body, name_space["dataset"], "descriptions"
-            )
-            description = self._sub_element(
-                descriptions, name_space["dataset"], "description"
-            )
+            descriptions = self._sub_element(body, xml["dataset"], "descriptions")
+            description = self._sub_element(descriptions, xml["dataset"], "description")
             description.set("type", "datasetdescription")
             description.text = value
 
         # Links
-        self._add_links(body, name_space)
+        self._add_links(body, xml)
 
         # Organisations
-        self._add_organisations(body, name_space, item)
+        self._add_organisations(body, xml, item)
 
     def _add_publisher(self, body, name_space, item):
         """Description."""
