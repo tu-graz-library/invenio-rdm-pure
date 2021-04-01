@@ -14,7 +14,6 @@ from xml.etree import ElementTree as ET
 
 from ...setup import dirpath, pure_import_file, pure_import_path
 from ..rdm.requests_rdm import Requests
-from ..reports import Reports
 from ..utils import add_spaces, check_if_directory_exists, current_date, get_value
 
 
@@ -24,13 +23,9 @@ class ImportRecords:
     def __init__(self):
         """Description."""
         self.rdm_requests = Requests()
-        self.report = Reports()
 
     def run_import(self):
         """Description."""
-        # Report title
-        self.report.add_template(["console"], ["general", "title"], ["PURE IMPORT"])
-
         page = 1
         self.next_page = True
         self._delete_old_xml()
@@ -40,10 +35,12 @@ class ImportRecords:
         while self.next_page:
             data = self._get_rdm_records_metadata(page)
             if not data:
-                if self._check_if_file_exists(pure_import_file):
-                    self.report.add("\nTask correctly finished\n")
-                else:
-                    self.report.add("\nTask ended - No xml file created\n")
+                # if self._check_if_file_exists(pure_import_file):
+                #     self.report.add("\nTask correctly finished\n")
+                #     pass
+                # else:
+                #     self.report.add("\nTask ended - No xml file created\n")
+                #     pass
                 return
             self._process_data(data, name_space)
             page += 1
@@ -53,7 +50,6 @@ class ImportRecords:
         """Description."""
         # Check if file exists
         if self._check_if_file_exists(pure_import_file):
-            self.report.add("\nDelete old xml file")
             # Delete old file
             os.remove(pure_import_file)
 
@@ -67,7 +63,6 @@ class ImportRecords:
         In this case, the record will be ignored.
         """
         if "uuid" in item:
-            self.report.add(f"{self.report_base} Already in Pure")
             return False
         return True
 
@@ -77,7 +72,6 @@ class ImportRecords:
             return True
         else:
             date = item["created"].split("T")[0]
-            self.report.add(f"{self.report_base} Too old: {date}")
             return False
 
     def _create_xml(self):
@@ -102,7 +96,6 @@ class ImportRecords:
 
             count += 1
             self.full_item = item
-            self.report_base = f"{add_spaces(count)} - {item['id']} -"
             item_metadata = item["metadata"]
 
             # Checks if the record was created today
@@ -113,8 +106,6 @@ class ImportRecords:
             # If the rdm record has a uuid means that it was imported from pure - REVIEW
             if not self._check_uuid(item_metadata):
                 continue
-
-            self.report.add(f"{self.report_base} Adding")
 
             # Adds fields to the created xml element
             self._populate_xml(item_metadata, name_space)
@@ -301,10 +292,5 @@ class ImportRecords:
         # Checks if any record is listed
         if not json_data:
             return False
-
-        self.report.add_template(
-            ["console"], ["pages", "page_and_size"], [page, page_size]
-        )
-        self.report.add("")
 
         return json_data
