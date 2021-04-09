@@ -7,30 +7,22 @@
 
 """File description."""
 
-from .source.pure.import_records import ImportRecords
+from .source.pure.import_records import run_import
 from .source.rdm.delete_record import Delete
 from .source.rdm.run.changes import PureChanges
 from .source.rdm.run.groups import RdmGroups
 from .source.rdm.run.owners import RdmOwners
 from .source.rdm.run.pages import RunPages
 from .source.rdm.run.uuid_run import AddFromUuidList
-
-# from .source.rdm.testing.run_test import Testing
 from .source.reports import Reports
 
 
 class ShellInterface:
     """ShellInterface."""
 
-    def testing(self):
-        """testing."""
-        testing = Testing()
-        testing.run()
-
     def pure_import(self):
         """Pure import."""
-        pure_import_records = ImportRecords()
-        pure_import_records.run_import()
+        run_import()
 
     def changes(self):
         """Gets changes from Pure API endpoint.

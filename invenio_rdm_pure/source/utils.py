@@ -198,23 +198,35 @@ def get_userid_from_list_by_externalid(self, external_id: str, file_data: list):
             return user_id
 
 
-def send_email(uuid: str, file_name: str):
-    """Description."""
-    # creates SMTP session
-    s = smtplib.SMTP(email_smtp_server, email_smtp_port)
+def send_email(
+    uuid: str,
+    file_name: str,
+    email_sender: str,
+    email_sender_password: str,
+    email_receiver: str,
+):
+    """Send an email."""
+    # EMAIL     -------- TO REVIEW ------------------
+    email_smtp_server = "smtp.gmail.com"
+    email_smtp_port = 587
+    email_subject = "Delete Pure file"
+    email_message = (
+        """Subject: """
+        + email_subject
+        + """Please remove from pure uuid {} the file {}."""
+    )
+    # create SMTP session
+    session = smtplib.SMTP(email_smtp_server, email_smtp_port)
 
     # start TLS for security
-    s.starttls()
+    session.starttls()
 
     # Authentication
-    email_sender = current_app.config.get("INVENIO_PURE_USER_EMAIL")
-    email_sender_password = current_app.config.get("INVENIO_PURE_USER_PASSWORD")
-    s.login(email_sender, email_sender_password)
+    session.login(email_sender, email_sender_password)
 
     # sending the mail
     message = email_message.format(uuid, file_name)
-    email_receiver = current_app.config.get("PURE_RESPONSIBLE_EMAIL")
-    s.sendmail(email_sender, email_receiver, message)
+    session.sendmail(email_sender, email_receiver, message)
 
     # terminating the session
-    s.quit()
+    session.quit()
