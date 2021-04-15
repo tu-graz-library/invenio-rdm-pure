@@ -23,7 +23,7 @@ class Converter(object):
     def initialize_languages(self) -> dict:
         """Initialize language cache dictionary."""
         language_cache = dict()
-        path = os.path.join(os.path.dirname(__file__), "iso6393.json")
+        path = os.path.join(os.path.dirname(__file__), "data", "iso6393.json")
         with open(path) as file:
             languages = json.load(file)
             for language in languages:

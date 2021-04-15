@@ -156,7 +156,7 @@ class Marc21Record(object):
     def is_valid_marc21_xml_string(record: str) -> bool:
         """Validate the record against a Marc21XML Schema."""
         with open(
-            join(dirname(__file__), "MARC21slim.xsd"), "r", encoding="utf-8"
+            join(dirname(__file__), "schema", "MARC21slim.xsd"), "r", encoding="utf-8"
         ) as fp:
             marc21xml_schema = etree.XMLSchema(etree.parse(fp))
             marc21xml = etree.parse(StringIO(record))

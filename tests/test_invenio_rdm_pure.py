@@ -10,7 +10,6 @@
 from flask import Flask
 
 from invenio_rdm_pure import InvenioRdmPure
-from invenio_rdm_pure.source.rdm.run.uuid_run import AddFromUuidList
 
 
 def test_version():

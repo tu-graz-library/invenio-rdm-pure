@@ -15,15 +15,15 @@ from os.path import dirname, isfile, join
 
 import click
 from faker import Faker
+from flask import current_app
 from flask.cli import with_appcontext
 from flask_principal import Identity
 from invenio_access.permissions import any_user
 from invenio_records_marc21.services import Marc21RecordService, Metadata
 from invenio_records_marc21.vocabularies import Vocabularies
 
-from .source.rdm.converter import Converter, Marc21Record
-from .source.rdm.database import RdmDatabase
-from .source.utils import load_file_as_string
+from .converter import Converter, Marc21Record
+from .utils import get_user_id, load_file_as_string
 
 
 def fake_access_right():
@@ -50,7 +50,12 @@ def create_invenio_record(record: dict) -> None:
         click.secho("ERROR - Can't convert provided JSON to valid Marc21XML.", fg="red")
         return
 
-    identity = Identity(RdmDatabase.get_pure_user_id())
+    invenio_pure_user_email = str(current_app.config.get("INVENIO_PURE_USER_EMAIL"))
+    invenio_pure_user_password = str(
+        current_app.config.get("INVENIO_PURE_USER_PASSWORD")
+    )
+    pure_user_id = get_user_id(invenio_pure_user_email, invenio_pure_user_password)
+    identity = Identity(pure_user_id)
     identity.provides.add(any_user)
     metadata = Metadata()
     metadata.xml = record_marc21
@@ -119,47 +124,3 @@ def pure_demo(number):
         create_invenio_record(demo_record)
 
     click.secho("Demo records created succesfully.", fg="green")
-
-
-"""Pure synchronizer.
-
-Usage:
-    shell_interface.py get_pure_changes
-    shell_interface.py get_pure_pages       [--pageStart=<page>, --pageEnd=<page>, --pageSize=<page>]
-    shell_interface.py delete_old_logs
-    shell_interface.py delete_by_recid
-    shell_interface.py add_by_uuid
-    shell_interface.py get_owner_records    [--identifier=<value>, --identifierValue=<value>]
-    shell_interface.py group_split          [--oldGroup=<recid>, --newGroups=<recid>]
-    shell_interface.py group_merge          [--oldGroups=<recid>, --newGroup=<recid>]
-    shell_interface.py pure_import_xml
-    shell_interface.py rdm_testing
-
-Options:
-    --pageStart=<page>      Initial page [default:  1].
-    --pageEnd=<page>        Ending page  [default:  2].
-    --pageSize=<page>       Page size    [default: 10].
-    --oldGroup=<recid>      Old group externalId.
-    --newGroups=<recid>     List of new groups externalIds separated by a space.
-    --oldGroups=<recid>     List of old groups externalIds separated by a space.
-    --newGroup=<recid>      New group externalId.
-    --identifier=<value>    Run process identifying the user with externalId or orcid
-    --identifierValue=<value>    User externalId or orcid
-    -h --help               Show this screen.
-    --version               Show version.
-
-from docopt import docopt
-
-from .setup import dirpath
-from .shell_interface import ShellInterface, method_call
-from .source.utils import check_if_directory_exists
-
-if __name__ == "__main__":
-    arguments = docopt(__doc__, version="Pure synchronizer 1.0")
-    check_if_directory_exists(f"{dirpath}/data/temporary_files")
-    # Create new instance
-    shell_interface = ShellInterface()
-
-    # Calls the method given in the arguments
-    method_call(shell_interface, arguments)
-"""
