@@ -132,3 +132,31 @@ def get_next_page(resp_json):
                 if "next" in resp_json["navigationLinks"][1]["ref"]:
                     return resp_json["navigationLinks"][1]["href"]
     return False
+
+
+def get_value(item, path: list):
+    """Goes through the json item to get the information of the specified path."""
+    child = item
+    count = 0
+    # Iterates over the given path
+    for i in path:
+        # If the child (step in path) exists or is equal to zero
+        if i in child or i == 0:
+            # Counts if the iteration took place over every path element
+            count += 1
+            child = child[i]
+        else:
+            return False
+
+    # If the full path is not available (missing field)
+    if len(path) != count:
+        return False
+
+    value = str(child)
+
+    # REPLACEMENTS
+    value = value.replace("\t", " ")  # replace \t with ' '
+    value = value.replace("\\", "\\\\")  # adds \ before \
+    value = value.replace('"', '\\"')  # adds \ before "
+    value = value.replace("\n", "")  # removes new lines
+    return value

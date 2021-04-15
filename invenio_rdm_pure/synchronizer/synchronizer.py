@@ -33,7 +33,7 @@ from ..pure.utils import (
     get_research_output_count,
     get_research_outputs,
 )
-from ..utils import get_dates_in_span, get_user_id
+from ..utils import get_dates_in_span, get_user_id, send_email
 
 
 class Synchronizer(object):
@@ -45,6 +45,8 @@ class Synchronizer(object):
         pure_api_key: str = "",
         pure_username: str = "",
         pure_password: str = "",
+        invenio_pure_user_email: str = "",
+        invenio_pure_user_password: str = "",
     ):
         """Default Constructor of the Synchronizer class."""
         if not pure_api_url:
@@ -55,6 +57,14 @@ class Synchronizer(object):
             pure_username = str(current_app.config.get("PURE_USERNAME"))
         if not pure_password:
             pure_password = str(current_app.config.get("PURE_PASSWORD"))
+        if not invenio_pure_user_email:
+            self.invenio_pure_user_email = str(
+                current_app.config.get("INVENIO_PURE_USER_EMAIL")
+            )
+        if not invenio_pure_user_password:
+            self.invenio_pure_user_password = str(
+                current_app.config.get("INVENIO_PURE_USER_PASSWORD")
+            )
         self.pure_api_url = pure_api_url
         self.pure_api_key = pure_api_key
         self.pure_username = pure_username
@@ -67,6 +77,7 @@ class Synchronizer(object):
         self.pure_user_id = get_user_id(
             invenio_pure_user_email, invenio_pure_user_password
         )
+        self.pure_responsible_email = current_app.config.get("PURE_RESPONSIBLE_EMAIL")
 
     def run_initial_synchronization(self) -> None:
         """Run the initial synchronization.
@@ -125,8 +136,22 @@ class Synchronizer(object):
                     with app.app_context():
                         files = self.download_record_files(research_output)
                         self.create_record(record_xml, files)
+                        self.send_pure_delete_requests(research_output, files)
             except RuntimeError as exc:
                 current_app.logger.exception(exc)
+
+    def send_pure_delete_requests(
+        self, research_output: dict, files: List[str]
+    ) -> None:
+        """Send delete requests to Pure responsible."""
+        for file in files:
+            send_email(
+                research_output["uuid"],
+                basename(file),
+                self.invenio_pure_user_email,
+                self.invenio_pure_user_password,
+                self.pure_responsible_email,
+            )
 
     def create_record(self, record_xml: str, file_attachments: List[str]) -> None:
         """Create Invenio record from Marc21XML string."""
